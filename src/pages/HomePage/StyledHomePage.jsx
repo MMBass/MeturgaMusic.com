@@ -2,6 +2,8 @@ import { styled } from '@mui/material/styles';
 import HomePage from './HomePage';
 
 const StyledHomePage = styled(HomePage)`
+    min-height: 700px;
+    
     .home-top{
        padding: 0 35px;
 
