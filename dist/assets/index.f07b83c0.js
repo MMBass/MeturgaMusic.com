@@ -95,9 +95,6 @@ text-align: end;
     }
   }
 `;function f0(r){var o=r,{className:u}=o,t=T(o,["className"]);return e("div",{className:u,children:t.children})}const x0=C(f0)`
-  height: 100vh;
-  height: fit-content;
-  min-height: 700px;
   background-color: ${u=>u.theme.palette.secondary.light};
 
   color: ${u=>u.theme.palette.primary.contrastText};
@@ -344,6 +341,8 @@ text-align: end;
   }
 }
 `;function M0({className:u}){var a,l,n;const t=i.exports.useContext($),{sname:r}=Iu();i.exports.useEffect(()=>{r&&r.includes("_")&&o()},[]);function o(){let s=r;s=s.replaceAll("-"," ");const h={artistName:encodeURI(` ${s.split("_")[0]} `),songName:encodeURI(` ${s.split("_")[1]} `)};s=s.replaceAll("_"," - "),t.getSongLyrics(h,s)}function D(s){s.preventDefault()}return p("div",{className:u,children:[e("div",{className:"home-top",children:p(B,{container:!0,className:"home-t-container",children:[!((a=t.lines)==null?void 0:a[0])&&e(B,{item:!0,xs:12,sm:6,children:e(I,{variant:"h1",className:"page-h1",children:"\u05E9\u05D9\u05E8\u05D9\u05DD \u05DE\u05EA\u05D5\u05E8\u05D2\u05DE\u05D9\u05DD"})}),p(B,{item:!0,xs:12,sm:6,children:[!((l=t.lines)==null?void 0:l[0])&&p(I,{variant:"h3",className:"page-h3",children:[e("span",{className:"h3-start h3-s-one",children:"\u05D7\u05E4\u05E9\u05D5 \u05D1\u05D9\u05DF \u05DE\u05D9\u05DC\u05D9\u05D5\u05E0\u05D9 \u05E9\u05D9\u05E8\u05D9\u05DD \u05D1\u05D0\u05E0\u05D2\u05DC\u05D9\u05EA"}),e("br",{}),e("span",{className:"h3-start h3-s-two",children:"\u05D5\u05E7\u05D1\u05DC\u05D5 \u05D0\u05EA \u05D4\u05E9\u05D9\u05E8 \u05DE\u05EA\u05D5\u05E8\u05D2\u05DD \u05DC\u05E2\u05D1\u05E8\u05D9\u05EA"}),e("br",{}),e("p",{className:"small-one",children:"\u05DC\u05D0 \u05E0\u05DE\u05E6\u05D0? \u05E0\u05E1\u05D5 \u05DC\u05D7\u05E4\u05E9 \u05E2\u05DD \u05E9\u05DD \u05D4\u05D0\u05DE\u05DF"}),e("div",{className:"small-two",children:e("small",{children:"\u05DC\u05D7\u05D9\u05E6\u05D4 \u05E2\u05DC \u05DE\u05D9\u05DC\u05D4 \u05EA\u05E6\u05D9\u05D2 \u05EA\u05E8\u05D2\u05D5\u05DE\u05D9\u05DD \u05E0\u05D5\u05E1\u05E4\u05D9\u05DD"})})]}),e(P,{component:"form",noValidate:!0,autoComplete:"off",onSubmit:D,className:"search-ctr",children:e(k0,{})})]})]})}),((n=t.lines)==null?void 0:n[0])&&e(F0,{className:"lyrics-body"})]})}const $0=C(M0)`
+    min-height: 700px;
+    
     .home-top{
        padding: 0 35px;
 
