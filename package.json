@@ -1,0 +1,34 @@
+{
+  "name": "music-line",
+  "homepage": "https://MMBass.github.io/MeturgaMusic/",
+  "private": false,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && git add dist -f && git commit -m \"deploy to gh-pages\" && git subtree push --prefix dist origin gh-pages",
+    "gen": "node genConfig"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.4.1",
+    "@mui/material": "^5.4.0",
+    "generate-template-files": "^3.2.0",
+    "genius-lyrics-api": "^3.2.0",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-meta-tags": "^1.0.1",
+    "react-router-dom": "^6.2.1",
+    "stylis": "^4.0.13",
+    "stylis-plugin-rtl": "^2.1.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^1.0.7",
+    "vite": "^2.8.0",
+    "gh-pages": "^3.2.3"
+  }
+}
