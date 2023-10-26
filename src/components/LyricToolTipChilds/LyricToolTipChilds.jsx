@@ -2,8 +2,11 @@ import { useContext } from "react";
 
 import {
   Typography,
-  LinearProgress
+  LinearProgress,
+  ClickAwayListener
 } from '@mui/material';
+
+import { default as BookMarkWord } from '@components/BookMarkWord/StyledBookMarkWord';
 
 import { SettingsContext } from '@context/SettingsContext';
 
@@ -27,17 +30,20 @@ function LyricToolTipChilds({ className, ...props }) {
   }
 
   return (
-    <span className={className}>
-      <Typography className="tt-top" color="inherit" style={{ fontSize: settingsContext.fontSize.sm >= 18 ? settingsContext.fontSize.sm - 8 : settingsContext.fontSize.sm }}> תרגומים נוספים </Typography>
-      {props.results[0] && <hr></hr>}
-      <div className="tt-body" style={{ fontSize: settingsContext.fontSize.sm >= 18 ? settingsContext.fontSize.sm - 8 : settingsContext.fontSize.sm }}>
-        {props.results[0] ?
-          <Results></Results>
-          :
-          <LinearProgress className="tt-body-linear" color={"inherit"} />
-        }
-      </div>
-    </span>
+    <ClickAwayListener onClickAway={props.tooltipClose}>
+      <span className={className}>
+        <Typography className="tt-top" color="inherit" style={{ fontSize: settingsContext.fontSize.sm >= 18 ? settingsContext.fontSize.sm - 8 : settingsContext.fontSize.sm }}> תרגומים נוספים </Typography>
+        {props.results[0] && <hr></hr>}
+        <div className="tt-body" style={{ fontSize: settingsContext.fontSize.sm >= 18 ? settingsContext.fontSize.sm - 8 : settingsContext.fontSize.sm }}>
+          {props.results[0] ?
+            <Results></Results>
+            :
+            <LinearProgress className="tt-body-linear" color={"inherit"} />
+          }
+        </div>
+        <BookMarkWord toSave={{ word: props.lyric, results: props.results }} saved={props.bmSaved} variant={'Star'}></BookMarkWord>
+      </span>
+    </ClickAwayListener>
   );
 }
 

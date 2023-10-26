@@ -27,7 +27,7 @@ body {
 /* toolTip parent. can't be styled from component */
 @media (min-width: 600px) {
   .muirtl-z5ff92-MuiTooltip-tooltip,  .muirtl-z5ff92-MuiTooltip-tooltip, .MuiTooltip-tooltip {
-    max-width: 600px;
+    max-width: 600px !important;
   }
 }
 

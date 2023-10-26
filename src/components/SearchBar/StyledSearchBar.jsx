@@ -13,10 +13,10 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   input, fieldset, label{
-   color: ${props => props.theme.palette.primary.main + "!important"};
-   border-color: ${props => props.theme.palette.secondary.contrastText + "!important"};
+    color: ${props => props.theme.palette.primary.main + "!important"};
+    border-color: ${props => props.theme.palette.secondary.contrastText + "!important"};
 
-   font-weight: 600;
+    font-weight: 600;
     border-width: medium;
   }
 

@@ -17,7 +17,7 @@ example:
 export default function BannersContextProvider(props) {
     const [banners, setBanners] = useState({
         main: { open: false, severity: "error", title: "האתר בבניה", message: "" },
-        infoSnackbar: { open: true, severity: "warning", title: "", message: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק" },
+        infoSnackbar: { open: true, severity: "error", title: "", message: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק" },
     });
 
     const createBanner = (name, severity, title, message) => {

@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import {
   Tooltip,
 } from '@mui/material';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 import { default as LyricToolTipChilds } from '@components/LyricToolTipChilds/StyledLyricToolTipChilds';
+import { default as BookMarkWord } from '@components/BookMarkWord/StyledBookMarkWord';
 
 function LyricToolTip({ className, ...props }) {
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState([]);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     // if (props.open == true) {
@@ -29,6 +30,17 @@ function LyricToolTip({ className, ...props }) {
     //   };
     // }
   }, []);  // try to open the first ttip for example, but switching too fast
+
+  useEffect(() => {
+    if (findSaved()) { setSaved(true) }
+  }, []);
+
+  const findSaved = () => {
+    if (!localStorage.getItem('meturgamm_words')) return false;
+
+    const words = JSON.parse(localStorage.getItem('meturgamm_words'));
+    return words.find(w => w.word.toLowerCase() === props.lyric.toLowerCase());  // {word: "", results: []} 
+  }
 
   const handleTooltipOpen = () => {
     setOpen(true);
@@ -77,12 +89,13 @@ function LyricToolTip({ className, ...props }) {
         console.log(e);
       });
   }
- 
+
   return (
-    <ClickAwayListener onClickAway={handleTooltipClose}>
+<>
+      {/* <BookMarkWord toSave={{ word: props.lyric, results: results || ['top bookMark'] }} saved={saved} variant={'BookMark'}></BookMarkWord> */}
       <Tooltip className={className}
         title={
-          <LyricToolTipChilds className="tt-childs" results={results}></LyricToolTipChilds>}
+          <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={props.lyric} results={results} bmSaved={saved}></LyricToolTipChilds>}
         arrow
         leaveTouchDelay={60 * 1000}
         leaveDelay={0}
@@ -98,7 +111,7 @@ function LyricToolTip({ className, ...props }) {
       >
         <span>&nbsp; <p className="single-lyric" onClick={handleTooltipOpen}> {props.lyric} </p></span>
       </Tooltip>
-    </ClickAwayListener>
+    </>
   );
 }
 

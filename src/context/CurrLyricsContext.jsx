@@ -15,6 +15,7 @@ export default function CurrLyricsContextProvider(props) {
     const [song_id, setSong_id] = useState('');
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [azureServerError, setAzureServerError] = useState(false); // set if azure trans didn't work
+    const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans
 
     useEffect(() => {
         if (lines[0]) {
@@ -27,12 +28,16 @@ export default function CurrLyricsContextProvider(props) {
     // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
 
     const getSongLyrics = (splittedSongTitle, songTitle) => {
+        setAbort(true);
+
         songTitle = songTitle.replace(/[\])}[{(]/g, '').trim();
         let linesParent = document.querySelectorAll(".gsc-expansionArea")[0];
         loadersContext.openLoader('main');
 
         // first try to get from LS
-        if (localStorageGetSong(songTitle, linesParent)) { return; }
+        if (localStorageGetSong(songTitle, linesParent)) {
+            return;
+        }
 
         fetch(`${serverUri}/lyrics`, {
             // mode: "no-cors",
@@ -78,31 +83,34 @@ export default function CurrLyricsContextProvider(props) {
 
                         };
                     });
+                    setAbort(false);
                     setLines(newLines);
 
                     utils.clearGsc();
                 } else {
-                    bannersContext.createBanner('error', 'error', 'לא נמצא, נסו שוב או חפשו שיר אחר', '');
+                    setAbort(false);
+                    bannersContext.createBanner('error', 'error', 'אנו עובדים על המילים לשיר הזה, חפשו שיר אחר או נסו שוב במועד מאוחר יותר', '');
                 };
             }
             ).catch((e) => {
+                setAbort(false);
                 console.log(e);
                 loadersContext.closeLoader('main');
-                bannersContext.createBanner('error', 'error', 'לא נמצא, נסו שוב או חפשו שיר אחר', '');
+                bannersContext.createBanner('error', 'error', 'אנו עובדים על המילים לשיר הזה, חפשו שיר אחר או נסו שוב במועד מאוחר יותר', '');
                 if (linesParent) linesParent.style.pointerEvents = "all";
             });
     }
 
     const localStorageGetSong = (songTitle, linesParent) => {
         let lsSong = utils.lsFindSong(songTitle);
-        if (lsSong && Array.isArray(lsSong)) {
+        if (lsSong && Array.isArray(lsSong.newLines)) {
             if (linesParent) linesParent.style.pointerEvents = "all";
             setTitle(songTitle);
-            setLines(lsSong.lines);
+            setLines(lsSong.newLines);
             utils.clearGsc();
             loadersContext.closeLoader('main');
 
-            sessionStorage.setItem('currLines', JSON.stringify(lsSong.lines));
+            sessionStorage.setItem('currLines', JSON.stringify(lsSong.newLines));
             sessionStorage.setItem('currSongTitle', (songTitle));
 
             return true;
@@ -112,6 +120,7 @@ export default function CurrLyricsContextProvider(props) {
     }
 
     const checkNextTrans = () => {
+        if(abort) return;
         lines.every((line, index) => {
             if (!line.trans.length || line.transError) {
                 azureServerError ? getSingleLineTrans(line.src, index) : getFullTrans(line.src, index); // get reverso translation if azure is blocked
