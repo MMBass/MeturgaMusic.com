@@ -4,7 +4,6 @@ import ChangeColors from './ChangeColors';
 const StyledChangeColors = styled(ChangeColors)`
 text-align: end;
   margin-inline-end: 25px;
-  /* height: 30px; */
   flex-grow: 25;
 
   .mui-rounded-icon{

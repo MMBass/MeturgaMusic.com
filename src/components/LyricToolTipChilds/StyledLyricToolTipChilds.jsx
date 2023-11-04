@@ -2,7 +2,6 @@ import { styled } from '@mui/material/styles';
 import LyricToolTipChilds from './LyricToolTipChilds';
 
 const StyledLyricToolTipChilds = styled(LyricToolTipChilds)`
-    padding: 5px;
 
     .tt-top{
         padding: 0.1em;

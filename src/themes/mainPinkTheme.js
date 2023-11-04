@@ -32,7 +32,7 @@ export const mainPinkTheme = createTheme({
       // F02D65 // dark pink for text in footer??
     },
     secondary: {
-      main: '#42B983', // light orange
+      main: '#42B983', // light green (why green?)
       dark: '#262626', // darkgray - black
       light: '#fcfcfc', // darker white
       contrastText: '#C0A8E6' // purple

@@ -12,13 +12,12 @@ function Drawer({ className, ...props }) {
       anchor={drawerContext.anchor}
       open={drawerContext.open}
       variant={drawerContext.permanent}
-      onClose={()=>{drawerContext.closeDrawer(false)}}
+      onClose={()=>{drawerContext.closeDrawer()}}
     >
       <Box
         className='drawer-layout'
-        sx={{ width: drawerContext.anchor === 'top' || drawerContext.anchor === 'bottom' ? 'auto' : 250 }}
         role="presentation"
-        onClick={()=>{drawerContext.closeDrawer(false)}}
+        onClick={()=>{drawerContext.closeDrawer()}}
       >
         <drawerContext.child>
         </drawerContext.child>

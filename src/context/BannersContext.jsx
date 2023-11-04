@@ -31,7 +31,7 @@ export default function BannersContextProvider(props) {
         if (banners[name]) {
             setBanners({ ...banners, [name]: { ...banners[name], open: true } });
         } else {
-            console.error("Banner" + name + "does'nt exist");
+            console.error("Banner " + name + " does'nt exist");
         }
     }
 
@@ -39,7 +39,7 @@ export default function BannersContextProvider(props) {
         if (banners[name]) {
             setBanners({ ...banners, [name]: { ...banners[name], open: false } });
         } else {
-            console.error("Banner" + name + "does'nt exist");
+            console.error("Banner " + name + " does'nt exist");
         }
     }
 

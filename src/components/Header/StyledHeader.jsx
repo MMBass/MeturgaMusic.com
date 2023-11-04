@@ -30,15 +30,32 @@ const StyledHeader = styled(Header)`
   }
   
   button{
-    color: ${props => props.theme.palette.secondary.main};
+    color: ${props => props.theme.palette.secondary.dark};
   }
 
   .MuiBox-root{
     justify-content: flex-end;
   }
 
-  .MuiButtonBase-root{
-    padding-inline-start: 0;
+  .burger-icon{
+    margin-top: 2px;
+  }
+
+  .mui-search-icon-wrapper{
+    margin-inline-end: 10px;
+
+    .mui-search-icon{
+      margin-top: 5px;
+    }
+  }
+
+  #outlined-search, #outlined-search span{
+   color: #3a3a3a !important;
+  }
+
+  .collapse-search-box, .collapse-search-box .MuiCollapse-wrapperInner {
+    width: 100%;
+    max-width: 420px;
   }
 
   .error-alert{
@@ -50,6 +67,10 @@ const StyledHeader = styled(Header)`
     button{
       color: rgb(95, 33, 32);
     }
+  }
+
+  .MuiBadge-anchorOriginTopRightRectangular{
+    background-color: white;
   }
 `;
 

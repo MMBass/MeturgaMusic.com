@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && git add dist -f && git commit && git subtree push --prefix dist origin gh-pages",
-    "short-deploy": "git add dist -f && git commit && git subtree push --prefix dist origin gh-pages",
+    "deploy": "vite build && git add dist -f && git commit -m 'gh-pages' && git subtree push --prefix dist origin gh-pages",
+    "short-deploy": "git add dist -f && git commit -m 'gh-pages'  && git subtree push --prefix dist origin gh-pages",
     "gen": "node genConfig"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.4.0",
+    "@mui/x-data-grid": "^6.17.0",
     "generate-template-files": "^3.2.0",
     "genius-lyrics-api": "^3.2.0",
     "path": "^0.12.7",

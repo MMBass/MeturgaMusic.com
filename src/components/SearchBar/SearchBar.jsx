@@ -1,16 +1,19 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { TextField } from "@mui/material";
+import { TextField, Stack } from "@mui/material";
 import { CircularProgress } from '@mui/material';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
 import utils from '@/utils';
 
-function SearchBar({ className }) {
+function SearchBar({ className, ...props }) {
   const [start, setStart] = useState(false);
   const [currVal, setCurrVal] = useState('');
   const [isIos, setIsIos] = useState(false);
+
+  const routerNavigate = useNavigate();
 
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
@@ -29,8 +32,8 @@ function SearchBar({ className }) {
     };
   };
 
-  function showGscBar(){
-    if(utils.getMobileOS()){
+  function showGscBar() { //if IOS show the original, hide the mui bar
+    if (utils.getMobileOS()) {
       const hiddenElem = document.querySelectorAll(".gsc-control-cse")[0];
       hiddenElem.style.visibility = "visible";
       hiddenElem.style.marginTop = "90px";
@@ -38,33 +41,41 @@ function SearchBar({ className }) {
   }
 
   useEffect(() => {
-    window.onload = () => {
-      const checkgsc = document.querySelector("#gcse-my-wrapper #___gcse_0");
-      if (checkgsc) {
-        showGscBar();
-        track___gcse_0();
-      } else {
-        const wrapperNode = document.querySelector("#gcse-my-wrapper");
-        const observerOptions = {
-          childList: true,
-          attributes: true,
-
-          // Omit (or set to false) to observe only changes to the parent node
-          subtree: false
-        }
-
-        function callback() {
-          track___gcse_0();
-        }
-
-        const observer = new MutationObserver(callback);
-        observer.observe(wrapperNode, observerOptions);
-      }
-    }
+    utils.loadGscScript();
+    observeMyWrapper();
   }, []);
 
-  function track___gcse_0() { // todo comment why to use two observable?
-    setStart(true); // todo comment what is that for?
+  function observeMyWrapper() {
+    // observe when gsc loaded, then we can find the .gsc-results-wrapper-nooverlay to observe it
+
+    // Loads faster without window.onload ?
+    // window.onload = () => {
+    const checkgsc = document.querySelector("#gcse-my-wrapper #___gcse_0");
+    if (checkgsc) {
+      showGscBar();
+      track___gcse_0SearchInput();
+    } else {
+      const wrapperNode = document.querySelector("#gcse-my-wrapper");
+      const observerOptions = {
+        childList: true,
+        attributes: true,
+
+        // Omit (or set to false) to observe only changes to the parent node
+        subtree: false
+      }
+
+      function callback() {
+        track___gcse_0SearchInput();
+      }
+
+      const observer = new MutationObserver(callback);
+      observer.observe(wrapperNode, observerOptions);
+    }
+    // }
+  }
+
+  function track___gcse_0SearchInput() { // observe when gsc lines change
+    setStart(true); // replacing the loader and able search
     const targetNode = document.querySelectorAll("#___gcse_0 .gsc-results-wrapper-nooverlay")[0];
     const observerOptions = {
       childList: false,
@@ -84,7 +95,7 @@ function SearchBar({ className }) {
 
   function setVal(e) {
     setCurrVal(e.target.value);
-    if(e.nativeEvent.data !== ' '){
+    if (e.nativeEvent.data !== ' ') {
       handleSearch(e.target.value);
     }
     else return;
@@ -115,7 +126,7 @@ function SearchBar({ className }) {
             let songTitle = line.innerText.split("Lyrics")[0];
             songTitle = songTitle.replaceAll('–', "-"); // genius results comes with some special ' – ' sign
 
-            if(!utils.isMostlyEnglish(songTitle)){
+            if (!utils.isMostlyEnglish(songTitle)) {
               line.parentElement.parentElement.parentElement.remove();
               return;
             } // after removing all the around text - check its lang
@@ -135,8 +146,15 @@ function SearchBar({ className }) {
 
                 line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 
+                if (currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')) {
+                  line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
+                  utils.clearGsc();
+                }
+                if (currLyricsContext.title.replaceAll(' ', '') != songTitle.replaceAll(' ', '')) {
+                  currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
+                }
                 setCurrVal(songTitle);
-                currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
+                if (location.hash != "#/") routerNavigate("/");
               });
             };
 
@@ -184,13 +202,13 @@ function SearchBar({ className }) {
           bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)');
           console.error("no gsc loaded, try reload the page");
         }
-      } else{
-        bannersContext.createBanner('error', 'error', ' החיפוש הוא עבור שירים באנגלית בלבד' , '');
+      } else {
+        bannersContext.createBanner('error', 'error', ' החיפוש הוא עבור שירים באנגלית בלבד', '');
         setTimeout(() => {
           let gsc_clear = document.querySelector('.gsst_a');
-        if (gsc_clear) {
-          gsc_clear.dispatchEvent(new Event('click'));
-        }
+          if (gsc_clear) {
+            gsc_clear.dispatchEvent(new Event('click'));
+          }
         }, 250);
         // setCurrVal(utils.keyboardHEENSwitcher(eValue)); //to fix - still cuts the first letter every time
         return;
@@ -202,16 +220,15 @@ function SearchBar({ className }) {
   }
 
   return (
-    <div id="" className={className}>
+    <div className={className}>
       {(!isIos) &&
-        <TextField id="outlined-search" label={ !start ? <CircularProgress size={18} ></CircularProgress> : "חיפוש שיר" } type="search" className="main-input" onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal}/>
+        <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : "חיפוש שיר"} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal} />
       }
 
       <div id="gcse-my-wrapper">
         {/* todo track when gcse-search changes to ___gcse_0  with the wrapper */}
         <div className="gcse-search"></div>
       </div>
-
 
     </div>
   );

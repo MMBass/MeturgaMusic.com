@@ -56,17 +56,6 @@ const StyledHomePage = styled(HomePage)`
         word-spacing: -0.5px;
     }
 
-    .MuiTextField-root { 
-        margin-top: 35px;
-        /* margin-inline-start: 10px; */
-        width: 450px;
-        border-color: ${props => props.theme.palette.primary.dark};;
-
-        @media (max-width: 600px) {
-            width: 95%;
-        }
-    };
-
     .MuiTextField-root * { 
         color: ${props => props.theme.palette.primary.dark};;
         border-color: ${props => props.theme.palette.primary.dark};;

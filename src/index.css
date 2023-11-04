@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding-right: 0 !important;
 
   /* fixing the google ads anchor space */
   padding-top: 0px !important;
@@ -8,6 +9,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 9px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -21,10 +23,15 @@ body {
 @media (max-width: 600px) {
   ::-webkit-scrollbar {
     width: 4px;
+    height: 4px;
   }
 }
 
 /* toolTip parent. can't be styled from component */
+.muirtl-z5ff92-MuiTooltip-tooltip,  .muirtl-z5ff92-MuiTooltip-tooltip, .MuiTooltip-tooltip {
+  padding: 8px !important;
+  max-width: 85% !important;
+}
 @media (min-width: 600px) {
   .muirtl-z5ff92-MuiTooltip-tooltip,  .muirtl-z5ff92-MuiTooltip-tooltip, .MuiTooltip-tooltip {
     max-width: 600px !important;
@@ -61,6 +68,7 @@ body {
 .gsc-results-wrapper-visible,
 .gcse-searchresults,
 .gsc-control-wrapper-cse {
+  max-width: 100%;
   max-height: 285px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -107,7 +115,7 @@ body {
 
   #___gcse_0 {
     margin-right: -17px;
-    margin-top: -60px;
+    margin-top: -50px;
     border: unset;
 
   }

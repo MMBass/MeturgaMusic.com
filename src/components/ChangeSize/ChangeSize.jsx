@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { Add as AddIcon } from '@mui/icons-material';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
-import { Remove as RemoveIcon } from '@mui/icons-material';
 
 import { SettingsContext } from '@context/SettingsContext';
 

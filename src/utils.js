@@ -1,7 +1,21 @@
+const loadGscScript = () => {
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://cse.google.com/cse.js?cx=a85c2374ffc8b8898";
+    script.defer = true;
+    document.body.appendChild(script);
+    // 0d8465f607b0b1227 // MusixMatch2 id
+    // <script defer src="https://cse.google.com/cse.js?cx=a85c2374ffc8b8898"></script>
+    // <script defer src="/src/services/google-search-a85c2374ffc8b8898.js"></script>
+    // ./assets/google-search-a85c2374ffc8b8898.js
+  };
+
+
 const lsSaveSong = (song /*provide trimmed title*/) => {
     if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
 
     const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
+    song.id = songs.length.toString();
     songs.push(song);  // {title: "", lines: {src:"", trans:""}}
     if (songs.length >= 500) songs.shift();
 
@@ -59,4 +73,4 @@ function isMostlyEnglish(str) {
     return percentage > 0.8;
 }
 
-export default { lsSaveSong, lsFindSong, clearGsc, getMobileOS, keyboardHEENSwitcher, isMostlyEnglish }
+export default { loadGscScript, lsSaveSong, lsFindSong, clearGsc, getMobileOS, keyboardHEENSwitcher, isMostlyEnglish }

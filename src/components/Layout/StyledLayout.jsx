@@ -14,6 +14,7 @@ const StyledLayout = styled(Layout)`
     font-size: 140px; 
     font-weight: 100;
     color: ${props => props.theme.palette.primary.contrastText};
+    
     @media (max-width: 600px) {
       margin-top: 0px;
       font-size: 46px;
@@ -22,7 +23,7 @@ const StyledLayout = styled(Layout)`
   }
 
   .page-h3{
-    margin: 40px 0px 0px  0px;
+    margin: 40px 0px 35px  0px;
     font-size: 38px; // 29
     font-weight: 400;
     color: ${props => props.theme.palette.primary.contrastText};
@@ -32,7 +33,7 @@ const StyledLayout = styled(Layout)`
     }
 
     @media (max-width: 600px) {
-      margin: 15px 0px 0px  0px;
+      margin: 15px 0px 35px  0px;
       font-size: 22px;
 
       small{

@@ -31,7 +31,7 @@ export default function LoadersContextProvider(props) {
         if (loaders[name]) {
             setLoaders({ ...loaders, [name]: { ...loaders[name], open: true} });
         } else {
-            console.error("Loader" + name + "does'nt exist");
+            console.error("Loader " + name + " does'nt exist");
         }
     }
 
@@ -39,7 +39,7 @@ export default function LoadersContextProvider(props) {
         if (loaders[name]) {
             setLoaders({ ...loaders, [name]: { ...loaders[name], open: false } });
         } else {
-            console.error("Loader" + name + "does'nt exist");
+            console.error("Loader " + name + " does'nt exist");
         }
     }
 

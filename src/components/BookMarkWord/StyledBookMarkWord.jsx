@@ -4,7 +4,7 @@ import BookMarkWord from './BookMarkWord';
 const StyledBookMarkWord = styled(BookMarkWord)`
 
     .book-mark-bottom-icon-wrapper{
-        margin-bottom: -10px;
+        /* margin-bottom: -10px; */
         margin-top: 10px;
         height: 15px;
         text-align: center;

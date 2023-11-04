@@ -62,6 +62,7 @@ export default function CurrLyricsContextProvider(props) {
                     setTitle(songTitle);
                     setSong_id(data.id)
                     setLines(data.combined);
+                
                     utils.lsSaveSong({ title: songTitle, lines: data.combined });
                     utils.clearGsc();
                     sessionStorage.setItem('currLines', JSON.stringify(data.combined));
@@ -103,14 +104,15 @@ export default function CurrLyricsContextProvider(props) {
 
     const localStorageGetSong = (songTitle, linesParent) => {
         let lsSong = utils.lsFindSong(songTitle);
-        if (lsSong && Array.isArray(lsSong.newLines)) {
+        if (lsSong && Array.isArray(lsSong.lines)) {
             if (linesParent) linesParent.style.pointerEvents = "all";
             setTitle(songTitle);
-            setLines(lsSong.newLines);
+            setLines(lsSong.lines);
+
             utils.clearGsc();
             loadersContext.closeLoader('main');
 
-            sessionStorage.setItem('currLines', JSON.stringify(lsSong.newLines));
+            sessionStorage.setItem('currLines', JSON.stringify(lsSong.lines));
             sessionStorage.setItem('currSongTitle', (songTitle));
 
             return true;
@@ -157,7 +159,7 @@ export default function CurrLyricsContextProvider(props) {
                     });
 
                     setLines(newLines);
-                    utils.lsSaveSong({ title, newLines });
+                    utils.lsSaveSong({ title, lines: newLines });
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
 

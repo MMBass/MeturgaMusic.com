@@ -4,8 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   Grid,
   Box,
-  Typography
+  Typography,
+  IconButton
 } from '@mui/material';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import { default as LyricToolTip } from '@components/LyricToolTip/StyledLyricToolTip';
 
@@ -17,6 +19,10 @@ function LyricsBody({ className, ...props }) {
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
+    loadGoogleAds();
+  }, []);
+
+  const loadGoogleAds = () => {
     const existingAdsScript = document.querySelector('script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
     if (!existingAdsScript) {
       const script = document.createElement('script');
@@ -26,17 +32,25 @@ function LyricsBody({ className, ...props }) {
       script.dataset.overlays = "bottom";
       document.body.appendChild(script);
     }
-      
+
     // <!-- GOOGLE ads tag - Probabaly global for all account sites -->
     // <script def src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
     //   crossorigin="anonymous"></script>
-  }, []);
+  }
+
+  const removeSsLines = () => {
+    sessionStorage.removeItem('currLines');
+    currLyricsContext.setLines([]);
+  }
 
   return (
     <Box className={className}>
       <Grid container spacing={2}>
         {currLyricsContext.lines?.[0] &&
           <div id="lyrics_body">
+            <IconButton onClick={() => removeSsLines()}>
+              <CloseOutlinedIcon className='remove-icon' />
+            </IconButton>
 
             <Typography
               variant="h6"

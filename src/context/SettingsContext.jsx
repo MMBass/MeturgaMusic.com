@@ -22,6 +22,12 @@ export default function SettingsContextProvider(props) {
         colors: 'pink', // pink | light | dark 
     });
 
+    const [badge, setBadge] = useState(false);
+
+    function updateBadge(num) {
+        setBadge(num);
+    }
+
     const increaseFontSize = () => {
         if (settings.fontSize.md < 60) {
             setSettings({ ...settings, fontSize: { sm: settings.fontSize.sm + 1, md: settings.fontSize.md + 1, lg: settings.fontSize.lg + 1 } });
@@ -53,10 +59,10 @@ export default function SettingsContextProvider(props) {
         updateColorsLs();
     }
 
-    const actions = { reduceFontSize, increaseFontSize, setColors };
+    const actions = { reduceFontSize, increaseFontSize, setColors, updateBadge };
 
     return (
-        <SettingsContext.Provider value={{ ...settings, ...actions }}>
+        <SettingsContext.Provider value={{ ...settings, ...actions, badge }}>
             {props.children}
         </SettingsContext.Provider>
     );

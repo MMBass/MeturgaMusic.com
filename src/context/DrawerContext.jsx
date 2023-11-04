@@ -9,8 +9,8 @@ export default function DrawerContextProvider(props) {
         setDrawer({ open, anchor, permanent, child });
     }
 
-    const closeDrawer = (open, anchor, permanent = "temporary", child) => {
-        setDrawer({ open, anchor, permanent, child });
+    const closeDrawer = () => {
+        setDrawer({});
     }
 
     const actions = { openDrawer, closeDrawer };

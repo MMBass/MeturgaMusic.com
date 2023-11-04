@@ -2,11 +2,13 @@ import { styled } from '@mui/material/styles';
 import LyricsBody from './LyricsBody';
 
 const StyledLyricsBody = styled(LyricsBody)`
+
 #lyrics_body{
   font-family: 'Assistant','Roboto', 'sans-serif';
   font-weight: 500;
   font-size: 20px;
   margin: 25px;
+  margin-top: 0;
   margin-inline-end: 10px;
   padding: 15px 50px;
   padding-bottom: 40px;
@@ -24,7 +26,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   
   h3{
     text-align: center;
-    margin-top: 30px;
+    margin-top: 5px;
     margin-bottom: 40px;
     white-space: break-spaces;
 

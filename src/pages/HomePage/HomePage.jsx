@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import {
-  useParams,
+  useSearchParams,
 } from "react-router-dom";
 
 import { Typography, Box, Grid } from "@mui/material";
@@ -9,16 +9,23 @@ import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
 import { default as LyricsBody } from '@components/LyricsBody/StyledLyricsBody';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
+import { BannersContext } from '@context/BannersContext';
+import { DrawerContext } from '@context/DrawerContext';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
-  const { sname } = useParams();
+  const bannersContext = useContext(BannersContext);
+  const drawerContext = useContext(DrawerContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sname = searchParams.get("song");
 
   useEffect(() => {
+    drawerContext.closeDrawer();
+    if (bannersContext.error) bannersContext.closeBanner('error');
     if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
     };
-  }, []); // use if there is a direct song in url
+  }, []); // use if there is a direct song in the url
 
   function callSongIfQuery() {
     let songTitle = sname;
@@ -41,7 +48,6 @@ function HomePage({ className }) {
   return (
 
     <div className={className}>
-
       <div className="home-top">
         <Grid container className="home-t-container">
 
@@ -80,16 +86,17 @@ function HomePage({ className }) {
               </Typography>
             }
 
-            <Box
-              component="form"
-              noValidate
-              autoComplete="off"
-              onSubmit={HandleSubmit}
-              className="search-ctr"
-            >
-              <SearchBar></SearchBar>
-
-            </Box>
+            {!currLyricsContext.lines?.[0] &&
+              <Box
+                component="form"
+                noValidate
+                autoComplete="off"
+                onSubmit={HandleSubmit}
+                className="search-ctr"
+              >
+                <SearchBar locat={"main"} size={"large"}></SearchBar>
+              </Box>
+            }
           </Grid>
 
         </Grid>
