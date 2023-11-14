@@ -7,6 +7,14 @@ const StyledSearchBar = styled(SearchBar)`
     background-color: '#ffffff0';
   }
 
+  .add-record-input *{
+    border-radius: 0;
+
+    input{
+    padding-bottom: 20px;
+  }
+  } 
+
   .main-input{ 
       direction: rtl; // will turn to LTR, mui settings replace to opposite
       margin: auto;

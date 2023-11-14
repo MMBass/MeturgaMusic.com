@@ -17,7 +17,8 @@ import {
   Alert,
   AlertTitle,
   Collapse,
-  Badge
+  Badge,
+  Link
 } from '@mui/material';
 
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
@@ -41,11 +42,13 @@ const Header = ({ className, ...props }) => {
   const loadersContext = useContext(LoadersContext);
   const settingsContext = useContext(SettingsContext);
 
-  const location = useLocation();
+  const rrdLocation = useLocation();
 
   useEffect(() => {
     setTopSearchBar(false);
-  }, [location, currLyricsContext.title]);
+    window.scrollTo(0, 0); // scroll on router or song changes
+    bannersContext.closeBanner('error');
+  }, [rrdLocation, currLyricsContext.title]);
 
   const handleToggleSideBar = () => {
     bannersContext.closeBanner('error');
@@ -89,26 +92,31 @@ const Header = ({ className, ...props }) => {
             </IconButton>
           </Box>
 
-          {(currLyricsContext.lines?.[0] || location.pathname !== "/") &&
+          {(currLyricsContext.lines?.[0] || rrdLocation.pathname !== "/") &&
             <>
-              <IconButton className='mui-search-icon-wrapper' onClick={() => setTopSearchBar(!topSearchBar)}>
-                <SearchIcon className='mui-search-icon'></SearchIcon>
-              </IconButton>
+              {rrdLocation.pathname !== "/wish-list" &&
+                <>
+                  <IconButton className='mui-search-icon-wrapper' onClick={() => setTopSearchBar(!topSearchBar)}>
+                    <SearchIcon className='mui-search-icon'></SearchIcon>
+                  </IconButton>
 
-              <Box className={topSearchBar && "collapse-search-box"}>
-                <Collapse className="search-ctr-collapse" orientation="horizontal" in={topSearchBar} collapsedSize={0}>
-                  <Box
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                    onSubmit={HandleSubmit}
-                    className="search-ctr"
-                  >
-                    {topSearchBar && <SearchBar locat={"top"} size={"small"} setTopSearchBar={() => { setTopSearchBar() }}></SearchBar>}
+                  <Box className={topSearchBar && "collapse-search-box"}>
+                    <Collapse className="search-ctr-collapse" orientation="horizontal" in={topSearchBar} collapsedSize={0} >
+                      <Box
+                        component="form"
+                        noValidate
+                        autoComplete="off"
+                        onSubmit={HandleSubmit}
+                        className="search-ctr"
+                      >
+                        {topSearchBar && <SearchBar locat={"top"} size={"small"} setTopSearchBar={() => { setTopSearchBar() }}></SearchBar>}
+                      </Box>
+                    </Collapse>
                   </Box>
-                </Collapse>
-              </Box>
+                </>
+              }
             </>
+
           }
 
           {!topSearchBar &&
@@ -132,7 +140,7 @@ const Header = ({ className, ...props }) => {
 
 
           {/* <ChangeColors theme={props.theme} changeColors={props.changeColors}></ChangeColors> */}
-          {(location.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
+          {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <>
               {
                 <ChangeSize></ChangeSize>
@@ -144,7 +152,16 @@ const Header = ({ className, ...props }) => {
       </Container>
 
       <Collapse in={bannersContext.error?.open}>
-        <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
+        <Alert severity="error" className='error-alert'
+          action={bannersContext.error?.action &&
+            <Link
+              padding={'7px'}
+              href={bannersContext.error?.action.actionHref}
+              target="_blank"
+              rel="noopener noreferrer">
+              {bannersContext.error?.action.actionText}
+            </Link>}
+          onClose={() => { bannersContext.closeBanner('error') }}>
           <AlertTitle>{bannersContext.error?.title}</AlertTitle>
           {bannersContext.error?.message}
         </Alert>

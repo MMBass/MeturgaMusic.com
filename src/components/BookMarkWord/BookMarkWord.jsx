@@ -1,27 +1,37 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import BookmarkBorderRoundedIcon from '@mui/icons-material/BookmarkBorderRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 
 import { SettingsContext } from '@context/SettingsContext';
+import utils from '@/utils';
 
 function BookMarkWord({ className, ...props }) {
-  const [saved, setSaved] = useState(props.saved);
+  const [saved, setSaved] = useState(false);
   const settingsContext = useContext(SettingsContext);
 
-  const lsSaveWord = () => { // todo move to utils
-    if (!localStorage.getItem('meturgamm_words')) localStorage.setItem('meturgamm_words', JSON.stringify([]));
+  useEffect(() => {
+    if (findSaved()) { setSaved(true) }
+  }, []);
+
+  const findSaved = () => {
+    if (!localStorage.getItem('meturgamm_words')) return false;
 
     const words = JSON.parse(localStorage.getItem('meturgamm_words'));
-    let toSave = props.toSave;
-    toSave.id = words.length.toString();
-    words.push(props.toSave);  // {id: num ,word: "", results: []}
-    if (words.length >= 1000) words.shift();
 
-    localStorage.setItem("meturgamm_words", JSON.stringify(words));
-    setSaved(true);
-    settingsContext.updateBadge(1);
-  };
+    return words.find(w => w.word.toLowerCase() === props.toSave.word.toLowerCase());  // {word: "", results: []} 
+  }
+
+  const handleSaveWord = () => {
+    try {
+      utils.lsSaveWord(props.toSave);
+      setSaved(true);
+      settingsContext.updateBadge(1);
+    } catch (e) {
+      if (e) { console.log(e) };
+    }
+
+  }
 
   return (
     <span className={className}>
@@ -38,10 +48,13 @@ function BookMarkWord({ className, ...props }) {
         :
         <>
           {(props.variant === "Bookmark") ?
-            <BookmarkBorderRoundedIcon className={'book-mark-top-icon'} onClick={() => lsSaveWord()}></BookmarkBorderRoundedIcon>
+            <>
+              <BookmarkBorderRoundedIcon className={'book-mark-top-icon'} fontSize='small' onClick={() => handleSaveWord()}></BookmarkBorderRoundedIcon>
+            </>
             :
-            <div className={'book-mark-bottom-icon-wrapper'} onClick={() => lsSaveWord()}>
+            <div className={'book-mark-bottom-icon-wrapper'} onClick={() => handleSaveWord()}>
               <StarRoundedIcon className={'book-mark-bottom-icon'} fontSize='small'></StarRoundedIcon>
+              <span> שמור לתרגול</span>
             </div>
           }
         </>

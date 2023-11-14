@@ -16,7 +16,6 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.4.0",
-    "@mui/x-data-grid": "^6.17.0",
     "generate-template-files": "^3.2.0",
     "genius-lyrics-api": "^3.2.0",
     "path": "^0.12.7",

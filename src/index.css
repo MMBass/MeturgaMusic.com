@@ -31,6 +31,7 @@ body {
 .muirtl-z5ff92-MuiTooltip-tooltip,  .muirtl-z5ff92-MuiTooltip-tooltip, .MuiTooltip-tooltip {
   padding: 8px !important;
   max-width: 85% !important;
+  min-width: 150px;
 }
 @media (min-width: 600px) {
   .muirtl-z5ff92-MuiTooltip-tooltip,  .muirtl-z5ff92-MuiTooltip-tooltip, .MuiTooltip-tooltip {
@@ -61,6 +62,7 @@ body {
 .gsc-control-wrapper-cse,
 .gsc-results-wrapper-nooverlay,
 .gsc-results-wrapper-visible {
+  margin-top: -2px;
   border-radius: 0px 0px 5px 5px;
   background-color: white;
 }

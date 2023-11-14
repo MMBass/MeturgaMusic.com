@@ -11,8 +11,12 @@ const StyledFooter = styled(Footer)`
     color: unset;
   }
 
-  li span{
-    color: white;
+  svg{
+    font-size: 15px;
+    color: ${props => props.theme.palette.secondary.dark};
+  }
+
+  span{
     font-size: 15px;
   }
 
@@ -20,13 +24,12 @@ const StyledFooter = styled(Footer)`
     background-color: unset;
     font-weight: 500;
     font-size: 17px;
-    color: ${props => props.theme.palette.secondary.dark};
-    color: white;
+    color: ${props => props.theme.palette.secondary.light};
     margin: unset;
   }
 
   .built-by{
-    color: white;
+    color: ${props => props.theme.palette.secondary.light};
   }
 
 `;

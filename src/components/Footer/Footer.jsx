@@ -9,22 +9,18 @@ import {
   Link
 } from '@mui/material';
 
-const pages = [{ name: 'אודותנו', url: '/About' }];
-const social = [{ name: 'פייסבוק', url: 'https://facebook.com/meturgammusic' }];
-const contact = [{ name: 'example@gmail.com', url: 'mailto:example@gmail.com' }];
-
 function Footer({ className }) {
 
   useEffect(() => {
-      // google ads array
-      window.adsbygoogle = window.adsbygoogle || [] 
-      ;
+    // google ads array - for auto ads only?
+    // window.adsbygoogle = window.adsbygoogle || [];
   }, []);
 
   return (
     <div id="FOOTER" className={className}>
 
       <Grid container rowSpacing={6} columnSpacing={2}>
+
         <Grid item xs={12} sm={4}>
           <List>
             <ListSubheader
@@ -54,6 +50,18 @@ function Footer({ className }) {
             </ListItem>
           </List> */}
 
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          {/* single text body AD */}
+          {/* <ins className="adsbygoogle"
+            style={{ display: "block" }}
+            data-ad-client="ca-pub-8294214228053744"
+            data-ad-slot="1741051993"
+            data-ad-format="auto"
+            data-full-width-responsive="true">
+          </ins> */}
+          {/* END single text body AD */}
         </Grid>
       </Grid>
     </div>

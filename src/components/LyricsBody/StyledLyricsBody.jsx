@@ -2,62 +2,35 @@ import { styled } from '@mui/material/styles';
 import LyricsBody from './LyricsBody';
 
 const StyledLyricsBody = styled(LyricsBody)`
-
-#lyrics_body{
   font-family: 'Assistant','Roboto', 'sans-serif';
   font-weight: 500;
-  font-size: 20px;
-  margin: 25px;
-  margin-top: 0;
-  margin-inline-end: 10px;
-  padding: 15px 50px;
-  padding-bottom: 40px;
-  padding-inline-start: 50px;
-
-  background-color: ${props => props.theme.palette.primary.light};
-  color:  ${props => props.theme.palette.primary.contrastText};
   border-radius: 10px;
-  box-shadow: 0 1px 2px 0 #7c7c7c;
+  margin: 15px 0px 25px 10px;
+  padding: 15px 50px 40px 50px;
+  width: auto;
 
   @media (max-width: 600px) {
-    padding-inline-start: 15px;
-    padding-inline-end: 15px;
+    margin: 15px 3px 25px 3px;
+    padding: 15px;
   }
   
   h3{
     text-align: center;
-    margin-top: 5px;
-    margin-bottom: 40px;
-    white-space: break-spaces;
-
-    @media (max-width: 600px) {
-      font-size: 19px;
-    }
-  }
-
-  .en-line p, .he-line small{
-    margin: unset;
-    display: inline-block;
-  }
-
-  .lyrics-line{
-    padding: 6px 0px;
-    max-width: 98%;
+    padding-top: 5px;
+    padding-bottom: 30px;
   }
 
   .single-lyric, .single-trans{
     display: inline;
-    min-width: unset;
-    padding: 0px 2px;
+    padding: 0px 1px;
     text-transform: none;
   }
 
   .en-line{
-      margin-top: 8px;
-      direction: rtl;
-      text-align: left;
+    margin-top: 8px;
+    direction: rtl;
+    text-align: left;
   }
-}
 `;
 
 export default StyledLyricsBody;

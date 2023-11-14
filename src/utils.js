@@ -8,15 +8,26 @@ const loadGscScript = () => {
     // <script defer src="https://cse.google.com/cse.js?cx=a85c2374ffc8b8898"></script>
     // <script defer src="/src/services/google-search-a85c2374ffc8b8898.js"></script>
     // ./assets/google-search-a85c2374ffc8b8898.js
-  };
+};
 
+const lsSaveWord = (toSave /* { word: string, results: [string] } */) => {
+    if (!localStorage.getItem('meturgamm_words')) localStorage.setItem('meturgamm_words', JSON.stringify([]));
+
+    const words = JSON.parse(localStorage.getItem('meturgamm_words'));
+    toSave.word = toSave.word.replace(/[,\.]$/, " "); 
+    toSave.id = words.length.toString();
+    words.unshift(toSave);  // {id: num, word: string, results: [string] }
+    if (words.length >= 1000) words.shift();
+
+    localStorage.setItem("meturgamm_words", JSON.stringify(words));
+};
 
 const lsSaveSong = (song /*provide trimmed title*/) => {
     if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
 
     const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
     song.id = songs.length.toString();
-    songs.push(song);  // {title: "", lines: {src:"", trans:""}}
+    songs.unshift(song);  // {title: "", lines: {src:"", trans:""}}
     if (songs.length >= 500) songs.shift();
 
     localStorage.setItem("meturgamm_songs", JSON.stringify(songs));
@@ -73,4 +84,26 @@ function isMostlyEnglish(str) {
     return percentage > 0.8;
 }
 
-export default { loadGscScript, lsSaveSong, lsFindSong, clearGsc, getMobileOS, keyboardHEENSwitcher, isMostlyEnglish }
+const loadGoogleAds = () => {
+    // the script will work if the option ois on on google site. otherwise the custom ads will show
+    const existingAdsScript = document.querySelector('script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
+    if (!existingAdsScript) {
+        const script = document.createElement('script');
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744';
+        script.def = true;
+        script.crossorigin = "anonymous";
+        script.dataset.overlays = "bottom";
+        document.body.appendChild(script);
+    }
+
+    // <!-- GOOGLE ads tag - Probabaly global for all account sites -->
+    // <script def src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
+    //   crossorigin="anonymous"></script>
+}
+
+const titleToParams = (str) =>{
+   if (typeof str === 'string') return '?song='+str.replaceAll(' - ','_').replaceAll(' ','-');
+   else return;
+};
+
+export default { loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, getMobileOS, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams }

@@ -16,15 +16,15 @@ example:
 
 export default function BannersContextProvider(props) {
     const [banners, setBanners] = useState({
-        main: { open: false, severity: "error", title: "האתר בבניה", message: "" },
-        infoSnackbar: { open: true, severity: "error", title: "", message: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק" },
+        main: { open: false, severity: "error", title: "האתר בבניה", message: "", action: {} },
+        infoSnackbar: { open: !JSON.parse(localStorage.getItem('meturgamm_songs'))?.[1], severity: "error", title: "", message: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק" },
     });
 
-    const createBanner = (name, severity, title, message) => {
+    const createBanner = (name, severity, title, message, action) => {
         if (banners[name]) {
             setBanners({ ...banners, [name]: undefined });
         }
-        setBanners({ ...banners, [name]: { open: true, severity: severity || "success", title: title || "", message: message || "" } });
+        setBanners({ ...banners, [name]: { open: true, severity: severity || "success", title: title || "", message: message || "",  action: action || {} } });
     }
 
     const openBanner = (name) => {

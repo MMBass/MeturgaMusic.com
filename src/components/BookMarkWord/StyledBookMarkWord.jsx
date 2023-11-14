@@ -4,21 +4,24 @@ import BookMarkWord from './BookMarkWord';
 const StyledBookMarkWord = styled(BookMarkWord)`
 
     .book-mark-bottom-icon-wrapper{
-        /* margin-bottom: -10px; */
         margin-top: 10px;
-        height: 15px;
-        text-align: center;
-        padding: 0.6em;
+        margin-bottom: -3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
         background-color: #df808ea8;
         border-radius: 0 0 5px 3px;
         box-shadow: 0 10px 10px -8px rgba(0, 0, 0,.7);
+        cursor: pointer;
 
-        @media (max-width: 600px){
-            padding: 0.4em;
+        .book-mark-bottom-icon, span{
+            margin: 2px;
+            font-size: 14px;
         }
 
-        .book-mark-bottom-icon{
-            margin-top: -2px
+        span{
+            font-size: 13px;
         }
 
         :hover{
@@ -39,7 +42,7 @@ const StyledBookMarkWord = styled(BookMarkWord)`
 
     .bm-disabled{
         pointer-events: none;
-        background-color: ${props => props.theme.palette.primary.main};
+        background-color: dark;
     }
 `;
 

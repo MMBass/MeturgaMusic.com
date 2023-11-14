@@ -1,72 +1,55 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState } from 'react';
 
-import { BannersContext } from '@context/BannersContext';
-
-import { GridActionsCellItem } from '@mui/x-data-grid';
-// import  from '@mui/icons-material/DeleteIcon';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 
+import { default as HistoryItem } from '@components/HistoryItem/StyledHistoryItem';
+
 import {
-  IconButton,
+  Grid,
+  List,
+  Box,
+  Typography,
+  Button
 } from '@mui/material';
 
-import { default as MyDataGrid } from '@components/MyDataGrid/StyledMyDataGrid';
-
 function HistoryPage({ className }) {
-  const [rows, setRows] = useState(JSON.parse(localStorage.getItem('meturgamm_songs')) || []);
-  const bannersContext = useContext(BannersContext);
+  const [songs, setSongs] = useState(JSON.parse(localStorage.getItem('meturgamm_songs')) || []);
 
-  const handleDeleteClick = (id) => () => {
-    let newRows = rows.filter((row) => row.id !== id);
-    setRows(newRows);
-    localStorage.setItem("meturgamm_songs", JSON.stringify(newRows));
+  const handleDeleteClick = (id) => {
+    let newSongs = songs.filter((row) => row.id !== id);
+    setSongs(newSongs);
+    localStorage.setItem("meturgamm_songs", JSON.stringify(newSongs));
   };
 
   const handleDeleteAll = () => {
-    setRows([]);
+    setSongs([]);
     localStorage.setItem("meturgamm_songs", JSON.stringify([]));
   };
 
-  // [{ id: 1, song: 'weezer - records' },
-  //  { id: 1, song: 'weezer - records records recordsrecords  records' }]
-
-  const columns = [
-    {
-      field: "delete",
-      type: 'actions',
-      width: 75,
-      sortable: false,
-      disableColumnMenu: true,
-      renderHeader: () => {
-        return (
-          <IconButton
-            onClick={() => { handleDeleteAll() }}
-          >
-            <DeleteSweepOutlinedIcon />
-          </IconButton>
-        );
-      },
-      cellClassName: 'actions',
-      getActions: ({ id }) => {
-        return [
-          <GridActionsCellItem
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={handleDeleteClick(id)}
-            color="inherit"
-          />,
-        ];
-      },
-    },
-    { field: 'title', headerName: 'כותרת', width: 300, sortable: false },
-  ];
-
   return (
-    <div id="" className={className}>
-      <MyDataGrid className={'my-data-grid'} rows={rows} columns={columns}></MyDataGrid>
+    <div className={className}>
+      {songs[0] &&
+        <Box >
+          <Button className='d-all-btn' component="label" onClick={() => { handleDeleteAll() }} variant="outlined" startIcon={<DeleteSweepOutlinedIcon />}>
+            מחק הכל
+          </Button>
+
+          <List sx={{ width: '100%' }} component="div">
+            <Grid container spacing={1}>
+              {songs.map((song, i) => (
+                <Grid item key={song.title + i} xs={12} md={6}>
+                  <HistoryItem title={song.title} song_id={song.id} deleteOneSong={handleDeleteClick}>
+                  </HistoryItem>
+                </Grid>
+              ))}
+            </Grid>
+          </List>
+        </Box>
+      }
+      {!songs[0] && <Typography sx={{ margin: '100px', textAlign: 'center' }}>אין שירים בהיסטוריה</Typography>}
     </div>
   );
+
 }
 
 export default HistoryPage;

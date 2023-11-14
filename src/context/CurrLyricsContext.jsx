@@ -11,8 +11,8 @@ export default function CurrLyricsContextProvider(props) {
     const loadersContext = useContext(LoadersContext);
     const bannersContext = useContext(BannersContext);
 
-    const [title, setTitle] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('currSongTitle')) || '');
     const [song_id, setSong_id] = useState('');
+    const [title, setTitle] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('currSongTitle')) || '');
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [azureServerError, setAzureServerError] = useState(false); // set if azure trans didn't work
     const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans
@@ -62,7 +62,7 @@ export default function CurrLyricsContextProvider(props) {
                     setTitle(songTitle);
                     setSong_id(data.id)
                     setLines(data.combined);
-                
+
                     utils.lsSaveSong({ title: songTitle, lines: data.combined });
                     utils.clearGsc();
                     sessionStorage.setItem('currLines', JSON.stringify(data.combined));
@@ -76,7 +76,22 @@ export default function CurrLyricsContextProvider(props) {
                         if (line.length >= 2) {
 
                             if (utils.isMostlyEnglish(line)) {
-                                newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
+
+                                if (line.length > 90) { // split by commas if the line is too long
+                                    console.log(line);
+                                    let byCommas = line.split(',');
+                                    if (byCommas[0].length > 10) {
+                                        byCommas.map((byCommaLine) => {
+                                            newLines.push({ src: byCommaLine, trans: '', transError: false });
+                                            console.log("by Commas: "+byCommaLine);
+                                        });
+                                    } else {
+                                        newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
+                                    }
+
+                                } else {
+                                    newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
+                                }
                             } else {
                                 console.log("Not supported lang: " + line);
                                 newLines.push({ src: "*NOT SUPPORTED TEXT*", trans: '', transError: false });
@@ -90,7 +105,7 @@ export default function CurrLyricsContextProvider(props) {
                     utils.clearGsc();
                 } else {
                     setAbort(false);
-                    bannersContext.createBanner('error', 'error', 'אנו עובדים על המילים לשיר הזה, חפשו שיר אחר או נסו שוב במועד מאוחר יותר', '');
+                    bannersContext.createBanner('error', 'error', '', 'אנו עובדים על המילים לשיר הזה, חפשו שיר אחר או נסו שוב במועד מאוחר יותר', { actionText: 'חיפוש מילים בגוגל', actionHref: 'https://www.google.com/search?q=' + songTitle.replaceAll(' ', '+') + ' lyrics' });
                 };
             }
             ).catch((e) => {
@@ -122,7 +137,7 @@ export default function CurrLyricsContextProvider(props) {
     }
 
     const checkNextTrans = () => {
-        if(abort) return;
+        if (abort) return;
         lines.every((line, index) => {
             if (!line.trans.length || line.transError) {
                 azureServerError ? getSingleLineTrans(line.src, index) : getFullTrans(line.src, index); // get reverso translation if azure is blocked
@@ -160,6 +175,7 @@ export default function CurrLyricsContextProvider(props) {
 
                     setLines(newLines);
                     utils.lsSaveSong({ title, lines: newLines });
+        
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
 
@@ -241,7 +257,7 @@ export default function CurrLyricsContextProvider(props) {
             });
     }
 
-    const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines };
+    const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle };
 
     return (
         <CurrLyricsContext.Provider value={{ title, lines, ...actions }}>

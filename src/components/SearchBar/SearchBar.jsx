@@ -19,7 +19,9 @@ function SearchBar({ className, ...props }) {
   const bannersContext = useContext(BannersContext);
 
   useEffect(() => {
-    setCurrVal(currLyricsContext.title);
+    if(!props.addRecordMode){
+      setCurrVal(currLyricsContext.title);
+    }
   }, [currLyricsContext.title]);
 
   useEffect(() => {
@@ -101,78 +103,6 @@ function SearchBar({ className, ...props }) {
     else return;
   }
 
-  const linesChange = () => {
-    setTimeout(() => {
-      let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
-
-      // move the ads to bottom
-      // const gscAdBlocks = document.querySelectorAll('.gsc-adBlock');
-      // gscAdBlocks.forEach((ad)=>{
-      //   ad.parentNode.appendChild(ad);
-      // }); 
-
-      if (sResults) {
-        sResults.forEach((line, i) => {
-          if (line.innerText.includes("Lyrics")) {
-
-            if (line.innerText.includes("(")) {
-              let inside = line.innerText.match(/\(([^)]+)\)/)[1].toLowerCase();
-              if (inside?.includes("live") || inside?.includes("mix") || inside?.includes("remix")) {
-                line.parentElement.parentElement.parentElement.remove();
-                return;
-              };
-            }
-
-            let songTitle = line.innerText.split("Lyrics")[0];
-            songTitle = songTitle.replaceAll('–', "-"); // genius results comes with some special ' – ' sign
-
-            if (!utils.isMostlyEnglish(songTitle)) {
-              line.parentElement.parentElement.parentElement.remove();
-              return;
-            } // after removing all the around text - check its lang
-
-            line.innerHTML = `<strong>${songTitle.split('-')[0]}</strong> - <span>${songTitle.split('-')[1]}</span>`;
-
-            const splittedSongTitle = {
-              artistName: encodeURI(songTitle.split('-')[0]),
-              songName: encodeURI(songTitle.split('-')[1])
-            };
-
-            if (line.nodeName !== 'A') {
-              line.parentElement.parentElement.parentElement.addEventListener('click', (e) => {
-                if (bannersContext.error?.open) {
-                  bannersContext.closeBanner('error');
-                };
-
-                line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
-
-                if (currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')) {
-                  line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
-                  utils.clearGsc();
-                }
-                if (currLyricsContext.title.replaceAll(' ', '') != songTitle.replaceAll(' ', '')) {
-                  currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
-                }
-                setCurrVal(songTitle);
-                if (location.hash != "#/") routerNavigate("/");
-              });
-            };
-
-            line.style.display = "block";
-
-          } else if (!line.innerText.includes("Lyrics")) {
-
-            if (line.parentElement.parentElement.parentElement.className.includes('gsc-webResult')) {
-              line.parentElement.parentElement.parentElement.remove();
-            };
-          };
-
-        });
-
-      }
-    }, 50);
-  }
-
   function handleSearch(eValue) {
     if (bannersContext.error) {
       bannersContext.closeBanner('error');
@@ -219,13 +149,95 @@ function SearchBar({ className, ...props }) {
     }
   }
 
+  const linesChange = () => {
+    setTimeout(() => {
+      let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
+
+      // move the ads to bottom
+      // const gscAdBlocks = document.querySelectorAll('.gsc-adBlock');
+      // gscAdBlocks.forEach((ad)=>{
+      //   ad.parentNode.appendChild(ad);
+      // }); 
+
+      if (sResults) {
+        sResults.forEach((line, i) => {
+          if (line.innerText.includes("Lyrics")) {
+
+            if (line.innerText.includes("(")) {
+              let inside = line.innerText.match(/\(([^)]+)\)/)[1].toLowerCase();
+              if (inside?.includes("live") || inside?.includes("mix") || inside?.includes("remix")) {
+                line.parentElement.parentElement.parentElement.remove();
+                return;
+              };
+            }
+
+            let songTitle = line.innerText.split("Lyrics")[0];
+            songTitle = songTitle.replaceAll('–', "-"); // genius results comes with some special ' – ' sign
+
+            if (!utils.isMostlyEnglish(songTitle)) {
+              line.parentElement.parentElement.parentElement.remove();
+              return;
+            } // after removing all the around text - check its lang
+
+            line.innerHTML = `<strong>${songTitle.split('-')[0]}</strong> - <span>${songTitle.split('-')[1]}</span>`;
+
+            const splittedSongTitle = {
+              artistName: encodeURI(songTitle.split('-')[0]),
+              songName: encodeURI(songTitle.split('-')[1])
+            };
+
+            if (line.nodeName !== 'A') {
+              line.parentElement.parentElement.parentElement.addEventListener('click',()=>{ handleLineClickEvent(line, songTitle, splittedSongTitle)});
+            };
+
+            line.style.display = "block";
+
+          } else if (!line.innerText.includes("Lyrics")) {
+
+            if (line.parentElement.parentElement.parentElement.className.includes('gsc-webResult')) {
+              line.parentElement.parentElement.parentElement.remove();
+            };
+          };
+
+        });
+
+      }
+    }, 50);
+  }
+
+  const handleLineClickEvent = (line, songTitle, splittedSongTitle) => {
+
+    line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
+
+    if (props.addRecordMode === true) {
+      if (props.addRecord) { props.addRecord(songTitle) };
+      line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
+      utils.clearGsc();
+      setCurrVal(' ');
+      return;
+    }
+    if (currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')) {
+      line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
+      utils.clearGsc();
+    }
+    if (currLyricsContext.title.replaceAll(' ', '') != songTitle.replaceAll(' ', '')) {
+      currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
+    }
+    setCurrVal(songTitle);
+    if (location.hash != "#/") routerNavigate("/");
+  };
+
   return (
     <div className={className}>
-      {(!isIos) &&
+      {(!isIos && !props.addRecordMode) &&
         <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : "חיפוש שיר"} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal} />
       }
 
-      <div id="gcse-my-wrapper">
+      {props.addRecordMode && 
+        <TextField label={' הוסף שיר +'} type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal} fullWidth variant="filled"/>
+      }
+
+      <div id="gcse-my-wrapper" className={props.addRecordMode && "gcse-my-wrapper-add-record-mode"}>
         {/* todo track when gcse-search changes to ___gcse_0  with the wrapper */}
         <div className="gcse-search"></div>
       </div>

@@ -56,11 +56,6 @@ const StyledHomePage = styled(HomePage)`
         word-spacing: -0.5px;
     }
 
-    .MuiTextField-root * { 
-        color: ${props => props.theme.palette.primary.dark};;
-        border-color: ${props => props.theme.palette.primary.dark};;
-    }
-
     .lyrics-body, .MuiGrid-root, .muirtl-mhc70k-MuiGrid-root{
         direction: ltr;
     }

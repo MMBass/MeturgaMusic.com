@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useMemo } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation/*uses for location changes listening*/} from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';

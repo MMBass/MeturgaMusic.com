@@ -1,11 +1,13 @@
 import { useContext, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { useSearchParams } from "react-router-dom";
 
 import {
   Grid,
   Box,
   Typography,
-  IconButton
+  IconButton,
+  Paper
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -13,114 +15,106 @@ import { default as LyricToolTip } from '@components/LyricToolTip/StyledLyricToo
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
+import utils from '@/utils';
 
 function LyricsBody({ className, ...props }) {
+  let [searchParams, setSearchParams] = useSearchParams();
+  
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-    loadGoogleAds();
+    // utils.loadGoogleAds();
+    // window.adsbygoogle = window.adsbygoogle || [];
   }, []);
 
-  const loadGoogleAds = () => {
-    const existingAdsScript = document.querySelector('script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
-    if (!existingAdsScript) {
-      const script = document.createElement('script');
-      script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744';
-      script.def = true;
-      script.crossorigin = "anonymous";
-      script.dataset.overlays = "bottom";
-      document.body.appendChild(script);
-    }
-
-    // <!-- GOOGLE ads tag - Probabaly global for all account sites -->
-    // <script def src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
-    //   crossorigin="anonymous"></script>
-  }
+  useEffect(() => {
+    setSearchParams(utils.titleToParams(currLyricsContext.title));
+  }, [currLyricsContext.title]);
 
   const removeSsLines = () => {
     sessionStorage.removeItem('currLines');
     currLyricsContext.setLines([]);
+    currLyricsContext.setTitle('');
   }
 
   return (
-    <Box className={className}>
-      <Grid container spacing={2}>
-        {currLyricsContext.lines?.[0] &&
-          <div id="lyrics_body">
-            <IconButton onClick={() => removeSsLines()}>
-              <CloseOutlinedIcon className='remove-icon' />
-            </IconButton>
+    <Paper elevation={3} className={className}>
+      <Grid container rowSpacing={1} columnSpacing={0}>
 
-            <Typography
-              variant="h6"
-              noWrap
-              component="h3"
-              style={{ fontSize: settingsContext.fontSize.lg, direction: "ltr" }}
-            >
-              {currLyricsContext.title &&
-                currLyricsContext.title.split(' ').map((word, i) => {
+        <Grid item xs={12}>
+          <IconButton onClick={() => removeSsLines()}>
+            <CloseOutlinedIcon className='remove-icon' />
+          </IconButton>
+
+          <Typography
+            variant="h6"
+            component="h3"
+            style={{ fontSize: settingsContext.fontSize.lg, direction: "ltr" }}
+          >
+            {currLyricsContext.title &&
+              currLyricsContext.title.split(' ').map((word, i) => {
+                return (
+                  <LyricToolTip key={uuidv4()} lyric={word} open={false}></LyricToolTip>
+                )
+              })
+            }
+          </Typography>
+        </Grid>
+
+        {currLyricsContext.lines.map((line, y) => {
+          if (line.src.includes('[')) {
+            line.trans = '   ';
+          }
+          return (
+            <Grid item xs={12} key={uuidv4()}>
+              {(y > 0 && line.src.includes('[')) && <><br></br><br></br></>}
+
+              <Box className="lyrics-line en-line"
+                style={{ fontSize: settingsContext.fontSize.md }}
+              >
+                {line.src.split(' ').map((word, i) => {
+                  if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} open={false}></LyricToolTip>
+                    <LyricToolTip key={uuidv4()} lyric={word} open={(y == 1 & i == 1)}></LyricToolTip>
                   )
-                })
-              }
-            </Typography>
+                })}
+              </Box>
 
-            {currLyricsContext.lines.map((line, y) => {
-              if (line.src.includes('[')) {
-                line.trans = '   ';
-              }
-              return (
-                <div key={uuidv4()}>
-                  {(y > 0 && line.src.includes('[')) && <><br></br><br></br></>}
+              <Box className="lyrics-line he-line"
+                style={{ fontSize: settingsContext.fontSize.md }}
+              >
+                <>
+                  {
+                    line.trans?.length ?
+                      line.trans.split(' ').map((word, i) => {
+                        if (line.trans === '   ') return;
+                        return (
+                          <small className="single-trans" key={uuidv4()}>{word} &nbsp;</small>
+                        )
+                      })
+                      :
+                      <small className="single-trans">טוען תרגום...</small>
+                  }
+                </>
+              </Box>
+            </Grid>
+          );
+        })}
 
-                  <Grid className="lyrics-line en-line" item
-                    style={{ fontSize: settingsContext.fontSize.md }}
-                  >
-                    {line.src.split(' ').map((word, i) => {
-                      if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
-                      return (
-                        <LyricToolTip key={uuidv4()} lyric={word} open={(y == 1 & i == 1)}></LyricToolTip>
-                      )
-                    })}
-                  </Grid>
-
-                  <Grid item className="lyrics-line he-line"
-                    style={{ fontSize: settingsContext.fontSize.sm }}
-                  >
-                    <>
-                      {
-                        line.trans?.length ?
-                          line.trans.split(' ').map((word, i) => {
-                            if (line.trans === '   ') return;
-                            return (
-                              <small className="single-trans" key={uuidv4()}>{word} &nbsp;</small>
-                            )
-                          })
-                          :
-                          <small className="single-trans">טוען תרגום...</small>
-                      }
-                    </>
-                  </Grid>
-                </div>
-              );
-            })}
-
-
-            {/* single text body AD */}
-            {/* <ins className="adsbygoogle"
-              style={{ display: "block", textAlign: "center", margin: '10px' }}
+        {/* <Grid item xs={12} key={"ad-lyrics-body-bottom"}> */}
+          {/* single text body AD */}
+          {/* <ins className="adsbygoogle"
+              style={{ display: "block", textAlign: "center" }}
               data-ad-layout="in-article"
               data-ad-format="fluid"
               data-ad-client="ca-pub-8294214228053744"
               data-ad-slot="5288837770"></ins> */}
-            {/* END single text body AD */}
-          </div>}
+          {/* END single text body AD */}
+        {/* </Grid> */}
 
       </Grid>
-
-    </Box >
+    </Paper>
   );
 }
 

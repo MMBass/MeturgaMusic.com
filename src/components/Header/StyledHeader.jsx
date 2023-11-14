@@ -67,6 +67,11 @@ const StyledHeader = styled(Header)`
     button{
       color: rgb(95, 33, 32);
     }
+
+    a{
+      font-size: small;
+      text-decoration: underline !important;
+    }
   }
 
   .MuiBadge-anchorOriginTopRightRectangular{
