@@ -34,7 +34,7 @@ const StyledHeader = styled(Header)`
   }
 
   .MuiBox-root{
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
   }
 
   .burger-icon{

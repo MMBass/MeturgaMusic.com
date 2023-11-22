@@ -6,38 +6,39 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { mainPinkTheme } from '@/themes/mainPinkTheme';
 import { darkTheme } from '@/themes/darkTheme';
 
+import { Snackbar, Alert, AlertTitle } from '@mui/material';
+
 import { DrawerContext } from '@context/DrawerContext';
 import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
-import HeadTags from '@components/HeadTags/HeadTags';
 import utils from '@/utils';
 
 import { default as Header } from '@components/Header/StyledHeader';
 import { default as Layout } from '@components/Layout/StyledLayout';
 import { default as Footer } from '@components/Footer/StyledFooter';
 import { default as Drawer } from '@components/Drawer/StyledDrawer';
+import { default as MiniDrawer } from '@components/MiniDrawer/StyledMiniDrawer';
 import { default as Dialog } from '@components/Dialog/StyledDialog';
 import { default as Modal } from '@components/Modal/StyledModal';
-import { default as HiddenGetLyricsForm } from '@components/HiddenGetLyricsForm/StyledHiddenGetLyricsForm';
-import { CircularProgress, Snackbar, Alert, AlertTitle } from '@mui/material';
+import { default as ScrollTop } from '@components/ScrollTop/StyledScrollTop';
+import HeadTags from '@components/HeadTags/HeadTags';
 
 import { default as HomePage } from '@pages/HomePage/StyledHomePage';
 import { default as HistoryPage } from '@pages/HistoryPage/StyledHistoryPage';
 import { default as WishlistPage } from '@pages/WishlistPage/StyledWishlistPage';
 import { default as ExercisePage } from '@pages/ExercisePage/StyledExercisePage';
+import { default as SpotifyExtensionPage } from '@pages/SpotifyExtensionPage/StyledSpotifyExtensionPage';
 import { default as NoMatchPage } from '@pages/NoMatchPage/StyledNoMatchPage';
-
-import { default as ScrollTop } from '@components/ScrollTop/StyledScrollTop';
 
 function App({ className }) {
   const drawerContext = useContext(DrawerContext);
   const loadersContext = useContext(LoadersContext);
   const bannersContext = useContext(BannersContext);
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const [currTitle, setCurrTitle] = useState("מתורגמיוזיק - שירים מתורגמים מאנגלית");
   const [currTheme, setCurrTheme] = useState(mainPinkTheme);
@@ -48,9 +49,13 @@ function App({ className }) {
     stylisPlugins: [prefixer, rtlPlugin],
   });
 
+  useEffect(() => {
+    ifIOS();
+  }, []);
+
   const ifIOS = () => {
     if (utils.getMobileOS()) {
-      bannersContext.createBanner("iosSnackbar", 'error', '', 'החיפוש עלול שלא לעבוד במכשירי אפל (אייפון, מקבוק וכדומה)');
+      bannersContext.createBanner("infoSnackbar", 'error', '', 'החיפוש עלול שלא לעבוד במכשירי אפל (אייפון, מקבוק וכדומה)');
     };
   };
 
@@ -86,6 +91,7 @@ function App({ className }) {
           <Router>
             <HeadTags currTitle={currTitle} theme={currTheme}></HeadTags>
             <Layout>
+              {/* {isMobile ? <Header className="header" changeColors={ChangeColors}></Header> : <MiniDrawer></MiniDrawer>} */}
               <Header className="header" changeColors={ChangeColors}></Header>
 
               {(bannersContext.main?.open) &&
@@ -96,12 +102,14 @@ function App({ className }) {
               }
 
               <Routes>
-                <Route path={"/"} element={<HomePage className={'page'} rank={1}/>} />
-                <Route path="/Exercise" element={<ExercisePage className={'page'} rank={1}/>} />
-                <Route path="/History" element={<HistoryPage className={'page'} rank={1}/>} />
-                <Route path="/Wish-list" element={<WishlistPage className={'page'} rank={1}/>} />
-                {/* NoMatchPage doesn't really work */}
-                <Route path="*" element={<NoMatchPage className={'page'}/>}/> 
+                <Route path={"/"} element={<HomePage className={'page'} rank={1} />} />
+                <Route path="/Exercise" element={<ExercisePage className={'page'} rank={1} />} />
+                <Route path="/History" element={<HistoryPage className={'page'} rank={1} />} />
+                <Route path="/Wish-list" element={<WishlistPage className={'page'} rank={1} />} />
+                <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} rank={1} />} />
+
+                {/* NoMatchPage works only in hash paths */}
+                <Route path="*" element={<NoMatchPage className={'page'} />} />
               </Routes>
 
               {/*dynamic global elements*/}
@@ -121,11 +129,10 @@ function App({ className }) {
               {/* </Modal> */}
               {/*end dynamic global elements*/}
               <Footer></Footer>
+              <ScrollTop></ScrollTop>
             </Layout>
           </Router>
 
-          <HiddenGetLyricsForm></HiddenGetLyricsForm>
-          <ScrollTop></ScrollTop>
         </CacheProvider>
       </MuiThemeProvider>
     </div>

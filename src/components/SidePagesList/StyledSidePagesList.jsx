@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import SidePagesList from './SidePagesList';
 
 const StyledSidePagesList = styled(SidePagesList)`
+
   .side-icons{
     color: ${props => props.theme.palette.secondary.dark};
     font-size: '14px';
@@ -13,6 +14,11 @@ const StyledSidePagesList = styled(SidePagesList)`
     padding-bottom: 5px;
     background-color: ${props => props.theme.palette.primary.main};
     color: ${props => props.theme.palette.primary.light};
+  }
+
+  .extension-chip{
+    background-color: white;
+    color: black;
   }
 `;
 

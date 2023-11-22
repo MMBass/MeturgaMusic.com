@@ -15,6 +15,10 @@ const StyledHomePage = styled(HomePage)`
     .home-t-container{
         padding-top: 30px;
         padding-bottom: 30px;
+
+        @media (max-width: 600px) {
+            text-align: center;
+        }
     }
     
     .h3-s-one{

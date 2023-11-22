@@ -50,6 +50,11 @@ const Header = ({ className, ...props }) => {
     bannersContext.closeBanner('error');
   }, [rrdLocation, currLyricsContext.title]);
 
+  useEffect(() => {
+    setTopSearchBar(false);
+    bannersContext.closeBanner('error');
+  }, [drawerContext.open]);
+
   const handleToggleSideBar = () => {
     bannersContext.closeBanner('error');
     if (!drawerContext.open) {
@@ -70,7 +75,7 @@ const Header = ({ className, ...props }) => {
         <DeterminateLinearProgress color={loadersContext.main.color}></DeterminateLinearProgress>
       }
 
-      <Container maxWidth="xl">
+      <Container maxWidth={false}>
 
         <Toolbar disableGutters>
           <Box>

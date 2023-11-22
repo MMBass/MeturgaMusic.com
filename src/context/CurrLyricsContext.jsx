@@ -78,12 +78,10 @@ export default function CurrLyricsContextProvider(props) {
                             if (utils.isMostlyEnglish(line)) {
 
                                 if (line.length > 90) { // split by commas if the line is too long
-                                    console.log(line);
                                     let byCommas = line.split(',');
                                     if (byCommas[0].length > 10) {
                                         byCommas.map((byCommaLine) => {
                                             newLines.push({ src: byCommaLine, trans: '', transError: false });
-                                            console.log("by Commas: "+byCommaLine);
                                         });
                                     } else {
                                         newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
@@ -137,10 +135,14 @@ export default function CurrLyricsContextProvider(props) {
     }
 
     const checkNextTrans = () => {
-        if (abort) return;
+
+        if (abort) {
+            // setLines([]); // todo - fixing the removeLines problem, but clearing the lines when searching new song. 
+            return;
+        };
         lines.every((line, index) => {
             if (!line.trans.length || line.transError) {
-                azureServerError ? getSingleLineTrans(line.src, index) : getFullTrans(line.src, index); // get reverso translation if azure is blocked
+                azureServerError ? GgetSingleLineTrans(line.src, index) : getFullTrans(line.src, index); // get reverso translation if azure is blocked
                 return false; // break the loop (will start again after getSingleLineTrans(); )
             }
             return true;
@@ -175,7 +177,7 @@ export default function CurrLyricsContextProvider(props) {
 
                     setLines(newLines);
                     utils.lsSaveSong({ title, lines: newLines });
-        
+
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
 
@@ -194,7 +196,33 @@ export default function CurrLyricsContextProvider(props) {
             });
     }
 
-    const getSingleLineTrans = (src, index) => {
+    const GgetSingleLineTrans = async (src, index) => {
+        try {
+            let newLines = [...lines];
+            let gUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${'he'}&dt=t&q=${encodeURIComponent(
+                src
+              )}`;
+            const response = await fetch(gUrl);
+            const data = await response.json();
+            var translatedTexts = [];
+            if (data && data[0]) {
+              data[0].forEach((element) => {
+                translatedTexts.push(element[0]);
+              });
+        
+              newLines[index] = { src: src, trans: translatedTexts.join(" ") };
+              setLines(newLines);
+
+            } else {
+              throw new Error("Google Translation failed.");
+            }
+          } catch (error) {
+            console.error("Google Translation error:", error);
+            RetSingleLineTrans(src, index);
+          }
+    }
+
+    const RetSingleLineTrans = (src, index) => {
         let newLines = [...lines];
 
         fetch(`${serverUri}/trans/single-line`, {
@@ -257,7 +285,7 @@ export default function CurrLyricsContextProvider(props) {
             });
     }
 
-    const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle };
+    const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort };
 
     return (
         <CurrLyricsContext.Provider value={{ title, lines, ...actions }}>

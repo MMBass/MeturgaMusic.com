@@ -86,7 +86,7 @@ function LyricToolTip({ className, ...props }) {
           <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={props.lyric} results={results}></LyricToolTipChilds>}
         arrow
         leaveTouchDelay={60 * 1000}
-        leaveDelay={0}
+        leaveDelay={3*1000}
 
         PopperProps={{
           disablePortal: false,

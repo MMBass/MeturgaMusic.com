@@ -24,18 +24,15 @@ function LyricsBody({ className, ...props }) {
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-    // utils.loadGoogleAds();
-    // window.adsbygoogle = window.adsbygoogle || [];
-  }, []);
-
-  useEffect(() => {
     setSearchParams(utils.titleToParams(currLyricsContext.title));
   }, [currLyricsContext.title]);
 
   const removeSsLines = () => {
+    currLyricsContext.setAbort(true);
     sessionStorage.removeItem('currLines');
     currLyricsContext.setLines([]);
     currLyricsContext.setTitle('');
+    setSearchParams('');
   }
 
   return (

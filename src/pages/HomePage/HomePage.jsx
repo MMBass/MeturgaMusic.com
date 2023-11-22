@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 
 import { useSearchParams } from "react-router-dom";
 
-import { Typography, Box, Grid, Paper } from "@mui/material";
+import { Typography, Box, Grid, Container } from "@mui/material";
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
 import { default as LyricsBody } from '@components/LyricsBody/StyledLyricsBody';
 
@@ -26,8 +26,8 @@ function HomePage({ className }) {
       callSongIfQuery(sname);
     };
 
-    utils.loadGoogleAds();
-    window.adsbygoogle = window.adsbygoogle || [];
+    // utils.loadGoogleAds();
+    // window.adsbygoogle = window.adsbygoogle || [];
   }, []); // use if there is a direct song in the url
 
   function callSongIfQuery() {
@@ -53,13 +53,13 @@ function HomePage({ className }) {
     <div className={className}>
 
       {!currLyricsContext.lines?.[0] &&
-        <div className="home-top">
+        <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
 
             {!currLyricsContext.lines?.[0] &&
               <Grid item xs={12} sm={6}>
                 <Typography variant="h1" className="page-h1">
-                  שירים מתורגמים
+                  שירים <br className="h1-br"></br>מתורגמים
                 </Typography>
               </Grid>
             }
@@ -103,7 +103,7 @@ function HomePage({ className }) {
             </Grid>
 
           </Grid>
-        </div>
+        </Container>
       }
 
 
@@ -114,6 +114,7 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3}>
+            
             {/* on Lg - empty side space for ads */}
             {/* <ins className="adsbygoogle"
               style={{ display: "block" }}

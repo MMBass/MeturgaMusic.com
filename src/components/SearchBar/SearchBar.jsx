@@ -19,7 +19,7 @@ function SearchBar({ className, ...props }) {
   const bannersContext = useContext(BannersContext);
 
   useEffect(() => {
-    if(!props.addRecordMode){
+    if (!props.addRecordMode) {
       setCurrVal(currLyricsContext.title);
     }
   }, [currLyricsContext.title]);
@@ -125,6 +125,8 @@ function SearchBar({ className, ...props }) {
         if (gsc_btn) {
 
           setTimeout(() => {
+            gsc_btn.type = "button"; // todo test on ios and safari
+  
             gsc_btn.dispatchEvent(new Event('click'));
           }, 50 * Math.floor(Math.random() * 4));
 
@@ -187,7 +189,7 @@ function SearchBar({ className, ...props }) {
             };
 
             if (line.nodeName !== 'A') {
-              line.parentElement.parentElement.parentElement.addEventListener('click',()=>{ handleLineClickEvent(line, songTitle, splittedSongTitle)});
+              line.parentElement.parentElement.parentElement.addEventListener('click', () => { handleLineClickEvent(line, songTitle, splittedSongTitle) });
             };
 
             line.style.display = "block";
@@ -233,12 +235,11 @@ function SearchBar({ className, ...props }) {
         <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : "חיפוש שיר"} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal} />
       }
 
-      {props.addRecordMode && 
-        <TextField label={' הוסף שיר +'} type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal} fullWidth variant="filled"/>
+      {(!isIos && props.addRecordMode) &&
+        <TextField label={' הוסף שיר +'} type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal} fullWidth variant="filled" />
       }
 
-      <div id="gcse-my-wrapper" className={props.addRecordMode && "gcse-my-wrapper-add-record-mode"}>
-        {/* todo track when gcse-search changes to ___gcse_0  with the wrapper */}
+      <div id="gcse-my-wrapper" className={(props.addRecordMode && "gcse-my-wrapper-add-record-mode")}>
         <div className="gcse-search"></div>
       </div>
 

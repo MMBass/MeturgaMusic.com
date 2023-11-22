@@ -12,6 +12,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   @media (max-width: 600px) {
     margin: 15px 3px 25px 3px;
     padding: 15px;
+    padding-bottom: 40px;
   }
   
   h3{

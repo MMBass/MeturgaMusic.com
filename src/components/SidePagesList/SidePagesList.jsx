@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
+import ContactlessRoundedIcon from '@mui/icons-material/ContactlessRounded';
 
 import { SettingsContext } from '@context/SettingsContext';
 
@@ -41,17 +42,23 @@ function SidePagesList({ className }) {
       icon: <ChecklistOutlinedIcon className="side-icons"></ChecklistOutlinedIcon>,
       chip: <Chip className='pages-list-chip' label="חדש!" color="error" variant="outlined" size='small' />,
     },
+    // {
+    //   name: 'תוסף לספוטיפיי',
+    //   url: '/spotify-extension',
+    //   icon: <ContactlessRoundedIcon className="side-icons"></ContactlessRoundedIcon>,
+    //   chip: <Chip className='pages-list-chip extension-chip' label="בקרוב!" color="secondary" variant="outlined" size='small' />,
+    // },
 
   ];
 
   return (
-    <List className={className} sx={{maxWidth: '320px'}}>
+    <List className={className} sx={{ maxWidth: '320px' }}>
       <Alert severity="warning">
         {'חשוב לדעת: איננו אוספים מידע מהמשתמשים, על כן המידע בעמודים אלו נשמר באופן מקומי בדפדפן, עליך להשתמש באותו דפדפן אם ברצונך להשתמש בתכונות אלו'}
       </Alert>
       {pages.map((page, index) => (
         <NavLink to={page.url} key={index} className={'nav-link'}>
-          <ListItem key={page.name}>
+          <ListItem>
             <ListItemButton>
               <ListItemIcon>
                 {page.icon}
@@ -63,6 +70,19 @@ function SidePagesList({ className }) {
           </ListItem>
         </NavLink>
       ))}
+
+      <NavLink to={'/spotify-extension'} className={'nav-link'}>
+        <ListItem sx={{ backgroundColor: 'lightGray' }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <ContactlessRoundedIcon className="side-icons" sx={{rotate: '-90deg'}}></ContactlessRoundedIcon>
+            </ListItemIcon>
+            <ListItemText primary={'תוסף לספוטיפיי'} primaryTypographyProps={{ style: { color: 'black' } }} />
+            <Chip className='pages-list-chip extension-chip' label="בקרוב!" color="secondary" variant="outlined" size='small' />
+          </ListItemButton>
+          <Divider />
+        </ListItem>
+      </NavLink>
     </List>
   );
 }
