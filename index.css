@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding-right: 0 !important;
+
+  /* fixing the google ads anchor space */
+  /* padding-top: 0px !important; */
+  /*  */
+}
+
+/* Browser Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(170, 170, 170);
+}
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+@media (max-width: 600px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+/* toolTip title parent. can't be styled from any component - applayed to the body*/
+.muirtl-z5ff92-MuiTooltip-tooltip,
+.muirtl-z5ff92-MuiTooltip-tooltip,
+.MuiTooltip-tooltip {
+  padding: 8px !important;
+  max-width: 85% !important;
+  min-width: 150px;
+}
+@media (min-width: 600px) {
+
+  .muirtl-z5ff92-MuiTooltip-tooltip,
+  .muirtl-z5ff92-MuiTooltip-tooltip,
+  .MuiTooltip-tooltip {
+    max-width: 600px !important;
+  }
+
+}
+
+/* Google ads styling */
+.adsbygoogle[data-anchor-status="displayed"] {
+  z-index: 2147483647 !important;
+  top: 57px !important;
+}
+.adsbygoogle[data-anchor-status="dismissed"] {
+  top: -94px !important;
+}
+.grippy-host {
+  /* THE ANCHOR AD ARROW */
+  /* display: none; */
+}
