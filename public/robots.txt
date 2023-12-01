@@ -2,6 +2,5 @@ User-agent: *
 Disallow: /NoMatchPage
 Allow: /
 Allow: /*
-Allow: /#/about
 
 Sitemap: https://MeturgaMusic.com/sitemap.txt
