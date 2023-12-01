@@ -4,9 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/', // prod - to MeturgaMusic repo
-  // base: '/MeturgaMusic/', // dev - to MeturgaMusic-dev gh-pages branch
-
+  base: '/',
   plugins: [react()],
   resolve: {
     alias: {
