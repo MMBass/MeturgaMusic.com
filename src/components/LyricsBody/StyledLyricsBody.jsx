@@ -2,6 +2,9 @@ import { styled } from '@mui/material/styles';
 import LyricsBody from './LyricsBody';
 
 const StyledLyricsBody = styled(LyricsBody)`
+  background-color: ${props => props.theme.palette.secondary.light};
+  color: ${props => props.theme.palette.secondary.dark};
+ 
   font-family: 'Assistant','Roboto', 'sans-serif';
   font-weight: 500;
   border-radius: 10px;
@@ -15,11 +18,20 @@ const StyledLyricsBody = styled(LyricsBody)`
     padding-bottom: 40px;
   }
   
-  h3{
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 30px;
+  .l-body-top *{
+    color: ${props => props.theme.palette.secondary.dark};
   }
+
+  .trans-by-chip{
+    padding: 3px;
+    margin-inline-start: 30px;
+  }
+
+  h3{
+      text-align: center;
+      padding-top: 5px;
+      padding-bottom: 30px;
+    }
 
   .single-lyric, .single-trans{
     display: inline;

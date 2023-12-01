@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 import { NavLink } from "react-router-dom";
+import { useTheme } from '@mui/material/styles';
 
 import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
@@ -8,6 +9,8 @@ import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import ContactlessRoundedIcon from '@mui/icons-material/ContactlessRounded';
 
 import { SettingsContext } from '@context/SettingsContext';
+
+import { default as ChangeColors } from '@components/ChangeColors/StyledChangeColors';
 
 import {
   List,
@@ -19,25 +22,25 @@ import {
   Chip,
   Divider,
   Alert,
-  AlertTitle
 } from '@mui/material';
 
-function SidePagesList({ className }) {
+function SidePagesList({ className, ...props }) {
   const settingsContext = useContext(SettingsContext);
+  const theme = useTheme();
 
   const pages = [
     {
-      name: 'היסטוריית שירים',
+      name: 'היסטוריית חיפוש',
       url: '/history',
       icon: <RestoreOutlinedIcon className="side-icons"></RestoreOutlinedIcon>,
     },
     {
-      name: 'תרגול מילים',
+      name: 'מילים לתרגול ',
       url: '/exercise',
       icon: <Badge variant="dot" invisible={!settingsContext.badge} color='error'><BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon></Badge>,
     },
     {
-      name: 'שירים שרציתי לתרגם',
+      name: 'שירים שמורים',
       url: '/wish-list',
       icon: <ChecklistOutlinedIcon className="side-icons"></ChecklistOutlinedIcon>,
       chip: <Chip className='pages-list-chip' label="חדש!" color="error" variant="outlined" size='small' />,
@@ -63,7 +66,7 @@ function SidePagesList({ className }) {
               <ListItemIcon>
                 {page.icon}
               </ListItemIcon>
-              <ListItemText primary={page.name} primaryTypographyProps={{ style: { color: 'black' } }} />
+              <ListItemText primary={page.name} />
               {page.chip && page.chip}
             </ListItemButton>
             <Divider />
@@ -75,7 +78,7 @@ function SidePagesList({ className }) {
         <ListItem sx={{ backgroundColor: 'lightGray' }}>
           <ListItemButton>
             <ListItemIcon>
-              <ContactlessRoundedIcon className="side-icons" sx={{rotate: '-90deg'}}></ContactlessRoundedIcon>
+              <ContactlessRoundedIcon className="side-icons" sx={{ rotate: '-90deg' }}></ContactlessRoundedIcon>
             </ListItemIcon>
             <ListItemText primary={'תוסף לספוטיפיי'} primaryTypographyProps={{ style: { color: 'black' } }} />
             <Chip className='pages-list-chip extension-chip' label="בקרוב!" color="secondary" variant="outlined" size='small' />
@@ -83,6 +86,13 @@ function SidePagesList({ className }) {
           <Divider />
         </ListItem>
       </NavLink>
+
+      <ListItem>
+        <ListItemButton changeColors={props.changeColors} sx={{textAlign: 'center', justifyContent: 'center'}}>
+          <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label="מצב כהה" color="secondary" variant="outlined" size='large' />
+        </ListItemButton>
+        <Divider />
+      </ListItem>
     </List>
   );
 }

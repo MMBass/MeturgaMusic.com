@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 function SpotifyExtensionPage({ className }) {
+
   return (
     <div className={className} style={{backgroundImage: `url(${extensionImage.toString()})`}}>
       <Grid container spacing={4} >

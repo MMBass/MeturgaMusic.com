@@ -3,6 +3,8 @@ import { DrawerContext } from '@context/DrawerContext';
 
 import {Drawer as MuiDrawer, Box} from '@mui/material';
 
+import { default as SidePagesList } from '@components/SidePagesList/StyledSidePagesList';
+
 function Drawer({ className, ...props }) {
   const drawerContext = useContext(DrawerContext);
 
@@ -19,8 +21,7 @@ function Drawer({ className, ...props }) {
         role="presentation"
         onClick={()=>{drawerContext.closeDrawer()}}
       >
-        <drawerContext.child>
-        </drawerContext.child>
+       <SidePagesList changeColors={props.changeColors}></SidePagesList>
       </Box>
     </MuiDrawer>
   );

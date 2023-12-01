@@ -174,7 +174,7 @@ function SearchBar({ className, ...props }) {
             }
 
             let songTitle = line.innerText.split("Lyrics")[0];
-            songTitle = songTitle.replaceAll('–', "-"); // genius results comes with some special ' – ' sign
+            songTitle = songTitle.replaceAll('–', "-"); // g results comes with some special ' – ' sign
 
             if (!utils.isMostlyEnglish(songTitle)) {
               line.parentElement.parentElement.parentElement.remove();
@@ -232,11 +232,11 @@ function SearchBar({ className, ...props }) {
   return (
     <div className={className}>
       {(!isIos && !props.addRecordMode) &&
-        <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : "חיפוש שיר"} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal} />
+        <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : "חיפוש שיר באינטרנט"} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder="GOOGLE  מופעל באמצעות" value={currVal} />
       }
 
       {(!isIos && props.addRecordMode) &&
-        <TextField label={' הוסף שיר +'} type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' value={currVal} fullWidth variant="filled" />
+        <TextField label={' הוסף שיר +'} type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder="מופעל באמצעות GOOGLE" value={currVal} fullWidth variant="filled" />
       }
 
       <div id="gcse-my-wrapper" className={(props.addRecordMode && "gcse-my-wrapper-add-record-mode")}>

@@ -3,6 +3,11 @@ import SidePagesList from './SidePagesList';
 
 const StyledSidePagesList = styled(SidePagesList)`
 
+  .MuiTypography-root {
+    color: ${props => props.theme.palette.secondary.dark};
+
+  }
+
   .side-icons{
     color: ${props => props.theme.palette.secondary.dark};
     font-size: '14px';

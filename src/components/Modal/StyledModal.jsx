@@ -4,7 +4,7 @@ import Modal from './Modal';
 const StyledModal = styled(Modal)`
   #main-modal-root{
     z-index: 1500;
-    background-color: #ffe607;
+    background-color: ${props => props.theme.palette.primary.main};
   }
 `;
 

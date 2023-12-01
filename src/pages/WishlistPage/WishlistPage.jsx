@@ -53,7 +53,7 @@ function WishlistPage({ className }) {
           <Grid item key={song.title + i} xs={12} md={6}>
             <ListItem key={i}
               secondaryAction={
-                <IconButton onClick={() => { handleDeleteClick(song.id) }} edge="end" aria-label="delete">
+                <IconButton onClick={() => { handleDeleteClick(song.id) }} edge="end" aria-label="deletcoe">
                   <DeleteIcon />
                 </IconButton>
               }>
@@ -61,7 +61,7 @@ function WishlistPage({ className }) {
                 <NavLink to={'/' + utils.titleToParams(song.title)}>
                   <ListItemButton>
                   <LaunchIcon color='disabled' fontSize='inherit' sx={{marginInlineEnd: '4px'}}></LaunchIcon>
-                    <Typography sx={{ color: 'black' }}>
+                    <Typography>
                       {song.title}
                     </Typography>
                   </ListItemButton>

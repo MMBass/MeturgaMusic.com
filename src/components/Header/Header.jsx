@@ -1,11 +1,9 @@
 import { useContext, useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
+import { useTheme } from '@mui/material/styles';
 import { Menu as MenuIcon, Search as SearchIcon } from '@mui/icons-material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-
-import { default as ChangeSize } from '@components/ChangeSize/StyledChangeSize';
-import { default as DeterminateLinearProgress } from '@components/DeterminateLinearProgress/StyledDeterminateLinearProgress';
 
 import {
   AppBar,
@@ -21,8 +19,9 @@ import {
   Link
 } from '@mui/material';
 
+import { default as ChangeSize } from '@components/ChangeSize/StyledChangeSize';
+import { default as DeterminateLinearProgress } from '@components/DeterminateLinearProgress/StyledDeterminateLinearProgress';
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
-import { default as SidePagesList } from '@components/SidePagesList/StyledSidePagesList';
 import { default as ChangeColors } from '@components/ChangeColors/StyledChangeColors';
 
 import { DrawerContext } from '@context/DrawerContext';
@@ -35,6 +34,8 @@ import { NavLink } from 'react-router-dom';
 
 const Header = ({ className, ...props }) => {
   const [topSearchBar, setTopSearchBar] = useState(false);
+
+  const theme = useTheme();
 
   const drawerContext = useContext(DrawerContext);
   const currLyricsContext = useContext(CurrLyricsContext);
@@ -58,18 +59,17 @@ const Header = ({ className, ...props }) => {
   const handleToggleSideBar = () => {
     bannersContext.closeBanner('error');
     if (!drawerContext.open) {
-      drawerContext.openDrawer(true, 'left', 'temporary', SidePagesList);
+      drawerContext.openDrawer(true, 'left', 'temporary');
     } else {
       drawerContext.closeDrawer();
     };
   };
 
-  function HandleSubmit(e) {
-    e.preventDefault();
-  }
-
   return (
-    <AppBar position="sticky" className={className}>
+    <AppBar position="sticky" className={className} sx={{
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.secondary.dark
+    }}>
 
       {(loadersContext.main.open) &&
         <DeterminateLinearProgress color={loadersContext.main.color}></DeterminateLinearProgress>
@@ -107,15 +107,7 @@ const Header = ({ className, ...props }) => {
 
                   <Box className={topSearchBar && "collapse-search-box"}>
                     <Collapse className="search-ctr-collapse" orientation="horizontal" in={topSearchBar} collapsedSize={0} >
-                      <Box
-                        component="form"
-                        noValidate
-                        autoComplete="off"
-                        onSubmit={HandleSubmit}
-                        className="search-ctr"
-                      >
-                        {topSearchBar && <SearchBar locat={"top"} size={"small"} setTopSearchBar={() => { setTopSearchBar() }}></SearchBar>}
-                      </Box>
+                      {topSearchBar && <SearchBar locat={"top"} size={"small"} setTopSearchBar={() => { setTopSearchBar() }}></SearchBar>}
                     </Collapse>
                   </Box>
                 </>
@@ -132,10 +124,14 @@ const Header = ({ className, ...props }) => {
                 component="h2"
                 sx={{ mr: 2, display: 'flex' }}
               >
-                <span id="h2-part1">
+                <span id="h2-part1" style={{
+                  color: theme.palette.secondary.dark
+                }}>
                   מתורגמ
                 </span>
-                <span id="h2-part2">
+                <span id="h2-part2" style={{
+                  color: theme.palette.secondary.main
+                }}>
                   יוזיק
                 </span>
 
@@ -143,14 +139,11 @@ const Header = ({ className, ...props }) => {
             </NavLink>
           }
 
-
-          {/* <ChangeColors theme={props.theme} changeColors={props.changeColors}></ChangeColors> */}
+          {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
+            <ChangeColors changeColors={props.changeColors}></ChangeColors>
+          }
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
-            <>
-              {
-                <ChangeSize></ChangeSize>
-              }
-            </>
+            <ChangeSize></ChangeSize>
           }
 
         </Toolbar>
@@ -172,7 +165,7 @@ const Header = ({ className, ...props }) => {
         </Alert>
       </Collapse>
 
-    </AppBar>
+    </AppBar >
   );
 };
 

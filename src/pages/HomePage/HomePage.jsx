@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 
 import { useSearchParams } from "react-router-dom";
 
-import { Typography, Box, Grid, Container } from "@mui/material";
+import { Typography, Grid, Container } from "@mui/material";
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
 import { default as LyricsBody } from '@components/LyricsBody/StyledLyricsBody';
 
@@ -22,6 +22,8 @@ function HomePage({ className }) {
     // note! the params in HashRouter works only this pattern: http://.../#/?song=artist_title
     drawerContext.closeDrawer();
     if (bannersContext.error) bannersContext.closeBanner('error');
+
+    utils.directParamsToHash();
     if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
     };
@@ -44,9 +46,6 @@ function HomePage({ className }) {
     currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
   }
 
-  function HandleSubmit(e) {
-    e.preventDefault();
-  }
 
   return (
 
@@ -68,44 +67,37 @@ function HomePage({ className }) {
               {!currLyricsContext.lines?.[0] &&
                 <Typography variant="h3" className="page-h3">
 
-                  <span className="h3-start h3-s-one">
-                    חפשו בין מיליוני שירים באנגלית
+                  <span className="h3-start h3-start-one">
+                    חפשו בין מיליוני שירים ברשת
                   </span>
-                  <br></br>
-                  <span className="h3-start h3-s-two">
-                    וקבלו את השיר מתורגם לעברית
-                  </span>
-                  <br></br>
 
-                  <p className="small-one">
-                    לא נמצא? נסו לחפש עם שם האמן
-                  </p>
-                  <div className="small-two">
-                    <small >
-                      לחיצה על מילה תציג תרגומים נוספים
-                    </small>
-                  </div>
+                  <span className="h3-start h3-start-two">
+                    והאתר יתרגם את השיר
+                  </span>
+
+                  <span className="h3-middle">
+                    בצורה נוחה ללימוד אנגלית
+                  </span>
+
+                  <span className="h3-bottom">
+                    ללא איבוד טקסט המקור
+                  </span>
 
                 </Typography>
               }
 
-              {!currLyricsContext.lines?.[0] &&
-                <Box
-                  component="form"
-                  noValidate
-                  autoComplete="off"
-                  onSubmit={HandleSubmit}
-                  className="search-ctr"
-                >
-                  <SearchBar locat={"main"} size={"large"}></SearchBar>
-                </Box>
-              }
+
+              <SearchBar locat={"main"} size={"large"}></SearchBar>
+
+
+              <Typography>
+                לא נמצא? נסו לחפש עם שם האמן
+              </Typography>
             </Grid>
 
           </Grid>
         </Container>
       }
-
 
       {currLyricsContext.lines?.[0] &&
         <Grid container spacing={1}>
@@ -114,7 +106,7 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3}>
-            
+
             {/* on Lg - empty side space for ads */}
             {/* <ins className="adsbygoogle"
               style={{ display: "block" }}

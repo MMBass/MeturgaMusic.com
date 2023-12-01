@@ -13,7 +13,7 @@ const StyledChangeSize = styled(ChangeSize)`
 
   button{
     background-color: ${props => props.theme.palette.secondary.light};
-    color: #686F82;
+    color: ${props => props.theme.palette.primary.contrastText};
     padding: unset;
   }
 

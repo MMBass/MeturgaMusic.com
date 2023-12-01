@@ -5,8 +5,10 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import CssBaseline from '@mui/material/CssBaseline';
+
 import { mainPinkTheme } from '@/themes/mainPinkTheme';
 import { darkTheme } from '@/themes/darkTheme';
 
@@ -42,6 +44,7 @@ function App({ className }) {
 
   const [currTitle, setCurrTitle] = useState("מתורגמיוזיק - שירים מתורגמים מאנגלית");
   const [currTheme, setCurrTheme] = useState(mainPinkTheme);
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   // Create rtl cache
   const cacheRtl = createCache({
@@ -50,8 +53,25 @@ function App({ className }) {
   });
 
   useEffect(() => {
-    ifIOS();
+    init();
   }, []);
+
+  useEffect(() => {
+    if(localStorage.getItem('preferedDark')){
+      if(localStorage.getItem('preferedDark') === 'true') setCurrTheme(darkTheme);
+    } else setCurrTheme(prefersDarkMode ? darkTheme : mainPinkTheme); // set to device mode only if user hasens't switch colors before
+  }, [prefersDarkMode]);
+
+  const init = () => {
+    utils.directParamsToHash();
+    serverInit();
+    ifIOS();
+  };
+
+  const serverInit = () => {
+    const serverUri = 'https://musicline-backend-dev.vercel.app';
+    fetch(`${serverUri}/`);
+  }; // Send every visit to the server
 
   const ifIOS = () => {
     if (utils.getMobileOS()) {
@@ -59,40 +79,22 @@ function App({ className }) {
     };
   };
 
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  // const theme = useMemo(
-  //   () =>
-  //     createTheme({
-  //       palette: {
-  //         mode: prefersDarkMode ? 'dark' : 'light',
-  //       },
-  //     }),
-  //   [prefersDarkMode],
-  // );
-
-  const ChangeColors = () => { // todo move and use the context settings method
-    switch (currTheme) {
-      case mainPinkTheme:
-        setCurrTheme(darkTheme);
-        break;
-      // case darkTheme:
-      //   setCurrTheme(whiteTheme);
-      default:
-        setCurrTheme(mainPinkTheme);
-        break;
-    }
+  const changeTheme = () => {
+    let newCurrTheme = currTheme === darkTheme ? mainPinkTheme : darkTheme;
+    setCurrTheme(newCurrTheme);
+    localStorage.setItem('preferedDark', newCurrTheme === darkTheme ? 'true' : 'false');
   }
 
   return (
     <div className={className}>
       <MuiThemeProvider theme={currTheme}>
+        {/* <CssBaseline /> */}
         <CacheProvider value={cacheRtl}>
           <Router>
             <HeadTags currTitle={currTitle} theme={currTheme}></HeadTags>
             <Layout>
               {/* {isMobile ? <Header className="header" changeColors={ChangeColors}></Header> : <MiniDrawer></MiniDrawer>} */}
-              <Header className="header" changeColors={ChangeColors}></Header>
+              <Header className="header" changeColors={changeTheme}></Header>
 
               {(bannersContext.main?.open) &&
                 <Alert severity="warning" className='main-alert'>
@@ -113,8 +115,8 @@ function App({ className }) {
               </Routes>
 
               {/*dynamic global elements*/}
-              {(drawerContext.open && drawerContext.child) &&
-                <Drawer className="drawer"></Drawer>
+              {(drawerContext.open) &&
+                <Drawer className="drawer" changeColors={changeTheme}></Drawer>
               }
               {(bannersContext.infoSnackbar?.open) &&
                 <Snackbar open={bannersContext.infoSnackbar.open} autoHideDuration={6000} onClose={() => { }}>

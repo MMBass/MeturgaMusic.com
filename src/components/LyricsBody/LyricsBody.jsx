@@ -7,7 +7,8 @@ import {
   Box,
   Typography,
   IconButton,
-  Paper
+  Paper,
+  Chip
 } from '@mui/material';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -39,10 +40,14 @@ function LyricsBody({ className, ...props }) {
     <Paper elevation={3} className={className}>
       <Grid container rowSpacing={1} columnSpacing={0}>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} className="l-body-top">
           <IconButton onClick={() => removeSsLines()}>
             <CloseOutlinedIcon className='remove-icon' />
           </IconButton>
+
+          <Chip className='trans-by-chip' 
+          label={!currLyricsContext.azureServerError ? "תורגם באמצעות  microsoft-translator " : "תורגם באמצעות  google-translate" }
+          color="default" variant="filled" size='small'/>
 
           <Typography
             variant="h6"

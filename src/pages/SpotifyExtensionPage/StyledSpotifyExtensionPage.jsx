@@ -22,9 +22,14 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
   .headers-container{
     padding: 30px;
     .MuiTypography-root{
-        display: inline;
-        text-align: start;
-        font-weight: 800;
+      font-size: 5vw;
+      display: inline;
+      text-align: start;
+      font-weight: 800;
+
+      @media (max-width: 600px) {
+        font-size: 12vw;
+      }
     }
     .h3{
         font-weight: 700;

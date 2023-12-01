@@ -288,7 +288,7 @@ export default function CurrLyricsContextProvider(props) {
     const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort };
 
     return (
-        <CurrLyricsContext.Provider value={{ title, lines, ...actions }}>
+        <CurrLyricsContext.Provider value={{ title, lines, azureServerError, ...actions }}>
             {props.children}
         </CurrLyricsContext.Provider>
     );

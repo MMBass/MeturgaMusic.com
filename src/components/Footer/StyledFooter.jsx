@@ -8,7 +8,7 @@ const StyledFooter = styled(Footer)`
   text-align: start;
   
   a{
-    color: unset;
+    color: ${props => props.theme.palette.secondary.dark};
   }
 
   svg{
@@ -24,12 +24,12 @@ const StyledFooter = styled(Footer)`
     background-color: unset;
     font-weight: 500;
     font-size: 17px;
-    color: ${props => props.theme.palette.secondary.light};
+    color: ${props => props.theme.palette.secondary.main};
     margin: unset;
   }
 
   .built-by{
-    color: ${props => props.theme.palette.secondary.light};
+    color: ${props => props.theme.palette.secondary.main};
   }
 
 `;

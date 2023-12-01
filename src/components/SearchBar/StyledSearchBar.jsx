@@ -8,51 +8,68 @@ const StyledSearchBar = styled(SearchBar)`
     background-color: '#ffffff0';
   }
 
-  .add-record-input *{
-    border-radius: 0;
+  .add-record-input{
+    background-color: #e2e2e2;
+    color: dark;
 
-    input{
-    padding-bottom: 20px;
-  }
+      *{
+      border-radius: 0;
+
+      input{
+        padding-bottom: 20px;
+      }
+    } 
   } 
 
-  .main-input{ 
+  .main-input, .top-input{
       direction: rtl; // will turn to LTR, mui settings replace to opposite
       margin: auto;
-   
+
+      input, fieldset, label{
+        font-weight: 600;
+        border-width: medium;
+      }
+  }
+
+  .main-input{ 
       width: 80%;
-      border-color: ${props => props.theme.palette.primary.dark};
 
       @media (max-width: 600px) {
         width: 95%;
       }
 
       input, fieldset, label{
-        color: ${props => props.theme.palette.primary.main + "!important"};
+        color: ${props => props.theme.palette.primary.dark + "!important"};
         border-color: ${props => props.theme.palette.secondary.contrastText + "!important"};
-
-        font-weight: 600;
-        border-width: medium;
       }
     }
 
   .top-input{
       min-width: 100%;
-      direction: rtl; // will turn to LTR, mui settings replace to opposite
-      margin: auto;
-
-      border-color: ${props => props.theme.palette.primary.dark};
 
       input, fieldset, label{
-        color: white !important;
-        border-color: white !important;
-
-        font-weight: 600;
-        border-width: medium;
+        color: ${props => props.theme.palette.primary.light + "!important"};
+        border-color: ${props => props.theme.palette.primary.light + "!important"};
       }
   }
 
-/* google search styling - elements from out of REACT */
+  /* google search styling - elements from out of REACT */
+
+  #___gcse_0 {
+    position: absolute;
+    margin-top: -17px;
+    border: unset;
+    z-index: 1;
+
+    @media (max-width: 600px) {
+      max-width: 390px;
+      overflow: hidden;
+      * {
+        font-size: 12px;
+      }
+    }
+  }
+
   .google-auto-placed {
     overflow: hidden;
   }
@@ -81,7 +98,7 @@ const StyledSearchBar = styled(SearchBar)`
   .gsc-results-wrapper-nooverlay,
   .gsc-results-wrapper-visible {
     border-radius: 0px 0px 5px 5px;
-    background-color: white;
+    background-color: ${props => props.theme.palette.secondary.light + "!important"};
     text-align: start;
   }
 
@@ -99,20 +116,6 @@ const StyledSearchBar = styled(SearchBar)`
     overflow: visible;
   }
 
-  #___gcse_0 {
-    position: absolute;
-    margin-top: -17px;
-    border: unset;
-    z-index: 1;
-
-    @media (max-width: 600px) {
-      max-width: 310px;
-      * {
-        font-size: 12px;
-      }
-  }
-  }
-
   #___gcse_0 .gs-captcha-outer-wrapper {
     padding: 30px !important;
   }
@@ -128,10 +131,10 @@ const StyledSearchBar = styled(SearchBar)`
     .gsc-control-cse-en {
       width: 90%;
       max-width: 390px !important;
+      overflow: hidden;
     }
 
     #___gcse_0 {
-      margin-right: -17px;
       border: unset;
 
     }
@@ -165,6 +168,7 @@ const StyledSearchBar = styled(SearchBar)`
 
   .gsc-webResult {
     /* min-height: 50px; */
+    background-color: ${props => props.theme.palette.secondary.light + "!important"};
     padding: 2px;
     cursor: pointer;
   }
@@ -172,7 +176,7 @@ const StyledSearchBar = styled(SearchBar)`
   .gsc-result * {
     font-family: 'Assistant', 'Roboto', 'sans-serif' !important;
     font-weight: 500;
-    background-color: rgba(136, 136, 136, 0) !important;
+    /* background-color: ${props => props.theme.palette.secondary.light + "!important"}; */
     color: rgb(81, 81, 81) !important;
   }
 

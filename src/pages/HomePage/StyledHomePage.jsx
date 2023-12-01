@@ -15,53 +15,50 @@ const StyledHomePage = styled(HomePage)`
     .home-t-container{
         padding-top: 30px;
         padding-bottom: 30px;
-
+    
         @media (max-width: 600px) {
             text-align: center;
         }
     }
+
+    .page-h3{
+        margin: 40px 0px 15px 0px;
+        font-size: 3.5vw;
+        font-weight: 400;
+        color: ${props => props.theme.palette.primary.contrastText};
+
+        span{
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            margin: 15px 0px 35px  0px;
+            font-size: 6vw;
+        }
+
+        .h3-start-one{
+
+            @media (max-width: 600px) {
+        
+            }
+   
+        }
+
+        .h3-start-two{
+ 
+            @media (max-width: 600px) {
+
+            }
     
-    .h3-s-one{
-        @media (min-width: 600px) {
-            word-spacing: 9px;
-            letter-spacing: 0.5px;
         }
 
-        @media (max-width: 600px) {
-            font-size: 24px;
-            word-spacing: 1px;
-        }
-   
-    }
-
-    .h3-s-two{
-        @media (min-width: 600px) {
-            word-spacing: 9px;
-            letter-spacing: 0.3px;
+        .h3-middle{
+            color: ${props => props.theme.palette.primary.main};
         }
 
-        @media (max-width: 600px) {
-            font-size: 24px;
+        .h3-bottom{
+        
         }
-   
-    }
-
-    .small-one{
-        @media (max-width: 600px) {
-            font-size: 16px;
-        }
-
-        color: ${props => props.theme.palette.primary.main};
-        font-size: 25px;
-        margin-bottom: 15px;
-    }
-
-    .small-two{
-        word-spacing: -0.5px;
-    }
-
-    .lyrics-body, .MuiGrid-root, .muirtl-mhc70k-MuiGrid-root{
-        direction: ltr;
     }
     
 `;

@@ -27,32 +27,6 @@ const StyledLayout = styled(Layout)`
     }
   }
 
-  .page-h3{
-    margin: 40px 0px 35px  0px;
-    /* font-size: 38px; // 29 */
-    font-size: 3vw;
-    font-weight: 400;
-    color: ${props => props.theme.palette.primary.contrastText};
-
-    small{
-      letter-spacing: 1.4px;
-    }
-
-    @media (max-width: 600px) {
-      margin: 15px 0px 35px  0px;
-      /* font-size: 22px; */
-      font-size: 6vw;
-
-      small{
-      letter-spacing: 0.7px;
-      }
-
-      .small-one{
-        font-weight: 600;
-      }
-    }
-  }
-
   a {
     text-decoration: none;
   }
@@ -77,7 +51,7 @@ const StyledLayout = styled(Layout)`
   }
 
   .loader{
-      padding: 20px;
+    padding: 20px;
   }
   
 `;

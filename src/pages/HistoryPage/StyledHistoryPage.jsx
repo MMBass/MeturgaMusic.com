@@ -7,6 +7,7 @@ const StyledHistoryPage = styled(HistoryPage)`
    
    .d-all-btn{
       background-color: #e8e8e86b;
+      color: ${props => props.theme.palette.primary.dark};
    }
 `;
 

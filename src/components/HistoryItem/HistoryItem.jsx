@@ -32,7 +32,7 @@ function HistoryItem({ className, ...props }) {
         primary={
           <NavLink to={'/' + utils.titleToParams(props.title)}>
             <ListItemButton>
-              <Typography sx={{ color: 'black' }}>
+              <Typography>
                 {props.title}
               </Typography>
             </ListItemButton>
