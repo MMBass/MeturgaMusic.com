@@ -20,6 +20,7 @@ body {
 @media (max-width: 600px) {
   ::-webkit-scrollbar {
     width: 4px;
+    max-width: fit-content;
     height: 4px;
   }
 }
