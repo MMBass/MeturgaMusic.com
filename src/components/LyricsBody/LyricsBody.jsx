@@ -20,7 +20,7 @@ import utils from '@/utils';
 
 function LyricsBody({ className, ...props }) {
   let [searchParams, setSearchParams] = useSearchParams();
-  
+
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
@@ -45,9 +45,11 @@ function LyricsBody({ className, ...props }) {
             <CloseOutlinedIcon className='remove-icon' />
           </IconButton>
 
-          <Chip className='trans-by-chip' 
-          label={!currLyricsContext.azureServerError ? "תורגם באמצעות  microsoft-translator " : "תורגם באמצעות  google-translate" }
-          color="default" variant="filled" size='small'/>
+          {currLyricsContext.translatedBy &&
+            <Chip className='trans-by-chip'
+              label={"תורגם באמצעות " + currLyricsContext.translatedBy}
+              color="default" variant="filled" size='small' />
+          }
 
           <Typography
             variant="h6"
@@ -105,14 +107,14 @@ function LyricsBody({ className, ...props }) {
         })}
 
         {/* <Grid item xs={12} key={"ad-lyrics-body-bottom"}> */}
-          {/* single text body AD */}
-          {/* <ins className="adsbygoogle"
+        {/* single text body AD */}
+        {/* <ins className="adsbygoogle"
               style={{ display: "block", textAlign: "center" }}
               data-ad-layout="in-article"
               data-ad-format="fluid"
               data-ad-client="ca-pub-8294214228053744"
               data-ad-slot="5288837770"></ins> */}
-          {/* END single text body AD */}
+        {/* END single text body AD */}
         {/* </Grid> */}
 
       </Grid>

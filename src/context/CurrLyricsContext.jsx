@@ -15,6 +15,7 @@ export default function CurrLyricsContextProvider(props) {
     const [title, setTitle] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('currSongTitle')) || '');
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [azureServerError, setAzureServerError] = useState(false); // set if azure trans didn't work
+    const [translatedBy, setTranslatedBy] = useState(''); // depends on azureServerError except when combined (that for now always microsoft)
     const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans
 
     useEffect(() => {
@@ -62,6 +63,7 @@ export default function CurrLyricsContextProvider(props) {
                     setTitle(songTitle);
                     setSong_id(data.id)
                     setLines(data.combined);
+                    setTranslatedBy('microsoft-translator');
 
                     utils.lsSaveSong({ title: songTitle, lines: data.combined });
                     utils.clearGsc();
@@ -135,25 +137,22 @@ export default function CurrLyricsContextProvider(props) {
     }
 
     const checkNextTrans = () => {
-
         if (abort) {
             // setLines([]); // todo - fixing the removeLines problem, but clearing the lines when searching new song. 
             return;
         };
         lines.every((line, index) => {
             if (!line.trans.length || line.transError) {
-                azureServerError ? GgetSingleLineTrans(line.src, index) : getFullTrans(line.src, index); // get reverso translation if azure is blocked
+                azureServerError ? GgetSingleLineTrans(line.src, index) : getFullTrans(); // get single translation if azure is blocked
                 return false; // break the loop (will start again after getSingleLineTrans(); )
             }
             return true;
         });
     };
 
-    const getPartlyTrans = (src, index) => { // doesn't work properly
+    const getFullTrans = () => {
+        setTranslatedBy('');
 
-    }
-
-    const getFullTrans = (src, index) => {
         fetch(`${serverUri}/trans/lines`, {
             method: 'post',
             headers: {
@@ -201,25 +200,31 @@ export default function CurrLyricsContextProvider(props) {
             let newLines = [...lines];
             let gUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${'he'}&dt=t&q=${encodeURIComponent(
                 src
-              )}`;
+            )}`;
             const response = await fetch(gUrl);
             const data = await response.json();
             var translatedTexts = [];
             if (data && data[0]) {
-              data[0].forEach((element) => {
-                translatedTexts.push(element[0]);
-              });
-        
-              newLines[index] = { src: src, trans: translatedTexts.join(" ") };
-              setLines(newLines);
+                data[0].forEach((element) => {
+                    translatedTexts.push(element[0]);
+                });
+
+                
+                newLines[index] = { src: src, trans: translatedTexts.join(" ") };
+                setLines(newLines);
 
             } else {
-              throw new Error("Google Translation failed.");
+                throw new Error("Google Translation failed.");
             }
-          } catch (error) {
+        } catch (error) {
             console.error("Google Translation error:", error);
             RetSingleLineTrans(src, index);
-          }
+            setTranslatedBy('');
+        }
+        
+        if(translatedBy !== ('google-translate')){
+            setTranslatedBy('google-translate');
+        }
     }
 
     const RetSingleLineTrans = (src, index) => {
@@ -288,7 +293,7 @@ export default function CurrLyricsContextProvider(props) {
     const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort };
 
     return (
-        <CurrLyricsContext.Provider value={{ title, lines, azureServerError, ...actions }}>
+        <CurrLyricsContext.Provider value={{ title, lines, azureServerError, translatedBy, ...actions }}>
             {props.children}
         </CurrLyricsContext.Provider>
     );

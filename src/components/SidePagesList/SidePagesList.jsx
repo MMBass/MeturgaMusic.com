@@ -88,7 +88,7 @@ function SidePagesList({ className, ...props }) {
       </NavLink>
 
       <ListItem>
-        <ListItemButton changeColors={props.changeColors} sx={{textAlign: 'center', justifyContent: 'center'}}>
+        <ListItemButton onClick={props.changeColors} sx={{textAlign: 'center', justifyContent: 'center'}}>
           <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label="מצב כהה" color="secondary" variant="outlined" size='large' />
         </ListItemButton>
         <Divider />
