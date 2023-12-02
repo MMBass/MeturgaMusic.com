@@ -4,7 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
+  // base: '/repo-name', // use if no custom domain
   plugins: [react()],
   resolve: {
     alias: {
@@ -14,5 +14,5 @@ export default defineConfig({
       '@context': path.resolve(__dirname, './src/context'),
       '@' : path.resolve(__dirname, './src'),
     },
-  }
+  },
 });
