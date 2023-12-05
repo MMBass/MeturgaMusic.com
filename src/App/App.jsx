@@ -28,6 +28,7 @@ import { default as MiniDrawer } from '@components/MiniDrawer/StyledMiniDrawer';
 import { default as Dialog } from '@components/Dialog/StyledDialog';
 import { default as Modal } from '@components/Modal/StyledModal';
 import { default as ScrollTop } from '@components/ScrollTop/StyledScrollTop';
+import { default as Player } from '@components/Player/StyledPlayer';
 import HeadTags from '@components/HeadTags/HeadTags';
 
 import { default as HomePage } from '@pages/HomePage/StyledHomePage';
@@ -135,6 +136,8 @@ function App({ className }) {
               {/*end dynamic global elements*/}
               <Footer></Footer>
               <ScrollTop></ScrollTop>
+
+              <Player></Player>
             </Layout>
           </Router>
 

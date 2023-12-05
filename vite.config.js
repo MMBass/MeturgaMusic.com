@@ -6,7 +6,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   // base: '/repo-name', // use if no custom domain
-  plugins: [react(), babel()],
+  plugins: [react()],
   resolve: {
     alias: {
       '@pages': path.resolve(__dirname, './src/pages'),

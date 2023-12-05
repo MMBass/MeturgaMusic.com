@@ -17,6 +17,7 @@ export default function CurrLyricsContextProvider(props) {
     const [azureServerError, setAzureServerError] = useState(false); // set if azure trans didn't work
     const [translatedBy, setTranslatedBy] = useState(''); // depends on azureServerError except when combined (that for now always microsoft)
     const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans
+    const [videoId, setVideoId] = useState('');
 
     useEffect(() => {
         if (lines[0]) {
@@ -64,6 +65,7 @@ export default function CurrLyricsContextProvider(props) {
                     setTitle(songTitle);
                     setSong_id(data.id)
                     setLines(data.combined);
+                    setVideoId(data.videoId);
                     setTranslatedBy('microsoft-translator');
 
                     utils.lsSaveSong({ title: songTitle, lines: data.combined });
@@ -176,6 +178,7 @@ export default function CurrLyricsContextProvider(props) {
                     });
 
                     setLines(newLines);
+                    setVideoId(data.videoId);
                     utils.lsSaveSong({ title, lines: newLines });
 
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
