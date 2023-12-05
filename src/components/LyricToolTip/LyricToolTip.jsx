@@ -60,7 +60,8 @@ function LyricToolTip({ className, ...props }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "single": encodeURI(lyric)
+        "single": encodeURI(lyric),
+        "initId": localStorage.getItem('init'),
       })
     }).then(response => response.json())
       .then(data => {

@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, useMemo } from 'react';
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
@@ -57,8 +58,8 @@ function App({ className }) {
   }, []);
 
   useEffect(() => {
-    if(localStorage.getItem('preferedDark')){
-      if(localStorage.getItem('preferedDark') === 'true') setCurrTheme(darkTheme);
+    if (localStorage.getItem('preferedDark')) {
+      if (localStorage.getItem('preferedDark') === 'true') setCurrTheme(darkTheme);
     } else setCurrTheme(prefersDarkMode ? darkTheme : mainPinkTheme); // set to device mode only if user hasens't switch colors before
   }, [prefersDarkMode]);
 
@@ -69,8 +70,10 @@ function App({ className }) {
   };
 
   const serverInit = () => {
-    const serverUri = 'https://musicline-backend-dev.vercel.app';
-    fetch(`${serverUri}/`);
+    const serverUri = 'https://musicline-backend.vercel.app';
+    if (!localStorage.getItem('init')) localStorage.setItem('init', JSON.stringify('INITID:'+uuidv4()));
+    let initId = localStorage.getItem('init');
+    fetch(`${serverUri}/?initId=` + initId);
   }; // Send every visit to the server
 
   const ifIOS = () => {

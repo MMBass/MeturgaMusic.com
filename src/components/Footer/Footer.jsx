@@ -40,7 +40,7 @@ function Footer({ className }) {
 
           <List>
             <ListItem component={Link} href="https://basssites.com" className='built-by'>
-              <ListItemText primary={' נבנה על ידי BassSites'} />
+              <ListItemText primary={' © BassSites 2023 '} />
             </ListItem>
           </List>
 

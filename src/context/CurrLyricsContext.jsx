@@ -48,7 +48,8 @@ export default function CurrLyricsContextProvider(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "currSong": splittedSongTitle
+                "currSong": splittedSongTitle,
+                "initId": localStorage.getItem('init'),
             })
         }).then(response => response.json())
             .then(data => {
@@ -237,7 +238,8 @@ export default function CurrLyricsContextProvider(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "line": encodeURI(src)
+                "line": encodeURI(src),
+                "initId": localStorage.getItem('init')
             })
         })
             .then(response => response.json())
