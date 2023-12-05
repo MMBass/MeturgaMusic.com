@@ -69,10 +69,12 @@ function LyricsBody({ className, ...props }) {
         {currLyricsContext.lines.map((line, y) => {
           if (line.src.includes('[')) {
             line.trans = '   ';
+            line.src = line.src.replaceAll('[','| ')
+            line.src = line.src.replaceAll(']',' |')
           }
           return (
             <Grid item xs={12} key={uuidv4()}>
-              {(y > 0 && line.src.includes('[')) && <><br></br><br></br></>}
+              {(y > 0 && line.src.includes('|')) && <><br></br><br></br></>}
 
               <Box className="lyrics-line en-line"
                 style={{ fontSize: settingsContext.fontSize.md }}
