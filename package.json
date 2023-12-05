@@ -7,8 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && git add dist -f && git commit -m 'gh-pages' && git subtree push --prefix dist origin gh-pages",
-    "short-deploy": "git add dist -f && git commit -m 'gh-pages'  && git subtree push --prefix dist origin gh-pages",
+    "fast-deploy": "git add . && git commit -m \"Fast deploy. no message\" && git push -u origin main",
+    "deploy": "vite build && git add dist && git commit -m \"gh-pages\" && git subtree push --prefix dist origin gh-pages",
+    "full-deploy": "vite build && git add dist && git commit -m \"gh-pages\" && git subtree push --prefix dist origin gh-pages && git add . && git commit -m \"Full deploy. no message\" && git push -u origin main",
     "gen": "node genConfig"
   },
   "dependencies": {
@@ -20,14 +21,18 @@
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-meta-tags": "^1.0.1",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^6.2.1",
     "stylis": "^4.0.13",
     "stylis-plugin-rtl": "^2.1.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
     "@vitejs/plugin-react": "^1.0.7",
-    "vite": "^2.8.0"
+    "babel-plugin-direct-import": "^1.0.0",
+    "vite": "^2.9.9",
+    "vite-plugin-babel": "^1.1.3"
   }
 }
