@@ -55,6 +55,7 @@ function App({ className }) {
 
   useEffect(() => {
     init();
+    console.log('mk');
   }, []);
 
   useEffect(() => {
