@@ -7,9 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "fast-deploy": "git add . && git commit -m \"Fast deploy. no message\" && git push -u origin main",
-    "deploy": "vite build && git add -f dist && git commit -m \"gh-pages\" && git subtree push --prefix dist origin gh-pages",
-    "full-deploy": "vite build && git add dist && git commit -m \"gh-pages\" && git subtree push --prefix dist origin gh-pages && git add . && git commit -m \"Full deploy. no message\" && git push -u origin main",
+    "deploy": "vite build && git add . && git commit -m \"Fast deploy. no message\" && git push -u origin main -f",
+    "push": "git add . && git commit -m \"Fast push. no message\" && git push -u origin main -f",
     "gen": "node genConfig"
   },
   "dependencies": {
