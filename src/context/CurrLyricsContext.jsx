@@ -41,7 +41,7 @@ export default function CurrLyricsContextProvider(props) {
             return;
         }
 
-        fetch(`${serverUri}/lyrics`, {
+        fetch(`${serverUri}/lyrics?initId=` + localStorage.getItem('init'), {
             // mode: "no-cors",
             method: 'post',
             headers: {
@@ -49,8 +49,7 @@ export default function CurrLyricsContextProvider(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "currSong": splittedSongTitle,
-                "initId": localStorage.getItem('init'),
+                "currSong": splittedSongTitle
             })
         }).then(response => response.json())
             .then( async data => {
@@ -236,15 +235,14 @@ export default function CurrLyricsContextProvider(props) {
     const RetSingleLineTrans = (src, index) => {
         let newLines = [...lines];
 
-        fetch(`${serverUri}/trans/single-line`, {
+        fetch(`${serverUri}/trans/single-line?initId=` + localStorage.getItem('init'), {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "line": encodeURI(src),
-                "initId": localStorage.getItem('init')
+                "line": encodeURI(src)
             })
         })
             .then(response => response.json())

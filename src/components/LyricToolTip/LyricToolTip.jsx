@@ -53,15 +53,14 @@ function LyricToolTip({ className, ...props }) {
     lyric = lyric.replaceAll(/[^a-zA-Z0-9']/g, ""); // removes special chars exept '
     if (lyric.slice(-1) === "'") lyric = lyric.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
 
-    fetch(`${serverUri}/trans/single`, {
+    fetch(`${serverUri}/trans/single?initId=` + localStorage.getItem('init'), {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "single": encodeURI(lyric),
-        "initId": localStorage.getItem('init'),
+        "single": encodeURI(lyric)
       })
     }).then(response => response.json())
       .then(data => {
