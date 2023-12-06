@@ -15,7 +15,7 @@ function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
   const drawerContext = useContext(DrawerContext);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams(); // using the react-router hook, works with hashed pages
   const sname = searchParams.get("song");
 
   useEffect(() => {
@@ -23,7 +23,6 @@ function HomePage({ className }) {
     drawerContext.closeDrawer();
     if (bannersContext.error) bannersContext.closeBanner('error');
 
-    utils.directParamsToHash();
     if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
     };

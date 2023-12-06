@@ -100,14 +100,16 @@ const titleToParams = (str) => {
     else return;
 };
 
-/** Hack the gh-pages hash router - To generate legal sitemap pages*/
+/** Hack the gh-pages hash router - To access directly*/
 const directParamsToHash = () => {
     const searchParams = new URLSearchParams(location.search);
     if (searchParams.get('page')) {
         location.href = location.origin + '/#/' + searchParams.get('page');
     } else if (searchParams.get('song') && searchParams.get('song').includes("_")) {
-        location.href = location.origin + '/#/?song=' + noHashSname;
-    };
+        location.href = location.origin + '/#/?song=' + searchParams.get('song');
+    } else {
+        return;
+    }
 };
 
 export default { directParamsToHash, loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, getMobileOS, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams }
