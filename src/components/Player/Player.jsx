@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -11,28 +11,34 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
-function Player({className}) {
+function Player({ className }) {
+  const [hide, setHide] = useState(false);
   const currLyricsContext = useContext(CurrLyricsContext);
 
   const theme = useTheme();
 
   return (
     <>
-      {(currLyricsContext.videoId && currLyricsContext.lines?.[0]) && 
+      {(!hide && currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
         <Card sx={{ display: 'flex' }} className={className}>
-        {/* <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <CardContent sx={{ flex: '1 0 auto' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            {/* <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5">
               Live From Space
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" component="div">
               Mac Miller
             </Typography>
-          </CardContent>
-          <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-            <IconButton aria-label="previous">
+          </CardContent> */}
+            <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+              <IconButton onClick={() => setHide(true)}>
+                <CloseOutlinedIcon className='remove-icon' />
+              </IconButton>
+              {/* <IconButton aria-label="previous">
               {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
             </IconButton>
             <IconButton aria-label="play/pause">
@@ -40,23 +46,23 @@ function Player({className}) {
             </IconButton>
             <IconButton aria-label="next">
               {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-            </IconButton>
+            </IconButton> */}
+            </Box>
           </Box>
-        </Box> */}
-        <CardMedia
-          children={<iframe
-            src={`https://www.youtube.com/embed/${currLyricsContext.videoId}`}
-            title={'video'}
-            allowFullScreen={false}
-            width="250" height="135"
-            rel='0'
-          ></iframe>}
-          component="div"
-          // sx={{ width: 100 }}
-          image="/static/images/cards/live-from-space.jpg"
-          alt="Live from space album cover"
-        />
-      </Card>
+          <CardMedia
+            children={<iframe
+              src={`https://www.youtube.com/embed/${currLyricsContext.videoId}`}
+              title={'video'}
+              allowFullScreen={false}
+              width="250" height="135"
+              rel='0'
+            ></iframe>}
+            component="div"
+            // sx={{ width: 100 }}
+            image="/static/images/cards/live-from-space.jpg"
+            alt="Live from space album cover"
+          />
+        </Card>
       }
     </>
   );
