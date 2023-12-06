@@ -53,7 +53,7 @@ export default function CurrLyricsContextProvider(props) {
                 "initId": localStorage.getItem('init'),
             })
         }).then(response => response.json())
-            .then(data => {
+            .then( async data => {
 
                 loadersContext.closeLoader('main');
                 sessionStorage.removeItem('currLines');
@@ -65,7 +65,8 @@ export default function CurrLyricsContextProvider(props) {
                     setTitle(songTitle);
                     setSong_id(data.id)
                     setLines(data.combined);
-                    setVideoId(data.videoId);
+                    if(data.videoId) setVideoId(data.videoId);
+
                     setTranslatedBy('microsoft-translator');
 
                     utils.lsSaveSong({ title: songTitle, lines: data.combined });
@@ -104,6 +105,7 @@ export default function CurrLyricsContextProvider(props) {
                     });
                     setAbort(false);
                     setLines(newLines);
+                    if(data.videoId) setVideoId(data.videoId);
 
                     utils.clearGsc();
                 } else {
@@ -213,7 +215,7 @@ export default function CurrLyricsContextProvider(props) {
                     translatedTexts.push(element[0]);
                 });
 
-                
+
                 newLines[index] = { src: src, trans: translatedTexts.join(" ") };
                 setLines(newLines);
 
@@ -225,8 +227,8 @@ export default function CurrLyricsContextProvider(props) {
             RetSingleLineTrans(src, index);
             setTranslatedBy('');
         }
-        
-        if(translatedBy !== ('google-translate')){
+
+        if (translatedBy !== ('google-translate')) {
             setTranslatedBy('google-translate');
         }
     }
@@ -298,7 +300,7 @@ export default function CurrLyricsContextProvider(props) {
     const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort };
 
     return (
-        <CurrLyricsContext.Provider value={{ title, lines, azureServerError, translatedBy, ...actions }}>
+        <CurrLyricsContext.Provider value={{ title, lines, azureServerError, translatedBy, videoId, ...actions }}>
             {props.children}
         </CurrLyricsContext.Provider>
     );

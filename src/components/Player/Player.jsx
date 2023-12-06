@@ -48,7 +48,7 @@ function Player({className}) {
             src={`https://www.youtube.com/embed/${currLyricsContext.videoId}`}
             title={'video'}
             allowFullScreen={false}
-            width="180" height="100"
+            width="250" height="135"
             rel='0'
           ></iframe>}
           component="div"
