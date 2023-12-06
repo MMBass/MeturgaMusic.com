@@ -50,7 +50,13 @@ function HomePage({ className }) {
   return (
 
     <div className={className}>
-
+      {/* <Grid item xs={6} sm={6}>
+        <Typography variant="h2" textAlign={'center'} pt={20}>
+          עברנו לכתובת חדשה...
+           <br className="h1-br"></br>
+          We have moved to a new Address...
+        </Typography>
+      </Grid> */}
       {!currLyricsContext.lines?.[0] &&
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
