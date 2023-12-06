@@ -20,7 +20,7 @@ function Player({className}) {
 
   return (
     <>
-      {currLyricsContext.videoId && 
+      {(currLyricsContext.videoId && currLyricsContext.lines?.[0]) && 
         <Card sx={{ display: 'flex' }} className={className}>
         {/* <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CardContent sx={{ flex: '1 0 auto' }}>

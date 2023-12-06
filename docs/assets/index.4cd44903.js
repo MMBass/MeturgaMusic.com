@@ -470,7 +470,7 @@ import{c as Ce,R as X,r as i,j as e,a as c,B as Oe,b as ee,d as Pe,e as Me,s as 
 `;function fr({className:t}){const r=it({target:window,disableHysteresis:!0,threshold:100});return e(lt,{id:"",className:t,in:r,children:e(J,{role:"presentation",sx:{position:"fixed",bottom:32,right:32,zIndex:1300},children:e(ut,{onClick:()=>{window.scrollTo({top:0,behavior:"auto"})},color:"primary",size:"small","aria-label":"scroll back to top",children:e(ct,{htmlColor:"white"})})})})}const Er=E(fr)`
   width: 50px;
   height: 50px;
-`;function xr({className:t}){const r=i.exports.useContext(W);return ne(),e(B,{children:r.videoId&&e(dt,{sx:{display:"flex"},className:t,children:e(pt,{children:e("iframe",{src:`https://www.youtube.com/embed/${r.videoId}`,title:"video",allowFullScreen:!1,width:"250",height:"135",rel:"0"}),component:"div",image:"/static/images/cards/live-from-space.jpg",alt:"Live from space album cover"})})})}const yr=E(xr)`
+`;function xr({className:t}){var n;const r=i.exports.useContext(W);return ne(),e(B,{children:r.videoId&&((n=r.lines)==null?void 0:n[0])&&e(dt,{sx:{display:"flex"},className:t,children:e(pt,{children:e("iframe",{src:`https://www.youtube.com/embed/${r.videoId}`,title:"video",allowFullScreen:!1,width:"250",height:"135",rel:"0"}),component:"div",image:"/static/images/cards/live-from-space.jpg",alt:"Live from space album cover"})})})}const yr=E(xr)`
    position: fixed;
    bottom: 32px;
    left: 80px;
