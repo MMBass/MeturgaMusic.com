@@ -33,8 +33,8 @@ function Player({ className }) {
         <Draggable >
           <Card sx={{ display: 'flex' }} className={className}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <IconButton onClick={() => setHide(true)}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }} onClick={() => setHide(true)}>
+                <IconButton>
                   <CloseOutlinedIcon className='remove-icon' />
                 </IconButton>
               </Box>
