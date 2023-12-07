@@ -12,6 +12,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
@@ -33,11 +34,17 @@ function Player({ className }) {
         <Draggable >
           <Card sx={{ display: 'flex' }} className={className}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }} onClick={() => setHide(true)}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }} className='remove-icon-box'>
                 <IconButton>
-                  <CloseOutlinedIcon className='remove-icon' />
+                  <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} onClick={() => setHide(true)}/>
                 </IconButton>
               </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center' }} >
+                <IconButton>
+                  <DragIndicatorIcon className='drag-icon' />
+                </IconButton>
+              </Box>
+              
             </Box>
             <CardMedia
               children={<iframe

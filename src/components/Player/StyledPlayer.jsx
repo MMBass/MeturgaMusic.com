@@ -8,17 +8,17 @@ const StyledPlayer = styled(Player)`
    z-index: 1200;
    
    iframe {
-    margin: 5px 5px 5px 0px;
+      margin: 5px 5px 5px 0px;
    }
 
-    @media (max-width: 600px) {
-       left: 10px;
+      @media (max-width: 600px) {
+         left: 10px;
 
-       iframe{
-        width: 190px;
-        height: 109px;
-       }
-    }
+         iframe{
+            width: 190px;
+            height: 109px;
+         }
+      }
 `;
 
 export default StyledPlayer;
