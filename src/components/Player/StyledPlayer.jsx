@@ -5,7 +5,7 @@ const StyledPlayer = styled(Player)`
    position: fixed;
    bottom: 32px;
    left: 80px;
-   z-index: 1300;
+   z-index: 1200;
    
    iframe {
     margin: 5px 5px 5px 0px;
@@ -15,8 +15,8 @@ const StyledPlayer = styled(Player)`
        left: 10px;
 
        iframe{
-        width: 180px;
-        height: 99px;
+        width: 190px;
+        height: 109px;
        }
     }
 `;

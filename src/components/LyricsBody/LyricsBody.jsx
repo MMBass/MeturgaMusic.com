@@ -33,6 +33,7 @@ function LyricsBody({ className, ...props }) {
     sessionStorage.removeItem('currLines');
     currLyricsContext.setLines([]);
     currLyricsContext.setTitle('');
+    currLyricsContext.setVideoId('');
     setSearchParams('');
   }
 

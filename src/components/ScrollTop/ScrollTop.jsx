@@ -26,7 +26,7 @@ function ScrollTop({className}) {
             position: "fixed",
             bottom: 32,
             right: 32,
-            zIndex: 1300,
+            zIndex: 1200,
           }}
         >
           <Fab

@@ -57,7 +57,8 @@ export default function CurrLyricsContextProvider(props) {
                 loadersContext.closeLoader('main');
                 sessionStorage.removeItem('currLines');
                 sessionStorage.removeItem('currSongTitle');
-
+                setVideoId('');
+                
                 if (linesParent) linesParent.style.pointerEvents = "all";
 
                 if (data?.combined && Array.isArray(data?.combined)) {
@@ -66,6 +67,7 @@ export default function CurrLyricsContextProvider(props) {
                     setSong_id(data.id);
                     setLines(data.combined);
                     if (data.videoId) setVideoId(data.videoId);
+                    else setVideoId('');
 
                     if(data.combined[2].trans.length > 1) setTranslatedBy('microsoft-translator');
 
