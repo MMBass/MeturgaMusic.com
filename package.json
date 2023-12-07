@@ -12,26 +12,23 @@
     "gen": "node genConfig"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.15",
-    "@mui/material": "^5.14.19",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.4.1",
+    "@mui/material": "^5.4.0",
     "generate-template-files": "^3.2.0",
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.3",
     "react-router-dom": "^6.2.1",
     "stylis": "^4.0.13",
     "stylis-plugin-rtl": "^2.1.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-jsx": "^7.23.3",
-    "@babel/preset-react": "^7.23.3",
     "@vitejs/plugin-react": "^1.0.7",
-    "babel-plugin-direct-import": "^1.0.0",
-    "vite": "^2.8.0",
-    "vite-plugin-babel": "^1.1.3"
+    "vite": "^2.8.0"
   }
 }

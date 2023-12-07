@@ -72,7 +72,7 @@ function App({ className }) {
 
   const serverInit = () => {
     const serverUri = 'https://musicline-backend.vercel.app';
-    if (!localStorage.getItem('init')) localStorage.setItem('init', JSON.stringify('INITID:'+uuidv4()));
+    if (!localStorage.getItem('init')) localStorage.setItem('init', 'INITID:'+uuidv4());
     let initId = localStorage.getItem('init');
     fetch(`${serverUri}/?initId=` + initId);
   }; // Send every visit to the server

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,48 +21,35 @@ function Player({ className }) {
 
   const theme = useTheme();
 
+  useEffect(() => {
+    setHide(false);
+  }, [currLyricsContext.title]);
+
   return (
     <>
       {(!hide && currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
-        <Card sx={{ display: 'flex' }} className={className}>
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            {/* <CardContent sx={{ flex: '1 0 auto' }}>
-            <Typography component="div" variant="h5">
-              Live From Space
-            </Typography>
-            <Typography variant="subtitle1" color="text.secondary" component="div">
-              Mac Miller
-            </Typography>
-          </CardContent> */}
-            <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-              <IconButton onClick={() => setHide(true)}>
-                <CloseOutlinedIcon className='remove-icon' />
-              </IconButton>
-              {/* <IconButton aria-label="previous">
-              {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
+      <Card sx={{ display: 'flex' }} className={className}>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton onClick={() => setHide(true)}>
+              <CloseOutlinedIcon className='remove-icon' />
             </IconButton>
-            <IconButton aria-label="play/pause">
-              <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-            </IconButton>
-            <IconButton aria-label="next">
-              {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-            </IconButton> */}
-            </Box>
           </Box>
-          <CardMedia
-            children={<iframe
-              src={`https://www.youtube.com/embed/${currLyricsContext.videoId}`}
-              title={'video'}
-              allowFullScreen={false}
-              width="250" height="135"
-              rel='0'
-            ></iframe>}
-            component="div"
-            // sx={{ width: 100 }}
-            image="/static/images/cards/live-from-space.jpg"
-            alt="Live from space album cover"
-          />
-        </Card>
+        </Box>
+        <CardMedia
+          children={<iframe
+            src={`https://www.youtube.com/embed/${currLyricsContext.videoId}`}
+            title={'video'}
+            allowFullScreen={false}
+            width="250" height="135"
+            rel='0'
+            frameBorder={0}
+          ></iframe>}
+          component="div"
+          image="/static/images/cards/live-from-space.jpg"
+          alt="Live from space album cover"
+        />
+      </Card>
       }
     </>
   );

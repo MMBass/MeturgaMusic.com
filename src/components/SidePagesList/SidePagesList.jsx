@@ -3,7 +3,8 @@ import { useContext } from 'react';
 import { NavLink } from "react-router-dom";
 import { useTheme } from '@mui/material/styles';
 
-import ChecklistOutlinedIcon from '@mui/icons-material/ChecklistOutlined';
+import TocIcon from '@mui/icons-material/Toc';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import ContactlessRoundedIcon from '@mui/icons-material/ContactlessRounded';
@@ -42,15 +43,9 @@ function SidePagesList({ className, ...props }) {
     {
       name: 'שירים שמורים',
       url: '/wish-list',
-      icon: <ChecklistOutlinedIcon className="side-icons"></ChecklistOutlinedIcon>,
+      icon: <PlaylistAddIcon className="side-icons"></PlaylistAddIcon>,
       chip: <Chip className='pages-list-chip' label="חדש!" color="error" variant="outlined" size='small' />,
     },
-    // {
-    //   name: 'תוסף לספוטיפיי',
-    //   url: '/spotify-extension',
-    //   icon: <ContactlessRoundedIcon className="side-icons"></ContactlessRoundedIcon>,
-    //   chip: <Chip className='pages-list-chip extension-chip' label="בקרוב!" color="secondary" variant="outlined" size='small' />,
-    // },
 
   ];
 

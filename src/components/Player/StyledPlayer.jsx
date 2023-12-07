@@ -7,9 +7,18 @@ const StyledPlayer = styled(Player)`
    left: 80px;
    z-index: 1300;
    
-   @media (max-width: 600px) {
-       left: 10px;
+   iframe {
+    margin: 5px 5px 5px 0px;
    }
+
+    @media (max-width: 600px) {
+       left: 10px;
+
+       iframe{
+        width: 180px;
+        height: 99px;
+       }
+    }
 `;
 
 export default StyledPlayer;
