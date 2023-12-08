@@ -1,13 +1,10 @@
 import { NavLink } from "react-router-dom";
 
-import {
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-  IconButton,
-} from '@mui/material';
-
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
 import utils from '@/utils';

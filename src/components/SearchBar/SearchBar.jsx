@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { TextField, Stack } from "@mui/material";
-import { CircularProgress } from '@mui/material';
+import TextField from "@mui/material/TextField";
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';

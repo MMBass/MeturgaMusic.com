@@ -1,15 +1,13 @@
 import { useState } from 'react';
 
-import {
-  Button,
-  Dialog as MuiDialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle
-} from '@mui/material';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
-function Dialog({ className }) {
+function MyDialog({ className }) {
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
@@ -17,7 +15,7 @@ function Dialog({ className }) {
   };
 
   return (
-    <MuiDialog id="main-modal-root" className={className}
+    <Dialog id="main-modal-root" className={className}
       open={open}
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
@@ -35,8 +33,8 @@ function Dialog({ className }) {
       <DialogActions>
         <Button onClick={handleClose}>Close</Button>
       </DialogActions>
-    </MuiDialog>
+    </Dialog>
   );
 }
 
-export default Dialog;
+export default MyDialog;

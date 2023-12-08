@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  LinearProgress
-} from '@mui/material';
+import LinearProgress from '@mui/material/LinearProgress';
 
 function DeterminateLinearProgress({className, ...props}) {
   const [progress, setProgress] = useState(0);

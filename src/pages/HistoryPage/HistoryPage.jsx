@@ -4,13 +4,11 @@ import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 
 import { default as HistoryItem } from '@components/HistoryItem/StyledHistoryItem';
 
-import {
-  Grid,
-  List,
-  Box,
-  Typography,
-  Button
-} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 function HistoryPage({ className }) {
   const [songs, setSongs] = useState(JSON.parse(localStorage.getItem('meturgamm_songs')) || []);

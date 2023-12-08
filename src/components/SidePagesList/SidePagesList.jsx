@@ -13,17 +13,15 @@ import { SettingsContext } from '@context/SettingsContext';
 
 import { default as ChangeColors } from '@components/ChangeColors/StyledChangeColors';
 
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Badge,
-  Chip,
-  Divider,
-  Alert,
-} from '@mui/material';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Badge from '@mui/material/Badge';
+import Chip from '@mui/material/Chip';
+import Divider from '@mui/material/Divider';
+import Alert from '@mui/material/Alert';
 
 function SidePagesList({ className, ...props }) {
   const settingsContext = useContext(SettingsContext);

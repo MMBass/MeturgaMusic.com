@@ -1,15 +1,16 @@
 import { useContext } from 'react';
 import { DrawerContext } from '@context/DrawerContext';
 
-import {Drawer as MuiDrawer, Box} from '@mui/material';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
 
 import { default as SidePagesList } from '@components/SidePagesList/StyledSidePagesList';
 
-function Drawer({ className, ...props }) {
+function MyDrawer({ className, ...props }) {
   const drawerContext = useContext(DrawerContext);
 
   return (
-    <MuiDrawer
+    <Drawer
       className={className}
       anchor={drawerContext.anchor}
       open={drawerContext.open}
@@ -23,8 +24,8 @@ function Drawer({ className, ...props }) {
       >
        <SidePagesList changeColors={props.changeColors}></SidePagesList>
       </Box>
-    </MuiDrawer>
+    </Drawer>
   );
 }
 
-export default Drawer;
+export default MyDrawer;

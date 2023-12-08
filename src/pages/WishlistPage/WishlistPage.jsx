@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { NavLink } from "react-router-dom";
 
-import {
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-  Divider
-} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import LaunchIcon from '@mui/icons-material/Launch';

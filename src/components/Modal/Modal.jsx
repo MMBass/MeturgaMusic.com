@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Modal as MuiModal} from '@mui/material';
+import Modal from '@mui/material/Modal';
 
-function Modal({ className , ...props}) {
+function MyModal({ className , ...props}) {
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
@@ -21,4 +21,4 @@ function Modal({ className , ...props}) {
   );
 }
 
-export default Modal;
+export default MyModal;

@@ -3,7 +3,9 @@ import { SettingsContext } from '@context/SettingsContext';
 
 import { default as ExerciseItem } from '@components/ExerciseItem/StyledExerciseItem';
 
-import { Typography, Grid, List } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
 
 function ExercisePage({ className }) {
   const settingsContext = useContext(SettingsContext);

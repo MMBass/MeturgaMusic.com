@@ -1,10 +1,8 @@
 import { useContext } from "react";
 
-import {
-  Typography,
-  LinearProgress,
-  ClickAwayListener
-} from '@mui/material';
+import Typography from '@mui/material/Typography';
+import LinearProgress from '@mui/material/LinearProgress';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 import { default as BookMarkWord } from '@components/BookMarkWord/StyledBookMarkWord';
 

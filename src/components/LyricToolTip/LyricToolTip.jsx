@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 
-import {
-  Tooltip,
-} from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 
 import { default as LyricToolTipChilds } from '@components/LyricToolTipChilds/StyledLyricToolTipChilds';
 import { default as BookMarkWord } from '@components/BookMarkWord/StyledBookMarkWord';

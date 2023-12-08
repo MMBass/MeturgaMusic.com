@@ -53,7 +53,7 @@ const StyledHomePage = styled(HomePage)`
         }
 
         .h3-middle{
-            color: ${props => props.theme.palette.primary.main};
+            color: ${props => props.theme.palette.primary.dark};
         }
 
         .h3-bottom{

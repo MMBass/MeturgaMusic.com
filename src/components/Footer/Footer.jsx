@@ -1,13 +1,11 @@
 import { useEffect } from "react";
 
-import {
-  Grid,
-  List,
-  ListSubheader,
-  ListItem,
-  ListItemText,
-  Link
-} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListSubheader from '@mui/material/ListSubheader';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Link from '@mui/material/Link';
 
 function Footer({ className }) {
 

@@ -14,7 +14,7 @@ export const mainPinkTheme = createTheme({
     primary: {
       main: '#DF808E', // light red/pink
       light: '#fff', // white for headers
-      dark: '#de6d7e', // medium red
+      dark: '#dc7887', // medium red
       contrastText: '#555555' // med gray - gray
     },
     secondary: {

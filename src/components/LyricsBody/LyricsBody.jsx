@@ -2,14 +2,12 @@ import { useContext, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { useSearchParams } from "react-router-dom";
 
-import {
-  Grid,
-  Box,
-  Typography,
-  IconButton,
-  Paper,
-  Chip
-} from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import { default as LyricToolTip } from '@components/LyricToolTip/StyledLyricToolTip';

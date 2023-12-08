@@ -2,22 +2,21 @@ import { useContext, useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
 import { useTheme } from '@mui/material/styles';
-import { Menu as MenuIcon, Search as SearchIcon } from '@mui/icons-material';
+import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Container,
-  Alert,
-  AlertTitle,
-  Collapse,
-  Badge,
-  Link
-} from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Collapse from '@mui/material/Collapse';
+import Badge from '@mui/material/Badge';
+import Link from '@mui/material/Link';
 
 import { default as ChangeSize } from '@components/ChangeSize/StyledChangeSize';
 import { default as DeterminateLinearProgress } from '@components/DeterminateLinearProgress/StyledDeterminateLinearProgress';

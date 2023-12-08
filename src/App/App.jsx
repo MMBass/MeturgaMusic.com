@@ -13,7 +13,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { mainPinkTheme } from '@/themes/mainPinkTheme';
 import { darkTheme } from '@/themes/darkTheme';
 
-import { Snackbar, Alert, AlertTitle } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 import { DrawerContext } from '@context/DrawerContext';
 import { LoadersContext } from '@context/LoadersContext';

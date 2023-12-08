@@ -1,10 +1,10 @@
 import React from "react";
-import {
-  Box,
-  Zoom,
-  Fab,
-} from "@mui/material";
-import { KeyboardArrowUp } from "@mui/icons-material";
+
+import Box from '@mui/material/Box';
+import Zoom from '@mui/material/Zoom';
+import Fab from '@mui/material/Fab';
+
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 
 function ScrollTop({className}) {
@@ -35,7 +35,7 @@ function ScrollTop({className}) {
             size="small"
             aria-label="scroll back to top"
           >
-            <KeyboardArrowUp htmlColor ="white"/>
+            <KeyboardArrowUpIcon htmlColor="white"/>
           </Fab>
         </Box>
       </Zoom> 

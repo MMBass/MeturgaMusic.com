@@ -1,15 +1,12 @@
 import { useContext } from "react";
 
-import { Add as AddIcon } from '@mui/icons-material';
 import ZoomOutIcon from '@mui/icons-material/ZoomOut';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
 import { SettingsContext } from '@context/SettingsContext';
 
-import {
-  Button,
-  ButtonGroup,
-} from '@mui/material';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 function ChangeSize({className}) {
   const settingsContext = useContext(SettingsContext);
