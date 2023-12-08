@@ -24,7 +24,7 @@ import { default as Header } from '@components/Header/StyledHeader';
 import { default as Layout } from '@components/Layout/StyledLayout';
 import { default as Footer } from '@components/Footer/StyledFooter';
 import { default as Drawer } from '@components/Drawer/StyledDrawer';
-import { default as MiniDrawer } from '@components/MiniDrawer/StyledMiniDrawer';
+// import { default as MiniDrawer } from '@components/MiniDrawer/StyledMiniDrawer';
 import { default as Dialog } from '@components/Dialog/StyledDialog';
 import { default as Modal } from '@components/Modal/StyledModal';
 import { default as ScrollTop } from '@components/ScrollTop/StyledScrollTop';
@@ -46,7 +46,6 @@ function App({ className }) {
 
   const [currTitle, setCurrTitle] = useState("מתורגמיוזיק - שירים מתורגמים מאנגלית");
   const [currTheme, setCurrTheme] = useState(mainPinkTheme);
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   // Create rtl cache
   const cacheRtl = createCache({
@@ -58,11 +57,14 @@ function App({ className }) {
     init();
   }, []);
 
+  // Not good the first use to be black
+  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const prefersDarkMode = false;
   useEffect(() => {
     if (localStorage.getItem('preferedDark')) {
       if (localStorage.getItem('preferedDark') === 'true') setCurrTheme(darkTheme);
     } else setCurrTheme(prefersDarkMode ? darkTheme : mainPinkTheme); // set to device mode only if user hasens't switch colors before
-  }, [prefersDarkMode]);
+  }, [prefersDarkMode]); 
 
   const init = () => {
     utils.directParamsToHash();

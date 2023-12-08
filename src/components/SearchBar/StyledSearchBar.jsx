@@ -169,7 +169,7 @@ const StyledSearchBar = styled(SearchBar)`
   .gsc-webResult {
     /* min-height: 50px; */
     background-color: ${props => props.theme.palette.secondary.light + "!important"};
-    padding: 2px;
+    padding: 5px;
     cursor: pointer;
   }
 

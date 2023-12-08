@@ -1,14 +1,14 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import {default as App} from './App/StyledApp';
+import { default as App } from './App/StyledApp';
 import ContextComposer from '@context/ContextComposer';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <ContextComposer>
-        <App className='app'/>
+      <App className='app' />
     </ContextComposer>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root')
 )
