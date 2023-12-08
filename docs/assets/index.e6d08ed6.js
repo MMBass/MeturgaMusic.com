@@ -457,8 +457,14 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
   .gsc-webResult {
     /* min-height: 50px; */
     background-color: ${e=>e.theme.palette.secondary.light+"!important"};
-    padding: 5px;
     cursor: pointer;
+  }
+
+  .gsc-result{
+    padding: 5px 0px;
+    @media (min-width: 600px) {
+      padding: 5px;
+    }
   }
 
   .gsc-result * {
