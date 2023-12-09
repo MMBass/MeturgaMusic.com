@@ -66,9 +66,9 @@ function LyricsBody({ className, ...props }) {
         </Grid>
 
         {currLyricsContext.lines.map((line, y) => {
-          if (line.src.includes('[')) {
+          if (line.src.includes('[') || line.src.includes('|')) {
             line.trans = '   ';
-            line.src = line.src.replaceAll('[','| ')
+            line.src = line.src.replaceAll('[','|')
             line.src = line.src.replaceAll(']',' |')
           }
           return (
