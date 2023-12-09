@@ -1,13 +1,13 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 
 import { NavLink } from "react-router-dom";
 import { useTheme } from '@mui/material/styles';
 
-import TocIcon from '@mui/icons-material/Toc';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 import ContactlessRoundedIcon from '@mui/icons-material/ContactlessRounded';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 import { SettingsContext } from '@context/SettingsContext';
 
@@ -22,10 +22,17 @@ import Badge from '@mui/material/Badge';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import Alert from '@mui/material/Alert';
+import Switch from '@mui/material/Switch';
 
 function SidePagesList({ className, ...props }) {
   const settingsContext = useContext(SettingsContext);
+  const [showPlayer, setShowPlayer] = useState(JSON.parse(localStorage.getItem('showPlayer')));
   const theme = useTheme();
+
+  function handleShowPlayer() {
+    setShowPlayer(!showPlayer);
+    localStorage.setItem('showPlayer', !showPlayer)
+  }
 
   const pages = [
     {
@@ -62,7 +69,6 @@ function SidePagesList({ className, ...props }) {
               <ListItemText primary={page.name} />
               {page.chip && page.chip}
             </ListItemButton>
-            <Divider />
           </ListItem>
         </NavLink>
       ))}
@@ -76,21 +82,27 @@ function SidePagesList({ className, ...props }) {
             <ListItemText primary={'תוסף לספוטיפיי'} primaryTypographyProps={{ style: { color: 'black' } }} />
             <Chip className='pages-list-chip extension-chip' label="בקרוב!" color="secondary" variant="outlined" size='small' />
           </ListItemButton>
-          <Divider />
         </ListItem>
       </NavLink>
 
-      <ListItem>
-        <ListItemButton onClick={props.changeColors} sx={{textAlign: 'center', justifyContent: 'center'}}>
-          <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label="הצג נגן" color="secondary" variant="outlined" size='large' />
-        </ListItemButton>
-        <Divider />
+      <Divider light />
+
+      <ListItem alignItems='center' sx={{ justifyContent: 'center' }}>
+        <ListItemIcon sx={{ justifyContent: 'center' }}>
+          <PlayCircleIcon />
+        </ListItemIcon>
+        <Switch
+          checked={showPlayer}
+          onChange={handleShowPlayer}
+          inputProps={{ 'aria-label': 'controlled' }}
+        />
+        <ListItemText secondary={'הצע לנגן שיר'} sx={{ flex: '0 0 auto' }} />
       </ListItem>
+
       <ListItem>
-        <ListItemButton onClick={props.changeColors} sx={{textAlign: 'center', justifyContent: 'center'}}>
+        <ListItemButton onClick={props.changeColors} sx={{ textAlign: 'center', justifyContent: 'center' }}>
           <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label="מצב כהה" color="secondary" variant="outlined" size='large' />
         </ListItemButton>
-        <Divider />
       </ListItem>
     </List>
   );

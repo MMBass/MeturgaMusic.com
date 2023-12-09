@@ -21,14 +21,15 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import Draggable from 'react-draggable';
 
 function Player({ className }) {
-  const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(!JSON.parse(localStorage.getItem('showPlayer')));
   const [fullSize, setFullSize] = useState(false);
   const currLyricsContext = useContext(CurrLyricsContext);
 
   const theme = useTheme();
 
   useEffect(() => {
-    setHide(false);
+    // setHide(false);
+    if(!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
   }, [currLyricsContext.title]);
 
   function toggleFull() {
