@@ -82,6 +82,12 @@ function SidePagesList({ className, ...props }) {
 
       <ListItem>
         <ListItemButton onClick={props.changeColors} sx={{textAlign: 'center', justifyContent: 'center'}}>
+          <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label="הצג נגן" color="secondary" variant="outlined" size='large' />
+        </ListItemButton>
+        <Divider />
+      </ListItem>
+      <ListItem>
+        <ListItemButton onClick={props.changeColors} sx={{textAlign: 'center', justifyContent: 'center'}}>
           <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label="מצב כהה" color="secondary" variant="outlined" size='large' />
         </ListItemButton>
         <Divider />

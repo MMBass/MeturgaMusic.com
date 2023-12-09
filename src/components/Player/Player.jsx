@@ -13,6 +13,8 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
@@ -20,6 +22,7 @@ import Draggable from 'react-draggable';
 
 function Player({ className }) {
   const [hide, setHide] = useState(false);
+  const [fullSize, setFullSize] = useState(false);
   const currLyricsContext = useContext(CurrLyricsContext);
 
   const theme = useTheme();
@@ -28,15 +31,30 @@ function Player({ className }) {
     setHide(false);
   }, [currLyricsContext.title]);
 
+  function toggleFull() {
+    setFullSize(!fullSize);
+  };
+
   return (
     <>
       {(!hide && currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
         <Draggable >
           <Card sx={{ display: 'flex' }} className={className}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }} className='remove-icon-box'>
+              <Box sx={{ display: 'flex', alignItems: 'center' }} className='remove-icon-box'>
                 <IconButton>
-                  <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} onClick={() => setHide(true)}/>
+                  <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} onClick={() => setHide(true)} />
+                </IconButton>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center' }} className='remove-icon-box'>
+                <IconButton>
+                  {fullSize ?
+                    <CloseFullscreenIcon fontSize={'small'} onTouchStart={() => toggleFull()} onClick={() => toggleFull()} />
+
+                    :
+                    <OpenInFullIcon fontSize={'small'} onTouchStart={() => toggleFull()} onClick={() => toggleFull()} />
+
+                  }
                 </IconButton>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }} >
@@ -44,14 +62,17 @@ function Player({ className }) {
                   <DragIndicatorIcon className='drag-icon' />
                 </IconButton>
               </Box>
-              
+          
+
             </Box>
             <CardMedia
               children={<iframe
                 src={`https://www.youtube.com/embed/${currLyricsContext.videoId}`}
                 title={'video'}
                 allowFullScreen={false}
-                width="250" height="135"
+                className={fullSize ? "full-frame" : "" }
+                width={fullSize ? "420" : "250" }
+                height={fullSize ? "240" : "135" }
                 rel='0'
                 frameBorder={0}
               ></iframe>}

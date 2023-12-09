@@ -18,6 +18,11 @@ const StyledPlayer = styled(Player)`
             width: 190px;
             height: 109px;
          }
+
+         .full-frame{
+            width: 250px;
+            height: 135px;
+         }
       }
 `;
 
