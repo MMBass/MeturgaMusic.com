@@ -21,15 +21,20 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import Draggable from 'react-draggable';
 
 function Player({ className }) {
-  const [hide, setHide] = useState(!JSON.parse(localStorage.getItem('showPlayer')));
+  const [hide, setHide] = useState(true);
   const [fullSize, setFullSize] = useState(false);
   const currLyricsContext = useContext(CurrLyricsContext);
 
   const theme = useTheme();
 
   useEffect(() => {
-    // setHide(false);
-    if(!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
+    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
+
+    if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
+  }, []);
+
+  useEffect(() => {
+    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
   }, [currLyricsContext.title]);
 
   function toggleFull() {
@@ -39,7 +44,7 @@ function Player({ className }) {
   return (
     <>
       {(!hide && currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
-        <Draggable >
+        <Draggable>
           <Card sx={{ display: 'flex' }} className={className}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }} className='remove-icon-box'>
@@ -63,7 +68,7 @@ function Player({ className }) {
                   <DragIndicatorIcon className='drag-icon' />
                 </IconButton>
               </Box>
-          
+
 
             </Box>
             <CardMedia
@@ -71,9 +76,9 @@ function Player({ className }) {
                 src={`https://www.youtube.com/embed/${currLyricsContext.videoId}`}
                 title={'video'}
                 allowFullScreen={false}
-                className={fullSize ? "full-frame" : "" }
-                width={fullSize ? "420" : "250" }
-                height={fullSize ? "240" : "135" }
+                className={fullSize ? "full-frame" : ""}
+                width={fullSize ? "420" : "250"}
+                height={fullSize ? "240" : "135"}
                 rel='0'
                 frameBorder={0}
               ></iframe>}
