@@ -24,12 +24,12 @@ const StyledFooter = styled(Footer)`
     background-color: unset;
     font-weight: 500;
     font-size: 17px;
-    color: ${props => props.theme.palette.secondary.main};
+    color: white;
     margin: unset;
   }
 
   .built-by{
-    color: ${props => props.theme.palette.secondary.main};
+    color: white;
   }
 
 `;

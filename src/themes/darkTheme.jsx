@@ -18,7 +18,7 @@ export const darkTheme = createTheme({
       contrastText: '#ebebeb' // med gray - gray
     },
     secondary: {
-      main: '#ffffff',
+      main: '#000',
       dark: '#fff', // darkgray - black
       light: '#101418', // darker white
       contrastText: '#fff' // purple

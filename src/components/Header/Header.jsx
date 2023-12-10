@@ -130,7 +130,7 @@ const Header = ({ className, ...props }) => {
                   מתורגמ
                 </span>
                 <span id="h2-part2" style={{
-                  color: theme.palette.secondary.main
+                  color: 'white'
                 }}>
                   יוזיק
                 </span>

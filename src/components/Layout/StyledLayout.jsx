@@ -5,7 +5,7 @@ const StyledLayout = styled(Layout)`
   height: fit-content;
   min-height: 700px;
   
-  background-color: ${props => props.theme.palette.secondary.light};
+  background-color: ${props => props.theme.palette.secondary.main};
   color: ${props => props.theme.palette.primary.contrastText};
 
   .page-h1{
