@@ -2,6 +2,8 @@ import { styled } from '@mui/material/styles';
 import Player from './Player';
 
 const StyledPlayer = styled(Player)`
+   background-color: #e4e4e4;
+
    position: fixed;
    bottom: 32px;
    left: 80px;
