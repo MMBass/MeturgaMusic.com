@@ -12,15 +12,15 @@ export const darkTheme = createTheme({
   },
   palette: {
     primary: {
-      main: '#121212', // light red/pink
+      main: '#101418', // light red/pink
       light: '#fff', // white for headers
       dark: '#fff', // medium red
       contrastText: '#ebebeb' // med gray - gray
     },
     secondary: {
-      main: '#ffffff', 
+      main: '#ffffff',
       dark: '#fff', // darkgray - black
-      light: '#121212', // darker white
+      light: '#101418', // darker white
       contrastText: '#fff' // purple
     },
   },

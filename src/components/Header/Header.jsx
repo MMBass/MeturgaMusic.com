@@ -48,6 +48,7 @@ const Header = ({ className, ...props }) => {
     setTopSearchBar(false);
     window.scrollTo(0, 0); // scroll on router or song changes
     bannersContext.closeBanner('error');
+    drawerContext.closeDrawer();
   }, [rrdLocation, currLyricsContext.title]);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import utils from '@/utils';
 function SearchBar({ className, ...props }) {
   const [start, setStart] = useState(false);
   const [currVal, setCurrVal] = useState('');
-  const [isIos, setIsIos] = useState(false);
+  const [isIos, setIsIos] = useState(true);
 
   const routerNavigate = useNavigate();
 
@@ -126,7 +126,7 @@ function SearchBar({ className, ...props }) {
 
           setTimeout(() => {
             gsc_btn.type = "button"; // todo test on ios and safari
-  
+
             gsc_btn.dispatchEvent(new Event('click'));
           }, 50 * Math.floor(Math.random() * 4));
 
@@ -231,11 +231,13 @@ function SearchBar({ className, ...props }) {
 
   return (
     <div className={className}>
-      {(!isIos && !props.addRecordMode) &&
+      {/* !isIos &&  */}
+      {(!props.addRecordMode) &&
         <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : "חיפוש שיר באינטרנט"} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder="GOOGLE  מופעל באמצעות" value={currVal} />
       }
 
-      {(!isIos && props.addRecordMode) &&
+      {/* !isIos &&  */}
+      {(props.addRecordMode) &&
         <TextField label={' הוסף שיר +'} type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder="מופעל באמצעות GOOGLE" value={currVal} fullWidth variant="filled" />
       }
 

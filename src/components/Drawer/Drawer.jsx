@@ -20,9 +20,8 @@ function MyDrawer({ className, ...props }) {
       <Box
         className='drawer-layout'
         role="presentation"
-        onClick={()=>{drawerContext.closeDrawer()}}
       >
-       <SidePagesList changeColors={props.changeColors}></SidePagesList>
+       <SidePagesList changeColors={props.changeColors} closeDrawer={()=>{drawerContext.closeDrawer()}}></SidePagesList>
       </Box>
     </Drawer>
   );

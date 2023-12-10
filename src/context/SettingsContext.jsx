@@ -18,7 +18,7 @@ export default function SettingsContextProvider(props) {
     const fontsize_ls = JSON.parse(localStorage.getItem('fontsize'));
 
     const [settings, setSettings] = useState({
-        fontSize: { sm: Number(fontsize_ls?.sm) || 22, md: Number(fontsize_ls?.md) || 25, lg:  Number(fontsize_ls?.lg) || 27 },
+        fontSize: { sm: Number(fontsize_ls?.sm) || 14, md: Number(fontsize_ls?.md) || 16, lg:  Number(fontsize_ls?.lg) || 18 },
     });
 
     const [badge, setBadge] = useState(false);

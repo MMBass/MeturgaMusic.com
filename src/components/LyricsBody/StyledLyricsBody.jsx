@@ -6,7 +6,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   color: ${props => props.theme.palette.secondary.dark};
  
   font-family: 'Assistant','Roboto', 'sans-serif';
-  font-weight: 500;
+  font-weight: 600;
   border-radius: 10px;
   margin: 15px 0px 25px 10px;
   padding: 15px 50px 40px 50px;
@@ -40,9 +40,13 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .en-line{
-    margin-top: 8px;
+    margin-top: 0px;
     direction: rtl;
     text-align: left;
+  }
+
+  .he-line{
+    margin-top: -4px;
   }
 `;
 

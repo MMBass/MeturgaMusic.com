@@ -69,14 +69,16 @@ function LyricsBody({ className, ...props }) {
           if (line.src.includes('[') || line.src.includes('|')) {
             line.trans = '   ';
             line.src = line.src.replaceAll('[','|')
-            line.src = line.src.replaceAll(']',' |')
+            line.src = line.src.replaceAll(']','|')
           }
           return (
             <Grid item xs={12} key={uuidv4()}>
               {(y > 0 && line.src.includes('|')) && <><br></br><br></br></>}
 
               <Box className="lyrics-line en-line"
-                style={{ fontSize: settingsContext.fontSize.md }}
+                style={{ 
+                  fontSize: settingsContext.fontSize.md, 
+                  marginTop: (settingsContext.fontSize.md < 22 ? '-7px' : '0') }}
               >
                 {line.src.split(' ').map((word, i) => {
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
