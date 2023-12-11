@@ -1,9 +1,9 @@
 import React from "react";
 
-import screenshot1url from '../../screenshots/screenshot-1.png';
-import screenshot2url from '../../screenshots/screenshot-2.png';
-import screenshottturl from "../../screenshots/screenshot-tt.png"
-import screenshotchangesizeurl from '../../screenshots/screenshot-changesize.png';
+import screenshot1url from '../../images/screenshots/screenshot-1.png';
+import screenshot2url from '../../images/screenshots/screenshot-2.png';
+import screenshottturl from "../../images/screenshots/screenshot-tt.png"
+import screenshotchangesizeurl from '../../images/screenshots/screenshot-changesize.png';
 
 function AboutBody({ className }) {
 

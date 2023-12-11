@@ -1,8 +1,8 @@
-import screenshot1url from '../../screenshots/screenshot-1.png';
-import screenshot2url from '../../screenshots/screenshot-2.png';
-import screenshottturl from "../../screenshots/screenshot-tt.png"
-import screenshottt2url from '../../screenshots/screenshot-tt-2.png';
-import screenshotchangesizeurl from '../../screenshots/screenshot-changesize.png';
+import screenshot1url from '../../images/screenshots/images/screenshot-1.png';
+import screenshot2url from '../../images/screenshots/images/screenshot-2.png';
+import screenshottturl from "../../images/screenshots/images/screenshot-tt.png"
+import screenshottt2url from '../../images/screenshots/images/screenshot-tt-2.png';
+import screenshotchangesizeurl from '../../images/screenshots/images/screenshot-changesize.png';
 
 function AboutPage({ className }) {
   return (

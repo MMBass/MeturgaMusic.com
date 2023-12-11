@@ -17,6 +17,7 @@ example:
 export default function LoadersContextProvider(props) {
     const [loaders, setLoaders] = useState({
         main: { open: false, color: "info" },
+        backdrop: { open: false, color: "info" },
         circular: { open: false, color: "inherit" },
     });
 

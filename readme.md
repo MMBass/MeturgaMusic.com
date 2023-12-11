@@ -13,7 +13,7 @@
  <br>
  <br>
 
- ![Screenshot 1](./src/screenshots/screenshot-1.png)
+ ![Screenshot 1](./src/images/screenshots/screenshot-1.png)
  <br>
  <br>
- ![Screenshot 2](./src/screenshots/screenshot-2.png)
+ ![Screenshot 2](./src/images/screenshots/screenshot-2.png)

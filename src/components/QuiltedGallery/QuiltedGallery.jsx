@@ -2,12 +2,12 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
 
-import i2 from '../../screenshots/homeImgs/2.jpg';
-import i3 from '../../screenshots/homeImgs/3.jpg';
-import i4 from '../../screenshots/homeImgs/4.jpg';
-import i5 from '../../screenshots/homeImgs/5.jpg';
-import i6 from '../../screenshots/homeImgs/6.jpg';
-import i7 from '../../screenshots/homeImgs/7.jpg';
+import i2 from '../../images/screenshots/homeImgs/2.jpg';
+import i3 from '../../images/screenshots/homeImgs/3.jpg';
+import i4 from '../../images/screenshots/homeImgs/4.jpg';
+import i5 from '../../images/screenshots/homeImgs/5.jpg';
+import i6 from '../../images/screenshots/homeImgs/6.jpg';
+import i7 from '../../images/screenshots/homeImgs/7.jpg';
 
 function srcset(image, size, rows = 1, cols = 1) {
   return {

@@ -47,7 +47,7 @@ function SidePagesList({ className, ...props }) {
       icon: <Badge variant="dot" invisible={!settingsContext.badge} color='error'><BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon></Badge>,
     },
     {
-      name: 'שירים שמורים',
+      name: 'הבאים בתור',
       url: '/wish-list',
       icon: <PlaylistAddIcon className="side-icons"></PlaylistAddIcon>,
       chip: <Chip className='pages-list-chip' label="חדש!" color="error" variant="outlined" size='small' />,

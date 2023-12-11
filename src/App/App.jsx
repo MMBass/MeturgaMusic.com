@@ -26,6 +26,7 @@ import { default as Header } from '@components/Header/StyledHeader';
 import { default as Layout } from '@components/Layout/StyledLayout';
 import { default as Footer } from '@components/Footer/StyledFooter';
 import { default as Drawer } from '@components/Drawer/StyledDrawer';
+import { default as MainBackdrop } from '@components/MainBackdrop/StyledMainBackdrop';
 // import { default as MiniDrawer } from '@components/MiniDrawer/StyledMiniDrawer';
 import { default as Dialog } from '@components/Dialog/StyledDialog';
 import { default as Modal } from '@components/Modal/StyledModal';
@@ -66,7 +67,7 @@ function App({ className }) {
     if (localStorage.getItem('preferedDark')) {
       if (localStorage.getItem('preferedDark') === 'true') setCurrTheme(darkTheme);
     } else setCurrTheme(prefersDarkMode ? darkTheme : mainPinkTheme); // set to device mode only if user hasens't switch colors before
-  }, [prefersDarkMode]); 
+  }, [prefersDarkMode]);
 
   const init = () => {
     utils.directParamsToHash();
@@ -76,7 +77,7 @@ function App({ className }) {
 
   const serverInit = () => {
     const serverUri = 'https://musicline-backend.vercel.app';
-    if (!localStorage.getItem('init')) localStorage.setItem('init', 'INITID:'+uuidv4());
+    if (!localStorage.getItem('init')) localStorage.setItem('init', 'INITID:' + uuidv4());
     let initId = localStorage.getItem('init');
     fetch(`${serverUri}/?initId=` + initId);
   }; // Send every visit to the server
@@ -123,6 +124,9 @@ function App({ className }) {
               </Routes>
 
               {/*dynamic global elements*/}
+              {(loadersContext.backdrop.open) &&
+                <MainBackdrop></MainBackdrop>
+              }
               {(drawerContext.open) &&
                 <Drawer className="drawer" changeColors={changeTheme}></Drawer>
               }

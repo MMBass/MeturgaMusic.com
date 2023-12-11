@@ -46,7 +46,7 @@ function LyricsBody({ className, ...props }) {
 
           {currLyricsContext.translatedBy &&
             <Chip className='trans-by-chip'
-              label={"תורגם באמצעות " + currLyricsContext.translatedBy}
+              label={"מתורגם באמצעות " + currLyricsContext.translatedBy}
               color="default" variant="filled" size='small' />
           }
 

@@ -42,7 +42,7 @@ export default function CurrLyricsContextProvider(props) {
 
         songTitle = songTitle.replace(/[\])}[{(]/g, '').trim();
         let linesParent = document.querySelectorAll(".gsc-expansionArea")[0];
-        loadersContext.openLoader('main');
+        loadersContext.openLoader('backdrop');
 
         // first try to get from LS
         if (localStorageGetSong(songTitle, linesParent)) {
@@ -62,7 +62,7 @@ export default function CurrLyricsContextProvider(props) {
         }).then(response => response.json())
             .then(async data => {
 
-                loadersContext.closeLoader('main');
+                loadersContext.closeLoader('backdrop');
                 sessionStorage.removeItem('currLines');
                 sessionStorage.removeItem('currSongTitle');
                 setVideoId('');
@@ -128,7 +128,7 @@ export default function CurrLyricsContextProvider(props) {
             ).catch((e) => {
                 setAbort(false);
                 console.log(e);
-                loadersContext.closeLoader('main');
+                loadersContext.closeLoader('backdrop');
                 bannersContext.createBanner('error', 'error', 'אנו עובדים על המילים לשיר הזה, חפשו שיר אחר או נסו שוב במועד מאוחר יותר', '');
                 if (linesParent) linesParent.style.pointerEvents = "all";
             });
@@ -143,7 +143,7 @@ export default function CurrLyricsContextProvider(props) {
             setVideoId(lsSong.videoId);
 
             utils.clearGsc();
-            loadersContext.closeLoader('main');
+            loadersContext.closeLoader('backdrop');
 
             sessionStorage.setItem('currLines', JSON.stringify(lsSong.lines));
             sessionStorage.setItem('currSongTitle', (songTitle));
