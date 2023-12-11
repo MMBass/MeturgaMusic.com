@@ -23,9 +23,12 @@ const lsSaveSong = (song /*provide trimmed title*/) => {
     if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
 
     const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
-    song.id = songs.length.toString();
-    songs.unshift(song);  // {title: "", lines: {src:"", trans:""}}
-    if (songs.length >= 500) songs.shift();
+
+    if(!lsFindSong(song.title)){
+        song.id = songs.length.toString();
+        songs.unshift(song);  // {title: "", lines: {src:"", trans:""}}
+        if (songs.length >= 500) songs.shift();
+    }
 
     localStorage.setItem("meturgamm_songs", JSON.stringify(songs));
 };

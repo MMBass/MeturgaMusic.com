@@ -25,6 +25,14 @@ export default function CurrLyricsContextProvider(props) {
         }
     }, [lines, azureServerError]);
 
+    useEffect(() => {
+
+        // Temporary give every user 3 fast translations
+        if (JSON.parse(localStorage.getItem('meturgamm_songs')).length > 3) {
+            setAzureServerError(true);
+        }
+    }, []);
+
     const serverUri = 'https://musicline-backend.vercel.app';
 
     // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
