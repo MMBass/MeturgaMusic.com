@@ -66,14 +66,44 @@ function LyricToolTip({ className, ...props }) {
           setResults(data.results);
           return;
         } else {
-          setResults(['לא נמצאו עוד']);
+          setSingleFromG(lyric)
+          // setResults(['לא נמצאו עוד']);
           return;
         }
       }
       ).catch((e) => {
-        setResults(['לא נמצאו עוד']);
+        setSingleFromG(lyric)
+        // setResults(['לא נמצאו עוד']);
         console.log(e);
       });
+  }
+
+  async function setSingleFromG(lyric) {
+    try {
+
+      let gUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${'he'}&dt=t&q=${encodeURIComponent(
+        lyric
+      )}`;
+
+      const response = await fetch(gUrl);
+      const data = await response.json();
+
+      var translatedTexts = [];
+      if (data && data[0]) {
+        data[0].forEach((element) => {
+          translatedTexts.push(element[0]);
+        });
+
+        setResults([translatedTexts.join(" ")]);
+
+      } else {
+        setResults(['לא נמצאו עוד']);
+        console.error("Google lyric Translation empty for: "+ lyric);
+      }
+    } catch (error) {
+      console.error("Google lyric Translation error:", error);
+      setResults(['לא נמצאו עוד']);
+    }
   }
 
   return (
@@ -84,7 +114,7 @@ function LyricToolTip({ className, ...props }) {
           <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={props.lyric} results={results}></LyricToolTipChilds>}
         arrow
         leaveTouchDelay={60 * 1000}
-        leaveDelay={3*1000}
+        leaveDelay={3 * 1000}
 
         PopperProps={{
           disablePortal: false,
