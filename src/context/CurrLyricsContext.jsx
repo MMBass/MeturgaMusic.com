@@ -197,7 +197,7 @@ export default function CurrLyricsContextProvider(props) {
 
                     setLines(newLines);
                     setVideoId(data.videoId);
-                    utils.lsSaveSong({ title, lines: newLines });
+                    utils.lsSaveSong({ title: title, videoId, lines: newLines });
 
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
@@ -237,7 +237,6 @@ export default function CurrLyricsContextProvider(props) {
                 setLines(newLines);
 
                 if (index + 1 == lines.length) {
-                    console.log(lines);
                     utils.lsSaveSong({ title: title, videoId, lines: newLines });
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));

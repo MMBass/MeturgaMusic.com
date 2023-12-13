@@ -125,7 +125,7 @@ function LyricToolTip({ className, ...props }) {
         disableTouchListener
         disableHoverListener
       >
-        <span>&nbsp; <p className="single-lyric" onClick={handleTooltipOpen}> {props.lyric} </p></span>
+        <span> <p className="single-lyric" onClick={handleTooltipOpen}> {props.lyric} </p></span>
       </Tooltip>
     </>
   );

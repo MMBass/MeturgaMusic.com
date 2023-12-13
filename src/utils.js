@@ -23,10 +23,17 @@ const lsSaveSong = (song /*provide trimmed title*/) => {
     if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
 
     const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
-
+    if(lsFindSong(song.title)){
+        songs.forEach(s =>{if(s.title.toLowerCase() === song.title.toLowerCase()){
+            s.id = s.id
+            s.title = song.title
+            s.lines = song.lines
+            s.videoId = song.videoId
+        }});
+    }
     if(!lsFindSong(song.title)){
         song.id = songs.length.toString();
-        songs.unshift(song);  // {title: "", lines: {src:"", trans:""}}
+        songs.unshift(song);
         if (songs.length >= 500) songs.shift();
     }
 
@@ -80,8 +87,8 @@ function isMostlyEnglish(str) {
     let count = (str.match(regex) || []).length;
     // Calculate the percentage of matching characters
     let percentage = count / str.length;
-    // Return true if the percentage is more than 50%, otherwise return false
-    return percentage > 0.8;
+    // Return true if the percentage is more than 90%, otherwise return false
+    return percentage > 0.9;
 }
 
 /** GOOGLE ads tag - Global for all account sites */
