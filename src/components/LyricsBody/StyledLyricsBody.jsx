@@ -28,6 +28,8 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   h3{
+    font-family: 'Poppins','Roboto', 'sans-serif';
+    font-weight: 400;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 30px;
@@ -40,13 +42,14 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .en-line{
-    font-family: 'Poppins','Roboto', 'sans-serif';;
+    font-family: 'Poppins','Roboto', 'sans-serif';
     margin-top: 0px;
     direction: rtl;
     text-align: left;
   }
 
   .he-line{
+    font-weight: 600;
     margin-top: -4px;
   }
 `;

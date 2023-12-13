@@ -944,6 +944,8 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
   }
 
   h3{
+    font-family: 'Poppins','Roboto', 'sans-serif';
+    font-weight: 400;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 30px;
@@ -956,13 +958,14 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
   }
 
   .en-line{
-    font-family: 'Poppins','Roboto', 'sans-serif';;
+    font-family: 'Poppins','Roboto', 'sans-serif';
     margin-top: 0px;
     direction: rtl;
     text-align: left;
   }
 
   .he-line{
+    font-weight: 600;
     margin-top: -4px;
   }
 `;function Sz({className:e}){var l,u,c,d;const t=m.exports.useContext(Mo),n=m.exports.useContext(Hi),r=m.exports.useContext(Ls),[o,i]=lx(),a=o.get("song");m.exports.useEffect(()=>{r.closeDrawer(),n.error&&n.closeBanner("error"),a&&a.includes("_")&&s()},[]);function s(){let f=a;f=f.replaceAll("-"," ");const S={artistName:encodeURI(` ${f.split("_")[0]} `),songName:encodeURI(` ${f.split("_")[1]} `)};f=f.replaceAll("_"," - "),t.getSongLyrics(S,f)}return K("div",{className:e,children:[!((l=t.lines)!=null&&l[0])&&x(_x,{className:"home-top",maxWidth:!1,children:K(tt,{container:!0,className:"home-t-container",children:[!((u=t.lines)!=null&&u[0])&&x(tt,{item:!0,xs:12,sm:6,children:K(_e,{variant:"h1",className:"page-h1",children:["\u05E9\u05D9\u05E8\u05D9\u05DD ",x("br",{className:"h1-br"}),"\u05DE\u05EA\u05D5\u05E8\u05D2\u05DE\u05D9\u05DD"]})}),K(tt,{item:!0,xs:12,sm:6,children:[!((c=t.lines)!=null&&c[0])&&K(_e,{variant:"h3",className:"page-h3",children:[x("span",{className:"h3-start h3-start-one",children:"\u05D7\u05E4\u05E9\u05D5 \u05D1\u05D9\u05DF \u05DE\u05D9\u05DC\u05D9\u05D5\u05E0\u05D9 \u05E9\u05D9\u05E8\u05D9\u05DD \u05D1\u05E8\u05E9\u05EA"}),x("span",{className:"h3-start h3-start-two",children:"\u05D5\u05D4\u05D0\u05EA\u05E8 \u05D9\u05EA\u05E8\u05D2\u05DD \u05D0\u05EA \u05D4\u05E9\u05D9\u05E8"}),x("span",{className:"h3-middle",children:"\u05D1\u05E6\u05D5\u05E8\u05D4 \u05E0\u05D5\u05D7\u05D4 \u05DC\u05DC\u05D9\u05DE\u05D5\u05D3 \u05D0\u05E0\u05D2\u05DC\u05D9\u05EA"}),x("span",{className:"h3-bottom",children:"\u05DC\u05DC\u05D0 \u05D0\u05D9\u05D1\u05D5\u05D3 \u05D8\u05E7\u05E1\u05D8 \u05D4\u05DE\u05E7\u05D5\u05E8"})]}),x(_m,{locat:"main",size:"large"}),x(_e,{children:"\u05DC\u05D0 \u05E0\u05DE\u05E6\u05D0? \u05E0\u05E1\u05D5 \u05DC\u05D7\u05E4\u05E9 \u05E2\u05DD \u05E9\u05DD \u05D4\u05D0\u05DE\u05DF"})]})]})}),((d=t.lines)==null?void 0:d[0])&&K(tt,{container:!0,spacing:1,children:[x(tt,{item:!0,md:12,lg:9,children:x(Ez,{className:"lyrics-body"})}),x(tt,{item:!0,xs:12,lg:3})]})]})}const wz=L(Sz)`
