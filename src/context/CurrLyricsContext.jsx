@@ -28,14 +28,14 @@ export default function CurrLyricsContextProvider(props) {
     useEffect(() => {
 
         // Temporary give every user 3 fast translations
-        if (JSON.parse(localStorage.getItem('meturgamm_songs'))?.length > 3) {
+        if (JSON.parse(localStorage.getItem('meturgamm_songs'))?.length >= 2) {
             setAzureServerError(true);
         }
     }, []);
 
-    const serverUri = 'https://musicline-backend.vercel.app';
+    // const serverUri = 'https://musicline-backend.vercel.app';
 
-    // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
+    const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
 
     const getSongLyrics = (splittedSongTitle, songTitle) => {
         setAbort(true);
@@ -340,7 +340,7 @@ export default function CurrLyricsContextProvider(props) {
         })
     };
 
-    const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort };
+    const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort, setVideoId };
 
     return (
         <CurrLyricsContext.Provider value={{ title, lines, azureServerError, translatedBy, videoId, ...actions }}>
