@@ -333,8 +333,9 @@ export default function CurrLyricsContextProvider(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "trans": encodeURI(trans),
-                "source": source
+                "title": title,
+                "trans": JSON.stringify(trans),
+                "source": source,
             })
         })
     };
