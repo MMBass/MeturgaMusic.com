@@ -66,7 +66,7 @@ export default function CurrLyricsContextProvider(props) {
                 sessionStorage.removeItem('currLines');
                 sessionStorage.removeItem('currSongTitle');
                 setVideoId('');
-                
+
                 if (linesParent) linesParent.style.pointerEvents = "all";
 
                 if (data?.combined && Array.isArray(data?.combined)) {
@@ -77,7 +77,7 @@ export default function CurrLyricsContextProvider(props) {
                     if (data.videoId) setVideoId(data.videoId);
                     else setVideoId('');
 
-                    if(data.combined[2].trans.length > 1) setTranslatedBy('microsoft-translator');
+                    if (data.combined[2].trans.length > 1) setTranslatedBy('microsoft-translator');
 
                     utils.lsSaveSong({ title: songTitle, videoId, lines: data.combined });
                     utils.clearGsc();
@@ -162,7 +162,7 @@ export default function CurrLyricsContextProvider(props) {
             return;
         };
         lines.every((line, index) => {
-            if (!line.trans.length || line.transError ) {
+            if (!line.trans.length || line.transError) {
                 azureServerError ? GgetSingleLineTrans(line.src, index) : getFullTrans(); // get single translation if azure is blocked
                 return false; // break the loop (will start again after getSingleLineTrans(); )
             }
@@ -215,7 +215,7 @@ export default function CurrLyricsContextProvider(props) {
                 setAzureServerError(true); // works
 
             });
-    }
+    };
 
     const GgetSingleLineTrans = async (src, index) => {
         try {
@@ -224,7 +224,7 @@ export default function CurrLyricsContextProvider(props) {
                 src
             )}`;
             const response = await fetch(gUrl);
-            
+
             const data = await response.json();
 
             var translatedTexts = [];
@@ -237,12 +237,14 @@ export default function CurrLyricsContextProvider(props) {
                 setLines(newLines);
 
                 if (index + 1 == lines.length) {
+                    console.log(lines);
                     utils.lsSaveSong({ title: title, videoId, lines: newLines });
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
                     sessionStorage.setItem('currVideoId', (videoId));
+                    putFullTrans(newLines);
                     setAzureServerError(false);
-                }
+                };
 
             } else {
                 throw new Error("Google Translation failed.");
@@ -319,7 +321,24 @@ export default function CurrLyricsContextProvider(props) {
                 }
                 console.log(e);
             });
-    }
+    };
+
+    const putFullTrans = (newLines, source) => {
+        const trans = [];
+        newLines.forEach(e => trans.push(e.trans));
+
+        fetch(`${serverUri}/trans/lines?initId=` + localStorage.getItem('init'), {
+            method: 'put',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "trans": encodeURI(trans),
+                "source": source
+            })
+        })
+    };
 
     const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort };
 
