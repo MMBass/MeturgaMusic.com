@@ -24,10 +24,10 @@ function WishlistPage({ className }) {
   const [songs, setSongs] = useState(JSON.parse(localStorage.getItem('meturgamm_wish')) || []);
 
   function handleAddSong(title) {
-    const song = { title, id: songs.length.toString() };
-
     if (!localStorage.getItem('meturgamm_wish')) localStorage.setItem('meturgamm_wish', JSON.stringify([]));
     const lsSongs = JSON.parse(localStorage.getItem('meturgamm_wish'));
+    const song = { title, id: lsSongs.length.toString() };
+ 
     lsSongs.unshift(song);  // {title: string, id: num}
     if (lsSongs.length >= 500) songs.shift();
 
