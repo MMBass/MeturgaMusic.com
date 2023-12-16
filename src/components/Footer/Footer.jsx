@@ -7,6 +7,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link';
 
+import bgImage from '../../images/bg-footer.jpg';
+
 function Footer({ className }) {
 
   useEffect(() => {
@@ -15,7 +17,7 @@ function Footer({ className }) {
   }, []);
 
   return (
-    <div id="FOOTER" className={className}>
+    <div id="FOOTER" className={className} >
 
       <Grid container rowSpacing={6} columnSpacing={2}>
 

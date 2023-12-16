@@ -3,7 +3,7 @@ import WishlistPage from './WishlistPage';
 
 const StyledWishlistPage = styled(WishlistPage)`
   min-height: 70vh;
-  padding-top: 3px;
+  /* padding-top: 3px; */
 
   p{
     color:  ${props => props.theme.palette.secondary.dark};
