@@ -14,7 +14,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@mui/icons-material": "^5.4.1",
+    "@mui/icons-material": "^5.14.15",
     "@mui/material": "^5.4.0",
     "generate-template-files": "^3.2.0",
     "path": "^0.12.7",

@@ -62,12 +62,12 @@ function App({ className }) {
 
   // Not good the first use to be black
   // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const prefersDarkMode = false;
-  useEffect(() => {
-    if (localStorage.getItem('preferedDark')) {
-      if (localStorage.getItem('preferedDark') === 'true') setCurrTheme(darkTheme);
-    } else setCurrTheme(prefersDarkMode ? darkTheme : mainPinkTheme); // set to device mode only if user hasens't switch colors before
-  }, [prefersDarkMode]);
+  // const prefersDarkMode = false;
+  // useEffect(() => {
+  //   if (localStorage.getItem('preferedDark')) {
+  //     if (localStorage.getItem('preferedDark') === 'true') setCurrTheme(darkTheme);
+  //   } else setCurrTheme(prefersDarkMode ? darkTheme : mainPinkTheme); // set to device mode only if user hasens't switch colors before
+  // }, [prefersDarkMode]);
 
   const init = () => {
     utils.directParamsToHash();
