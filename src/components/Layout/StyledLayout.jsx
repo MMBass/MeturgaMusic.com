@@ -9,9 +9,10 @@ const StyledLayout = styled(Layout)`
   color: ${props => props.theme.palette.primary.contrastText};
 
   .page-h1{
-    padding: 30px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
     /* font-size: 140px;  */
-    font-size: 11vw; 
+    font-size: 13vw; 
+    letter-spacing: -8px;
     font-weight: 100;
     color: ${props => props.theme.palette.primary.contrastText};
     
@@ -19,6 +20,7 @@ const StyledLayout = styled(Layout)`
       margin-top: 0px;
       /* font-size: 46px; */
       font-size: 13vw;
+      letter-spacing: 0px;
       font-weight: 300;
 
       .h1-br{

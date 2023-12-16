@@ -36,6 +36,14 @@ const StyledHomePage = styled(HomePage)`
             font-size: 6vw;
         }
 
+        .h3-start-top{
+            font-size: 2.6vw;
+            @media (max-width: 600px) {
+                font-size: 4.5vw;
+            }
+
+        }
+
         .h3-start-one{
 
             @media (max-width: 600px) {

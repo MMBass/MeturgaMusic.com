@@ -52,13 +52,6 @@ function HomePage({ className }) {
   return (
 
     <div className={className}>
-      {/* <Grid item xs={6} sm={6}>
-        <Typography variant="h2" textAlign={'center'} pt={20}>
-          עברנו לכתובת חדשה...
-           <br className="h1-br"></br>
-          We have moved to a new Address...
-        </Typography>
-      </Grid> */}
       {!currLyricsContext.lines?.[0] &&
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
@@ -74,6 +67,10 @@ function HomePage({ className }) {
             <Grid item xs={12} sm={6}>
               {!currLyricsContext.lines?.[0] &&
                 <Typography variant="h3" className="page-h3">
+
+                  <span className="h3-start h3-start-top">
+                  האתר ללימוד אנגלית באמצעות שירים           
+                  </span>
 
                   <span className="h3-start h3-start-one">
                     חפשו בין מיליוני שירים ברשת
@@ -98,9 +95,9 @@ function HomePage({ className }) {
               <SearchBar locat={"main"} size={"large"}></SearchBar>
 
 
-              <Typography>
+              {/* <Typography>
                 לא נמצא? נסו לחפש עם שם האמן
-              </Typography>
+              </Typography> */}
             </Grid>
 
           </Grid>
