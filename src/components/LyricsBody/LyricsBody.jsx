@@ -109,6 +109,8 @@ function LyricsBody({ className, ...props }) {
                   }
                 </>
               </Box>
+
+              {(line.src.includes('|')) && <br></br>}
             </Grid>
           );
         })}

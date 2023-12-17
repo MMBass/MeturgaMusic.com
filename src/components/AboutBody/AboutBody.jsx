@@ -1,4 +1,5 @@
-import React from "react";
+import { useContext } from "react";
+import i18n from "./i18n";
 
 import screenshot1url from '../../images/screenshots/screenshot-1.png';
 import screenshot2url from '../../images/screenshots/screenshot-2.png';
@@ -6,6 +7,7 @@ import screenshottturl from "../../images/screenshots/screenshot-tt.png"
 import screenshotchangesizeurl from '../../images/screenshots/screenshot-changesize.png';
 
 function AboutBody({ className }) {
+  const t = useContext(i18n);
 
   const exampleSong = [
     { src: "translated song example", trans: 'דוגמא לשיר מתורגם' },
@@ -15,7 +17,10 @@ function AboutBody({ className }) {
 
   return (
     <div id="about_body" className={className} container>
-      <b>
+      {t("hello")}, {t("whats_your_name")}
+
+
+      {/* <b>
         האתר שיתרגם לעברית
         <br />
         כמעט כל שיר שתחפשו באנגלית
@@ -67,7 +72,7 @@ function AboutBody({ className }) {
         ראינו את הצורך באתר המיועד לדוברי עברית הרוצים ללמוד אנגלית בצורה חוויתית ונוחה, או סתם לדעת את משמעות השיר האהוב עליהם.
         נתקלנו בקושי בשימוש באתרי מילים הרגילים, בהם תרגום הדף או מילה בודדת דורש לחיצות מיותרות ומשאיר אותך עם התרגום בלבד וללא המקור, או מוציאך לאפליקציה חיצונית ואיטית בדרך כלל
         בנוסף גילינו את הוספת כפתור לשינוי גודל הכתב שימושית ביותר, אינה מופיעה כלל באתרים המציגים טקסט ומיועדים לקריאה, ומצריכה שימוש בהגדרות הדפדפן או תוסף נגישות מסורבל
-      </p>
+      </p> */}
     </div>
   );
 }

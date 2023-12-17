@@ -8,26 +8,35 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Button from '@mui/material/Button';
 
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import LaunchIcon from '@mui/icons-material/Launch';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import utils from '@/utils';
 
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
 
 function WishlistPage({ className }) {
+  
   const [songs, setSongs] = useState(JSON.parse(localStorage.getItem('meturgamm_wish')) || []);
+
+  const [closeDescBanner, setCloseDescBanner] = useState(localStorage.getItem('wish_closeDescBanner'));
+
+  const handleCloseDescBanner = () => {
+    setCloseDescBanner(true);
+    localStorage.setItem('wish_closeDescBanner', 'true');
+  };
 
   function handleAddSong(title) {
     if (!localStorage.getItem('meturgamm_wish')) localStorage.setItem('meturgamm_wish', JSON.stringify([]));
     const lsSongs = JSON.parse(localStorage.getItem('meturgamm_wish'));
     const song = { title, id: lsSongs.length.toString() };
- 
+
     lsSongs.unshift(song);  // {title: string, id: num}
     if (lsSongs.length >= 500) songs.shift();
 
@@ -41,12 +50,27 @@ function WishlistPage({ className }) {
     localStorage.setItem("meturgamm_wish", JSON.stringify(newSongs));
   };
 
+  // const handleCloseDescBanner = () => {
+  //   setCloseDescBanner(true);
+  //   localStorage.setItem('wish_closeDescBanner', 'true');
+  // };
+
   return (
     <Box className={className}>
-      <Alert severity='warning' >
-        <AlertTitle>שירים שמורים </AlertTitle>
-        <i> כאן תוכלו לחפש ולשמור שירים אשר תרצו ללמוד מהם בעתיד</i>
-      </Alert>
+
+      {!closeDescBanner &&
+        <Alert severity='warning' 
+        action={
+          <Button color="inherit" size="small" onClick={() => {handleCloseDescBanner()}}>
+            <CloseOutlinedIcon fontSize={'small'}></CloseOutlinedIcon>
+          </Button>
+        }
+        >
+          <AlertTitle>שירים שמורים </AlertTitle>
+          <i> כאן תוכלו לחפש ולשמור שירים אשר תרצו ללמוד מהם בעתיד</i>
+        </Alert>
+      }
+
       <List
 
         subheader={

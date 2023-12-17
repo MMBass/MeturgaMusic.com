@@ -29,9 +29,6 @@ function HomePage({ className }) {
     if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
     };
-
-    // utils.loadGoogleAds();
-    // window.adsbygoogle = window.adsbygoogle || [];
   }, []); // use if there is a direct song in the url
 
   function callSongIfQuery() {
@@ -56,50 +53,46 @@ function HomePage({ className }) {
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
 
-            {!currLyricsContext.lines?.[0] &&
-              <Grid item xs={12} sm={6}>
-                <Typography variant="h1" className="page-h1">
-                  שירים <br className="h1-br"></br>מתורגמים
-                </Typography>
-              </Grid>
-            }
-
             <Grid item xs={12} sm={6}>
-              {!currLyricsContext.lines?.[0] &&
-                <Typography variant="h3" className="page-h3">
-
-                  <span className="h3-start h3-start-top">
-                  האתר ללימוד אנגלית באמצעות שירים           
-                  </span>
-
-                  <span className="h3-start h3-start-one">
-                    חפשו בין מיליוני שירים ברשת
-                  </span>
-
-                  <span className="h3-start h3-start-two">
-                    והאתר יתרגם את השיר
-                  </span>
-
-                  <span className="h3-middle">
-                    בצורה נוחה ללימוד אנגלית
-                  </span>
-
-                  <span className="h3-bottom">
-                    ללא איבוד טקסט המקור
-                  </span>
-
-                </Typography>
-              }
-
-
-              <SearchBar locat={"main"} size={"large"}></SearchBar>
-
-
-              {/* <Typography>
-                לא נמצא? נסו לחפש עם שם האמן
-              </Typography> */}
+              <Typography variant="h1" className="page-h1">
+                שירים <br className="h1-br"></br>מתורגמים
+              </Typography>
             </Grid>
 
+            <Grid item xs={12} sm={6}>
+              <Typography variant="h3" className="page-h3">
+
+                <span className="h3-start h3-start-top">
+                  האתר ללימוד אנגלית באמצעות שירים
+                </span>
+
+                <span className="h3-start h3-start-one">
+                  חפשו בין מיליוני שירים ברשת
+                </span>
+
+                <span className="h3-start h3-start-two">
+                  והאתר יתרגם את השיר
+                </span>
+
+                <span className="h3-middle">
+                  בצורה נוחה ללימוד אנגלית
+                </span>
+
+                <span className="h3-bottom">
+                  ללא איבוד טקסט המקור
+                </span>
+
+              </Typography>
+
+              <SearchBar locat={"main"} size={"large"}></SearchBar>
+            </Grid>
+
+          </Grid>
+
+          <Grid container className="home-t-about">
+            <Grid item xs={12} sm={6}>
+
+            </Grid>
           </Grid>
         </Container>
       }
@@ -111,13 +104,7 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3}>
-
             {/* on Lg - empty side space for ads */}
-            {/* <ins className="adsbygoogle"
-              style={{ display: "block" }}
-              data-ad-format="autorelaxed"
-              data-ad-client="ca-pub-8294214228053744"
-              data-ad-slot="2008052409"></ins> */}
           </Grid>
         </Grid>
       }
