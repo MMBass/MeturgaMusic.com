@@ -104,10 +104,8 @@ function SearchBar({ className, ...props }) {
   }
 
   function handleSearch(eValue) {
-    if (bannersContext.error) {
-      bannersContext.closeBanner('error');
-    }
-
+    if (bannersContext.error) bannersContext.closeBanner('error');
+  
     let gsc_input = document.querySelector('#gsc-i-id1');
     let en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9- ]+$/;
 

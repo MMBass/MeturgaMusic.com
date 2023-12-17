@@ -49,7 +49,7 @@ function App({ className }) {
   const isMobile = useMediaQuery('(max-width: 600px)');
 
   const [currTitle, setCurrTitle] = useState("מתורגמיוזיק - שירים מתורגמים מאנגלית");
-  const [currTheme, setCurrTheme] = useState(mainPinkTheme);
+  const [currTheme, setCurrTheme] = useState(localStorage.getItem('preferedDark') === 'true' ? darkTheme : mainPinkTheme);
 
   // Create rtl cache
   const cacheRtl = createCache({
@@ -60,15 +60,6 @@ function App({ className }) {
   useEffect(() => {
     init();
   }, []);
-
-  // Not good the first use to be black
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  // const prefersDarkMode = false;
-  // useEffect(() => {
-  //   if (localStorage.getItem('preferedDark')) {
-  //     if (localStorage.getItem('preferedDark') === 'true') setCurrTheme(darkTheme);
-  //   } else setCurrTheme(prefersDarkMode ? darkTheme : mainPinkTheme); // set to device mode only if user hasens't switch colors before
-  // }, [prefersDarkMode]);
 
   const init = () => {
     utils.directParamsToHash();

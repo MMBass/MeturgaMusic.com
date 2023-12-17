@@ -47,17 +47,17 @@ const Header = ({ className, ...props }) => {
   useEffect(() => {
     setTopSearchBar(false);
     window.scrollTo(0, 0); // scroll on router or song changes
-    bannersContext.closeBanner('error');
+    if (bannersContext.error) bannersContext.closeBanner('error');
     drawerContext.closeDrawer();
   }, [rrdLocation, currLyricsContext.title]);
 
   useEffect(() => {
     setTopSearchBar(false);
-    bannersContext.closeBanner('error');
+    if (bannersContext.error) bannersContext.closeBanner('error');
   }, [drawerContext.open]);
 
   const handleToggleSideBar = () => {
-    bannersContext.closeBanner('error');
+    if (bannersContext.error) bannersContext.closeBanner('error');
     if (!drawerContext.open) {
       drawerContext.openDrawer(true, 'left', 'temporary');
     } else {
