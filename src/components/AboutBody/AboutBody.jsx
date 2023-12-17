@@ -1,24 +1,36 @@
 import { useContext } from "react";
-import i18n from "./i18n";
+import i18n from "@/i18n";
 
-import screenshot1url from '../../images/screenshots/screenshot-1.png';
-import screenshot2url from '../../images/screenshots/screenshot-2.png';
-import screenshottturl from "../../images/screenshots/screenshot-tt.png"
-import screenshotchangesizeurl from '../../images/screenshots/screenshot-changesize.png';
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+
+import aboutBody1 from '../../images/screenshots/latest/shot1.png';
+
+// import screenshot1url from '../../images/screenshots/screenshot-1.png';
+// import screenshot2url from '../../images/screenshots/screenshot-2.png';
+// import screenshottturl from "../../images/screenshots/screenshot-tt.png"
+// import screenshotchangesizeurl from '../../images/screenshots/screenshot-changesize.png';
 
 function AboutBody({ className }) {
   const t = useContext(i18n);
 
-  const exampleSong = [
-    { src: "translated song example", trans: 'דוגמא לשיר מתורגם' },
-    { src: "english line", trans: 'שורה באנגלית' },
-    { src: "and hebrew line after", trans: 'ואחריה שורה בעברית' }
-  ];
+  // const exampleSong = [
+  //   { src: "translated song example", trans: 'דוגמא לשיר מתורגם' },
+  //   { src: "english line", trans: 'שורה באנגלית' },
+  //   { src: "and hebrew line after", trans: 'ואחריה שורה בעברית' }
+  // ];
 
   return (
-    <div id="about_body" className={className} container>
-      {t("hello")}, {t("whats_your_name")}
+    <Grid container className={className}>
 
+      <Grid item xs={12} sm={5} spacing={0} wrap="no-wrap" height={'90vh'}>
+        <Typography component={'p'} variant="h4" wrap>{t('aboutBody1')}</Typography>
+      </Grid>
+
+      <Grid item xs={12} sm={5} spacing={0}>
+        <img src={aboutBody1}></img>
+      </Grid>
 
       {/* <b>
         האתר שיתרגם לעברית
@@ -73,7 +85,9 @@ function AboutBody({ className }) {
         נתקלנו בקושי בשימוש באתרי מילים הרגילים, בהם תרגום הדף או מילה בודדת דורש לחיצות מיותרות ומשאיר אותך עם התרגום בלבד וללא המקור, או מוציאך לאפליקציה חיצונית ואיטית בדרך כלל
         בנוסף גילינו את הוספת כפתור לשינוי גודל הכתב שימושית ביותר, אינה מופיעה כלל באתרים המציגים טקסט ומיועדים לקריאה, ומצריכה שימוש בהגדרות הדפדפן או תוסף נגישות מסורבל
       </p> */}
-    </div>
+
+
+    </Grid>
   );
 }
 

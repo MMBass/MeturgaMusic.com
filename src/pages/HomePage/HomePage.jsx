@@ -8,8 +8,8 @@ import Typography from "@mui/material/Typography";
 
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
 import { default as LyricsBody } from '@components/LyricsBody/StyledLyricsBody';
+import { default as AboutBody } from '@components/AboutBody/StyledAboutBody';
 
-import utils from '@/utils';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
 import { DrawerContext } from '@context/DrawerContext';
@@ -44,7 +44,6 @@ function HomePage({ className }) {
 
     currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
   }
-
 
   return (
 
@@ -89,11 +88,7 @@ function HomePage({ className }) {
 
           </Grid>
 
-          <Grid container className="home-t-about">
-            <Grid item xs={12} sm={6}>
-
-            </Grid>
-          </Grid>
+          {/* <AboutBody></AboutBody> */}
         </Container>
       }
 

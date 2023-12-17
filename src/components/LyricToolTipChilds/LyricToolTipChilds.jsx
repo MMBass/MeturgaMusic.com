@@ -41,7 +41,7 @@ function LyricToolTipChilds({ className, ...props }) {
             <LinearProgress className="tt-body-linear" color={"inherit"} />
           }
         </div>
-        {props.results[0] !== 'לא נמצאו עוד' &&
+        {(props.results[0] && props.results[0] !== 'לא נמצאו עוד') &&
           <BookMarkWord toSave={{ word: props.lyric, results: props.results, title: currLyricsContext.title }} variant={'Star'}></BookMarkWord>}
       </span>
     </ClickAwayListener>

@@ -21,6 +21,7 @@ import { DrawerContext } from '@context/DrawerContext';
 import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
 import utils from '@/utils';
+import I18n, { i18n } from "@/i18n";
 
 import { default as Header } from '@components/Header/StyledHeader';
 import { default as Layout } from '@components/Layout/StyledLayout';
@@ -99,6 +100,7 @@ function App({ className }) {
       <MuiThemeProvider theme={currTheme}>
         {/* <CssBaseline /> */}
         <CacheProvider value={cacheRtl}>
+          <I18n.Provider value={id => i18n.he[id]}>
           <Router>
             <HeadTags currTitle={currTitle} theme={currTheme}></HeadTags>
             <Layout>
@@ -148,7 +150,8 @@ function App({ className }) {
               <Player></Player>
             </Layout>
           </Router>
-
+            
+          </I18n.Provider>
         </CacheProvider>
       </MuiThemeProvider>
     </div>
