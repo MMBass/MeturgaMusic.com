@@ -172,14 +172,16 @@ function SearchBar({ className, ...props }) {
             }
 
             let songTitle = line.innerText.split("Lyrics")[0];
+            songTitle = songTitle.replaceAll(' | Genius', "");
             songTitle = songTitle.replaceAll('–', "-"); // g results comes with some special ' – ' sign
+      
 
             if (!utils.isMostlyEnglish(songTitle)) {
               line.parentElement.parentElement.parentElement.remove();
               return;
             } // after removing all the around text - check its lang
 
-            line.innerHTML = `<strong>${songTitle.split('-')[0]}</strong> - <span>${songTitle.split('-')[1]}</span>`;
+            line.innerHTML = `<strong>${songTitle.split(' - ')[0]}</strong> - <span>${songTitle.split(' - ')[1]}</span>`;
 
             const splittedSongTitle = {
               artistName: encodeURI(songTitle.split('-')[0]),
