@@ -7,8 +7,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link';
 
-import bgImage from '../../images/bg-footer.jpg';
-
 function Footer({ className }) {
 
   useEffect(() => {

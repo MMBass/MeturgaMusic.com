@@ -37,11 +37,6 @@ function SidePagesList({ className, ...props }) {
 
   const pages = [
     {
-      name: 'היסטוריית חיפוש',
-      url: '/history',
-      icon: <RestoreOutlinedIcon className="side-icons"></RestoreOutlinedIcon>,
-    },
-    {
       name: 'מילים לתרגול ',
       url: '/exercise',
       icon: <Badge variant="dot" invisible={!settingsContext.badge} color='error'><BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon></Badge>,
@@ -51,6 +46,11 @@ function SidePagesList({ className, ...props }) {
       url: '/wish-list',
       icon: <PlaylistAddIcon className="side-icons"></PlaylistAddIcon>,
       chip: <Chip className='pages-list-chip' label="חדש!" color="error" variant="outlined" size='small' />,
+    },
+    {
+      name: 'היסטוריית חיפוש',
+      url: '/history',
+      icon: <RestoreOutlinedIcon className="side-icons"></RestoreOutlinedIcon>,
     },
 
   ];

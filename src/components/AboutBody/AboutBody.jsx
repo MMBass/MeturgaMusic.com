@@ -24,11 +24,11 @@ function AboutBody({ className }) {
   return (
     <Grid container className={className}>
 
-      <Grid item xs={12} sm={5} spacing={0} wrap="no-wrap" height={'90vh'}>
+      <Grid item xs={12} sm={12} spacing={0} wrap="no-wrap" height={'90vh'}>
         <Typography component={'p'} variant="h4" wrap>{t('aboutBody1')}</Typography>
       </Grid>
 
-      <Grid item xs={12} sm={5} spacing={0}>
+      <Grid item xs={12} sm={12} spacing={0}>
         <img src={aboutBody1}></img>
       </Grid>
 
