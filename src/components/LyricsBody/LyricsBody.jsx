@@ -56,7 +56,7 @@ function LyricsBody({ className, ...props }) {
             style={{ fontSize: settingsContext.fontSize.lg, direction: "ltr" }}
           >
             {currLyricsContext.title &&
-              currLyricsContext.title.split(' ').map((word, i) => {
+              currLyricsContext.title.split(' ').map((word) => {
                 return (
                   <LyricToolTip key={uuidv4()} lyric={word} open={false}></LyricToolTip>
                 )
@@ -98,12 +98,7 @@ function LyricsBody({ className, ...props }) {
                 <>
                   {
                     line.trans?.length ?
-                      line.trans.split(' ').map((word, i) => {
-                        if (line.trans === '   ') return;
-                        return (
-                          <small className="single-trans" key={uuidv4()}>{word} &nbsp;</small>
-                        )
-                      })
+                      <>{line.trans === '   ' ? '' : <p className="single-trans">{line.trans}</p>}</>
                       :
                       <small className="single-trans">טוען תרגום...</small>
                   }
