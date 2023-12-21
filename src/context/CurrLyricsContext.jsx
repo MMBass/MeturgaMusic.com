@@ -79,11 +79,11 @@ export default function CurrLyricsContextProvider(props) {
 
                     if (data.combined[2].trans.length > 1) setTranslatedBy('microsoft-translator');
 
-                    utils.lsSaveSong({ title: songTitle, videoId, lines: data.combined });
+                    utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined });
                     utils.clearGsc();
                     sessionStorage.setItem('currLines', JSON.stringify(data.combined));
                     sessionStorage.setItem('currSongTitle', (songTitle));
-                    sessionStorage.setItem('currVideoId', (videoId));
+                    sessionStorage.setItem('currVideoId', (data.videoId));
 
                 } else if (data?.lyrics) {
                     setTitle(songTitle);
@@ -197,7 +197,7 @@ export default function CurrLyricsContextProvider(props) {
 
                     setLines(newLines);
                     setVideoId(data.videoId);
-                    utils.lsSaveSong({ title: title, videoId, lines: newLines });
+                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines });
 
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
@@ -237,10 +237,10 @@ export default function CurrLyricsContextProvider(props) {
                 setLines(newLines);
 
                 if (index + 1 == lines.length) {
-                    utils.lsSaveSong({ title: title, videoId, lines: newLines });
+                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines });
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
-                    sessionStorage.setItem('currVideoId', (videoId));
+                    sessionStorage.setItem('currVideoId', (data.videoId));
                     putFullTrans(newLines);
                     setAzureServerError(false);
                 };
