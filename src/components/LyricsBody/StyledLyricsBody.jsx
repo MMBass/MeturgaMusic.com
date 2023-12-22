@@ -33,24 +33,21 @@ const StyledLyricsBody = styled(LyricsBody)`
     text-align: center;
     padding-top: 5px;
     padding-bottom: 30px;
-    }
+  }
 
   .single-lyric, .single-trans{
     display: inline;
-    padding: 0px 1px;
     text-transform: none;
   }
 
   .en-line{
     font-family: 'Poppins','Roboto', 'sans-serif';
-    margin-top: 0px;
     direction: rtl;
     text-align: left;
   }
 
   .he-line{
     font-weight: 600;
-    margin-top: -4px;
   }
 `;
 

@@ -73,12 +73,13 @@ function LyricsBody({ className, ...props }) {
           }
           return (
             <Grid item xs={12} key={uuidv4()}>
-              {(y > 0 && line.src.includes('|')) && <><br></br><br></br></>}
 
               <Box className="lyrics-line en-line"
                 style={{
                   fontSize: settingsContext.fontSize.md,
-                  marginTop: (settingsContext.fontSize.md < 22 ? '-6px' : '-8px')
+                  paddingTop: ((y > 0 && line.src.includes('|')) ? '20px' : '0px'),
+                  // marginTop: (settingsContext.fontSize.md < 22 ? '0px' : '15px'),
+                  lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : settingsContext.fontSize.md + 10 + 'px'),
                 }}
               >
                 {line.src.split(' ').map((word, i) => {
@@ -92,7 +93,8 @@ function LyricsBody({ className, ...props }) {
               <Box className="lyrics-line he-line"
                 style={{
                   fontSize: settingsContext.fontSize.md,
-                  marginTop: (settingsContext.fontSize.md < 22 ? '-6px' : '-11px')
+                  // marginTop: (settingsContext.fontSize.md < 22 ? '-0px' : '-11px'),
+                  lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : settingsContext.fontSize.md + 10 + 'px'),
                 }}
               >
                 <>
@@ -109,18 +111,6 @@ function LyricsBody({ className, ...props }) {
             </Grid>
           );
         })}
-
-        {/* <Grid item xs={12} key={"ad-lyrics-body-bottom"}> */}
-        {/* single text body AD */}
-        {/* <ins className="adsbygoogle"
-              style={{ display: "block", textAlign: "center" }}
-              data-ad-layout="in-article"
-              data-ad-format="fluid"
-              data-ad-client="ca-pub-8294214228053744"
-              data-ad-slot="5288837770"></ins> */}
-        {/* END single text body AD */}
-        {/* </Grid> */}
-
       </Grid>
     </Paper>
   );
