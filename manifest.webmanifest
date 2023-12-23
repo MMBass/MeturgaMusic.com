@@ -10,11 +10,13 @@
     "icons": [
       {
         "src": "https://meturgamusic.com/ico/ic_launcher-rounded-192.png",
-        "type": "image/png", "sizes": "192x192"
+        "type": "image/png", "sizes": "192x192",
+        "purpose": "maskable"
       },
       {
         "src": "https://meturgamusic.com/ico/ic_launcher-rounded-512.png",
-        "type": "image/png", "sizes": "512x512"
+        "type": "image/png", "sizes": "512x512",
+        "purpose": "maskable"
       }
     ]
   }
