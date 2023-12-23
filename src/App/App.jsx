@@ -65,7 +65,23 @@ function App({ className }) {
     utils.directParamsToHash();
     serverInit();
     ifIOS();
+    offerInstallApp();
   };
+
+  const offerInstallApp = async  () => {
+    window.addEventListener("beforeinstallprompt", async (event) => {
+      event.preventDefault();
+      let installPrompt = event;
+
+      if (!installPrompt) {
+        return;
+      }
+      const result = await installPrompt.prompt();
+      console.log(`Install prompt was: ${result.outcome}`);
+      installPrompt = null;
+    });
+
+  }; // Docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeinstallprompt_event
 
   const serverInit = () => {
     const serverUri = 'https://musicline-backend.vercel.app';
@@ -92,56 +108,56 @@ function App({ className }) {
         {/* <CssBaseline /> */}
         <CacheProvider value={cacheRtl}>
           <I18n.Provider value={id => i18n.he[id]}>
-          <Router>
-            <HeadTags currTitle={currTitle} theme={currTheme}></HeadTags>
-            <Layout>
-              {/* {isMobile ? <Header className="header" changeColors={ChangeColors}></Header> : <MiniDrawer></MiniDrawer>} */}
-              <Header className="header" changeColors={changeTheme}></Header>
+            <Router>
+              <HeadTags currTitle={currTitle} theme={currTheme}></HeadTags>
+              <Layout>
+                {/* {isMobile ? <Header className="header" changeColors={ChangeColors}></Header> : <MiniDrawer></MiniDrawer>} */}
+                <Header className="header" changeColors={changeTheme}></Header>
 
-              {(bannersContext.main?.open) &&
-                <Alert severity="warning" className='main-alert'>
-                  <AlertTitle>{bannersContext.main.title}</AlertTitle>
-                  {bannersContext.main.message}
-                </Alert>
-              }
-
-              <Routes>
-                <Route path={"/"} element={<HomePage className={'page'} rank={1} />} />
-                <Route path="/Exercise" element={<ExercisePage className={'page'} rank={1} />} />
-                <Route path="/History" element={<HistoryPage className={'page'} rank={1} />} />
-                <Route path="/Wish-list" element={<WishlistPage className={'page'} rank={1} />} />
-                <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} rank={1} />} />
-
-                {/* NoMatchPage works only in hash paths */}
-                <Route path="*" element={<NoMatchPage className={'page'} />} />
-              </Routes>
-
-              {/*dynamic global elements*/}
-              {(loadersContext.backdrop.open) &&
-                <MainBackdrop></MainBackdrop>
-              }
-              {(drawerContext.open) &&
-                <Drawer className="drawer" changeColors={changeTheme}></Drawer>
-              }
-              {(bannersContext.infoSnackbar?.open) &&
-                <Snackbar open={bannersContext.infoSnackbar.open} autoHideDuration={6000} onClose={() => { }}>
-                  <Alert onClose={() => { bannersContext.closeBanner('infoSnackbar') }} severity={bannersContext.infoSnackbar.severity} sx={{ width: '100%' }}>
-                    {bannersContext.infoSnackbar.message}
+                {(bannersContext.main?.open) &&
+                  <Alert severity="warning" className='main-alert'>
+                    <AlertTitle>{bannersContext.main.title}</AlertTitle>
+                    {bannersContext.main.message}
                   </Alert>
-                </Snackbar>
-              }
-              {/* <Dialog></Dialog> */}
-              {/* <Modal> */}
-              {/* Modal must have a children */}
-              {/* </Modal> */}
-              {/*end dynamic global elements*/}
-              <Footer></Footer>
-              <ScrollTop></ScrollTop>
+                }
 
-              <Player></Player>
-            </Layout>
-          </Router>
-            
+                <Routes>
+                  <Route path={"/"} element={<HomePage className={'page'} rank={1} />} />
+                  <Route path="/Exercise" element={<ExercisePage className={'page'} rank={1} />} />
+                  <Route path="/History" element={<HistoryPage className={'page'} rank={1} />} />
+                  <Route path="/Wish-list" element={<WishlistPage className={'page'} rank={1} />} />
+                  <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} rank={1} />} />
+
+                  {/* NoMatchPage works only in hash paths */}
+                  <Route path="*" element={<NoMatchPage className={'page'} />} />
+                </Routes>
+
+                {/*dynamic global elements*/}
+                {(loadersContext.backdrop.open) &&
+                  <MainBackdrop></MainBackdrop>
+                }
+                {(drawerContext.open) &&
+                  <Drawer className="drawer" changeColors={changeTheme}></Drawer>
+                }
+                {(bannersContext.infoSnackbar?.open) &&
+                  <Snackbar open={bannersContext.infoSnackbar.open} autoHideDuration={6000} onClose={() => { }}>
+                    <Alert onClose={() => { bannersContext.closeBanner('infoSnackbar') }} severity={bannersContext.infoSnackbar.severity} sx={{ width: '100%' }}>
+                      {bannersContext.infoSnackbar.message}
+                    </Alert>
+                  </Snackbar>
+                }
+                {/* <Dialog></Dialog> */}
+                {/* <Modal> */}
+                {/* Modal must have a children */}
+                {/* </Modal> */}
+                {/*end dynamic global elements*/}
+                <Footer></Footer>
+                <ScrollTop></ScrollTop>
+
+                <Player></Player>
+              </Layout>
+            </Router>
+
           </I18n.Provider>
         </CacheProvider>
       </MuiThemeProvider>
