@@ -33,9 +33,9 @@ export default function CurrLyricsContextProvider(props) {
         }
     }, []);
 
-    const serverUri = 'https://musicline-backend.vercel.app';
+    // const serverUri = 'https://musicline-backend.vercel.app';
 
-    // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
+    const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
 
     const getSongLyrics = (splittedSongTitle, songTitle) => {
         setAbort(true);
@@ -77,7 +77,7 @@ export default function CurrLyricsContextProvider(props) {
                     if (data.videoId) setVideoId(data.videoId);
                     else setVideoId('');
 
-                    if (data.combined[2].trans.length > 1) setTranslatedBy('microsoft-translator');
+                    if (data.combined[2].trans.length > 1) setTranslatedBy(data.service+'-translator');
 
                     utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined });
                     utils.clearGsc();
@@ -198,6 +198,7 @@ export default function CurrLyricsContextProvider(props) {
                     setLines(newLines);
                     setVideoId(data.videoId);
                     utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines });
+                    setTranslatedBy(data.service+'-translator');
 
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
