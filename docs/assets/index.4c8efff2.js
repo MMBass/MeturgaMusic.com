@@ -738,7 +738,7 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
   a{
     text-decoration: none;
   }
-`;var DN="/assets/bg-loader-7.8234172c.png";function kN(e){return Z("MuiSkeleton",e)}J("MuiSkeleton",["root","text","rectangular","circular","pulse","wave","withChildren","fitContent","heightAuto"]);const $N=["animation","className","component","height","style","variant","width"];let gu=e=>e,ov,iv,av,sv;const RN=e=>{const{classes:t,variant:n,animation:r,hasChildren:o,width:i,height:a}=e;return ee({root:["root",n,r,o&&"withChildren",o&&!i&&"fitContent",o&&!a&&"heightAuto"]},kN,t)},TN=Yn(ov||(ov=gu`
+`;var DN="/assets/bg-loader-8.62f2373b.png";function kN(e){return Z("MuiSkeleton",e)}J("MuiSkeleton",["root","text","rectangular","circular","pulse","wave","withChildren","fitContent","heightAuto"]);const $N=["animation","className","component","height","style","variant","width"];let gu=e=>e,ov,iv,av,sv;const RN=e=>{const{classes:t,variant:n,animation:r,hasChildren:o,width:i,height:a}=e;return ee({root:["root",n,r,o&&"withChildren",o&&!i&&"fitContent",o&&!a&&"heightAuto"]},kN,t)},TN=Yn(ov||(ov=gu`
   0% {
     opacity: 1;
   }
