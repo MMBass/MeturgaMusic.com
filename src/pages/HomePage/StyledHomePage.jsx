@@ -33,13 +33,13 @@ const StyledHomePage = styled(HomePage)`
 
         @media (max-width: 600px) {
             margin: 15px 0px 35px  0px;
-            font-size: 6vw;
+            font-size: 7.4vw;
         }
 
         .h3-start-top{
             font-size: 2.6vw;
             @media (max-width: 600px) {
-                font-size: 4.5vw;
+                font-size: 5.5vw;
             }
 
         }
