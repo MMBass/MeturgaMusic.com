@@ -83,8 +83,7 @@ function Player({ className }) {
                 frameBorder={0}
               ></iframe>}
               component="div"
-              image="/static/images/cards/live-from-space.jpg"
-              alt="Live from space album cover"
+              alt="Music plsyer"
             />
           </Card>
         </Draggable>

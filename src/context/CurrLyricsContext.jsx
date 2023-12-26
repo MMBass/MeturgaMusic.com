@@ -15,7 +15,7 @@ export default function CurrLyricsContextProvider(props) {
     const [title, setTitle] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('currSongTitle')) || '');
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [azureServerError, setAzureServerError] = useState(false); // set if azure trans didn't work
-    const [translatedBy, setTranslatedBy] = useState(''); // depends on azureServerError except when combined (that for now always microsoft)
+    const [translatedBy, setTranslatedBy] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('currService')) || ''); // depends on azureServerError except when combined (that for now always microsoft)
     const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans
     const [videoId, setVideoId] = useState(sessionStorage.getItem('currVideoId') || '');
 
@@ -33,9 +33,9 @@ export default function CurrLyricsContextProvider(props) {
         }
     }, []);
 
-    // const serverUri = 'https://musicline-backend.vercel.app';
+    const serverUri = 'https://musicline-backend.vercel.app';
 
-    const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
+    // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
 
     const getSongLyrics = (splittedSongTitle, songTitle) => {
         setAbort(true);
@@ -77,9 +77,9 @@ export default function CurrLyricsContextProvider(props) {
                     if (data.videoId) setVideoId(data.videoId);
                     else setVideoId('');
 
-                    if (data.combined[2].trans.length > 1) setTranslatedBy(data.service+'-translator');
+                    if (data.combined[2].trans.length > 1 && data.service) setTranslatedBy(data.service + '-translator');
 
-                    utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined });
+                    utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || '' });
                     utils.clearGsc();
                     sessionStorage.setItem('currLines', JSON.stringify(data.combined));
                     sessionStorage.setItem('currSongTitle', (songTitle));
@@ -141,6 +141,7 @@ export default function CurrLyricsContextProvider(props) {
             setTitle(songTitle);
             setLines(lsSong.lines);
             setVideoId(lsSong.videoId);
+            setTranslatedBy(lsSong.service + '-translator');
 
             utils.clearGsc();
             loadersContext.closeLoader('backdrop');
@@ -148,6 +149,7 @@ export default function CurrLyricsContextProvider(props) {
             sessionStorage.setItem('currLines', JSON.stringify(lsSong.lines));
             sessionStorage.setItem('currSongTitle', (songTitle));
             sessionStorage.setItem('currVideoId', (lsSong.videoId));
+            sessionStorage.setItem('currService', (lsSong.service));
             setAbort(false);
 
             return true;
@@ -197,8 +199,8 @@ export default function CurrLyricsContextProvider(props) {
 
                     setLines(newLines);
                     setVideoId(data.videoId);
-                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines });
-                    setTranslatedBy(data.service+'-translator');
+                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines, service: data.service });
+                    setTranslatedBy(data.service + '-translator');
 
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
@@ -238,7 +240,7 @@ export default function CurrLyricsContextProvider(props) {
                 setLines(newLines);
 
                 if (index + 1 == lines.length) {
-                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines });
+                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines, service: data.service });
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
                     sessionStorage.setItem('currVideoId', (data.videoId));
