@@ -37,9 +37,9 @@ function Footer({ className }) {
           </List>
 
           <List>
-            <ListItem component={Link} href="https://basssites.com" className='built-by'>
+            {/* <ListItem component={Link} href="https://basssites.com" className='built-by'>
               <ListItemText primary={' © BassSites 2023 '} />
-            </ListItem>
+            </ListItem> */}
           </List>
 
           {/* <List>

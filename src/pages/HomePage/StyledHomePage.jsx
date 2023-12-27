@@ -6,9 +6,14 @@ const StyledHomePage = styled(HomePage)`
     
     .home-top{
        padding: 0 35px;
-
        @media (max-width: 600px) {
         padding: 0 25px;
+       }
+
+       /* text-align: center; */
+       img{
+        width: 298px;
+        height: 606px;
        }
     }
 

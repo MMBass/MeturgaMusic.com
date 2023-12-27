@@ -14,6 +14,8 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
 import { DrawerContext } from '@context/DrawerContext';
 
+import mainPic from '../../images/screenshots/latest/mainPic.png';
+
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
@@ -56,6 +58,7 @@ function HomePage({ className }) {
               <Typography variant="h1" className="page-h1">
                 שירים <br className="h1-br"></br>מתורגמים
               </Typography>
+               {/* <img src={mainPic}></img> */}
             </Grid>
 
             <Grid item xs={12} sm={6}>
