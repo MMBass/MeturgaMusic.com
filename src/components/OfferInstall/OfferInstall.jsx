@@ -17,6 +17,7 @@ function OfferInstall({ className }) {
     window.addEventListener("beforeinstallprompt", (event) => {
       event.preventDefault();
       setInstallPrompt(event);
+
       console.log('installPrompt');
     });
   }, []);
@@ -27,7 +28,6 @@ function OfferInstall({ className }) {
       return;
     }
     await installPrompt.prompt();
-    installPrompt = null;
   };
 
   return (
@@ -46,7 +46,7 @@ function OfferInstall({ className }) {
             sx={{ height: 150, width: 140, display: 'flex', justifyContent: 'center', alignItems: 'center'}}
             image={bgImage}
           />
-          <CardActions sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: "center" fontSize: 20}}>
+          <CardActions sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: "center", fontSize: 20}}>
             <Button onClick={()=>offerInstallApp()} variant='outlined' size="large" >{T.Install}</Button>
           </CardActions>
         </Card>
