@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import i18n from "@/i18n";
+import i18n from "@/i18n-utils";
 
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";

@@ -3,7 +3,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
 
-import utils from '../utils';
+import utils from '@/utils';
+import TUtils from '@/i18n-utils';
 
 export const CurrLyricsContext = React.createContext(undefined);
 
@@ -122,14 +123,14 @@ export default function CurrLyricsContextProvider(props) {
                     utils.clearGsc();
                 } else {
                     setAbort(false);
-                    bannersContext.createBanner('error', 'error', '', 'אנו עובדים על המילים לשיר הזה, חפשו שיר אחר או נסו שוב במועד מאוחר יותר', { actionText: 'חיפוש מילים בגוגל', actionHref: 'https://www.google.com/search?q=' + songTitle.replaceAll(' ', '+') + ' lyrics' });
+                    bannersContext.createBanner('error', 'error', '', TUtils.LyricsNotFound, { actionText: TUtils.LyricsInGoogle, actionHref: 'https://www.google.com/search?q=' + songTitle.replaceAll(' ', '+') + ' lyrics' });
                 };
             }
             ).catch((e) => {
                 setAbort(false);
                 console.log(e);
                 loadersContext.closeLoader('backdrop');
-                bannersContext.createBanner('error', 'error', 'אנו עובדים על המילים לשיר הזה, חפשו שיר אחר או נסו שוב במועד מאוחר יותר', '');
+                bannersContext.createBanner('error', 'error', TUtils.LyricsNotFound, '');
                 if (linesParent) linesParent.style.pointerEvents = "all";
             });
     }
@@ -290,9 +291,9 @@ export default function CurrLyricsContextProvider(props) {
                     }
                 } else {
                     if (lines[index].trans === undefined) {
-                        newLines[index] = { src: src, trans: 'מנסה שוב..', transError: true };
-                    } else if (lines[index].trans === 'מנסה שוב..') {
-                        newLines[index] = { src: src, trans: "[תרגום חסר]", transError: false };
+                        newLines[index] = { src: src, trans: TUtils.TryingAgain + "..", transError: true };
+                    } else if (lines[index].trans === TUtils.TryingAgain + "..") {
+                        newLines[index] = { src: src, trans: TUtils.TransMissing, transError: false };
                     }
 
                     setLines(newLines);
@@ -307,9 +308,9 @@ export default function CurrLyricsContextProvider(props) {
             }
             ).catch((e) => {
                 if (lines[index].trans === '') {
-                    newLines[index] = { src: src, trans: 'מנסה שוב..', transError: true };
-                } else if (lines[index].trans === 'מנסה שוב..') {
-                    newLines[index] = { src: src, trans: "[תרגום חסר]", transError: false };
+                    newLines[index] = { src: src, trans: TUtils.TryingAgain + "..", transError: true };
+                } else if (lines[index].trans === TUtils.TryingAgain + "..") {
+                    newLines[index] = { src: src, trans: TUtils.TransMissing, transError: false };
                 }
 
                 setLines(newLines);

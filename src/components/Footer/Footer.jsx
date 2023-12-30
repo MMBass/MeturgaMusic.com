@@ -35,19 +35,6 @@ function Footer({ className }) {
               <ListItemText primary={'או שלחו הודעה בעמוד הפייסבוק שלנו'} />
             </ListItem>
           </List>
-
-          <List>
-            {/* <ListItem component={Link} href="https://basssites.com" className='built-by'>
-              <ListItemText primary={' © BassSites 2023 '} />
-            </ListItem> */}
-          </List>
-
-          {/* <List>
-            <ListItem component={Link} href="/#/about">
-              <ListItemText primary={'אודותנו'} />
-            </ListItem>
-          </List> */}
-
         </Grid>
 
         <Grid item xs={12} sm={4}>
