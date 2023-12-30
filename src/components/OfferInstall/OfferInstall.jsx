@@ -42,10 +42,10 @@ function OfferInstall({ className }) {
               {T.Description}
             </Typography>
           </CardContent>
-          <CardMedia
+          {/* <CardMedia
             sx={{ height: 150, width: 140, display: 'flex', justifyContent: 'center', alignItems: 'center'}}
             image={bgImage}
-          />
+          /> */}
           <CardActions sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: "center", fontSize: 20}}>
             <Button onClick={()=>offerInstallApp()} variant='outlined' size="large" >{T.Install}</Button>
           </CardActions>
