@@ -48,7 +48,6 @@ function App({ className }) {
   const bannersContext = useContext(BannersContext);
   const isMobile = useMediaQuery('(max-width: 600px)');
 
-  const [installPrompt, setInstallPrompt] = useState(null);
   const [currTitle, setCurrTitle] = useState(T.MainH1);
   const [currTheme, setCurrTheme] = useState(localStorage.getItem('preferedDark') === 'true' ? darkTheme : mainPinkTheme);
 

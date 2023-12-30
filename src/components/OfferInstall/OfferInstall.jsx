@@ -11,10 +11,15 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 function OfferInstall({ className }) {
-  window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
-    setInstallPrompt(event);
-  });
+  const [installPrompt, setInstallPrompt] = useState(null);
+
+  useEffect(() => {
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      setInstallPrompt(event);
+    });
+  }, []);
+
   // Docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeinstallprompt_event
   const offerInstallApp = async () => {
     if (!installPrompt) {
@@ -36,12 +41,12 @@ function OfferInstall({ className }) {
               {T.Description}
             </Typography>
           </CardContent>
-          {/* <CardMedia
+          <CardMedia
             sx={{ height: 150, width: 140, display: 'flex', justifyContent: 'center', alignItems: 'center'}}
             image={bgImage}
-          /> */}
-          <CardActions sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: "center", fontSize: 20}}>
-            <Button variant='outlined' size="large" >{T.Install}</Button>
+          />
+          <CardActions sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: "center" fontSize: 20}}>
+            <Button onClick={()=>offerInstallApp()} variant='outlined' size="large" >{T.Install}</Button>
           </CardActions>
         </Card>
       }
