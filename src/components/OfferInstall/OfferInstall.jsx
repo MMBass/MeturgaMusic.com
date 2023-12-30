@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useMemo } from 'react';
+import { useState, useEffect} from 'react';
 import utils from '@/utils';
 import T from "./OfferInstallI18n";
 import bgImage from '../../images/bg-loader-8.png';
@@ -17,6 +17,7 @@ function OfferInstall({ className }) {
     window.addEventListener("beforeinstallprompt", (event) => {
       event.preventDefault();
       setInstallPrompt(event);
+      console.log('installPrompt');
     });
   }, []);
 
