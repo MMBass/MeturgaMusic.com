@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, useMemo } from 'react';
 import utils from '@/utils';
 import T from "./OfferInstallI18n";
+import bgImage from '../../images/bg-loader-8.png';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -26,8 +27,8 @@ function OfferInstall({ className }) {
   return (
     <>
       {utils.getMobileOS !== "Apple" &&
-        <Card sx={{ maxWidth: 345 }}>
-          <CardContent>
+        <Card sx={{ maxWidth: 345 }} >
+          <CardContent sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Typography gutterBottom variant="h5" component="div">
               {T.Header}
             </Typography>
@@ -35,13 +36,12 @@ function OfferInstall({ className }) {
               {T.Description}
             </Typography>
           </CardContent>
-          <CardMedia
-            sx={{ height: 140 }}
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="green iguana"
-          />
-          <CardActions>
-            <Button size="medium">{T.Install}</Button>
+          {/* <CardMedia
+            sx={{ height: 150, width: 140, display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+            image={bgImage}
+          /> */}
+          <CardActions sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: "center", fontSize: 20}}>
+            <Button variant='outlined' size="large" >{T.Install}</Button>
           </CardActions>
         </Card>
       }

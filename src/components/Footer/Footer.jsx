@@ -7,6 +7,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Link from '@mui/material/Link';
 
+import { default as OfferInstall } from '@components/OfferInstall/StyledOfferInstall';
+
 function Footer({ className }) {
 
   useEffect(() => {
@@ -38,15 +40,7 @@ function Footer({ className }) {
         </Grid>
 
         <Grid item xs={12} sm={4}>
-          {/* single text body AD */}
-          {/* <ins className="adsbygoogle"
-            style={{ display: "block" }}
-            data-ad-client="ca-pub-8294214228053744"
-            data-ad-slot="1741051993"
-            data-ad-format="auto"
-            data-full-width-responsive="true">
-          </ins> */}
-          {/* END single text body AD */}
+          <OfferInstall></OfferInstall>
         </Grid>
       </Grid>
     </div>
