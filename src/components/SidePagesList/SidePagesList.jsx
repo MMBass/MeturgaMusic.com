@@ -12,6 +12,8 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { SettingsContext } from '@context/SettingsContext';
 
 import { default as ChangeColors } from '@components/ChangeColors/StyledChangeColors';
+import { default as OfferInstall } from '@components/OfferInstall/StyledOfferInstall';
+
 import { default as LangsSwitch } from '@components/LangsSwitch/StyledLangsSwitch';
 
 import List from '@mui/material/List';
@@ -109,6 +111,9 @@ function SidePagesList({ className, ...props }) {
       {/* <ListItem>
         <LangsSwitch></LangsSwitch>
       </ListItem> */}
+      <ListItem>
+        <OfferInstall></OfferInstall>
+      </ListItem>
     </List>
   );
 }

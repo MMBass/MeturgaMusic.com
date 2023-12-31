@@ -2,24 +2,19 @@ import { styled } from '@mui/material/styles';
 import OfferInstall from './OfferInstall';
 
 const StyledOfferInstall = styled(OfferInstall)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-/* 
-    text-align: center !important;
-    justify-content: center !important;
-    align-items: center !important;
-
-    *{
-        font-size: 19px !important;
-        text-align: center !important;
-        justify-content: center !important;
-        align-items: center !important;
-    } */
+    max-width: 90%;
+    text-align: center;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    margin-top: 15px;
 
     img{
-        height: 150px;
-        width: 150px;
+        height: 50px;
+        width: 50px;
+    }
+
+    button{
+        font-size: 13px;
     }
 `;
 
