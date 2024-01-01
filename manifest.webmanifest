@@ -20,20 +20,5 @@
       "sizes": "192x192",
       "purpose": "maskable"
     }
-  ],
-  "shortcuts": [
-    {
-      "name": "מילים לתרגול",
-      "url": "https://meturgamusic.com/?source=pwa&page=exercise"
-    },
-    {
-      "name": "היסטוריה",
-      "url": "https://meturgamusic.com/?source=pwa&page=history",
-      "description": "List of events planned for today"
-    },
-    {
-      "name": "שירים שמורים",
-      "url": "https://meturgamusic.com/?source=pwa&page=wish-list"
-    }
   ]
 }
