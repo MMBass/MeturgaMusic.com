@@ -30,25 +30,31 @@ function OfferInstall({ className }) {
   return (
     <>
       {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
-        <Paper className={className}>
-          <Grid container rowSpacing={3} columnSpacing={0}>
-            <Grid item xs={12} >
-              <Typography variant="body1" component="p">
-                {T.Header}
-              </Typography>
-              <Typography variant="body2" component="p">
-                {T.Description}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <img src={bgImage} alt="app-icon" />
-            </Grid>
+        <Button className={className}
+          variant='filled'
+          color='inherit'
+          children={
+            <Grid container rowSpacing={2} columnSpacing={2}>
+              <Grid item xs={12} >
+                <Typography variant="body1" component="p">
+                  {T.Header}
+                </Typography>
+                <Typography variant="body2" component="p">
+                  {T.Description}
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <img src={bgImage} alt="app-icon" />
+              </Grid>
 
-            <Grid item xs={12}>
-              <Button onClick={() => offerInstallApp()} variant='outlined' size="small" >{T.Install}</Button>
+              {/* <Grid item xs={4}>
+                <Button onClick={() => offerInstallApp()}>{T.Install}</Button>
+              </Grid> */}
             </Grid>
-          </Grid>
-        </Paper>
+          }
+        >
+
+        </Button>
       }
     </>
   );

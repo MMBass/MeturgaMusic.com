@@ -7,6 +7,8 @@ const StyledOfferInstall = styled(OfferInstall)`
     padding-bottom: 15px;
     padding-top: 15px;
     margin-top: 15px;
+    background-color: #00000024;
+    color: white;
 
     img{
         height: 50px;
@@ -14,6 +16,7 @@ const StyledOfferInstall = styled(OfferInstall)`
     }
 
     button{
+        margin: auto;
         font-size: 13px;
     }
 `;
