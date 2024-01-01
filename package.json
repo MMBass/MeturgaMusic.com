@@ -21,10 +21,12 @@
     "npm": "^10.2.5",
     "path": "^0.12.7",
     "react": "^17.0.2",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.6",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.2.1",
+    "react-share": "^5.0.3",
     "stylis": "^4.0.13",
     "stylis-plugin-rtl": "^2.1.1",
     "uuid": "^9.0.1"
