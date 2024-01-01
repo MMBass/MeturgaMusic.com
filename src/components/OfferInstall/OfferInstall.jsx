@@ -31,6 +31,7 @@ function OfferInstall({ className }) {
     <>
       {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
         <Button className={className}
+          onClick={() => offerInstallApp()}
           variant='filled'
           color='inherit'
           children={
