@@ -9,15 +9,15 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "https://meturgamusic.com/ico/android-chrome-192x192.png",
+      "src": "https://meturgamusic.com/ico/android-chrome-512x512.png",
       "type": "image/png",
-      "sizes": "192x192",
+      "sizes": "512x512",
       "purpose": "any"
     },
     {
-      "src": "https://meturgamusic.com/ico/android-chrome-192x192.png",
+      "src": "https://meturgamusic.com/ico/android-chrome-512x512.png",
       "type": "image/png",
-      "sizes": "192x192",
+      "sizes": "512x512",
       "purpose": "maskable"
     }
   ]
