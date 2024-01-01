@@ -205,6 +205,7 @@ export default function CurrLyricsContextProvider(props) {
 
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
+                    sessionStorage.setItem('currVideoId', (videoId));
 
                 } else {
                     console.error("status is ok but azure translation missing");
@@ -241,7 +242,7 @@ export default function CurrLyricsContextProvider(props) {
                 setLines(newLines);
 
                 if (index + 1 == lines.length) {
-                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines, service: data.service });
+                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines, service: "google" });
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
                     sessionStorage.setItem('currVideoId', (data.videoId));
@@ -288,6 +289,7 @@ export default function CurrLyricsContextProvider(props) {
                     if (lastTrans.length >= 1) {
                         sessionStorage.setItem('currLines', JSON.stringify(lines));
                         sessionStorage.setItem('currSongTitle', (title));
+                        sessionStorage.setItem('currVideoId', (videoId));
                     }
                 } else {
                     if (lines[index].trans === undefined) {
@@ -303,6 +305,7 @@ export default function CurrLyricsContextProvider(props) {
                     if (lastTrans.length >= 1) {
                         sessionStorage.setItem('currLines', JSON.stringify(newLines));
                         sessionStorage.setItem('currSongTitle', (title));
+                        sessionStorage.setItem('currVideoId', (videoId));
                     }
                 }
             }
@@ -320,6 +323,7 @@ export default function CurrLyricsContextProvider(props) {
                 if (lastTrans.length >= 1) {
                     sessionStorage.setItem('currLines', JSON.stringify(lines));
                     sessionStorage.setItem('currSongTitle', (title));
+                    sessionStorage.setItem('currVideoId', (videoId));
                     setAzureServerError(false);
                 }
                 console.log(e);
