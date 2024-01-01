@@ -32,6 +32,9 @@ const StyledFooter = styled(Footer)`
     color: white;
   }
 
+  .install-section{
+    text-align: center;
+  }
 `;
 
 export default StyledFooter;

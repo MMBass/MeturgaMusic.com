@@ -39,7 +39,7 @@ function Footer({ className }) {
           </List>
         </Grid>
 
-        <Grid item xs={12} sm={4}>
+        <Grid className={'install-section'} item xs={12} sm={4}>
           <OfferInstall></OfferInstall>
         </Grid>
       </Grid>
