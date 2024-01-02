@@ -10,6 +10,7 @@ import ContactlessRoundedIcon from '@mui/icons-material/ContactlessRounded';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 import { SettingsContext } from '@context/SettingsContext';
+import utils from '@/utils';
 
 import { default as ChangeColors } from '@components/ChangeColors/StyledChangeColors';
 import { default as OfferInstall } from '@components/OfferInstall/StyledOfferInstall';
@@ -111,9 +112,11 @@ function SidePagesList({ className, ...props }) {
       {/* <ListItem>
         <LangsSwitch></LangsSwitch>
       </ListItem> */}
-      <ListItem>
-        <OfferInstall></OfferInstall>
-      </ListItem>
+      {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
+        <ListItem>
+          <OfferInstall></OfferInstall>
+        </ListItem>
+      }
     </List>
   );
 }

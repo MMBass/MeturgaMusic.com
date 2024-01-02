@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import utils from '@/utils';
 
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
@@ -11,7 +12,6 @@ import IconButton from '@mui/material/IconButton';
 
 import Tooltip from '@mui/material/Tooltip';
 
-
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
@@ -20,26 +20,32 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkIcon from '@mui/icons-material/Link';
 
 import { default as OfferInstall } from '@components/OfferInstall/StyledOfferInstall';
+import { Typography } from "@mui/material";
 
 function Footer({ className }) {
   const [copiedOpen, setCopiedOpen] = useState(false);
 
   const handleCopy = () => {
-    setCopiedOpen(true);
+    setTimeout(() => {
+      setCopiedOpen(true);
+    }, 200);
     setTimeout(() => {
       setCopiedOpen(false);
-    }, 800);
+    }, 1000);
   };
 
   return (
     <div id="FOOTER" className={className} >
 
-      <Grid container rowSpacing={6} columnSpacing={2}>
-        <Grid className={'install-section'} item xs={12} sm={4}>
-          <OfferInstall></OfferInstall>
-        </Grid>
+      <Grid container rowSpacing={1} columnSpacing={0}>
 
-        <Grid item xs={12} sm={4}>
+        {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
+          <Grid className={'install-section'} item xs={12} sm={3}>
+            <OfferInstall></OfferInstall>
+          </Grid>
+        }
+
+        <Grid item xs={12} sm={3}>
           <List>
             <ListSubheader
               variant="h5"
@@ -59,8 +65,7 @@ MeturgaMusic.com " >
               <CopyToClipboard text={"MeturgaMusic.com"} onCopy={() => handleCopy()}>
                 <IconButton aria-label="share">
                   <Tooltip
-                    sx={{ textAlign: 'center' }}
-                    title={'הועתק'}
+                    title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize:'10px' }}>הועתק</Typography>}
                     arrow
                     PopperProps={{
                       disablePortal: false,
@@ -79,7 +84,7 @@ MeturgaMusic.com " >
           </List>
         </Grid>
 
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <List>
             <ListSubheader
               variant="h5"
@@ -104,7 +109,7 @@ MeturgaMusic.com " >
         </Grid>
 
 
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <List>
             <ListSubheader
               variant="h5"

@@ -4,11 +4,16 @@ import OfferInstall from './OfferInstall';
 const StyledOfferInstall = styled(OfferInstall)`
     max-width: 90%;
     text-align: center;
-    padding-bottom: 15px;
-    padding-top: 15px;
     margin-top: 15px;
     background-color: #00000024;
     color: white;
+
+    button{
+        width: 100%;
+        height: 100%;
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
 
     img{
         height: 50px;

@@ -2,18 +2,14 @@ import { styled } from '@mui/material/styles';
 import Footer from './Footer';
 
 const StyledFooter = styled(Footer)`
-  /* color: ${props => props.theme.palette.primary.contrastText}; */
+  color: ${props => props.theme.palette.primary.light};
   background-color: ${props => props.theme.palette.primary.main};
   padding: 25px 30px 30px 25px;
   text-align: start;
-  
-  a{
-    color: ${props => props.theme.palette.secondary.dark};
-  }
 
   svg{
-    font-size: 15px;
-    color: ${props => props.theme.palette.secondary.dark};
+    font-size: 17px;
+    color: ${props => props.theme.palette.primary.light};
   }
 
   span{
@@ -26,10 +22,6 @@ const StyledFooter = styled(Footer)`
     font-size: 17px;
     color: white;
     margin: unset;
-  }
-
-  .built-by{
-    color: white;
   }
 
   .install-section{

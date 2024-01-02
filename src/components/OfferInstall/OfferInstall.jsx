@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import utils from '@/utils';
 import T from "./OfferInstallI18n";
 import bgImage from '../../images/bg-loader-8.png';
 
@@ -28,9 +27,8 @@ function OfferInstall({ className }) {
   };
 
   return (
-    <>
-      {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
-        <Button className={className}
+    <Paper className={className}>
+        <Button 
           onClick={() => offerInstallApp()}
           variant='filled'
           color='inherit'
@@ -56,8 +54,7 @@ function OfferInstall({ className }) {
         >
 
         </Button>
-      }
-    </>
+    </Paper>
   );
 }
 
