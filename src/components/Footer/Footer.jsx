@@ -65,7 +65,7 @@ MeturgaMusic.com " >
               <CopyToClipboard text={"MeturgaMusic.com"} onCopy={() => handleCopy()}>
                 <IconButton aria-label="share">
                   <Tooltip
-                    title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize:'10px' }}>הועתק</Typography>}
+                    title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize:'14px' }}>הועתק</Typography>}
                     arrow
                     PopperProps={{
                       disablePortal: false,

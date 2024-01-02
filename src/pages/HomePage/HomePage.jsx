@@ -55,10 +55,10 @@ function HomePage({ className }) {
           <Grid container className="home-t-container">
 
             <Grid item xs={12} sm={6}>
-              <Typography variant="h1" className="page-h1">
+              {/* <Typography variant="h1" className="page-h1">
                 שירים <br className="h1-br"></br>מתורגמים
-              </Typography>
-               {/* <img src={mainPic}></img> */}
+              </Typography> */}
+               <img src={mainPic}></img>
             </Grid>
 
             <Grid item xs={12} sm={6}>
