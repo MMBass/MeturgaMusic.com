@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { useSearchParams } from "react-router-dom";
+import T from "./HomePageI18n";
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -56,32 +57,32 @@ function HomePage({ className }) {
 
             <Grid item xs={12} sm={6}>
               <Typography variant="h1" className="page-h1">
-                שירים <br className="h1-br"></br>מתורגמים
+                {T.OldPageH1part1} <br className="h1-br"></br>{T.OldPageH1part2}
               </Typography>
-               {/* <img src={mainPic}></img> */}
+              {/* <img src={mainPic}></img> */}
             </Grid>
 
             <Grid item xs={12} sm={6}>
               <Typography variant="h3" className="page-h3">
 
                 <span className="h3-start h3-start-top">
-                  האתר ללימוד אנגלית באמצעות שירים
+                  {T.H3StartTop}
                 </span>
 
                 <span className="h3-start h3-start-one">
-                  חפשו בין מיליוני שירים ברשת
+                  {T.H3StartOne}
                 </span>
 
                 <span className="h3-start h3-start-two">
-                  והאתר יתרגם את השיר
+                  {T.H3StartTwo}
                 </span>
 
                 <span className="h3-middle">
-                  בצורה נוחה ללימוד אנגלית
+                  {T.H3Middle}
                 </span>
 
                 <span className="h3-bottom">
-                  ללא איבוד טקסט המקור
+                  {T.H3Bottom}
                 </span>
 
               </Typography>
