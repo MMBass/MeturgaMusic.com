@@ -8,6 +8,8 @@ import TUtils from '@/i18n-utils';
 
 export const CurrLyricsContext = React.createContext(undefined);
 
+// TODO move reqs and ls/ss logic to serveices
+// TODO reqs to async-await
 export default function CurrLyricsContextProvider(props) {
     const loadersContext = useContext(LoadersContext);
     const bannersContext = useContext(BannersContext);

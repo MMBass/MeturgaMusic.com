@@ -18,11 +18,12 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import utils from '@/utils';
+import T from "./WishlistPageI18n";
 
-import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
+import SearchBar from '@components/SearchBar/StyledSearchBar';
 
 function WishlistPage({ className }) {
-  
+
   const [songs, setSongs] = useState(JSON.parse(localStorage.getItem('meturgamm_wish')) || []);
 
   const [closeDescBanner, setCloseDescBanner] = useState(localStorage.getItem('wish_closeDescBanner'));
@@ -50,21 +51,16 @@ function WishlistPage({ className }) {
     localStorage.setItem("meturgamm_wish", JSON.stringify(newSongs));
   };
 
-  // const handleCloseDescBanner = () => {
-  //   setCloseDescBanner(true);
-  //   localStorage.setItem('wish_closeDescBanner', 'true');
-  // };
-
   return (
     <Box className={className}>
 
       {!closeDescBanner &&
-        <Alert severity='warning' 
-        action={
-          <Button color="inherit" size="small" onClick={() => {handleCloseDescBanner()}}>
-            <CloseOutlinedIcon fontSize={'small'}></CloseOutlinedIcon>
-          </Button>
-        }
+        <Alert severity='warning'
+          action={
+            <Button color="inherit" size="small" onClick={() => { handleCloseDescBanner() }}>
+              <CloseOutlinedIcon fontSize={'small'}></CloseOutlinedIcon>
+            </Button>
+          }
         >
           <AlertTitle>שירים שמורים </AlertTitle>
           <i> כאן תוכלו לחפש ולשמור שירים אשר תרצו ללמוד מהם בעתיד</i>

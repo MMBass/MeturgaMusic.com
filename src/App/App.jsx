@@ -23,24 +23,24 @@ import { BannersContext } from '@context/BannersContext';
 import utils from '@/utils';
 import T from "./AppI18n";
 
-import { default as Header } from '@components/Header/StyledHeader';
-import { default as Layout } from '@components/Layout/StyledLayout';
-import { default as Footer } from '@components/Footer/StyledFooter';
-import { default as Drawer } from '@components/Drawer/StyledDrawer';
-import { default as MainBackdrop } from '@components/MainBackdrop/StyledMainBackdrop';
-// import { default as MiniDrawer } from '@components/MiniDrawer/StyledMiniDrawer';
-import { default as Dialog } from '@components/Dialog/StyledDialog';
-import { default as Modal } from '@components/Modal/StyledModal';
-import { default as ScrollTop } from '@components/ScrollTop/StyledScrollTop';
-import { default as Player } from '@components/Player/StyledPlayer';
+import Header from '@components/Header/StyledHeader';
+import Layout from '@components/Layout/StyledLayout';
+import Footer from '@components/Footer/StyledFooter';
+import Drawer from '@components/Drawer/StyledDrawer';
+import MainBackdrop from '@components/MainBackdrop/StyledMainBackdrop';
+import Dialog from '@components/Dialog/StyledDialog';
+import Modal from '@components/Modal/StyledModal';
+import ScrollTop from '@components/ScrollTop/StyledScrollTop';
+import Player from '@components/Player/StyledPlayer';
 import HeadTags from '@components/HeadTags/HeadTags';
+// import   MiniDrawer } from '@components/MiniDrawer/StyledMiniDrawer';
 
-import { default as HomePage } from '@pages/HomePage/StyledHomePage';
-import { default as HistoryPage } from '@pages/HistoryPage/StyledHistoryPage';
-import { default as WishlistPage } from '@pages/WishlistPage/StyledWishlistPage';
-import { default as ExercisePage } from '@pages/ExercisePage/StyledExercisePage';
-import { default as SpotifyExtensionPage } from '@pages/SpotifyExtensionPage/StyledSpotifyExtensionPage';
-import { default as NoMatchPage } from '@pages/NoMatchPage/StyledNoMatchPage';
+import HomePage from '@pages/HomePage/StyledHomePage';
+import HistoryPage from '@pages/HistoryPage/StyledHistoryPage';
+import WishlistPage from '@pages/WishlistPage/StyledWishlistPage';
+import ExercisePage from '@pages/ExercisePage/StyledExercisePage';
+import SpotifyExtensionPage from '@pages/SpotifyExtensionPage/StyledSpotifyExtensionPage';
+import NoMatchPage from '@pages/NoMatchPage/StyledNoMatchPage';
 
 function App({ className }) {
   const drawerContext = useContext(DrawerContext);

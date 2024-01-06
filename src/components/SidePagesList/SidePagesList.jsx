@@ -12,10 +12,10 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
 
-import { default as ChangeColors } from '@components/ChangeColors/StyledChangeColors';
-import { default as OfferInstall } from '@components/OfferInstall/StyledOfferInstall';
+import ChangeColors from '@components/ChangeColors/StyledChangeColors';
+import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
 
-import { default as LangsSwitch } from '@components/LangsSwitch/StyledLangsSwitch';
+import LangsSwitch from '@components/LangsSwitch/StyledLangsSwitch';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';

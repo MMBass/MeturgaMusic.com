@@ -1,6 +1,6 @@
 const { generateTemplateFiles } = require('generate-template-files');
 
-// run 'npm run gen' to start use
+// Run 'npm run gen' to start
 
 generateTemplateFiles([
   {

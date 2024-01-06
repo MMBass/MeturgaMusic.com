@@ -18,10 +18,10 @@ import Collapse from '@mui/material/Collapse';
 import Badge from '@mui/material/Badge';
 import Link from '@mui/material/Link';
 
-import { default as ChangeSize } from '@components/ChangeSize/StyledChangeSize';
-import { default as DeterminateLinearProgress } from '@components/DeterminateLinearProgress/StyledDeterminateLinearProgress';
-import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
-import { default as ChangeColors } from '@components/ChangeColors/StyledChangeColors';
+import ChangeSize from '@components/ChangeSize/StyledChangeSize';
+import DeterminateLinearProgress from '@components/DeterminateLinearProgress/StyledDeterminateLinearProgress';
+import SearchBar from '@components/SearchBar/StyledSearchBar';
+import ChangeColors from '@components/ChangeColors/StyledChangeColors';
 
 import { DrawerContext } from '@context/DrawerContext';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';

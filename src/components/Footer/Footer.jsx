@@ -1,5 +1,5 @@
 
-import { default as FooterLinks } from "@components/FooterLinks/StyledFooterLinks";
+import FooterLinks from "@components/FooterLinks/StyledFooterLinks";
 
 function Footer({ className }) {
 

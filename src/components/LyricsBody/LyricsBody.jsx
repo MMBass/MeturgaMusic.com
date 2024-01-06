@@ -10,8 +10,8 @@ import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-import { default as LyricToolTip } from '@components/LyricToolTip/StyledLyricToolTip';
-import { default as OfferInstall } from '@components/OfferInstall/StyledOfferInstall';
+import LyricToolTip from '@components/LyricToolTip/StyledLyricToolTip';
+import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';

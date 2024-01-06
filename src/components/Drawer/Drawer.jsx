@@ -4,7 +4,7 @@ import { DrawerContext } from '@context/DrawerContext';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 
-import { default as SidePagesList } from '@components/SidePagesList/StyledSidePagesList';
+import SidePagesList from '@components/SidePagesList/StyledSidePagesList';
 
 function MyDrawer({ className, ...props }) {
   const drawerContext = useContext(DrawerContext);
@@ -15,13 +15,13 @@ function MyDrawer({ className, ...props }) {
       anchor={drawerContext.anchor}
       open={drawerContext.open}
       variant={drawerContext.permanent}
-      onClose={()=>{drawerContext.closeDrawer()}}
+      onClose={() => { drawerContext.closeDrawer() }}
     >
       <Box
         className='drawer-layout'
         role="presentation"
       >
-       <SidePagesList changeColors={props.changeColors} closeDrawer={()=>{drawerContext.closeDrawer()}}></SidePagesList>
+        <SidePagesList changeColors={props.changeColors} closeDrawer={() => { drawerContext.closeDrawer() }}></SidePagesList>
       </Box>
     </Drawer>
   );

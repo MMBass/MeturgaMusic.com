@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { SettingsContext } from '@context/SettingsContext';
 
-import { default as ExerciseItem } from '@components/ExerciseItem/StyledExerciseItem';
+import ExerciseItem from '@components/ExerciseItem/StyledExerciseItem';
 
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -40,7 +40,7 @@ function ExercisePage({ className }) {
           </Grid>
         </List>
       }
-      {!words[0] && <Typography sx={{margin: 'auto', marginTop: '20%', textAlign: 'center'}}>אין מילים להציג</Typography>}
+      {!words[0] && <Typography sx={{ margin: 'auto', marginTop: '20%', textAlign: 'center' }}>אין מילים להציג</Typography>}
 
     </div>
   );

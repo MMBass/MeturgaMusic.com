@@ -3,7 +3,7 @@ import T from "./NameI18n";
 
 function Name({__class__CamelCase__}) {
   return (
-    <div id="" __class__CamelCase__={__class__CamelCase__}>
+    <div __class__CamelCase__={__class__CamelCase__}>
       
     </div>
   );

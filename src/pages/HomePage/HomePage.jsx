@@ -7,9 +7,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
-import { default as LyricsBody } from '@components/LyricsBody/StyledLyricsBody';
-import { default as AboutBody } from '@components/AboutBody/StyledAboutBody';
+import SearchBar from '@components/SearchBar/StyledSearchBar';
+import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
+import AboutBody from '@components/AboutBody/StyledAboutBody';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';

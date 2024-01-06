@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 
-import { default as HistoryItem } from '@components/HistoryItem/StyledHistoryItem';
+import HistoryItem from '@components/HistoryItem/StyledHistoryItem';
 
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
