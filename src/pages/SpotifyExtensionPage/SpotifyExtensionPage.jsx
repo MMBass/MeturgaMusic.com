@@ -9,10 +9,10 @@ function SpotifyExtensionPage({ className }) {
 
   return (
     <div className={className} style={{ backgroundImage: `url(${extensionImage.toString()})` }}>
-      <Grid container spacing={4} >
+      <Grid container spacing={0} >
 
         <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2} className='headers-container'>
+          <Grid item xs container direction="column" spacing={0} className='headers-container'>
             <Grid item xs>
               <Typography gutterBottom variant="h2" component={'h1'}>
                 {T.TopH2}

@@ -23,6 +23,7 @@ const StyledHomePage = styled(HomePage)`
     
         @media (max-width: 600px) {
             text-align: center;
+            padding-top: 65px;
         }
     }
 
