@@ -26,6 +26,7 @@ const StyledFooter = styled(Footer)`
 
   .install-section{
     text-align: center;
+    justify-content: center;
   }
 `;
 

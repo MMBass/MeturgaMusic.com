@@ -104,7 +104,7 @@ function SidePagesList({ className, ...props }) {
       </ListItem>
 
       <ListItem>
-        <ListItemButton onClick={props.changeColors} sx={{ textAlign: 'center', justifyContent: 'center' }}>
+        <ListItemButton onClick={props.changeColors} sx={{ justifyContent: 'center' }}>
           <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label="מצב כהה" color="secondary" variant="outlined" size='large' />
         </ListItemButton>
       </ListItem>
@@ -113,7 +113,7 @@ function SidePagesList({ className, ...props }) {
         <LangsSwitch></LangsSwitch>
       </ListItem> */}
       {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
-        <ListItem>
+        <ListItem sx={{ justifyContent: 'center' }}>
           <OfferInstall></OfferInstall>
         </ListItem>
       }
