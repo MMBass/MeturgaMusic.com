@@ -1,3 +1,5 @@
+
+import T from "./SpotifyExtensionPageI18n";
 import extensionImage from '../../images/screenshots/extensionImage.png';
 
 import Grid from '@mui/material/Grid';
@@ -6,20 +8,20 @@ import Typography from '@mui/material/Typography';
 function SpotifyExtensionPage({ className }) {
 
   return (
-    <div className={className} style={{backgroundImage: `url(${extensionImage.toString()})`}}>
+    <div className={className} style={{ backgroundImage: `url(${extensionImage.toString()})` }}>
       <Grid container spacing={4} >
 
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2} className='headers-container'>
             <Grid item xs>
               <Typography gutterBottom variant="h2" component={'h1'}>
-                התוסף שלנו לאתר ספוטיפיי.
+                {T.TopH2}
               </Typography>
               <Typography variant="h2" gutterBottom className='middle-h2'>
-                תנו למסך לעקוב אחר מהלך השיר, יחד עם התרגום, ללא איבוד המקור.
+                {T.MiddleH2}
               </Typography>
               <Typography variant="h3">
-                בקרוב!
+                {T.H3}
               </Typography>
             </Grid>
           </Grid>

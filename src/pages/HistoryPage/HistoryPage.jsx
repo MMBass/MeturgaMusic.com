@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import T from "./HistoryPageI18n";
 import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 
 import HistoryItem from '@components/HistoryItem/StyledHistoryItem';
@@ -29,7 +29,7 @@ function HistoryPage({ className }) {
       {songs[0] &&
         <Box >
           <Button className='d-all-btn' component="label" onClick={() => { handleDeleteAll() }} variant="outlined" startIcon={<DeleteSweepOutlinedIcon />}>
-            מחק הכל
+            {T.DelAll}
           </Button>
 
           <List sx={{ width: '100%' }} component="div">
@@ -44,7 +44,7 @@ function HistoryPage({ className }) {
           </List>
         </Box>
       }
-      {!songs[0] && <Typography sx={{ margin: '100px', textAlign: 'center' }}>אין שירים בהיסטוריה</Typography>}
+      {!songs[0] && <Typography sx={{ margin: '100px', textAlign: 'center' }}>{T.Empty}</Typography>}
     </div>
   );
 

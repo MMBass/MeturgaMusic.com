@@ -14,7 +14,6 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
   background-blend-mode: multiply;
 
   @media (max-width: 600px) {
-    padding: 30px 0px;
     background-position: bottom -65px right -440px;
     background-size: 200% ;
   }

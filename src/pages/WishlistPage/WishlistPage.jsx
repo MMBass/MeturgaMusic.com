@@ -62,8 +62,8 @@ function WishlistPage({ className }) {
             </Button>
           }
         >
-          <AlertTitle>שירים שמורים </AlertTitle>
-          <i> כאן תוכלו לחפש ולשמור שירים אשר תרצו ללמוד מהם בעתיד</i>
+          <AlertTitle> {T.AlertTitle} </AlertTitle>
+          <i> {T.AlertDesc} </i>
         </Alert>
       }
 
@@ -98,7 +98,7 @@ function WishlistPage({ className }) {
           ))}
         </Grid>
 
-        {!songs[0] && <Typography sx={{ margin: '100px', textAlign: 'center' }}>אין שירים</Typography>}
+        {!songs[0] && <Typography sx={{ margin: '100px', textAlign: 'center' }}>{T.NoSongs}</Typography>}
       </List>
     </Box>
 

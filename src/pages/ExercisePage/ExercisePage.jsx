@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { SettingsContext } from '@context/SettingsContext';
+import T from "./ExercisePageI18n";
 
 import ExerciseItem from '@components/ExerciseItem/StyledExerciseItem';
 
@@ -40,7 +41,7 @@ function ExercisePage({ className }) {
           </Grid>
         </List>
       }
-      {!words[0] && <Typography sx={{ margin: 'auto', marginTop: '20%', textAlign: 'center' }}>אין מילים להציג</Typography>}
+      {!words[0] && <Typography sx={{ margin: 'auto', marginTop: '20%', textAlign: 'center' }}>{T.Empty}</Typography>}
 
     </div>
   );
