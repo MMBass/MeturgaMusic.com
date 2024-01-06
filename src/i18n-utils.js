@@ -5,4 +5,6 @@ export default {
   TransMissing: '[תרגום חסר]',
   NoMore: 'לא נמצאו עוד',
   TransBy: 'מתורגם באמצעות-',
+  UnderBuilding: "האתר בבניה",
+  NoExactTransMessage: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק",
 };

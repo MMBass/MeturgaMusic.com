@@ -11,6 +11,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
+import T from "./SidePagesListI18n";
 
 import ChangeColors from '@components/ChangeColors/StyledChangeColors';
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
@@ -40,18 +41,18 @@ function SidePagesList({ className, ...props }) {
 
   const pages = [
     {
-      name: 'מילים לתרגול ',
+      name: T.ExercisePage,
       url: '/exercise',
       icon: <Badge variant="dot" invisible={!settingsContext.badge} color='error'><BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon></Badge>,
     },
     {
-      name: 'שירים שמורים',
+      name: T.WishListPage,
       url: '/wish-list',
       icon: <PlaylistAddIcon className="side-icons"></PlaylistAddIcon>,
-      chip: <Chip className='pages-list-chip' label="חדש!" color="error" variant="outlined" size='small' />,
+      chip: <Chip className='pages-list-chip' label={T.LabelForNew} color="error" variant="outlined" size='small' />,
     },
     {
-      name: 'היסטוריית חיפוש',
+      name: T.HistoryPage,
       url: '/history',
       icon: <RestoreOutlinedIcon className="side-icons"></RestoreOutlinedIcon>,
     },
@@ -61,7 +62,7 @@ function SidePagesList({ className, ...props }) {
   return (
     <List className={className} sx={{ maxWidth: '320px' }}>
       <Alert severity="warning">
-        {'חשוב לדעת: איננו אוספים מידע מהמשתמשים, על כן המידע בעמודים אלו נשמר באופן מקומי בדפדפן, עליך להשתמש באותו דפדפן אם ברצונך להשתמש בתכונות אלו'}
+        {T.WarningNoSavedData}
       </Alert>
       {pages.map((page, index) => (
         <NavLink to={page.url} key={index} className={'nav-link'}>
@@ -83,8 +84,8 @@ function SidePagesList({ className, ...props }) {
             <ListItemIcon>
               <ContactlessRoundedIcon className="side-icons" sx={{ rotate: '-90deg' }}></ContactlessRoundedIcon>
             </ListItemIcon>
-            <ListItemText primary={'תוסף לספוטיפיי'} primaryTypographyProps={{ style: { color: 'black' } }} />
-            <Chip className='pages-list-chip extension-chip' label="בקרוב!" color="secondary" variant="outlined" size='small' />
+            <ListItemText primary={T.SpotifyPage} primaryTypographyProps={{ style: { color: 'black' } }} />
+            <Chip className='pages-list-chip extension-chip' label={T.LabelForComingSoon} color="secondary" variant="outlined" size='small' />
           </ListItemButton>
         </ListItem>
       </NavLink>
@@ -100,18 +101,19 @@ function SidePagesList({ className, ...props }) {
           onChange={handleShowPlayer}
           inputProps={{ 'aria-label': 'controlled' }}
         />
-        <ListItemText secondary={'הצע לנגן שיר'} sx={{ flex: '0 0 auto' }} />
+        <ListItemText secondary={T.PlayerSwitch} sx={{ flex: '0 0 auto' }} />
       </ListItem>
 
       <ListItem>
         <ListItemButton onClick={props.changeColors} sx={{ justifyContent: 'center' }}>
-          <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label="מצב כהה" color="secondary" variant="outlined" size='large' />
+          <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label={T.DarkMode} color="secondary" variant="outlined" size='large' />
         </ListItemButton>
       </ListItem>
 
       {/* <ListItem>
         <LangsSwitch></LangsSwitch>
       </ListItem> */}
+      
       {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
         <ListItem sx={{ justifyContent: 'center' }}>
           <OfferInstall></OfferInstall>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 export const BannersContext = React.createContext(undefined);
 
+import TUtils from '@/i18n-utils';
+
 /* !!! Important: When listening to updates from this context,
 you may have to put useEffect in the target component
 (and depends on [nameContext]) to force rerender before updating other states */
@@ -16,8 +18,8 @@ example:
 
 export default function BannersContextProvider(props) {
     const [banners, setBanners] = useState({
-        main: { open: false, severity: "error", title: "האתר בבניה", message: "", action: {} },
-        infoSnackbar: { open: !JSON.parse(localStorage.getItem('meturgamm_songs'))?.[1], severity: "error", title: "", message: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק" },
+        main: { open: false, severity: "error", title: TUtils.UnderBuilding, message: "", action: {} },
+        infoSnackbar: { open: !JSON.parse(localStorage.getItem('meturgamm_songs'))?.[1], severity: "error", title: "", message: TUtils.NoExactTransMessage },
     });
 
     const createBanner = (name, severity, title, message, action) => {

@@ -7,6 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
 import utils from '@/utils';
+import T from "./SearchBarI18n";
 
 function SearchBar({ className, ...props }) {
   const [start, setStart] = useState(false);
@@ -24,9 +25,9 @@ function SearchBar({ className, ...props }) {
   }, [currLyricsContext.title]);
 
   function showGscBar() {
-      const hiddenElem = document.querySelectorAll(".gsc-control-cse")[0];
-      hiddenElem.style.visibility = "visible";
-      hiddenElem.style.marginTop = "90px";
+    const hiddenElem = document.querySelectorAll(".gsc-control-cse")[0];
+    hiddenElem.style.visibility = "visible";
+    hiddenElem.style.marginTop = "90px";
   }
 
   useEffect(() => {
@@ -92,7 +93,7 @@ function SearchBar({ className, ...props }) {
 
   function handleSearch(eValue) {
     if (bannersContext.error) bannersContext.closeBanner('error');
-  
+
     let gsc_input = document.querySelector('#gsc-i-id1');
     let en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9- ]+$/;
 
@@ -161,7 +162,6 @@ function SearchBar({ className, ...props }) {
             let songTitle = line.innerText.split("Lyrics")[0];
             songTitle = songTitle.replaceAll(' | Genius', "");
             songTitle = songTitle.replaceAll('–', "-"); // g results comes with some special ' – ' sign
-      
 
             if (!utils.isMostlyEnglish(songTitle)) {
               line.parentElement.parentElement.parentElement.remove();
@@ -220,11 +220,11 @@ function SearchBar({ className, ...props }) {
     <div className={className}>
 
       {(!props.addRecordMode) &&
-        <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : "חיפוש שיר באינטרנט"} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder="GOOGLE  מופעל באמצעות" value={currVal} />
+        <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : T.Label} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={"GOOGLE " + T.PoweredBy} value={currVal} />
       }
 
       {(props.addRecordMode) &&
-        <TextField label={' הוסף שיר +'} type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder="מופעל באמצעות GOOGLE" value={currVal} fullWidth variant="filled" />
+        <TextField label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" />
       }
 
       <div id="gcse-my-wrapper" className={(props.addRecordMode && "gcse-my-wrapper-add-record-mode")}>
