@@ -1127,6 +1127,7 @@ font-size: 22px;
   background-blend-mode: multiply;
 
   @media (max-width: 600px) {
+    padding: 50px 0px;
     background-position: bottom -65px right -440px;
     background-size: 200% ;
   }
