@@ -92,8 +92,7 @@ function ExerciseItem({ className, ...props }) {
             </ListItemButton>
             }
             />
-
-
+            
           </ListItem>
         </List>
       </Collapse>

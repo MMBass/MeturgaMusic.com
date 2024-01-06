@@ -1,3 +1,5 @@
+import TUtils from '@/i18n-utils';
+
 const getSingleTrans = async (lyric) => {
     const serverUri = 'https://musicline-backend.vercel.app';
 
@@ -52,11 +54,11 @@ async function getSingleFromG(lyric) {
 
         } else {
             console.error("Google lyric Translation empty for: " + lyric);
-            return ['לא נמצאו עוד'];
+            return [TUtils.NoMore];
         }
     } catch (error) {
         console.error("Google lyric Translation error:", error);
-        return ['לא נמצאו עוד'];
+        return [TUtils.NoMore];
     }
 }
 

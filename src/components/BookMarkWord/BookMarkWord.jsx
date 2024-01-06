@@ -5,6 +5,7 @@ import StarRoundedIcon from '@mui/icons-material/StarRounded';
 
 import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
+import T from "./BookMarkWordI18n";
 
 function BookMarkWord({ className, ...props }) {
   const [saved, setSaved] = useState(false);
@@ -54,7 +55,7 @@ function BookMarkWord({ className, ...props }) {
             :
             <div className={'book-mark-bottom-icon-wrapper'} onClick={() => handleSaveWord()}>
               <StarRoundedIcon className={'book-mark-bottom-icon'} fontSize='small'></StarRoundedIcon>
-              <span> שמור לתרגול</span>
+              <span>{T.Save}</span>
             </div>
           }
         </>

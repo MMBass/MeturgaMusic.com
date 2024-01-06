@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import TUtils from '@/i18n-utils';
 
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -41,7 +42,7 @@ function LyricToolTipChilds({ className, ...props }) {
             <LinearProgress className="tt-body-linear" color={"inherit"} />
           }
         </div>
-        {(props.results[0] && props.results[0] !== 'לא נמצאו עוד') &&
+        {(props.results[0] && props.results[0] !== TUtils.NoMore) &&
           <BookMarkWord toSave={{ word: props.lyric, results: props.results, title: currLyricsContext.title }} variant={'Star'}></BookMarkWord>}
       </span>
     </ClickAwayListener>

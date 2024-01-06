@@ -16,7 +16,6 @@ function HistoryItem({ className, ...props }) {
   };
 
   return (
-
     <ListItem
       className={className}
       secondaryAction={
@@ -37,7 +36,6 @@ function HistoryItem({ className, ...props }) {
         }
       ></ListItemText>
     </ListItem>
-
   );
 }
 

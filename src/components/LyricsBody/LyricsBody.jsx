@@ -16,6 +16,7 @@ import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
+import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className, ...props }) {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -47,7 +48,7 @@ function LyricsBody({ className, ...props }) {
 
           {currLyricsContext.translatedBy &&
             <Chip className='trans-by-chip'
-              label={"מתורגם באמצעות " + currLyricsContext.translatedBy}
+              label={TUtils.TransBy + currLyricsContext.translatedBy}
               color="default" variant="filled" size='small' />
           }
 
@@ -79,7 +80,6 @@ function LyricsBody({ className, ...props }) {
                 style={{
                   fontSize: settingsContext.fontSize.md,
                   paddingTop: ((y > 0 && line.src.includes('|')) ? '20px' : '0px'),
-                  // marginTop: (settingsContext.fontSize.md < 22 ? '0px' : '15px'),
                   lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : settingsContext.fontSize.md + 10 + 'px'),
                 }}
               >
@@ -94,7 +94,6 @@ function LyricsBody({ className, ...props }) {
               <Box className="lyrics-line he-line"
                 style={{
                   fontSize: settingsContext.fontSize.md,
-                  // marginTop: (settingsContext.fontSize.md < 22 ? '-0px' : '-11px'),
                   lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : settingsContext.fontSize.md + 10 + 'px'),
                 }}
               >

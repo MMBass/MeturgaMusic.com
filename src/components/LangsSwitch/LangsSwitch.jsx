@@ -5,12 +5,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
+import T from "./LangsSwitchI18n";
+
 function LangsSwitch({ className }) {
   return (
     <Card variant="outlined" className={className}>
       <CardContent>
         <Typography component="label">
-          איזו שפה להציג?
+          {T.WhichToDisplay}
         </Typography>
       </CardContent>
 
@@ -24,13 +26,13 @@ function LangsSwitch({ className }) {
           aria-label="text alignment"
         >
           <ToggleButton value="left" aria-label="left aligned">
-            אנגלית
+            {T.EN}
           </ToggleButton>
           <ToggleButton value="center" aria-label="centered">
-            אנגלית + עברית
+            {T.EN} + {T.HE}
           </ToggleButton>
           <ToggleButton value="right" aria-label="right aligned">
-            עברית
+            {T.HE}
           </ToggleButton>
         </ToggleButtonGroup >
       </CardActions>

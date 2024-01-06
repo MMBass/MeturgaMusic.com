@@ -6,6 +6,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
+import T from "./HeaderI18n";
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -127,12 +129,12 @@ const Header = ({ className, ...props }) => {
                 <span id="h2-part1" style={{
                   color: theme.palette.secondary.dark
                 }}>
-                  מתורגמ
+                  {T.H2Part1}
                 </span>
                 <span id="h2-part2" style={{
                   color: 'white'
                 }}>
-                  יוזיק
+                   {T.H2Part2}
                 </span>
 
               </Typography>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import utils from '@/utils';
+import T from "./FooterLinksI18n";
 
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
@@ -34,8 +35,7 @@ function FooterLinks({ className }) {
   };
 
   return (
-
-    <Grid container rowSpacing={1} columnSpacing={0}>
+    <Grid className={className} container rowSpacing={1} columnSpacing={0}>
 
       {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
         <Grid className={'install-section'} item xs={12} sm={3}>
@@ -49,21 +49,20 @@ function FooterLinks({ className }) {
             variant="h5"
             component="h5"
           >
-            שתפו עם חברים
+            {T.Share}
           </ListSubheader>
           <ListItem>
-            <IconButton component={Link} aria-label="whatsapp" href="https://api.whatsapp.com/send?text=מצאתי אתר חדש, ייעודי ונוח, שעוזר ללמוד אנגלית עם שירים!
-MeturgaMusic.com " >
+            <IconButton component={Link} aria-label="whatsapp" href={"https://api.whatsapp.com/send?text=" + T.WhatsappMessage + " MeturgaMusic.com "} >
               <WhatsAppIcon />
             </IconButton>
-            <ListItemText primary={'שיתוף בווצאפ'} />
+            <ListItemText primary={T.WPShare} />
           </ListItem>
 
           <ListItem>
             <CopyToClipboard text={"MeturgaMusic.com"} onCopy={() => handleCopy()}>
               <IconButton aria-label="share">
                 <Tooltip
-                  title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>הועתק</Typography>}
+                  title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
                   arrow
                   PopperProps={{
                     disablePortal: false,
@@ -77,7 +76,7 @@ MeturgaMusic.com " >
                 </Tooltip>
               </IconButton>
             </CopyToClipboard>
-            <ListItemText primary={'קישור לאתר'} />
+            <ListItemText primary={T.SiteLink} />
           </ListItem>
         </List>
       </Grid>
@@ -88,20 +87,20 @@ MeturgaMusic.com " >
             variant="h5"
             component="h5"
           >
-            עזרו לנו להתפתח! עקבו ושתפו
+            {T.HelpUs}
           </ListSubheader>
           <ListItem>
             <IconButton component={Link} href="https://www.instagram.com/meturgamusic" aria-label="link" >
               <InstagramIcon />
             </IconButton>
-            <ListItemText primary={'אינסטגרם'} />
+            <ListItemText primary={T.Insta} />
           </ListItem>
 
           <ListItem>
             <IconButton component={Link} href="https://www.facebook.com/people/MeturgaMusic/100088145167989" aria-label="link">
               <FacebookIcon />
             </IconButton>
-            <ListItemText primary={'פייסבוק'} />
+            <ListItemText primary={T.FB} />
           </ListItem>
         </List>
       </Grid>
@@ -113,7 +112,7 @@ MeturgaMusic.com " >
             variant="h5"
             component="h5"
           >
-            לדיווח על תקלות
+           {T.ReportUs}
           </ListSubheader>
           <ListItem>
             <IconButton component={Link} href="mailto:meturgamusic@gmail.com" aria-label="link" >
@@ -126,7 +125,7 @@ MeturgaMusic.com " >
             <IconButton component={Link} href="https://www.facebook.com/people/MeturgaMusic/100088145167989" aria-label="link">
               <MessageIcon />
             </IconButton>
-            <ListItemText primary={'או שלחו הודעה בעמוד הפייסבוק שלנו'} />
+            <ListItemText primary={T.SendFBMessage} />
           </ListItem>
         </List>
       </Grid>
