@@ -1,7 +1,6 @@
 import { useState, useContext } from 'react';
 
 import { NavLink } from "react-router-dom";
-import { useTheme } from '@mui/material/styles';
 
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
@@ -32,7 +31,6 @@ import Switch from '@mui/material/Switch';
 function SidePagesList({ className, ...props }) {
   const settingsContext = useContext(SettingsContext);
   const [showPlayer, setShowPlayer] = useState(JSON.parse(localStorage.getItem('showPlayer')));
-  const theme = useTheme();
 
   function handleShowPlayer() {
     setShowPlayer(!showPlayer);

@@ -6,10 +6,6 @@ import { useTheme } from '@mui/material/styles';
 
 function ChangeColors({ className, ...props }) {
   const theme = useTheme();
-
-// useEffect(() => {
-//   console.log(theme);
-// }, [input]);
   
   const handleChangeColors = () => {
     props.changeColors();

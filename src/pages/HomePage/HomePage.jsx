@@ -15,8 +15,12 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
 import { DrawerContext } from '@context/DrawerContext';
 
+import { useTheme } from '@mui/material/styles';
+
 import mainPic from '../../images/screenshots/latest/combined-shot-whiteBg-player.png';
-import mainPic2 from '../../images/screenshots/latest/no-pink-shot-bordered-pink.png';
+import mainPicPinkBorder from '../../images/screenshots/latest/no-pink-shot-bordered-pink.png';
+import mainPicMobile from '../../images/screenshots/latest/no-pink-shot-bordered-pink-mobile.png';
+import mainPicDark from '../../images/screenshots/latest/no-pink-shot-bordered-pink-dark-mode.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
@@ -25,7 +29,10 @@ function HomePage({ className }) {
   const [searchParams, setSearchParams] = useSearchParams(); // using the react-router hook, works with hashed pages
   const sname = searchParams.get("song");
 
+  const theme = useTheme();
+
   useEffect(() => {
+
     // note! the params in HashRouter works only this pattern: http://.../#/?song=artist_title
     drawerContext.closeDrawer();
     if (bannersContext.error) bannersContext.closeBanner('error');
@@ -63,8 +70,17 @@ function HomePage({ className }) {
             </Grid> */}
 
             <Grid item className="mainPics-container" xs={12} sm={6}>
-              <img className="wide-pic" src={mainPic2}></img>  
-              <img className="mobile-pic" src={mainPic2}></img>  
+
+              {theme.palette.primary.main === '#DF808E' ?
+                <img className="wide-pic" src={mainPic}></img>
+                :
+                <img className="wide-pic" src={mainPicDark}></img>
+              }
+              {theme.palette.primary.main === '#DF808E' ?
+                <img className="mobile-pic" src={mainPicMobile}></img>
+                :
+                <img className="mobile-pic" src={mainPicDark}></img>
+              }
             </Grid>
 
             <Grid item xs={12} sm={6}>
