@@ -1012,6 +1012,24 @@ font-size: 22px;
 `;function X9({className:e}){var l,c;const t=d.exports.useContext(Do),n=d.exports.useContext(Gi),r=d.exports.useContext(Is),[o,i]=zx(),a=o.get("song");d.exports.useEffect(()=>{r.closeDrawer(),n.error&&n.closeBanner("error"),a&&a.includes("_")&&s()},[]);function s(){let u=a;u=u.replaceAll("-"," ");const f={artistName:encodeURI(` ${u.split("_")[0]} `),songName:encodeURI(` ${u.split("_")[1]} `)};u=u.replaceAll("_"," - "),t.getSongLyrics(f,u)}return H("div",{className:e,children:[!((l=t.lines)!=null&&l[0])&&g(Zx,{className:"home-top",maxWidth:!1,children:H(Te,{container:!0,className:"home-t-container",children:[g(Te,{item:!0,xs:12,sm:6,children:H(Pe,{variant:"h1",className:"page-h1",children:[no.OldPageH1part1," ",g("br",{className:"h1-br"}),no.OldPageH1part2]})}),H(Te,{item:!0,xs:12,sm:6,children:[H(Pe,{variant:"h3",className:"page-h3",children:[g("span",{className:"h3-start h3-start-top",children:no.H3StartTop}),g("span",{className:"h3-start h3-start-one",children:no.H3StartOne}),g("span",{className:"h3-start h3-start-two",children:no.H3StartTwo}),g("span",{className:"h3-middle",children:no.H3Middle}),g("span",{className:"h3-bottom",children:no.H3Bottom})]}),g(Gm,{locat:"main",size:"large"})]})]})}),((c=t.lines)==null?void 0:c[0])&&H(Te,{container:!0,spacing:1,children:[g(Te,{item:!0,md:12,lg:9,children:g(V9,{className:"lyrics-body"})}),g(Te,{item:!0,xs:12,lg:3})]})]})}const Y9=D(X9)`
     min-height: 700px;
     
+    .mainPics-container{
+        position: relative;
+
+        img{
+            position: absolute;
+        }
+
+        .wide-pic{
+        width: 500px;
+        height: auto;
+        }
+        .mobile-pic{
+            width: 300px;
+            height: auto;
+        }
+
+    }
+    
     .home-top{
        padding: 0 35px;
        @media (max-width: 600px) {

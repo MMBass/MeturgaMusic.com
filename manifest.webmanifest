@@ -6,7 +6,7 @@
   "display": "standalone",
   "background_color": "#DF808E",
   "theme_color": "#DF808E",
-  "orientation": "any",
+  "orientation": "natural",
   "icons": [
     {
       "src": "https://meturgamusic.com/ico/android-chrome-512x512.png",

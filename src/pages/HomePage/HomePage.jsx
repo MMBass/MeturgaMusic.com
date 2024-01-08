@@ -15,7 +15,8 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
 import { DrawerContext } from '@context/DrawerContext';
 
-import mainPic from '../../images/screenshots/latest/mainPic.png';
+import mainPic from '../../images/screenshots/latest/shot11.png';
+import mainPic2 from '../../images/screenshots/latest/shot9.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
@@ -59,8 +60,12 @@ function HomePage({ className }) {
               <Typography variant="h1" className="page-h1">
                 {T.OldPageH1part1} <br className="h1-br"></br>{T.OldPageH1part2}
               </Typography>
-              {/* <img src={mainPic}></img> */}
             </Grid>
+
+            {/* <Grid item className="mainPics-container" xs={12} sm={6}>
+              <img className="wide-pic" src={mainPic}></img>
+              <img className="mobile-pic" src={mainPic2}></img>
+            </Grid> */}
 
             <Grid item xs={12} sm={6}>
               <Typography variant="h3" className="page-h3">

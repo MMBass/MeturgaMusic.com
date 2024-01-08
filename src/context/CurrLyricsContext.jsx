@@ -18,7 +18,7 @@ export default function CurrLyricsContextProvider(props) {
     const [title, setTitle] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('currSongTitle')) || '');
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [azureServerError, setAzureServerError] = useState(false); // set if azure trans didn't work
-    const [translatedBy, setTranslatedBy] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('currService')) || ''); // depends on azureServerError except when combined (that for now always microsoft)
+    const [translatedBy, setTranslatedBy] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('currService')) || '');
     const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans
     const [videoId, setVideoId] = useState(sessionStorage.getItem('currVideoId') || '');
 
@@ -29,8 +29,7 @@ export default function CurrLyricsContextProvider(props) {
     }, [lines, azureServerError]);
 
     useEffect(() => {
-
-        // Temporary give every user 3 fast translations
+        // Temporarly, gives every user 3 fast translations
         if (JSON.parse(localStorage.getItem('meturgamm_songs'))?.length >= 2) {
             setAzureServerError(true);
         }

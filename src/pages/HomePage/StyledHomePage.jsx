@@ -4,6 +4,24 @@ import HomePage from './HomePage';
 const StyledHomePage = styled(HomePage)`
     min-height: 700px;
     
+    .mainPics-container{
+        position: relative;
+
+        img{
+            position: absolute;
+        }
+
+        .wide-pic{
+        width: 500px;
+        height: auto;
+        }
+        .mobile-pic{
+            width: 300px;
+            height: auto;
+        }
+
+    }
+    
     .home-top{
        padding: 0 35px;
        @media (max-width: 600px) {
