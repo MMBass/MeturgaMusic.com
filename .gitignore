@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 draft-images
+drafts
 dist-ssr
 *.local
 

@@ -3,21 +3,44 @@ import HomePage from './HomePage';
 
 const StyledHomePage = styled(HomePage)`
     min-height: 700px;
+
+    @media (max-width: 600px) {
+        .home-t-container{
+          flex-direction: column-reverse;
+        }
+    }
     
     .mainPics-container{
-        position: relative;
+        width: 610px;
+        height: 400px;
+        padding-top: 10px;
+
+        @media (max-width: 600px) {
+            height: fit-content;
+        }
 
         img{
-            position: absolute;
+            z-index: 9999;
+            border-radius: 15px;
         }
 
         .wide-pic{
-        width: 500px;
-        height: auto;
-        }
-        .mobile-pic{
-            width: 300px;
+            width: 580px;
             height: auto;
+
+            @media (max-width: 600px) {
+               display: none;
+            }
+        }
+
+        .mobile-pic{
+            padding-top: 35px;
+            width: 100%;
+            height: auto;
+
+            @media (min-width: 600px) {
+               display: none;
+            }
         }
 
     }
