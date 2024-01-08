@@ -26,7 +26,7 @@ const StyledHomePage = styled(HomePage)`
         }
 
         .wide-pic{
-            width: 580px;
+            width: 95%;
             height: auto;
 
             @media (max-width: 600px) {

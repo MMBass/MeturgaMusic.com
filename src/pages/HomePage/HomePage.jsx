@@ -16,7 +16,7 @@ import { BannersContext } from '@context/BannersContext';
 import { DrawerContext } from '@context/DrawerContext';
 
 import mainPic from '../../images/screenshots/latest/combined-shot-whiteBg-player.png';
-import mainPic2 from '../../images/screenshots/latest/combined-shot-whiteBg-player.png';
+import mainPic2 from '../../images/screenshots/latest/no-pink-shot-bordered-pink.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
@@ -63,7 +63,7 @@ function HomePage({ className }) {
             </Grid> */}
 
             <Grid item className="mainPics-container" xs={12} sm={6}>
-              <img className="wide-pic" src={mainPic}></img>  
+              <img className="wide-pic" src={mainPic2}></img>  
               <img className="mobile-pic" src={mainPic2}></img>  
             </Grid>
 
