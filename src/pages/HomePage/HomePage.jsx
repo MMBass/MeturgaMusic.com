@@ -16,7 +16,7 @@ import { BannersContext } from '@context/BannersContext';
 import { DrawerContext } from '@context/DrawerContext';
 
 import mainPic from '../../images/screenshots/latest/combined-shot-whiteBg-player.png';
-import mainPic2 from '../../images/screenshots/latest/combined-shot-white-ttip.png';
+import mainPic2 from '../../images/screenshots/latest/combined-shot-whiteBg-cuted.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);

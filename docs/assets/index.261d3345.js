@@ -1009,11 +1009,12 @@ font-size: 22px;
     width: 90%;
     text-align: start;
   }
-`;var X9="/assets/combined-shot-whiteBg-player.1dfd6e5a.png",Y9="/assets/combined-shot-white-ttip.8d52caac.png";function Q9({className:e}){var l,c;const t=d.exports.useContext(Lo),n=d.exports.useContext(Vi),r=d.exports.useContext(Is),[o,i]=zx(),a=o.get("song");d.exports.useEffect(()=>{r.closeDrawer(),n.error&&n.closeBanner("error"),a&&a.includes("_")&&s()},[]);function s(){let u=a;u=u.replaceAll("-"," ");const f={artistName:encodeURI(` ${u.split("_")[0]} `),songName:encodeURI(` ${u.split("_")[1]} `)};u=u.replaceAll("_"," - "),t.getSongLyrics(f,u)}return H("div",{className:e,children:[!((l=t.lines)!=null&&l[0])&&g(Zx,{className:"home-top",maxWidth:!1,children:H(Te,{container:!0,className:"home-t-container",children:[H(Te,{item:!0,className:"mainPics-container",xs:12,sm:6,children:[g("img",{className:"wide-pic",src:X9}),g("img",{className:"mobile-pic",src:Y9})]}),H(Te,{item:!0,xs:12,sm:6,children:[H(Pe,{variant:"h3",className:"page-h3",children:[g(Pe,{variant:"h1",className:"h3-start h3-start-top",children:ya.H3StartTop}),g("span",{className:"h3-start h3-start-one",children:ya.H3StartOne}),g("span",{className:"h3-start h3-start-two",children:ya.H3StartTwo}),g("span",{className:"h3-middle",children:ya.H3Middle}),g("span",{className:"h3-bottom",children:ya.H3Bottom})]}),g(Gm,{locat:"main",size:"large"})]})]})}),((c=t.lines)==null?void 0:c[0])&&H(Te,{container:!0,spacing:1,children:[g(Te,{item:!0,md:12,lg:9,children:g(V9,{className:"lyrics-body"})}),g(Te,{item:!0,xs:12,lg:3})]})]})}const J9=D(Q9)`
+`;var X9="/assets/combined-shot-whiteBg-player.1dfd6e5a.png",Y9="/assets/combined-shot-whiteBg-cuted.c000586d.png";function Q9({className:e}){var l,c;const t=d.exports.useContext(Lo),n=d.exports.useContext(Vi),r=d.exports.useContext(Is),[o,i]=zx(),a=o.get("song");d.exports.useEffect(()=>{r.closeDrawer(),n.error&&n.closeBanner("error"),a&&a.includes("_")&&s()},[]);function s(){let u=a;u=u.replaceAll("-"," ");const f={artistName:encodeURI(` ${u.split("_")[0]} `),songName:encodeURI(` ${u.split("_")[1]} `)};u=u.replaceAll("_"," - "),t.getSongLyrics(f,u)}return H("div",{className:e,children:[!((l=t.lines)!=null&&l[0])&&g(Zx,{className:"home-top",maxWidth:!1,children:H(Te,{container:!0,className:"home-t-container",children:[H(Te,{item:!0,className:"mainPics-container",xs:12,sm:6,children:[g("img",{className:"wide-pic",src:X9}),g("img",{className:"mobile-pic",src:Y9})]}),H(Te,{item:!0,xs:12,sm:6,children:[H(Pe,{variant:"h3",className:"page-h3",children:[g(Pe,{variant:"h1",className:"h3-start h3-start-top",children:ya.H3StartTop}),g("span",{className:"h3-start h3-start-one",children:ya.H3StartOne}),g("span",{className:"h3-start h3-start-two",children:ya.H3StartTwo}),g("span",{className:"h3-middle",children:ya.H3Middle}),g("span",{className:"h3-bottom",children:ya.H3Bottom})]}),g(Gm,{locat:"main",size:"large"})]})]})}),((c=t.lines)==null?void 0:c[0])&&H(Te,{container:!0,spacing:1,children:[g(Te,{item:!0,md:12,lg:9,children:g(V9,{className:"lyrics-body"})}),g(Te,{item:!0,xs:12,lg:3})]})]})}const J9=D(Q9)`
     min-height: 700px;
 
     @media (max-width: 600px) {
         .home-t-container{
+          padding-top: 30px;
           flex-direction: column-reverse;
         }
     }
@@ -1057,12 +1058,6 @@ font-size: 22px;
        padding: 0 35px;
        @media (max-width: 600px) {
         padding: 0 25px;
-       }
-
-       /* text-align: center; */
-       img{
-        width: 298px;
-        height: 606px;
        }
     }
 

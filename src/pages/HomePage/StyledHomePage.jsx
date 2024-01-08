@@ -6,6 +6,7 @@ const StyledHomePage = styled(HomePage)`
 
     @media (max-width: 600px) {
         .home-t-container{
+          padding-top: 30px;
           flex-direction: column-reverse;
         }
     }
@@ -49,12 +50,6 @@ const StyledHomePage = styled(HomePage)`
        padding: 0 35px;
        @media (max-width: 600px) {
         padding: 0 25px;
-       }
-
-       /* text-align: center; */
-       img{
-        width: 298px;
-        height: 606px;
        }
     }
 
