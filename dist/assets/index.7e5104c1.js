@@ -599,8 +599,7 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
       }
 `;function y3({className:e,...t}){return g("div",{className:e,children:t.children})}const x3=D(y3)`
   height: fit-content;
-  min-height: 100vh;
-  /* min-height: 700px; */
+  min-height: 700px;
   
   background-color: ${e=>e.theme.palette.secondary.main};
   color: ${e=>e.theme.palette.primary.contrastText};
@@ -1011,7 +1010,7 @@ font-size: 22px;
     text-align: start;
   }
 `;var Y9="/assets/combined-shot-whiteBg-player.1dfd6e5a.png",Q9="/assets/no-pink-shot-bordered-pink-mobile.2e9ec946.png",Vv="/assets/no-pink-shot-bordered-pink-dark-mode.458e3358.png";function J9({className:e}){var c,u;const t=d.exports.useContext(Lo),n=d.exports.useContext(Vi),r=d.exports.useContext(Is),[o,i]=Bx(),a=o.get("song"),s=cn();d.exports.useEffect(()=>{r.closeDrawer(),n.error&&n.closeBanner("error"),a&&a.includes("_")&&l()},[]);function l(){let p=a;p=p.replaceAll("-"," ");const h={artistName:encodeURI(` ${p.split("_")[0]} `),songName:encodeURI(` ${p.split("_")[1]} `)};p=p.replaceAll("_"," - "),t.getSongLyrics(h,p)}return H("div",{className:e,children:[!((c=t.lines)!=null&&c[0])&&g(eb,{className:"home-top",maxWidth:!1,children:H(Te,{container:!0,className:"home-t-container",children:[H(Te,{item:!0,className:"mainPics-container",xs:12,sm:6,children:[s.palette.primary.main==="#DF808E"?g("img",{className:"wide-pic",src:Y9}):g("img",{className:"wide-pic",src:Vv}),s.palette.primary.main==="#DF808E"?g("img",{className:"mobile-pic",src:Q9}):g("img",{className:"mobile-pic",src:Vv})]}),H(Te,{item:!0,xs:12,sm:6,children:[H(Pe,{variant:"h3",className:"page-h3",children:[g(Pe,{variant:"h1",className:"h3-start h3-start-top",children:ya.H3StartTop}),g("span",{className:"h3-start h3-start-one",children:ya.H3StartOne}),g("span",{className:"h3-start h3-start-two",children:ya.H3StartTwo}),g("span",{className:"h3-middle",children:ya.H3Middle}),g("span",{className:"h3-bottom",children:ya.H3Bottom})]}),g(Gm,{locat:"main",size:"large"})]})]})}),((u=t.lines)==null?void 0:u[0])&&H(Te,{container:!0,spacing:1,children:[g(Te,{item:!0,md:12,lg:9,children:g(G9,{className:"lyrics-body"})}),g(Te,{item:!0,xs:12,lg:3})]})]})}const Z9=D(J9)`
-    min-height: 700px;
+    min-height: 100vh;
 
     .makePics{
         /* background: rgb(223, 128, 142);

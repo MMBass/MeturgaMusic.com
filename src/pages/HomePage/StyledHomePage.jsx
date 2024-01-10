@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import HomePage from './HomePage';
 
 const StyledHomePage = styled(HomePage)`
-    min-height: 700px;
+    min-height: 100vh;
 
     .makePics{
         /* background: rgb(223, 128, 142);
