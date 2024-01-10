@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /NoMatchPage
-Allow: /
-Allow: /*
-
-Sitemap: https://MeturgaMusic.com/sitemap.txt
