@@ -599,7 +599,8 @@ Add a <Suspense fallback=...> component higher in the tree to provide a loading 
       }
 `;function y3({className:e,...t}){return g("div",{className:e,children:t.children})}const x3=D(y3)`
   height: fit-content;
-  min-height: 700px;
+  min-height: 100vh;
+  /* min-height: 700px; */
   
   background-color: ${e=>e.theme.palette.secondary.main};
   color: ${e=>e.theme.palette.primary.contrastText};

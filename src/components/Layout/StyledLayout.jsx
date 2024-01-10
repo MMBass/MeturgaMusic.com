@@ -3,7 +3,8 @@ import Layout from './Layout';
 
 const StyledLayout = styled(Layout)`
   height: fit-content;
-  min-height: 700px;
+  min-height: 100vh;
+  /* min-height: 700px; */
   
   background-color: ${props => props.theme.palette.secondary.main};
   color: ${props => props.theme.palette.primary.contrastText};
