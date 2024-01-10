@@ -1026,8 +1026,8 @@ font-size: 22px;
         }
 
         .wide-pic{
-        width: 500px;
-        height: auto;
+            width: 500px;
+            height: auto;
         }
         .mobile-pic{
             width: 210px;
@@ -1058,7 +1058,7 @@ font-size: 22px;
         }
 
         .wide-pic{
-            width: 95%;
+            width: 90%;
             height: auto;
 
             @media (max-width: 600px) {
@@ -1111,7 +1111,7 @@ font-size: 22px;
         }
 
         .h3-start-top{
-            font-size: 2.6vw;
+            font-size: 2.7vw;
             @media (max-width: 600px) {
                 font-size: 5.5vw;
             }
@@ -1120,26 +1120,26 @@ font-size: 22px;
 
         .h3-start-one{
 
-            @media (max-width: 600px) {
-        
-            }
-   
         }
 
         .h3-start-two{
- 
-            @media (max-width: 600px) {
-
+            @media (min-width: 600px) {
+                font-size: 4.4vw;
             }
     
         }
 
         .h3-middle{
             color: ${e=>e.theme.palette.primary.dark};
+            @media (min-width: 600px) {
+                font-size: 3.78vw;
+            }
         }
 
         .h3-bottom{
-        
+            @media (min-width: 600px) {
+                font-size: 4.2vw;
+            }
         }
     }
     
