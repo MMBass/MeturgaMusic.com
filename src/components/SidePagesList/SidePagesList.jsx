@@ -108,9 +108,9 @@ function SidePagesList({ className, ...props }) {
         </ListItemButton>
       </ListItem>
 
-      <ListItem sx={{ justifyContent: 'center' }}>
+      {/* <ListItem sx={{ justifyContent: 'center' }}>
         <LangsSwitch></LangsSwitch>
-      </ListItem>
+      </ListItem> */}
 
       {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
         <ListItem sx={{ justifyContent: 'center' }}>

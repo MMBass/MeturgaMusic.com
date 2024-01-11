@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, useMemo } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
 import rtlPlugin from 'stylis-plugin-rtl';
