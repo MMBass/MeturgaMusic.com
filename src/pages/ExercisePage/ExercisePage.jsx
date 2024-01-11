@@ -24,7 +24,7 @@ function ExercisePage({ className }) {
   };
 
   return (
-    <div className={className}>
+    <div className={`${className} page`}>
       {words[0] &&
         <List
           sx={{ width: '100%' }}

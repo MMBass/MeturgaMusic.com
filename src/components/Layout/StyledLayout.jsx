@@ -8,6 +8,10 @@ const StyledLayout = styled(Layout)`
   background-color: ${props => props.theme.palette.secondary.main};
   color: ${props => props.theme.palette.primary.contrastText};
 
+  .page{
+    min-height: 100vh;
+  }
+
   .page-h1{
     padding: 0px 0px 0px 0px;
     /* font-size: 140px;  */

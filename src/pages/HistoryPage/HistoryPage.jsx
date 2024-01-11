@@ -25,7 +25,7 @@ function HistoryPage({ className }) {
   };
 
   return (
-    <div className={className}>
+    <div className={`${className} page`}>
       {songs[0] &&
         <Box >
           <Button className='d-all-btn' component="label" onClick={() => { handleDeleteAll() }} variant="outlined" startIcon={<DeleteSweepOutlinedIcon />}>
