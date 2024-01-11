@@ -12,10 +12,9 @@ function ChangeColors({ className, ...props }) {
   }
 
   return (
-    <div id="" className={className}>
+    <div className={className}>
       <IconButton onClick={() => handleChangeColors()}>
         {theme.palette.mode === 'dark' ? <Brightness7Icon color='primary'/> : <Brightness4Icon />}
-        {/* <ContrastRoundedIcon className='mui-rounded-icon'></ContrastRoundedIcon> */}
       </IconButton>
     </div>
   );

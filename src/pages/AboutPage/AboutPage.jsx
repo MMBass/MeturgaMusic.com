@@ -6,7 +6,7 @@ import screenshotchangesizeurl from '../../images/screenshots/images/screenshot-
 
 function AboutPage({ className }) {
   return (
-    <div id="" className={className}>
+    <div  className={className}>
      
     </div>
   );

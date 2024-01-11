@@ -12,7 +12,7 @@ function ChangeSize({className}) {
   const settingsContext = useContext(SettingsContext);
 
   return (
-    <div id="" className={className}>
+    <div  className={className}>
        <ButtonGroup className='button-group'>
             <Button
               aria-label="reduce"

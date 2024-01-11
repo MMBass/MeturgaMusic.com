@@ -99,7 +99,7 @@ function SidePagesList({ className, ...props }) {
           onChange={handleShowPlayer}
           inputProps={{ 'aria-label': 'controlled' }}
         />
-        <ListItemText secondary={T.PlayerSwitch} sx={{ flex: '0 0 auto' }} />
+        <ListItemText secondary={T.PlayerSwitch} sx={{ flex: '0 0 auto', marginInlineStart: '10px' }} />
       </ListItem>
 
       <ListItem>
@@ -108,10 +108,10 @@ function SidePagesList({ className, ...props }) {
         </ListItemButton>
       </ListItem>
 
-      {/* <ListItem>
+      {/* <ListItem sx={{ justifyContent: 'center' }}>
         <LangsSwitch></LangsSwitch>
       </ListItem> */}
-      
+
       {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
         <ListItem sx={{ justifyContent: 'center' }}>
           <OfferInstall></OfferInstall>

@@ -19,7 +19,7 @@ function ScrollTop({className}) {
    }; 
 
   return (
-      <Zoom id="" className={className} in={trigger}>
+      <Zoom  className={className} in={trigger}>
         <Box
           role="presentation"
           sx={{
