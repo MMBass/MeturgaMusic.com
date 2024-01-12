@@ -103,6 +103,7 @@ function App({ className }) {
                 <Route path="/History" element={<HistoryPage className={'page'} rank={1} />} />
                 <Route path="/Wish-list" element={<WishlistPage className={'page'} rank={1} />} />
                 <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} rank={1} />} />
+                <Route path="/songs/:directSong" element={<HomePage className={'page'} rank={1} />} />
 
                 {/* NoMatchPage works only in hash paths */}
                 <Route path="*" element={<NoMatchPage className={'page'} />} />

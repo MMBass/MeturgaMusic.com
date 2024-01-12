@@ -1,12 +1,17 @@
 https://MeturgaMusic.com
 
+https://MeturgaMusic.com/history
+https://meturgamusic.com/exercise
+https://meturgamusic.com/wish-list
+https://meturgamusic.com/spotify-extension
+
 https://MeturgaMusic.com?page=history
 https://meturgamusic.com?page=exercise
 https://meturgamusic.com?page=wish-list
 https://meturgamusic.com?page=spotify-extension
 
-https://MeturgaMusic.com?song=Ed-sheeran_shape-of-you
-https://MeturgaMusic.com?song=Ed-sheeran_perfect
-https://MeturgaMusic.com?song=sia_Chandelier
-https://MeturgaMusic.com?song=sia_Cheap-Thrills
-https://MeturgaMusic.com?song=weezer_records
+https://MeturgaMusic.com/songs/Ed-sheeran_shape-of-you
+https://MeturgaMusic.com/songs/Ed-sheeran_perfect
+https://MeturgaMusic.com/songs/sia_Chandelier
+https://MeturgaMusic.com/songs/sia_Cheap-Thrills
+https://MeturgaMusic.com/songs/weezer_records

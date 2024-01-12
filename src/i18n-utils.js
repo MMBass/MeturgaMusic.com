@@ -4,7 +4,8 @@ export default {
   TryingAgain: 'מנסה שוב',
   TransMissing: '[תרגום חסר]',
   NoMore: 'לא נמצאו עוד',
-  TransBy: 'מתורגם באמצעות-',
+  TransBy: 'מתורגם באמצעות ',
   UnderBuilding: "האתר בבניה",
   NoExactTransMessage: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק",
+  Translated: "מתורגם"
 };

@@ -62,8 +62,17 @@ const StyledHomePage = styled(HomePage)`
         }
     }
 
+    .h3-start-top{
+        margin: 40px 0px 0px 0px;
+        font-size: 2.7vw;
+        @media (max-width: 600px) {
+            margin: 15px 0px 0px 0px;
+            font-size: 5.5vw;
+        }
+    }
+
     .page-h3{
-        margin: 40px 0px 15px 0px;
+        margin: 0px 0px 15px 0px;
         font-size: 3.5vw;
         font-weight: 400;
         color: ${props => props.theme.palette.primary.contrastText};
@@ -73,16 +82,8 @@ const StyledHomePage = styled(HomePage)`
         }
 
         @media (max-width: 600px) {
-            margin: 15px 0px 35px  0px;
+            margin: 0px 0px 35px  0px;
             font-size: 7.4vw;
-        }
-
-        .h3-start-top{
-            font-size: 2.7vw;
-            @media (max-width: 600px) {
-                font-size: 5.5vw;
-            }
-
         }
 
         .h3-start-one{

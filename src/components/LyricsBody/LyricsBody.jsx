@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useParams } from "react-router-dom";
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -19,13 +19,15 @@ import utils from '@/utils';
 import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className, ...props }) {
-  let [searchParams, setSearchParams] = useSearchParams();
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { directSong } = useParams();
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-    setSearchParams(utils.titleToParams(currLyricsContext.title));
+    if (!directSong) {
+      setSearchParams(utils.titleToParams(currLyricsContext.title)); // use if hashRouter
+    }
   }, [currLyricsContext.title]);
 
   const removeSsLines = () => {
@@ -52,19 +54,39 @@ function LyricsBody({ className, ...props }) {
               color="default" variant="filled" size='small' />
           }
 
-          <Typography
-            variant="h6"
-            component="h3"
-            style={{ fontSize: settingsContext.fontSize.lg, direction: "ltr" }}
-          >
-            {currLyricsContext.title &&
-              currLyricsContext.title.split(' ').map((word) => {
-                return (
-                  <LyricToolTip key={uuidv4()} lyric={word} open={false}></LyricToolTip>
-                )
-              })
-            }
-          </Typography>
+          {!directSong &&
+            <Typography
+              variant="h6"
+              component="h3"
+              style={{ fontSize: settingsContext.fontSize.lg, direction: "ltr" }}
+            >
+              {currLyricsContext.title &&
+                currLyricsContext.title.split(' ').map((word) => {
+                  return (
+                    <LyricToolTip key={uuidv4()} lyric={word} open={false}></LyricToolTip>
+                  )
+                })
+              }
+            </Typography>
+          }
+
+          {directSong &&
+            <Typography
+              variant="h6"
+              component="h1"
+              style={{ fontSize: settingsContext.fontSize.lg + 8, direction: "ltr", textAlign: 'center' }}
+            >
+              {currLyricsContext.title &&
+                currLyricsContext.title.split(' ').map((word) => {
+                  return (
+                    <LyricToolTip key={uuidv4()} lyric={word} open={false}></LyricToolTip>
+                  )
+                })
+              }
+              <br></br>
+              {TUtils.Translated}
+            </Typography>
+          }
         </Grid>
 
         {currLyricsContext.lines.map((line, y) => {

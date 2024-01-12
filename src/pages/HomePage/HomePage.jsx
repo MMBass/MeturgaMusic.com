@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useParams } from "react-router-dom";
 import T from "./HomePageI18n";
 
 import Container from "@mui/material/Container";
@@ -27,22 +27,22 @@ function HomePage({ className }) {
   const bannersContext = useContext(BannersContext);
   const drawerContext = useContext(DrawerContext);
   const [searchParams, setSearchParams] = useSearchParams(); // using the react-router hook, works with hashed pages
-  const sname = searchParams.get("song");
+  // const sname = searchParams.get("song"); // use for hashRouter
+  const { directSong } = useParams();
 
   const theme = useTheme();
 
   useEffect(() => {
-
     // note! the params in HashRouter works only this pattern: http://.../#/?song=artist_title
     drawerContext.closeDrawer();
     if (bannersContext.error) bannersContext.closeBanner('error');
 
-    if (sname && sname.includes("_")) {
-      callSongIfQuery(sname);
+    if (directSong && directSong.includes("_")) {
+      callSongIfQuery(directSong);
     };
   }, []); // use if there is a direct song in the url
 
-  function callSongIfQuery() {
+  function callSongIfQuery(sname) {
     let songTitle = sname;
     songTitle = songTitle.replaceAll('-', " ");
 
@@ -53,7 +53,7 @@ function HomePage({ className }) {
 
     songTitle = songTitle.replaceAll('_', " - ");
 
-    currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
+    currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, 'direct');
   }
 
   return (
@@ -84,11 +84,11 @@ function HomePage({ className }) {
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              <Typography variant="h3" className="page-h3">
+              <Typography variant="h1" className="h3-start h3-start-top">
+                {T.H3StartTop}
+              </Typography>
 
-                <Typography variant="h1" className="h3-start h3-start-top">
-                  {T.H3StartTop}
-                </Typography>
+              <Typography variant="h3" className="page-h3">
 
                 <span className="h3-start h3-start-one">
                   {T.H3StartOne}
