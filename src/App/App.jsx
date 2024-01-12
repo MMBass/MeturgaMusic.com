@@ -62,7 +62,6 @@ function App({ className }) {
   }, []);
 
   const init = () => {
-    utils.directParamsToHash();
     serverInit();
   };
 
