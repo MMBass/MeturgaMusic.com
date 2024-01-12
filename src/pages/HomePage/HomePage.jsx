@@ -39,9 +39,7 @@ function HomePage({ className }) {
 
     if (directSong && directSong.includes("_")) {
       callSongIfQuery(directSong);
-    };
-
-    if (sname && sname.includes("_")) {
+    }else if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
     };
   }, []); // use if there is a direct song in the url

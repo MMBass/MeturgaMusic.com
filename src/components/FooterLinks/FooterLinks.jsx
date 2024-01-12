@@ -7,8 +7,8 @@ import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import Link from '@mui/material/Link';
 import IconButton from '@mui/material/IconButton';
 import Typography from "@mui/material/Typography";
 import Tooltip from '@mui/material/Tooltip';
@@ -51,33 +51,31 @@ function FooterLinks({ className }) {
           >
             {T.Share}
           </ListSubheader>
-          <ListItem>
-            <IconButton component={Link} aria-label="whatsapp" href={"https://api.whatsapp.com/send?text=" + T.WhatsappMessage + " MeturgaMusic.com "} >
-              <WhatsAppIcon />
-            </IconButton>
+          <ListItemButton component="a" aria-label="whatsapp" href={"https://api.whatsapp.com/send?text=" + T.WhatsappMessage + " MeturgaMusic.com "} target="_blank">
+            <WhatsAppIcon />
             <ListItemText primary={T.WPShare} />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem>
-            <CopyToClipboard text={"MeturgaMusic.com"} onCopy={() => handleCopy()}>
-              <IconButton aria-label="share">
-                <Tooltip
-                  title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
-                  arrow
-                  PopperProps={{
-                    disablePortal: false,
-                  }}
-                  open={copiedOpen}
-                  disableFocusListener
-                  disableTouchListener
-                  disableHoverListener
-                >
-                  <LinkIcon />
-                </Tooltip>
-              </IconButton>
-            </CopyToClipboard>
-            <ListItemText primary={T.SiteLink} />
-          </ListItem>
+          <CopyToClipboard text={"MeturgaMusic.com"} onCopy={() => handleCopy()} aria-label="share">
+            <ListItemButton>
+              <Tooltip
+                title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
+                arrow
+                PopperProps={{
+                  disablePortal: false,
+                }}
+                open={copiedOpen}
+                disableFocusListener
+                disableTouchListener
+                disableHoverListener
+              >
+                <LinkIcon />
+              </Tooltip>
+
+              <ListItemText primary={T.SiteLink} />
+
+            </ListItemButton>
+          </CopyToClipboard>
         </List>
       </Grid>
 
@@ -89,19 +87,17 @@ function FooterLinks({ className }) {
           >
             {T.HelpUs}
           </ListSubheader>
-          <ListItem>
-            <IconButton component={Link} href="https://www.instagram.com/meturgamusic" aria-label="link" >
-              <InstagramIcon />
-            </IconButton>
-            <ListItemText primary={T.Insta} />
-          </ListItem>
+          <ListItemButton component="a" href="https://www.instagram.com/meturgamusic" target="_blank" aria-label="link">
+            <InstagramIcon />
 
-          <ListItem>
-            <IconButton component={Link} href="https://www.facebook.com/people/MeturgaMusic/100088145167989" aria-label="link">
-              <FacebookIcon />
-            </IconButton>
+            <ListItemText primary={T.Insta} />
+          </ListItemButton>
+
+          <ListItemButton component="a" href="https://www.facebook.com/people/MeturgaMusic/100088145167989" target="_blank" aria-label="link">
+            <FacebookIcon />
+
             <ListItemText primary={T.FB} />
-          </ListItem>
+          </ListItemButton>
         </List>
       </Grid>
 
@@ -112,21 +108,17 @@ function FooterLinks({ className }) {
             variant="h5"
             component="h5"
           >
-           {T.ReportUs}
+            {T.ReportUs}
           </ListSubheader>
-          <ListItem>
-            <IconButton component={Link} href="mailto:meturgamusic@gmail.com" aria-label="link" >
-              <EmailIcon />
-            </IconButton>
+          <ListItemButton component="a" href="mailto:meturgamusic@gmail.com" target="_blank" aria-label="link">
+            <EmailIcon />
             <ListItemText primary={'MeturgaMusic@gmail.com'} />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem>
-            <IconButton component={Link} href="https://www.facebook.com/people/MeturgaMusic/100088145167989" aria-label="link">
-              <MessageIcon />
-            </IconButton>
+          <ListItemButton component="a" href="https://www.facebook.com/people/MeturgaMusic/100088145167989 " target="_blank" aria-label="link">
+            <MessageIcon />
             <ListItemText primary={T.SendFBMessage} />
-          </ListItem>
+          </ListItemButton>
         </List>
       </Grid>
 
