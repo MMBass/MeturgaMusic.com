@@ -27,7 +27,7 @@ function HomePage({ className }) {
   const bannersContext = useContext(BannersContext);
   const drawerContext = useContext(DrawerContext);
   const [searchParams, setSearchParams] = useSearchParams(); // using the react-router hook, works with hashed pages
-  // const sname = searchParams.get("song"); // use for hashRouter
+  const sname = searchParams.get("song"); // use for hashRouter
   const { directSong } = useParams();
 
   const theme = useTheme();
@@ -39,6 +39,10 @@ function HomePage({ className }) {
 
     if (directSong && directSong.includes("_")) {
       callSongIfQuery(directSong);
+    };
+
+    if (sname && sname.includes("_")) {
+      callSongIfQuery(sname);
     };
   }, []); // use if there is a direct song in the url
 
