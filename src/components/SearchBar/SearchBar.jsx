@@ -10,6 +10,7 @@ import utils from '@/utils';
 import T from "./SearchBarI18n";
 
 function SearchBar({ className, ...props }) {
+
   const [start, setStart] = useState(false);
   const [currVal, setCurrVal] = useState('');
 
@@ -217,10 +218,10 @@ function SearchBar({ className, ...props }) {
   };
 
   return (
-    <div className={className}>
+    <div className={className} >
 
       {(!props.addRecordMode) &&
-        <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : T.Label} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={"GOOGLE " + T.PoweredBy} value={currVal} />
+        <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : T.Label} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={"GOOGLE " + T.PoweredBy} value={currVal}/>
       }
 
       {(props.addRecordMode) &&
@@ -235,6 +236,5 @@ function SearchBar({ className, ...props }) {
   );
 
 }
-
 
 export default SearchBar;

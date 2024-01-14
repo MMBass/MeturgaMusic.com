@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { useSearchParams, useParams } from "react-router-dom";
 import T from "./HomePageI18n";
@@ -17,15 +17,17 @@ import { DrawerContext } from '@context/DrawerContext';
 
 import { useTheme } from '@mui/material/styles';
 
-import mainPic from '../../images/screenshots/latest/combined-shot-whiteBg-player.png';
-import mainPicPinkBorder from '../../images/screenshots/latest/no-pink-shot-bordered-pink.png';
-import mainPicMobile from '../../images/screenshots/latest/no-pink-shot-bordered-pink-mobile.png';
-import mainPicDark from '../../images/screenshots/latest/no-pink-shot-bordered-pink-dark-mode.png';
+import mainPic from '../../images/screenshots/other/combined-shot-whiteBg-player.png';
+import mainPicPinkBorder from '../../images/screenshots/other/no-pink-shot-bordered-pink.png';
+import mainPicMobile from '../../images/screenshots/other/no-pink-shot-bordered-pink-mobile.png';
+import mainPicDark from '../../images/screenshots/other/no-pink-shot-bordered-pink-dark-mode.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
   const drawerContext = useContext(DrawerContext);
+
+  const [searchFocused, setSearchFocused] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams(); // using the react-router hook, works with hashed pages
   const sname = searchParams.get("song"); // use for hashRouter
   const { directSong } = useParams();
@@ -39,7 +41,7 @@ function HomePage({ className }) {
 
     if (directSong && directSong.includes("_")) {
       callSongIfQuery(directSong);
-    }else if (sname && sname.includes("_")) {
+    } else if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
     };
   }, []); // use if there is a direct song in the url
@@ -58,6 +60,10 @@ function HomePage({ className }) {
     currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, 'direct');
   }
 
+  function focusSearch() {
+    setSearchFocused(true);
+  }
+
   return (
 
     <div className={`${className} page`}>
@@ -65,11 +71,9 @@ function HomePage({ className }) {
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
 
-            {/* <Grid item xs={12} sm={6}>
-              <Typography variant="h1" className="page-h1">
-                {T.OldPageH1part1} <br className="h1-br"></br>{T.OldPageH1part2}
-              </Typography>
-            </Grid> */}
+            <Typography variant="h2" className="page-h2">
+              {T.MeturgaMusic}
+            </Typography>
 
             <Grid item className="mainPics-container" xs={12} sm={6}>
 
@@ -78,11 +82,7 @@ function HomePage({ className }) {
                 :
                 <img className="wide-pic" src={mainPicDark}></img>
               }
-              {theme.palette.primary.main === '#DF808E' ?
-                <img className="mobile-pic" src={mainPicMobile}></img>
-                :
-                <img className="mobile-pic" src={mainPicDark}></img>
-              }
+
             </Grid>
 
             <Grid item xs={12} sm={6}>
@@ -110,13 +110,16 @@ function HomePage({ className }) {
 
               </Typography>
 
-              <SearchBar locat={"main"} size={"large"}></SearchBar>
+              <SearchBar focused={searchFocused} locat={"main"} size={"large"}></SearchBar>
             </Grid>
 
           </Grid>
 
-          {/* <AboutBody></AboutBody> */}
         </Container>
+      }
+
+      {!currLyricsContext.lines?.[0] &&
+        <AboutBody focusSearch={focusSearch}></AboutBody>
       }
 
       {currLyricsContext.lines?.[0] &&

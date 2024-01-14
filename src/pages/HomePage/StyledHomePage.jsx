@@ -2,21 +2,13 @@ import { styled } from '@mui/material/styles';
 import HomePage from './HomePage';
 
 const StyledHomePage = styled(HomePage)`
-
-    @media (max-width: 600px) {
-        .home-t-container{
-          padding-top: 30px;
-          flex-direction: column-reverse;
-        }
-    }
-    
     .mainPics-container{
         width: 610px;
         height: 400px;
         padding-top: 10px;
 
         @media (max-width: 600px) {
-            height: fit-content;
+            display: none;
         }
 
         img{
@@ -46,19 +38,31 @@ const StyledHomePage = styled(HomePage)`
     }
     
     .home-top{
+       min-height: 85vh;
        padding: 0 35px;
+       
        @media (max-width: 600px) {
-        padding: 0 25px;
+            padding: 0 25px;
        }
-    }
+       
+       .home-t-container{
+            padding: 30px 0;
+        
+            @media (max-width: 600px) {
+                text-align: center;
 
-    .home-t-container{
-        padding-top: 30px;
-        padding-bottom: 30px;
+            }
+
+            .page-h2{
+                display: none;
+                @media (max-width: 600px) {
+                    margin: auto;
+                    display: block;
+                    font-size: 15vw;
+                    letter-spacing: 3px;
+                }
+            }
     
-        @media (max-width: 600px) {
-            text-align: center;
-            padding-top: 65px;
         }
     }
 
@@ -66,7 +70,7 @@ const StyledHomePage = styled(HomePage)`
         margin: 40px 0px 0px 0px;
         font-size: 2.7vw;
         @media (max-width: 600px) {
-            margin: 15px 0px 0px 0px;
+            margin: 3px 0px 0px 0px;
             font-size: 5.5vw;
         }
     }

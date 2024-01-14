@@ -1,25 +1,116 @@
-import { useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import T from "./AboutBodyI18n";
 
+import { v4 as uuidv4 } from 'uuid';
+
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
-import aboutBody1 from '../../images/screenshots/latest/shot1.png';
+import shot1 from '../../images/screenshots/homeimgs/shot1.png';
+import shot2 from '../../images/screenshots/homeimgs/shot2.png';
+import shot5 from '../../images/screenshots/homeimgs/shot8.png';
+import shot3 from '../../images/screenshots/homeimgs/3.jpg';
 
-function AboutBody({ className }) {
+
+function AboutBody({ className, ...props }) {
+  const data = [
+    {
+      img: shot1,
+      strings: [T.AboutLineByLine],
+      bottomString: T.AboutBody1
+    },
+    {
+      img: shot5,
+      strings: [T.AboutPlayer],
+      bottomString: ""
+    },
+    {
+      img: shot2,
+      strings: [T.AboutSingleWord],
+      bottomString: ""
+    },
+    {
+      img: shot3,
+      strings: [T.AboutExercise],
+      bottomString: ""
+    },
+  ];
+
+  const [visibleItems, setVisibleItems] = useState(data);
+
+  // Effect to load the preference from the local storage
+  useEffect(() => {
+    const storedItems = localStorage.getItem("visibleItems");
+    if (storedItems) {
+      setVisibleItems(JSON.parse(storedItems));
+    }
+  }, []);
+
+  const handleRemove = (item) => {
+    // Filter out the item from the visible items
+    const newItems = visibleItems.filter((i) => i !== item);
+    // Update the state and the local storage
+    setVisibleItems(newItems);
+    localStorage.setItem("visibleItems", JSON.stringify(newItems));
+  };
+
 
   return (
-    <Grid container className={className}>
+    <Box className={className}>
+      {visibleItems.map((item, index) => (
+        <>
+          <Grid
+            className={(index % 2 == 0) ? "even-item" : "not-even-item"} // set the bg gradient if even-index
+            key={uuidv4() + index}
+            container
+          >
 
-      <Grid item xs={12} sm={12} spacing={0} wrap="no-wrap" height={'90vh'}>
-        <Typography component={'p'} variant="h4" wrap>{T.AboutBody1}</Typography>
-      </Grid>
+            <Grid item xs={12} className="about-body-top">
+              <IconButton aria-label="delete"
+                onClick={() => handleRemove(item)}>
+                <CloseOutlinedIcon className='remove-icon' />
+              </IconButton>
+            </Grid>
 
-      <Grid item xs={12} sm={12} spacing={0}>
-        <img src={aboutBody1}></img>
-      </Grid>
+            <Grid item xs={12} sm={5} className="img-item">
+              <div className="img-container">
+                <img
+                  src={item.img}
+                  alt="Random"
+                />
+              </div>
+            </Grid>
 
-    </Grid>
+            <Grid item xs={12} sm={6} className="strings-item">
+              <div className="strings-container">
+                {item.strings.length && item.strings.map((str, strIndex) => {
+                  return (
+                    <Typography key={uuidv4() + strIndex} variant="p" component="p">
+                      {str}
+                    </Typography>
+                  )
+                })}
+              </div>
+              {item.btnAction &&
+                <Button variant="contained" onClick={() => { item.btnAction() }}>
+                  {item.btnText}
+                </Button>
+              }
+            </Grid>
+
+            {item.bottomString &&
+              <Grid item xs={12} className="about-body-bottom">
+                <Typography>{item.bottomString}</Typography>
+              </Grid>
+            }
+          </Grid>
+        </>
+      ))}
+    </Box>
   );
 }
 

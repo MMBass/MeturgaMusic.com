@@ -9,7 +9,7 @@ const StyledLayout = styled(Layout)`
   color: ${props => props.theme.palette.primary.contrastText};
 
   .page{
-    min-height: 100vh;
+    min-height: 80vh;
   }
 
   .page-h1{
