@@ -119,10 +119,10 @@ function HomePage({ className }) {
 
         </Container>
       }
-{/* 
+
       {!currLyricsContext.lines?.[0] &&
         <AboutBody focusSearch={focusSearch}></AboutBody>
-      } */}
+      }
 
       {currLyricsContext.lines?.[0] &&
         <Grid container spacing={1}>

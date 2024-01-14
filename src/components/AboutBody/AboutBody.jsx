@@ -10,10 +10,10 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
-import shot1 from '@/images/screenshots/homeimgs/shotone.png';
-import shot2 from '@/images/screenshots/homeimgs/shot2.png';
-import shot5 from '@/images/screenshots/homeimgs/shot8.png';
-import shot3 from '@/images/screenshots/homeimgs/3.jpg';
+import shot1 from '@/images/screenshots/shotone.png';
+import shot2 from '@/images/screenshots/shot2.png';
+import shot5 from '@/images/screenshots/shot8.png';
+import shot3 from '@/images/screenshots/3.jpg';
 
 
 function AboutBody({ className, ...props }) {
