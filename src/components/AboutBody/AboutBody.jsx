@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext, useState, Fragment } from "react";
 import T from "./AboutBodyI18n";
 
 import { v4 as uuidv4 } from 'uuid';
@@ -10,10 +10,10 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
-import shot1 from '../../images/screenshots/homeimgs/shotone.png';
-import shot2 from '../../images/screenshots/homeimgs/shot2.png';
-import shot5 from '../../images/screenshots/homeimgs/shot8.png';
-import shot3 from '../../images/screenshots/homeimgs/3.jpg';
+import shot1 from '@/images/screenshots/homeimgs/shotone.png';
+import shot2 from '@/images/screenshots/homeimgs/shot2.png';
+import shot5 from '@/images/screenshots/homeimgs/shot8.png';
+import shot3 from '@/images/screenshots/homeimgs/3.jpg';
 
 
 function AboutBody({ className, ...props }) {
@@ -62,10 +62,9 @@ function AboutBody({ className, ...props }) {
   return (
     <Box className={className}>
       {visibleItems.map((item, index) => (
-        <>
+        <Fragment key={uuidv4() + index}>
           <Grid
             className={(index % 2 == 0) ? "even-item" : "not-even-item"} // set the bg gradient if even-index
-            key={uuidv4() + index}
             container
           >
 
@@ -108,7 +107,7 @@ function AboutBody({ className, ...props }) {
               </Grid>
             }
           </Grid>
-        </>
+        </Fragment>
       ))}
     </Box>
   );
