@@ -4,7 +4,7 @@ import AboutBody from './AboutBody';
 const StyledAboutBody = styled(AboutBody)`
   width: 100%;
   margin: 0 0 60px 0;
-  font-size: 2vw;
+  font-size: 3vw;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-align: center;
 

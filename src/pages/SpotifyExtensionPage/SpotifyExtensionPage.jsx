@@ -1,6 +1,6 @@
 
 import T from "./SpotifyExtensionPageI18n";
-import extensionImage from '../../images/screenshots/extensionImage.png';
+import extensionImage from '../../images/screenshots/spoShot2.png';
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';

@@ -8,7 +8,7 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
   text-align: center;
   padding: 50px 50px;
 
-  background-position: bottom -50px right -100px;
+  background-position: bottom -70px right -135px;
   background-size: 80% auto;
   background-repeat: no-repeat;
   background-blend-mode: multiply;
