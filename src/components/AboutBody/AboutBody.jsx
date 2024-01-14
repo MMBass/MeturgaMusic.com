@@ -76,7 +76,7 @@ function AboutBody({ className, ...props }) {
               </IconButton>
             </Grid>
 
-            <Grid item xs={12} sm={5} className="img-item">
+            <Grid item xs={12} sm={6} className="img-item">
               <div className="img-container">
                 <img
                   src={item.img}
