@@ -21,7 +21,7 @@ function AboutBody({ className, ...props }) {
     {
       img: shot1,
       strings: [T.AboutLineByLine],
-      bottomString: T.AboutBody1
+      // bottomString: T.AboutBody1
     },
     {
       img: shot5,
