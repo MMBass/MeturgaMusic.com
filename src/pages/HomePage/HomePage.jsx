@@ -17,7 +17,10 @@ import { DrawerContext } from '@context/DrawerContext';
 
 import { useTheme } from '@mui/material/styles';
 
-import mainPic from '../../images/screenshots/homeimgs/shotone.png';
+import mainPic from '../../images/screenshots/other/combined-shot-whiteBg-player.png';
+import mainPic2 from '../../images/screenshots/homeimgs/combined-shot-whiteBg-player.png';
+import mainPic3 from '../../images/screenshots/combined-shot-whiteBg-player.png';
+
 import mainPicPinkBorder from '../../images/screenshots/other/no-pink-shot-bordered-pink.png';
 import mainPicMobile from '../../images/screenshots/other/no-pink-shot-bordered-pink-mobile.png';
 import mainPicDark from '../../images/screenshots/other/no-pink-shot-bordered-pink-dark-mode.png';
@@ -117,8 +120,8 @@ function HomePage({ className }) {
 
         </Container>
       }
-
-      {/* {!currLyricsContext.lines?.[0] &&
+{/* 
+      {!currLyricsContext.lines?.[0] &&
         <AboutBody focusSearch={focusSearch}></AboutBody>
       } */}
 
