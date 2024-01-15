@@ -25,6 +25,10 @@ const StyledHomePage = styled(HomePage)`
             }
         }
 
+        .wide-pic-dark{
+            width: 73%;
+        }
+
         .mobile-pic{
             padding-top: 35px;
             width: 100%;
@@ -43,6 +47,7 @@ const StyledHomePage = styled(HomePage)`
        
        @media (max-width: 600px) {
             padding: 0 25px;
+            min-height: unset;
        }
        
        .home-t-container{

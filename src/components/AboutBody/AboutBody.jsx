@@ -98,7 +98,7 @@ function AboutBody({ className, ...props }) {
               <div className="strings-container">
                 {vItem.bodyStrings.length && vItem.bodyStrings.map((str, strIndex) => {
                   return (
-                    <Typography className="about-strings" key={uuidv4() + strIndex} variant="p" component="p">
+                    <Typography className="about-string" key={uuidv4() + strIndex} variant="p" component="p">
                       {str.replace(',','')}
                     </Typography>
                   )

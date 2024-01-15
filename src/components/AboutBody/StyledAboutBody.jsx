@@ -14,12 +14,19 @@ const StyledAboutBody = styled(AboutBody)`
 
   .even-item{
     flex-direction: row-reverse;
-    display: flex;
-    align-items: center;
+
+    .strings-item{
+      text-align: end;
+      @media (max-width: 600px) {
+        text-align: start;
+      }
+    }
   }
 
   .even-item, .not-even-item{
     min-height: 80vh;
+    display: flex;
+    align-items: center;
     background-color: ${props => props.theme.palette.secondary.light};
   }
 
@@ -42,21 +49,20 @@ const StyledAboutBody = styled(AboutBody)`
   }
   
   .strings-item{
-    text-align: center;
-
+     text-align: start;
     @media (max-width: 600px) {
       padding: 8px 40px 40px 40px;
     }
 
     .about-header{
       margin-bottom: 5px;
-      font-size: 4vw;
+      font-size: 3.6vw;
       @media (max-width: 600px) {
         font-size: 6vw;
       }
     }
 
-    .about-strings{
+    .about-string{
       width: 100%;
       height: 100%;
       
@@ -68,10 +74,12 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     .about-bottom{
-
-    }
-
-    
+      padding-top: 15px;
+      
+      @media (max-width: 600px) {
+        font-size: 5vw;
+      }
+  }
   }
 
   .img-item{
@@ -103,14 +111,6 @@ const StyledAboutBody = styled(AboutBody)`
         max-height: 90%;
         /* max-height: 200px; */
       }
-    }
-  }
-
-  .about-bottom{
-    padding-top: 15px;
-    
-    @media (max-width: 600px) {
-      font-size: 3.5vw;
     }
   }
 

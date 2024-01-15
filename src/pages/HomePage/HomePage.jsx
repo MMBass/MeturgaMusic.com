@@ -80,7 +80,7 @@ function HomePage({ className }) {
               {theme.palette.primary.main === '#DF808E' ?
                 <img className="wide-pic" src={mainPic}></img>
                 :
-                <img className="wide-pic" src={mainPicDark}></img>
+                <img className="wide-pic wide-pic-dark" src={mainPicDark}></img>
               }
 
             </Grid>
