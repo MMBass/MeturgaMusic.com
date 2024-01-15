@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState, Fragment } from "react";
+import { useEffect, useState, Fragment } from "react";
 import T from "./AboutBodyI18n";
 
 import { v4 as uuidv4 } from 'uuid';
@@ -20,23 +20,27 @@ function AboutBody({ className, ...props }) {
   const data = [
     {
       img: shot1,
-      strings: [T.AboutLineByLine],
-      // bottomString: T.AboutBody1
+      header: T.Shot1Header,
+      bodyStrings: T.Shot1Body.split(","),
+      bottom: T.Shot1Bottom,
+      footer: T.Shot1Footer,
     },
     {
       img: shot5,
-      strings: [T.AboutPlayer],
-      bottomString: ""
+      header: T.PlayerHadeer,
+      bodyStrings: T.PlayerBody.split(","),
     },
     {
       img: shot2,
-      strings: [T.AboutSingleWord],
-      bottomString: ""
+      header: T.SingleTransHeader,
+      bodyStrings: T.SingleTransBody.split(","),
+      footer: T.SingleTransFooter,
     },
     {
       img: shot3,
-      strings: [T.AboutExercise],
-      bottomString: ""
+      header: T.ExerciseHeader,
+      bodyStrings: T.ExerciseBody.split(","),
+      bottom: "",
     },
   ];
 
@@ -50,9 +54,9 @@ function AboutBody({ className, ...props }) {
     }
   }, []);
 
-  const handleRemove = (item) => {
+  const handleRemove = (vItem) => {
     // Filter out the item from the visible items
-    const newItems = visibleItems.filter((i) => i !== item);
+    const newItems = visibleItems.filter((i) => i !== vItem);
     // Update the state and the local storage
     setVisibleItems(newItems);
     localStorage.setItem("visibleItems", JSON.stringify(newItems));
@@ -61,7 +65,7 @@ function AboutBody({ className, ...props }) {
 
   return (
     <Box className={className}>
-      {visibleItems.map((item, index) => (
+      {visibleItems.map((vItem, index) => (
         <Fragment key={uuidv4() + index}>
           <Grid
             className={(index % 2 == 0) ? "even-item" : "not-even-item"} // set the bg gradient if even-index
@@ -70,7 +74,7 @@ function AboutBody({ className, ...props }) {
 
             <Grid item xs={12} className="about-body-top">
               <IconButton aria-label="delete"
-                onClick={() => handleRemove(item)}>
+                onClick={() => handleRemove(vItem)}>
                 <CloseOutlinedIcon className='remove-icon' />
               </IconButton>
             </Grid>
@@ -78,32 +82,46 @@ function AboutBody({ className, ...props }) {
             <Grid item xs={12} sm={6} className="img-item">
               <div className="img-container">
                 <img
-                  src={item.img}
+                  src={vItem.img}
                   alt="Random"
                 />
               </div>
             </Grid>
 
             <Grid item xs={12} sm={6} className="strings-item">
+              {vItem.header &&
+                 <Typography className="about-header" variant="p" component="p">
+                 {vItem.header }
+               </Typography>
+              }
+
               <div className="strings-container">
-                {item.strings.length && item.strings.map((str, strIndex) => {
+                {vItem.bodyStrings.length && vItem.bodyStrings.map((str, strIndex) => {
                   return (
-                    <Typography key={uuidv4() + strIndex} variant="p" component="p">
-                      {str}
+                    <Typography className="about-strings" key={uuidv4() + strIndex} variant="p" component="p">
+                      {str.replace(',','')}
                     </Typography>
                   )
                 })}
               </div>
-              {item.btnAction &&
-                <Button variant="contained" onClick={() => { item.btnAction() }}>
-                  {item.btnText}
+
+              {vItem.bottom &&
+                 <Typography className="about-bottom" variant="p" component="p">
+                 {vItem.bottom }
+               </Typography>
+              }
+
+              {vItem.btnAction &&
+                <Button variant="contained" onClick={() => { vItem.btnAction() }}>
+                  {vItem.btnText}
                 </Button>
               }
+
             </Grid>
 
-            {item.bottomString &&
-              <Grid item xs={12} className="about-body-bottom">
-                <Typography>{item.bottomString}</Typography>
+            {vItem.footer &&
+              <Grid item xs={12} className="about-footer">
+                <Typography>{vItem.footer}</Typography>
               </Grid>
             }
           </Grid>
@@ -114,59 +132,3 @@ function AboutBody({ className, ...props }) {
 }
 
 export default AboutBody;
-
-
-// DRAFT : 
-{/* <b>
-        האתר שיתרגם לעברית
-        <br />
-        כמעט כל שיר שתחפשו באנגלית
-        <br />
-        וישאיר את הטקסט המקורי לעיני המשתמש
-      </b>
-      <br />
-      <br />
-      <br />
-      <img src={screenshot2url} alt="home-2"></img>
-      <br />
-      <img src={screenshot1url} alt="home-1"></img>
-      <br />
-      <p>
-        מהיום תוכלו למצוא את השירים האהובים עליכם באנגלית,
-        וללמוד אנגלית באמצעותם בצורה נוחה וללא צורך לצאת לאפליקציות חיצוניות,
-        עם גודל הכתב המועדף עליכם, בעיצוב נקי ללא הסחות דעת, ועם תרגומים נוספים לכל מילה
-      </p>
-
-      <p>
-        היות ואנו משתמשים בתרגום אטומטי המבוצע על ידי מכונה, התרגום אינו מושלם,
-        ועל כן סידרנו תרגום מילוני לכל מילה בנפרד, כך אם ההקשר של תרגום המשפט אינו מתאים,
-        תוכלו להשוות עם תרגומים נוספים
-      </p>
-
-      <img src={screenshottturl} alt="קלוס אפ עם הטולטיפ" />
-
-      <p>
-        הכתב גדול/קטן מידי? סידרנו כפתור לשינוי גודל הטקסט, והדפדפן ישמור את העדפתך
-      </p>
-      <img src={screenshotchangesizeurl} alt="כפתור פונטסייז" />
-
-      <h4>        מה מיוחד באתר?</h4>
-      <p>
-
-        - בשונה מתרגום אתר רגיל באמצעות הדפדפן, התרגום אצלנו מופיע בזמן שהטקסט המקורי נשאר מול עיני המשתמש
-        <br />
-        - כפתור נוח לשינוי גודל הכתב, השומר בנוסף את העדפת המשתמש, ללא צורך לשנות את הגדרות הדפדפן
-        <br />
-        - תרגום מהיר לכל מילה בודדת ללא צורך לצאת לאפליקציות חיצוניות
-      </p>
-
-
-      <h4>   מי אנחנו?</h4>
-      <p>
-
-        אנחנו מתורגמיוזיק.
-        <br />
-        ראינו את הצורך באתר המיועד לדוברי עברית הרוצים ללמוד אנגלית בצורה חוויתית ונוחה, או סתם לדעת את משמעות השיר האהוב עליהם.
-        נתקלנו בקושי בשימוש באתרי מילים הרגילים, בהם תרגום הדף או מילה בודדת דורש לחיצות מיותרות ומשאיר אותך עם התרגום בלבד וללא המקור, או מוציאך לאפליקציה חיצונית ואיטית בדרך כלל
-        בנוסף גילינו את הוספת כפתור לשינוי גודל הכתב שימושית ביותר, אינה מופיעה כלל באתרים המציגים טקסט ומיועדים לקריאה, ומצריכה שימוש בהגדרות הדפדפן או תוסף נגישות מסורבל
-      </p> */}
