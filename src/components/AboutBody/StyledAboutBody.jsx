@@ -108,10 +108,10 @@ const StyledAboutBody = styled(AboutBody)`
 
   .about-bottom{
     padding-top: 15px;
-      font-size: 1.7vw;
-      @media (max-width: 600px) {
-        font-size: 3.5vw;
-      }
+    
+    @media (max-width: 600px) {
+      font-size: 3.5vw;
+    }
   }
 
   .about-footer{
