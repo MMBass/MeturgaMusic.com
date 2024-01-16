@@ -42,6 +42,14 @@ const StyledSearchBar = styled(SearchBar)`
         color: ${props => props.theme.palette.primary.dark + "!important"};
         border-color: ${props => props.theme.palette.secondary.contrastText + "!important"};
       }
+
+      label{
+        display: flex;
+        justify-items: center;
+        svg{
+          padding-inline-end: 3px;
+        }
+      }
     }
 
   .top-input{

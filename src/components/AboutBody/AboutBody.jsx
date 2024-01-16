@@ -20,6 +20,7 @@ function AboutBody({ className, ...props }) {
   const data = [
     {
       img: shot1,
+      alt: T.Shot1Alt,
       header: T.Shot1Header,
       bodyStrings: T.Shot1Body.split(","),
       bottom: T.Shot1Bottom,
@@ -27,17 +28,20 @@ function AboutBody({ className, ...props }) {
     },
     {
       img: shot5,
+      alt: T.Player1Alt,
       header: T.PlayerHadeer,
       bodyStrings: T.PlayerBody.split(","),
     },
     {
       img: shot2,
+      alt: T.SingleTransAlt,
       header: T.SingleTransHeader,
       bodyStrings: T.SingleTransBody.split(","),
       footer: T.SingleTransFooter,
     },
     {
       img: shot3,
+      alt: T.ExerciseAlt,
       header: T.ExerciseHeader,
       bodyStrings: T.ExerciseBody.split(","),
       bottom: "",
@@ -83,7 +87,7 @@ function AboutBody({ className, ...props }) {
               <div className="img-container">
                 <img
                   src={vItem.img}
-                  alt="Random"
+                  alt={vItem.alt}
                 />
               </div>
             </Grid>

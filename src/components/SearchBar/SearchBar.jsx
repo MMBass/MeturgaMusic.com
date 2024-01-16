@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 import CircularProgress from '@mui/material/CircularProgress';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
@@ -221,7 +222,19 @@ function SearchBar({ className, ...props }) {
     <div className={className} >
 
       {(!props.addRecordMode) &&
-        <TextField size={props.size} id="outlined-search" label={!start ? <CircularProgress size={18} ></CircularProgress> : T.Label} type="search" className={props.locat == "main" ? "main-input" : "top-input"} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={"GOOGLE " + T.PoweredBy} value={currVal}/>
+        <TextField size={props.size}
+          id="outlined-search"
+          className={props.locat == "main" ? "main-input" : "top-input"}
+          label={!start ?
+            <CircularProgress size={18} ></CircularProgress>
+            :
+            <><TravelExploreIcon></TravelExploreIcon>{T.Label}</>
+          }
+          type="search"
+          onChange={start ? setVal : null}
+          autoFocus={false} autoComplete='off'
+          placeholder={"GOOGLE " + T.PoweredBy}
+          value={currVal} />
       }
 
       {(props.addRecordMode) &&
