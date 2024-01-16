@@ -59,6 +59,10 @@ const StyledSearchBar = styled(SearchBar)`
         color: ${props => props.theme.palette.primary.light + "!important"};
         border-color: ${props => props.theme.palette.primary.light + "!important"};
       }
+
+      svg{
+        display: none;
+      }
   }
 
   /* google search styling - elements from out of REACT */
