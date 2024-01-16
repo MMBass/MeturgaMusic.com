@@ -16,7 +16,7 @@ example:
     AND USE THE severity/title/message IF NEEDED}}
 } */
 
-export default function BannersContextProvider(props) {
+export default function BannersContextProvider({children}) {
     const [banners, setBanners] = useState({
         main: { open: false, severity: "error", title: TUtils.UnderBuilding, message: "", action: {} },
         infoSnackbar: { open: !JSON.parse(localStorage.getItem('meturgamm_songs'))?.[1], severity: "error", title: "", message: TUtils.NoExactTransMessage },
@@ -49,7 +49,7 @@ export default function BannersContextProvider(props) {
 
     return (
         <BannersContext.Provider value={{ ...banners, ...actions }}>
-            {props.children}
+            {children}
         </BannersContext.Provider>
     );
 };

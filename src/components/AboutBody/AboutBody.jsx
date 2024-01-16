@@ -16,7 +16,7 @@ import shot5 from '@/images/screenshots/shot8.png';
 import shot3 from '@/images/screenshots/3.jpg';
 
 
-function AboutBody({ className, ...props }) {
+function AboutBody({ className }) {
   const data = [
     {
       img: shot1,

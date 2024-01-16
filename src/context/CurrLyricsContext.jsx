@@ -10,7 +10,7 @@ export const CurrLyricsContext = React.createContext(undefined);
 
 // TODO move reqs and ls/ss logic to serveices
 // TODO reqs to async-await
-export default function CurrLyricsContextProvider(props) {
+export default function CurrLyricsContextProvider({children}) {
     const loadersContext = useContext(LoadersContext);
     const bannersContext = useContext(BannersContext);
 
@@ -353,7 +353,7 @@ export default function CurrLyricsContextProvider(props) {
 
     return (
         <CurrLyricsContext.Provider value={{ title, lines, azureServerError, translatedBy, videoId, ...actions }}>
-            {props.children}
+            {children}
         </CurrLyricsContext.Provider>
     );
 };

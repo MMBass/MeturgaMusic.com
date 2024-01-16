@@ -5,30 +5,13 @@ const StyledHeader = styled(Header)`
       z-index: 2000;
 
       a{
-        /* color: ${props => props.theme.palette.primary.main};
-        &hover{
-          color: #8e8b8b;
-        } */
-
         #h2-part1, #h2-part2{
           font-weight: 600;
         }
-/* 
-        #h2-part1{
-          color:  ${props => props.theme.palette.secondary.dark};
-        }
-
-        #h2-part2{
-          color:  ${props => props.theme.palette.secondary.light};
-        } */
       }
       
       button{
         color: ${props => props.theme.palette.secondary.dark};
-      }
-
-      .MuiBox-root{
-        /* justify-content: flex-end; */
       }
 
       .burger-icon{

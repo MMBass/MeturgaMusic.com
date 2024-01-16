@@ -1,6 +1,6 @@
 
 // Shared layout for all pages
-function Layout({className,...props}) {
+function Layout({className, ...props}) {
   return (
     <div className={className}>
       {props.children}

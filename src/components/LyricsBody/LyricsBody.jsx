@@ -18,7 +18,7 @@ import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
 import TUtils from '@/i18n-utils';
 
-function LyricsBody({ className, ...props }) {
+function LyricsBody({ className }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const { directSong } = useParams();
   const currLyricsContext = useContext(CurrLyricsContext);

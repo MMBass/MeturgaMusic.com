@@ -14,7 +14,7 @@ example:
     AND USE THE severity/title/message IF NEEDED}}
 } */
 
-export default function SettingsContextProvider(props) {
+export default function SettingsContextProvider({children}) {
     const fontsize_ls = JSON.parse(localStorage.getItem('fontsize'));
 
     const [settings, setSettings] = useState({
@@ -53,7 +53,7 @@ export default function SettingsContextProvider(props) {
 
     return (
         <SettingsContext.Provider value={{ ...settings, ...actions, badge }}>
-            {props.children}
+            {children}
         </SettingsContext.Provider>
     );
 };

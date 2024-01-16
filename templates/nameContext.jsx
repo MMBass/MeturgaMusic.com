@@ -7,7 +7,7 @@ export const NameContext = React.createContext(undefined);
 Important Add every ContextProvider to Composer
 !!!
 */
-export default function NameContextProvider(props) {
+export default function NameContextProvider({children}) {
     const [name, setName] = useState({});
 
     const handleSet = () => {
@@ -18,7 +18,7 @@ export default function NameContextProvider(props) {
 
     return (
         <NameContext.Provider value={{ ...name, ...actions }}>
-            {props.children}
+            {children}
         </NameContext.Provider>
     );
 };

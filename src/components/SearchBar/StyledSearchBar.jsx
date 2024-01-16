@@ -47,7 +47,7 @@ const StyledSearchBar = styled(SearchBar)`
         display: flex;
         justify-items: center;
         svg{
-          padding-inline-end: 3px;
+          padding-inline-end: 9px;
         }
       }
     }

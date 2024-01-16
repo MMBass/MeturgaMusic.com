@@ -14,7 +14,7 @@ example:
     AND USE THE severity/title/message IF NEEDED}}
 } */
 
-export default function LoadersContextProvider(props) {
+export default function LoadersContextProvider({children}) {
     const [loaders, setLoaders] = useState({
         main: { open: false, color: "info" },
         backdrop: { open: false, color: "info" },
@@ -48,7 +48,7 @@ export default function LoadersContextProvider(props) {
 
     return (
         <LoadersContext.Provider value={{ ...loaders, ...actions }}>
-            {props.children}
+            {children}
         </LoadersContext.Provider>
     );
 };

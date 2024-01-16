@@ -24,7 +24,7 @@ const StyledAboutBody = styled(AboutBody)`
   }
 
   .even-item, .not-even-item{
-    min-height: 80vh;
+    padding-top: 25px;
     display: flex;
     align-items: center;
     background-color: ${props => props.theme.palette.secondary.light};
@@ -84,7 +84,7 @@ const StyledAboutBody = styled(AboutBody)`
 
   .img-item{
     height: 100%;
-    padding: 0 30px ;
+    padding: 0 30px;
     @media (max-width: 600px) {
       min-height: 35vh;
       padding-top: 0;
@@ -92,12 +92,16 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     .img-container{
-      padding: 15px;
+      padding: 15px 40px;
       display: flex;
       justify-content: center;
       height: 100%;
       background: radial-gradient(circle, #edcbcb 60%, rgb(223, 128, 142) 100%);
       border-radius: 13px;
+
+      @media (max-width: 600px) {
+        padding: 15px 4px;
+      }
     }
 
     img{
