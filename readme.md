@@ -16,6 +16,6 @@
  <br>
  <br>
 
- ![Screenshot 1](./src/images/screenshots/other/combined-shot-pinkBg.png)
+ ![Screenshot 1](./src/images/screenshots/combined-shot-pinkBg.png)
  <br>
  <br>

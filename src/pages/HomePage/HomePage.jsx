@@ -17,10 +17,8 @@ import { DrawerContext } from '@context/DrawerContext';
 
 import { useTheme } from '@mui/material/styles';
 
-import mainPic from '../../images/screenshots/other/combined-shot-whiteBg-player.png';
-import mainPicPinkBorder from '../../images/screenshots/other/no-pink-shot-bordered-pink.png';
-import mainPicMobile from '../../images/screenshots/other/no-pink-shot-bordered-pink-mobile.png';
-import mainPicDark from '../../images/screenshots/other/no-pink-shot-bordered-pink-dark-mode.png';
+import mainPic from '../../images/screenshots/combined-shot-whiteBg-player.png';
+import mainPicDark from '../../images/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
