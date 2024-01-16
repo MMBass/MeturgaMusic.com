@@ -48,7 +48,7 @@ function App({ className }) {
   const bannersContext = useContext(BannersContext);
   const isMobile = useMediaQuery('(max-width: 600px)');
 
-  const [currTitle, setCurrTitle] = useState(T.MainH1);
+  const [currTitle, setCurrTitle] = useState(T.MainTitle);
   const [currTheme, setCurrTheme] = useState(localStorage.getItem('preferedDark') === 'true' ? darkTheme : mainPinkTheme);
 
   // Create rtl cache
