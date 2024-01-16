@@ -33,7 +33,7 @@ import { SettingsContext } from '@context/SettingsContext';
 
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ className, ...props }) => {
+const Header = ({ className, changeColors }) => {
   const [topSearchBar, setTopSearchBar] = useState(false);
 
   const theme = useTheme();
@@ -142,7 +142,7 @@ const Header = ({ className, ...props }) => {
           }
 
           {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
-            <ChangeColors changeColors={props.changeColors}></ChangeColors>
+            <ChangeColors changeColors={changeColors}></ChangeColors>
           }
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <ChangeSize></ChangeSize>

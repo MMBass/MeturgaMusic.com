@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 
-function DeterminateLinearProgress({className, ...props}) {
+function DeterminateLinearProgress({ className, color }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function DeterminateLinearProgress({className, ...props}) {
   }, []);
 
   return (
-    <LinearProgress variant="determinate" value={progress} color={props.color} />
+    <LinearProgress className={className} variant="determinate" value={progress} color={color} />
   );
 }
 

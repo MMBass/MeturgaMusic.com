@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
 
-function MyModal({ className , ...props}) {
+function MyModal({ className, children }) {
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
@@ -16,7 +16,7 @@ function MyModal({ className , ...props}) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      {props.children}
+      {children}
     </MuiModal>
   );
 }

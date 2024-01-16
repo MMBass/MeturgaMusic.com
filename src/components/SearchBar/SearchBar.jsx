@@ -10,7 +10,7 @@ import { BannersContext } from '@context/BannersContext';
 import utils from '@/utils';
 import T from "./SearchBarI18n";
 
-function SearchBar({ className, ...props }) {
+function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   const [start, setStart] = useState(false);
   const [currVal, setCurrVal] = useState('');
@@ -21,7 +21,7 @@ function SearchBar({ className, ...props }) {
   const bannersContext = useContext(BannersContext);
 
   useEffect(() => {
-    if (!props.addRecordMode) {
+    if (!addRecordMode) {
       setCurrVal(currLyricsContext.title);
     }
   }, [currLyricsContext.title]);
@@ -200,18 +200,16 @@ function SearchBar({ className, ...props }) {
 
     line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 
-    if (props.addRecordMode === true) {
-      if (props.addRecord) { props.addRecord(songTitle) };
+    if (addRecordMode === true) {
+      if (addRecord) { addRecord(songTitle) };
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
       setCurrVal(' ');
       return;
-    }
-    if (currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')) {
+    } else if (currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')) {
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
-    }
-    if (currLyricsContext.title.replaceAll(' ', '') != songTitle.replaceAll(' ', '')) {
+    } else {
       currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
     }
     setCurrVal(songTitle);
@@ -221,10 +219,10 @@ function SearchBar({ className, ...props }) {
   return (
     <div className={className} >
 
-      {(!props.addRecordMode) &&
-        <TextField size={props.size}
+      {(!addRecordMode) &&
+        <TextField size={size}
           id="outlined-search"
-          className={props.locat == "main" ? "main-input" : "top-input"}
+          className={locat == "main" ? "main-input" : "top-input"}
           label={!start ?
             <CircularProgress size={18} ></CircularProgress>
             :
@@ -237,11 +235,11 @@ function SearchBar({ className, ...props }) {
           value={currVal} />
       }
 
-      {(props.addRecordMode) &&
+      {(addRecordMode) &&
         <TextField label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" />
       }
 
-      <div id="gcse-my-wrapper" className={(props.addRecordMode && "gcse-my-wrapper-add-record-mode")}>
+      <div id="gcse-my-wrapper" className={(addRecordMode && "gcse-my-wrapper-add-record-mode")}>
         <div className="gcse-search"></div>
       </div>
 

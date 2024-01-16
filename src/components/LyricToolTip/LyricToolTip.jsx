@@ -7,7 +7,7 @@ import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
 
 import getSingleTrans from '@services/getSingleTrans';
 
-function LyricToolTip({ className, ...props }) {
+function LyricToolTip({ className, lyric, }) {
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState([]);
 
@@ -23,16 +23,16 @@ function LyricToolTip({ className, ...props }) {
   };
 
   async function callResults() {
-    const res = await getSingleTrans(props.lyric);
+    const res = await getSingleTrans(lyric);
     setResults(res);
   }
 
   return (
     <>
-      {/* <BookMarkWord toSave={{ word: props.lyric, results: results || ['top bookMark'] }} saved={saved} variant={'BookMark'}></BookMarkWord> */}
+      {/* <BookMarkWord toSave={{ word: lyric, results: results || ['top bookMark'] }} saved={saved} variant={'BookMark'}></BookMarkWord> */}
       <Tooltip className={className}
         title={
-          <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={props.lyric} results={results}></LyricToolTipChilds>}
+          <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={lyric} results={results}></LyricToolTipChilds>}
         arrow
         leaveTouchDelay={60 * 1000}
         leaveDelay={3 * 1000}
@@ -46,7 +46,7 @@ function LyricToolTip({ className, ...props }) {
         disableTouchListener
         disableHoverListener
       >
-        <span> <p className="single-lyric" onClick={handleTooltipOpen}> {props.lyric} </p></span>
+        <span> <p className="single-lyric" onClick={handleTooltipOpen}> {lyric} </p></span>
       </Tooltip>
     </>
   );

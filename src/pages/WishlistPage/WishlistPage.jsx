@@ -68,7 +68,6 @@ function WishlistPage({ className }) {
       }
 
       <List
-
         subheader={
           <SearchBar addRecordMode={true} locat={'main'} addRecord={handleAddSong}></SearchBar>
         }

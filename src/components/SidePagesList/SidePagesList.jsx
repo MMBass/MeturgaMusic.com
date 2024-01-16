@@ -28,7 +28,7 @@ import Divider from '@mui/material/Divider';
 import Alert from '@mui/material/Alert';
 import Switch from '@mui/material/Switch';
 
-function SidePagesList({ className, ...props }) {
+function SidePagesList({ className, changeColors }) {
   const settingsContext = useContext(SettingsContext);
   const [showPlayer, setShowPlayer] = useState(JSON.parse(localStorage.getItem('showPlayer')));
 
@@ -103,8 +103,8 @@ function SidePagesList({ className, ...props }) {
       </ListItem>
 
       <ListItem>
-        <ListItemButton onClick={props.changeColors} sx={{ justifyContent: 'center' }}>
-          <Chip icon={<ChangeColors changeColors={props.changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label={T.DarkMode} color="secondary" variant="outlined" size='large' />
+        <ListItemButton onClick={changeColors} sx={{ justifyContent: 'center' }}>
+          <Chip icon={<ChangeColors changeColors={changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label={T.DarkMode} color="secondary" variant="outlined" size='large' />
         </ListItemButton>
       </ListItem>
 

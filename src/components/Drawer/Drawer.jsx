@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 
 import SidePagesList from '@components/SidePagesList/StyledSidePagesList';
 
-function MyDrawer({ className, ...props }) {
+function MyDrawer({ className, changeColors }) {
   const drawerContext = useContext(DrawerContext);
 
   return (
@@ -21,7 +21,7 @@ function MyDrawer({ className, ...props }) {
         className='drawer-layout'
         role="presentation"
       >
-        <SidePagesList changeColors={props.changeColors} closeDrawer={() => { drawerContext.closeDrawer() }}></SidePagesList>
+        <SidePagesList changeColors={changeColors} closeDrawer={() => { drawerContext.closeDrawer() }}></SidePagesList>
       </Box>
     </Drawer>
   );

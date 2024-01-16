@@ -10,16 +10,16 @@ import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
 import { SettingsContext } from '@context/SettingsContext';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
-function LyricToolTipChilds({ className, ...props }) {
+function LyricToolTipChilds({ className, results, tooltipClose, lyric}) {
   const settingsContext = useContext(SettingsContext);
   const currLyricsContext = useContext(CurrLyricsContext);
 
   const Results = () => {
-    if (props.results[0]) {
+    if (results[0]) {
       let rText = '';
 
-      props.results.map((r, i) => {
-        if (i + 1 === props.results.length) rText += r;
+      results.map((r, i) => {
+        if (i + 1 === results.length) rText += r;
         else rText += r + ", ";
       });
       return <p className="tt-p">{rText}</p>;
@@ -31,19 +31,19 @@ function LyricToolTipChilds({ className, ...props }) {
   }
 
   return (
-    <ClickAwayListener onClickAway={props.tooltipClose}>
+    <ClickAwayListener onClickAway={tooltipClose}>
       <span className={className}>
         <Typography className="tt-top" color="inherit" style={{ fontSize: settingsContext.fontSize.md - 2 }}> תרגומים נוספים </Typography>
-        {props.results[0] && <hr></hr>}
+        {results[0] && <hr></hr>}
         <div className="tt-body" style={{ fontSize: settingsContext.fontSize.md - 2 }}>
-          {props.results[0] ?
+          {results[0] ?
             <Results></Results>
             :
             <LinearProgress className="tt-body-linear" color={"inherit"} />
           }
         </div>
-        {(props.results[0] && props.results[0] !== TUtils.NoMore) &&
-          <BookMarkWord toSave={{ word: props.lyric, results: props.results, title: currLyricsContext.title }} variant={'Star'}></BookMarkWord>}
+        {(results[0] && results[0] !== TUtils.NoMore) &&
+          <BookMarkWord toSave={{ word: lyric, results: results, title: currLyricsContext.title }} variant={'Star'}></BookMarkWord>}
       </span>
     </ClickAwayListener>
   );

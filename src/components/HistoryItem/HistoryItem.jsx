@@ -9,10 +9,10 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
 import utils from '@/utils';
 
-function HistoryItem({ className, ...props }) {
+function HistoryItem({ className, title, song_id, deleteOneSong }) {
 
   const handleDeleteOne = () => {
-    props.deleteOneSong(props.song_id);
+    deleteOneSong(song_id);
   };
 
   return (
@@ -26,10 +26,10 @@ function HistoryItem({ className, ...props }) {
     >
       <ListItemText
         primary={
-          <NavLink to={'/' + utils.titleToParams(props.title)}>
+          <NavLink to={'/' + utils.titleToParams(title)}>
             <ListItemButton>
               <Typography>
-                {props.title}
+                {title}
               </Typography>
             </ListItemButton>
           </NavLink>

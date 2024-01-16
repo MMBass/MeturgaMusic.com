@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { NavLink } from "react-router-dom";
 
@@ -21,8 +21,7 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 
 import utils from '@/utils';
 
-function ExerciseItem({ className, ...props }) {
-  const [lyric, setLyric] = useState(props.lyric);
+function ExerciseItem({ className, lyric, deleteOneWord }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -30,7 +29,7 @@ function ExerciseItem({ className, ...props }) {
   };
 
   const handleDeleteClick = () => {
-    props.deleteOneWord(props.lyric.id);
+    deleteOneWord(lyric.id);
   };
 
   const Results = () => {

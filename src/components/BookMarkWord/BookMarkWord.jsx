@@ -7,7 +7,7 @@ import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
 import T from "./BookMarkWordI18n";
 
-function BookMarkWord({ className, ...props }) {
+function BookMarkWord({ className, toSave, variant }) {
   const [saved, setSaved] = useState(false);
   const settingsContext = useContext(SettingsContext);
 
@@ -20,12 +20,12 @@ function BookMarkWord({ className, ...props }) {
 
     const words = JSON.parse(localStorage.getItem('meturgamm_words'));
 
-    return words.find(w => w.word.toLowerCase() === props.toSave.word.toLowerCase());  // {word: "", results: []} 
+    return words.find(w => w.word.toLowerCase() === toSave.word.toLowerCase());  // {word: "", results: []} 
   }
 
   const handleSaveWord = () => {
     try {
-      utils.lsSaveWord(props.toSave);
+      utils.lsSaveWord(toSave);
       setSaved(true);
       settingsContext.updateBadge(1);
     } catch (e) {
@@ -38,7 +38,7 @@ function BookMarkWord({ className, ...props }) {
     <span className={className}>
       {(saved) ?
         <>
-          {(props.variant === "Bookmark") ?
+          {(variant === "Bookmark") ?
             <BeenhereIcon className={'book-mark-top-icon bm-disabled'}></BeenhereIcon>
             :
             <div className={'book-mark-bottom-icon-wrapper bm-disabled'}>
@@ -48,7 +48,7 @@ function BookMarkWord({ className, ...props }) {
         </>
         :
         <>
-          {(props.variant === "Bookmark") ?
+          {(variant === "Bookmark") ?
             <>
               <BookmarkBorderRoundedIcon className={'book-mark-top-icon'} fontSize='small' onClick={() => handleSaveWord()}></BookmarkBorderRoundedIcon>
             </>
