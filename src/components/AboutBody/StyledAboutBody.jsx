@@ -29,15 +29,16 @@ const StyledAboutBody = styled(AboutBody)`
   
   .even-item{
     flex-direction: row-reverse;
+  
+    .strings-item{
+      text-align: end;
+    }
+
     @media (max-width: 600px) {
       background-color: antiquewhite;
       .strings-item{
         text-align: center;
       }
-    }
-
-    .strings-item{
-      text-align: end;
     }
   }
 
