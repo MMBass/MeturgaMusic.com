@@ -28,7 +28,7 @@ function HistoryPage({ className }) {
     <div className={`${className} page`}>
       {songs[0] &&
         <Box >
-          <Button className='d-all-btn' component="label" onClick={() => { handleDeleteAll() }} variant="outlined" startIcon={<DeleteSweepOutlinedIcon />}>
+          <Button className='d-all-btn' component="label" aria-label='delete-all-history' onClick={() => { handleDeleteAll() }} variant="outlined" startIcon={<DeleteSweepOutlinedIcon />}>
             {T.DelAll}
           </Button>
 

@@ -15,7 +15,7 @@ function ChangeSize({className}) {
     <div  className={className}>
        <ButtonGroup className='button-group'>
             <Button
-              aria-label="reduce"
+              aria-label="reduce-font-size"
               onClick={() => {
                 settingsContext.reduceFontSize();
               }}
@@ -24,7 +24,7 @@ function ChangeSize({className}) {
             </Button>
             <Button className='font-size-disabled' disabled>{settingsContext.fontSize.md}</Button>
             <Button
-              aria-label="increase"
+              aria-label="increase-font-size"
               onClick={() => {
                 settingsContext.increaseFontSize();
               }}

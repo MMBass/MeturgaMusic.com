@@ -17,6 +17,7 @@ function NavBar({ className }) {
         <NavLink to={page.url} key={page.name}>
           <Button
             sx={{ my: 2 }}
+            aria-label="page"
           >
             {page.name}
           </Button>

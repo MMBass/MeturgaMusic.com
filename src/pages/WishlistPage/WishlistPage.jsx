@@ -57,7 +57,7 @@ function WishlistPage({ className }) {
       {!closeDescBanner &&
         <Alert severity='warning'
           action={
-            <Button color="inherit" size="small" onClick={() => { handleCloseDescBanner() }}>
+            <Button color="inherit" size="small" aria-label='close-banner' onClick={() => { handleCloseDescBanner() }}>
               <CloseOutlinedIcon fontSize={'small'}></CloseOutlinedIcon>
             </Button>
           }

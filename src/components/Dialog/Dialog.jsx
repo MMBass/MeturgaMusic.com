@@ -31,7 +31,7 @@ function MyDialog({ className }) {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Close</Button>
+        <Button aria-label="close-dialog" onClick={handleClose}>Close</Button>
       </DialogActions>
     </Dialog>
   );

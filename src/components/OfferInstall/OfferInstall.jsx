@@ -32,6 +32,7 @@ function OfferInstall({ className }) {
           onClick={() => offerInstallApp()}
           variant='filled'
           color='inherit'
+          aria-label='install-web-app'
           children={
             <Grid container rowSpacing={2} columnSpacing={2}>
               <Grid item xs={12} >
@@ -47,7 +48,7 @@ function OfferInstall({ className }) {
               </Grid>
 
               {/* <Grid item xs={4}>
-                <Button onClick={() => offerInstallApp()}>{T.Install}</Button>
+                <Button aria-label='install-web-app' onClick={() => offerInstallApp()}>{T.Install}</Button>
               </Grid> */}
             </Grid>
           }

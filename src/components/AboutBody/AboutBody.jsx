@@ -117,7 +117,7 @@ function AboutBody({ className }) {
               }
 
               {vItem.btnAction &&
-                <Button variant="contained" onClick={() => { vItem.btnAction() }}>
+                <Button variant="contained" aria-label={vItem.btnLabel} onClick={() => { vItem.btnAction() }}>
                   {vItem.btnText}
                 </Button>
               }

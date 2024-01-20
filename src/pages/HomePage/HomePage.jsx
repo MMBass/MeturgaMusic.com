@@ -76,9 +76,9 @@ function HomePage({ className }) {
             <Grid item className="mainPics-container" xs={12} sm={6}>
 
               {theme.palette.primary.main === '#DF808E' ?
-                <img className="wide-pic" src={mainPic}></img>
+                <img className="wide-pic" alt="site-in-action" src={mainPic}></img>
                 :
-                <img className="wide-pic wide-pic-dark" src={mainPicDark}></img>
+                <img className="wide-pic wide-pic-dark" alt="site-in-action" src={mainPicDark}></img>
               }
 
             </Grid>
