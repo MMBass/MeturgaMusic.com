@@ -83,7 +83,7 @@ const Header = ({ className, changeColors }) => {
           <Box>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu-appbar"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleToggleSideBar}

@@ -81,11 +81,12 @@ export default function CurrLyricsContextProvider({ children }) {
 
                     if (data.combined[2].trans.length > 1 && data.service) setTranslatedBy(data.service + '-translator');
 
-                    utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || '' });
+                    utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
                     utils.clearGsc();
                     sessionStorage.setItem('currLines', JSON.stringify(data.combined));
                     sessionStorage.setItem('currSongTitle', (songTitle));
                     sessionStorage.setItem('currVideoId', (data.videoId));
+                    sessionStorage.setItem('currService', (data.service || 'legacy'));
 
                 } else if (data?.lyrics) {
                     setTitle(songTitle);
@@ -204,7 +205,7 @@ export default function CurrLyricsContextProvider({ children }) {
                     });
 
                     setLines(newLines);
-                    utils.lsSaveSong({ title: title, lines: newLines, service: data.service });
+                    utils.lsSaveSong({ title: data.title, lines: newLines, service: data.service });
                     setTranslatedBy(data.service + '-translator');
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
@@ -248,7 +249,9 @@ export default function CurrLyricsContextProvider({ children }) {
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
                     sessionStorage.setItem('currVideoId', (videoId));
-                    putFullTrans(newLines);
+                    sessionStorage.setItem('currService', (translatedBy));
+
+                    putFullTrans(newLines, 'google');
                     setAzureServerError(false);
                 };
 
@@ -326,6 +329,8 @@ export default function CurrLyricsContextProvider({ children }) {
                     sessionStorage.setItem('currLines', JSON.stringify(lines));
                     sessionStorage.setItem('currSongTitle', (title));
                     sessionStorage.setItem('currVideoId', (videoId));
+                    sessionStorage.setItem('currService', 'legacy-R-Translator');
+                    setTranslatedBy('legacy-R-Translator');
                     setAzureServerError(false);
                 }
                 console.log(e);
