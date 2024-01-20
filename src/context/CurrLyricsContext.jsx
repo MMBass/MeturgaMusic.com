@@ -200,8 +200,7 @@ export default function CurrLyricsContextProvider({children}) {
                     });
 
                     setLines(newLines);
-                    setVideoId(data.videoId);
-                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines, service: data.service });
+                    utils.lsSaveSong({ title: title, videoId: videoId, lines: newLines, service: data.service });
                     setTranslatedBy(data.service + '-translator');
 
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));

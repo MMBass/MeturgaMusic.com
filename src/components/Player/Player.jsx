@@ -2,13 +2,15 @@ import { useContext, useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
+
+// Imports for skip 10 seconds functionallity:
+// import CardContent from '@mui/material/CardContent';
+// import Typography from '@mui/material/Typography';
+// import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+// import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+// import SkipNextIcon from '@mui/icons-material/SkipNext';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
@@ -45,20 +47,22 @@ function Player({ className }) {
           <Card sx={{ display: 'flex' }} className={className}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }} className='remove-icon-box'>
-                <IconButton>
-                  <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} onClick={() => setHide(true)} />
+                <IconButton onClick={() => setHide(true)}>
+                  <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} />
                 </IconButton>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }} className='remove-icon-box'>
-                <IconButton>
-                  {fullSize ?
-                    <CloseFullscreenIcon fontSize={'small'} onTouchStart={() => toggleFull()} onClick={() => toggleFull()} />
 
-                    :
-                    <OpenInFullIcon fontSize={'small'} onTouchStart={() => toggleFull()} onClick={() => toggleFull()} />
+                {fullSize ?
+                  <IconButton onTouchStart={() => toggleFull()} onClick={() => toggleFull()}>
+                    <CloseFullscreenIcon fontSize={'small'} />
+                  </IconButton>
+                  :
+                  <IconButton onTouchStart={() => toggleFull()} onClick={() => toggleFull()}>
+                    <OpenInFullIcon fontSize={'small'} />
+                  </IconButton>
+                }
 
-                  }
-                </IconButton>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }} >
                 <IconButton>
