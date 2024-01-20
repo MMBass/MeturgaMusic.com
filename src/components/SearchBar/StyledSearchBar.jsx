@@ -56,7 +56,7 @@ const StyledSearchBar = styled(SearchBar)`
       min-width: 100%;
 
       input, fieldset, label{
-        color: ${props => props.theme.palette.primary.light + "!important"};
+        color: ${props => props.theme.palette.primary.dark+ "!important"};
         border-color: ${props => props.theme.palette.primary.light + "!important"};
       }
 
@@ -64,6 +64,10 @@ const StyledSearchBar = styled(SearchBar)`
         display: none;
       }
   }
+
+  .top-input input {
+  color: ${props => props.theme.palette.primary.light + "!important"};
+}
 
   /* google search styling - elements from out of REACT */
 
