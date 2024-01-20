@@ -74,6 +74,7 @@ function AboutBody({ className }) {
           <Grid
             className={(index % 2 == 0) ? "even-item" : "not-even-item"} // set the bg gradient if even-index
             container
+            // sx={{backgroundColor: theme.mode.dark ? ((index % 2 == 0)  ? 'antiquewhite' : 'aliceblue') : }}
           >
 
             <Grid item xs={12} className="about-body-top">

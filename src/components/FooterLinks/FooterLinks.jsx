@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import utils from '@/utils';
+
 import T from "./FooterLinksI18n";
 
 import Grid from '@mui/material/Grid';
@@ -22,7 +22,7 @@ import LinkIcon from '@mui/icons-material/Link';
 
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
 
-function FooterLinks({ className }) {
+function FooterLinks({ className, canInstall }) {
   const [copiedOpen, setCopiedOpen] = useState(false);
 
   const handleCopy = () => {
@@ -37,7 +37,7 @@ function FooterLinks({ className }) {
   return (
     <Grid className={className} container rowSpacing={1} columnSpacing={0}>
 
-      {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
+      {canInstall &&
         <Grid className={'install-section'} item xs={12} sm={3}>
           <OfferInstall></OfferInstall>
         </Grid>

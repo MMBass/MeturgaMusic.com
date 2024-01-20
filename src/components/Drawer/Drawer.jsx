@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 
 import SidePagesList from '@components/SidePagesList/StyledSidePagesList';
 
+import utils from '@/utils';
+
 function MyDrawer({ className, changeColors }) {
   const drawerContext = useContext(DrawerContext);
 
@@ -22,6 +24,10 @@ function MyDrawer({ className, changeColors }) {
         role="presentation"
       >
         <SidePagesList changeColors={changeColors} closeDrawer={() => { drawerContext.closeDrawer() }}></SidePagesList>
+
+      {/* {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
+       <SideLinks></SideLinks>
+      } */}
       </Box>
     </Drawer>
   );

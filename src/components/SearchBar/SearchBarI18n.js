@@ -1,5 +1,6 @@
 export default {
     Label: "חיפוש שיר באינטרנט",
-    AddRecordLabel: " הוסף שיר +",
+    OldAddRecordLabel: " הוסף שיר +",
+    AddRecordLabel: "הוספת שיר ללימוד בעתיד +",
     PoweredBy: "מופעל באמצעות",
 };

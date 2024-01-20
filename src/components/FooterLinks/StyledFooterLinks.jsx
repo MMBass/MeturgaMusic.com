@@ -3,7 +3,7 @@ import FooterLinks from './FooterLinks';
 
 const StyledFooterLinks = styled(FooterLinks)`
    svg{
-    padding-inline-end: 5px;
+     padding-inline-end: 5px;
    }
 `;
 

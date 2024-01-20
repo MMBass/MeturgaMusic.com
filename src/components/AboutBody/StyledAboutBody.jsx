@@ -4,12 +4,13 @@ import AboutBody from './AboutBody';
 const StyledAboutBody = styled(AboutBody)`
   width: 100%;
   font-size: 2vw;
+  font-weight: 300;
   padding-top: 50px;
   font-family: 'Assistant','Roboto', 'sans-serif';
   text-align: center;
 
   @media (max-width: 600px) {
-    font-size: 4.5vw;
+    font-size: 3.6vw;
   }
 
   .even-item, .not-even-item{
@@ -35,7 +36,7 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     @media (max-width: 600px) {
-      background-color: antiquewhite;
+      background-color: ${props => props.theme.palette.secondary.main === "#000" ? '#000' : 'aliceblue'};
       .strings-item{
         text-align: center;
       }
@@ -44,7 +45,7 @@ const StyledAboutBody = styled(AboutBody)`
 
   .not-even-item{
     @media (max-width: 600px) {
-      background-color: aliceblue;
+      background-color: ${props => props.theme.palette.secondary.main === "#000" ? '#000' : 'antiquewhite'};
       .strings-item{
         text-align: center;
       }
@@ -79,8 +80,9 @@ const StyledAboutBody = styled(AboutBody)`
     .about-header{
       margin-bottom: 5px;
       font-size: 3.6vw;
+      font-weight: 300;
       @media (max-width: 600px) {
-        font-size: 6vw;
+        font-size: 5vw;
       }
     }
 
@@ -97,11 +99,12 @@ const StyledAboutBody = styled(AboutBody)`
 
     .about-bottom{
       padding-top: 15px;
+      font-weight: 300;
       
       @media (max-width: 600px) {
         font-size: 5vw;
       }
-  }
+    }
   }
 
   .img-item{
@@ -119,7 +122,11 @@ const StyledAboutBody = styled(AboutBody)`
       justify-content: center;
       height: 100%;
 
-      background: radial-gradient(circle, #edcbcb 60%, rgb(223, 128, 142) 100%);
+      background: ${props =>
+        props.theme.palette.secondary.main === "#000"
+          ? '#303030'
+          : `radial-gradient(circle, #edcbcb 60%, rgb(223, 128, 142) 100%)`
+      };
       border-radius: 13px;
 
       @media (max-width: 600px) {
@@ -129,7 +136,11 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     img{
-      /* filter: invert(100%); // use when dark mode */
+      filter: ${props =>
+        props.theme.palette.secondary.main === "#000"
+          ? 'invert(100%)'
+          : 'unset'
+      };
       margin: auto;
       width: 95%;
       height: auto;
@@ -153,7 +164,7 @@ const StyledAboutBody = styled(AboutBody)`
       }
     }
     @media (max-width: 600px) {
-        background-color: rgb(223, 128, 142);
+        background-color: ${props => props.theme.palette.primary.main};
         color: white;
         padding: 40px;
     }
