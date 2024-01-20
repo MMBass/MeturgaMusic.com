@@ -51,31 +51,35 @@ function FooterLinks({ className, canInstall }) {
           >
             {T.Share}
           </ListSubheader>
-          <ListItemButton component="a" aria-label="whatsapp" href={"https://api.whatsapp.com/send?text=" + T.WhatsappMessage + " MeturgaMusic.com "} target="_blank">
-            <WhatsAppIcon />
-            <ListItemText primary={T.WPShare} />
-          </ListItemButton>
-
-          <CopyToClipboard text={"MeturgaMusic.com"} onCopy={() => handleCopy()} aria-label="share">
-            <ListItemButton>
-              <Tooltip
-                title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
-                arrow
-                PopperProps={{
-                  disablePortal: false,
-                }}
-                open={copiedOpen}
-                disableFocusListener
-                disableTouchListener
-                disableHoverListener
-              >
-                <LinkIcon />
-              </Tooltip>
-
-              <ListItemText primary={T.SiteLink} />
-
+          <ListItem>
+            <ListItemButton component="a" aria-label="whatsapp" href={"https://api.whatsapp.com/send?text=" + T.WhatsappMessage + " MeturgaMusic.com "} target="_blank">
+              <WhatsAppIcon />
+              <ListItemText primary={T.WPShare} />
             </ListItemButton>
-          </CopyToClipboard>
+          </ListItem>
+
+          <ListItem>
+            <CopyToClipboard text={"MeturgaMusic.com"} onCopy={() => handleCopy()} aria-label="share">
+              <ListItemButton>
+                <Tooltip
+                  title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
+                  arrow
+                  PopperProps={{
+                    disablePortal: false,
+                  }}
+                  open={copiedOpen}
+                  disableFocusListener
+                  disableTouchListener
+                  disableHoverListener
+                >
+                  <LinkIcon />
+                </Tooltip>
+
+                <ListItemText primary={T.SiteLink} />
+
+              </ListItemButton>
+            </CopyToClipboard>
+          </ListItem>
         </List>
       </Grid>
 
@@ -87,17 +91,21 @@ function FooterLinks({ className, canInstall }) {
           >
             {T.HelpUs}
           </ListSubheader>
-          <ListItemButton component="a" href="https://www.instagram.com/meturgamusic" target="_blank" aria-label="link">
-            <InstagramIcon />
+          <ListItem>
+            <ListItemButton component="a" href="https://www.instagram.com/meturgamusic" target="_blank" aria-label="link">
+              <InstagramIcon />
 
-            <ListItemText primary={T.Insta} />
-          </ListItemButton>
+              <ListItemText primary={T.Insta} />
+            </ListItemButton>
+          </ListItem>
 
-          <ListItemButton component="a" href="https://www.facebook.com/people/MeturgaMusic/100088145167989" target="_blank" aria-label="link">
-            <FacebookIcon />
+          <ListItem>
+            <ListItemButton component="a" href="https://www.facebook.com/people/MeturgaMusic/100088145167989" target="_blank" aria-label="link">
+              <FacebookIcon />
 
-            <ListItemText primary={T.FB} />
-          </ListItemButton>
+              <ListItemText primary={T.FB} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Grid>
 
@@ -110,15 +118,19 @@ function FooterLinks({ className, canInstall }) {
           >
             {T.ReportUs}
           </ListSubheader>
+          <ListItem>
           <ListItemButton component="a" href="mailto:meturgamusic@gmail.com" target="_blank" aria-label="link">
             <EmailIcon />
             <ListItemText primary={'MeturgaMusic@gmail.com'} />
           </ListItemButton>
+          </ListItem>
 
+          <ListItem>
           <ListItemButton component="a" href="https://www.facebook.com/people/MeturgaMusic/100088145167989 " target="_blank" aria-label="link">
             <MessageIcon />
             <ListItemText primary={T.SendFBMessage} />
           </ListItemButton>
+          </ListItem>
         </List>
       </Grid>
 
