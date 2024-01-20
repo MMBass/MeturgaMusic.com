@@ -10,7 +10,7 @@ const StyledAboutBody = styled(AboutBody)`
   text-align: center;
 
   @media (max-width: 600px) {
-    font-size: 3.6vw;
+    font-size: 4.6vw;
   }
 
   .even-item, .not-even-item{
@@ -82,7 +82,7 @@ const StyledAboutBody = styled(AboutBody)`
       font-size: 3.6vw;
       font-weight: 300;
       @media (max-width: 600px) {
-        font-size: 5vw;
+        font-size: 5.8vw;
       }
     }
 
@@ -160,7 +160,7 @@ const StyledAboutBody = styled(AboutBody)`
     p{
       font-size: 2vw;
       @media (max-width: 600px) {
-        font-size: 4.5vw;
+        font-size: 4.3vw;
       }
     }
     @media (max-width: 600px) {
