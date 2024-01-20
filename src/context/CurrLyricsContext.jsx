@@ -10,7 +10,7 @@ export const CurrLyricsContext = React.createContext(undefined);
 
 // TODO move reqs and ls/ss logic to serveices
 // TODO reqs to async-await
-export default function CurrLyricsContextProvider({children}) {
+export default function CurrLyricsContextProvider({ children }) {
     const loadersContext = useContext(LoadersContext);
     const bannersContext = useContext(BannersContext);
 
@@ -119,7 +119,11 @@ export default function CurrLyricsContextProvider({children}) {
                     });
                     setAbort(false);
                     setLines(newLines);
-                    if (data.videoId) setVideoId(data.videoId);
+                    if (data.videoId) {
+                        sessionStorage.setItem('currVideoId', (data.videoId));
+                        setVideoId(data.videoId);
+                        utils.lsSaveSong({ title: songTitle, videoId: data.videoId });
+                    }
 
                     utils.clearGsc();
                 } else {
@@ -200,12 +204,10 @@ export default function CurrLyricsContextProvider({children}) {
                     });
 
                     setLines(newLines);
-                    utils.lsSaveSong({ title: title, videoId: videoId, lines: newLines, service: data.service });
+                    utils.lsSaveSong({ title: title, lines: newLines, service: data.service });
                     setTranslatedBy(data.service + '-translator');
-
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
-                    sessionStorage.setItem('currVideoId', (videoId));
 
                 } else {
                     console.error("status is ok but azure translation missing");
@@ -242,10 +244,10 @@ export default function CurrLyricsContextProvider({children}) {
                 setLines(newLines);
 
                 if (index + 1 == lines.length) {
-                    utils.lsSaveSong({ title: title, videoId: data.videoId, lines: newLines, service: "google" });
+                    utils.lsSaveSong({ title: title, videoId: videoId, lines: newLines, service: "google" });
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
-                    sessionStorage.setItem('currVideoId', (data.videoId));
+                    sessionStorage.setItem('currVideoId', (videoId));
                     putFullTrans(newLines);
                     setAzureServerError(false);
                 };

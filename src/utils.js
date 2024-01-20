@@ -24,14 +24,17 @@ const lsSaveSong = (song /*provide trimmed title*/) => {
     if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
 
     const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
+
+    // update if exsist
     if(lsFindSong(song.title)){
         songs.forEach(s =>{if(s.title.toLowerCase() === song.title.toLowerCase()){
-            s.id = s.id
-            s.title = song.title
-            s.lines = song.lines
-            s.videoId = song.videoId
+            s.id = s.id || s.id
+            s.lines = song.lines || s.lines
+            s.videoId = song.videoId || s.videoId
         }});
     }
+
+    // create new
     if(!lsFindSong(song.title)){
         song.id = songs.length.toString();
         songs.unshift(song);
