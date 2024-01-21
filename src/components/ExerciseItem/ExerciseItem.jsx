@@ -68,9 +68,6 @@ function ExerciseItem({ className, lyric, deleteOneWord }) {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItem sx={{ pl: 4 }}>
-            {/* <ListItemIcon>
-              <ClearAllIcon />
-            </ListItemIcon> */}
             <ListItemText primary={<>
               <Typography
                 sx={{ display: 'inline' }}

@@ -56,7 +56,7 @@ const StyledSearchBar = styled(SearchBar)`
       min-width: 100%;
 
       input, fieldset, label{
-        color: ${props => props.theme.palette.primary.dark+ "!important"};
+        color: ${props => props.theme.palette.primary.light + "!important"};
         border-color: ${props => props.theme.palette.primary.light + "!important"};
       }
 

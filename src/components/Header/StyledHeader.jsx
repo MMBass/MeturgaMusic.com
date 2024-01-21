@@ -26,10 +26,6 @@ const StyledHeader = styled(Header)`
         }
       }
 
-      #outlined-search, #outlined-search span{
-      color: #3a3a3a !important;
-      }
-
       .collapse-search-box, .collapse-search-box .MuiCollapse-wrapperInner {
         width: 100%;
         max-width: 420px;
