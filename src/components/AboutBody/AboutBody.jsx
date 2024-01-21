@@ -2,6 +2,7 @@ import { useEffect, useState, Fragment } from "react";
 import T from "./AboutBodyI18n";
 
 import { v4 as uuidv4 } from 'uuid';
+import { useTheme } from '@mui/material/styles';
 
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -11,12 +12,14 @@ import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import shot1 from '@/images/screenshots/shotone.png';
+import shot1Dark from '@/images/screenshots/shotone.png';
 import shot2 from '@/images/screenshots/shot2.png';
 import shot5 from '@/images/screenshots/shot8.png';
 import shot3 from '@/images/screenshots/3.jpg';
 
-
 function AboutBody({ className }) {
+  const theme = useTheme();
+
   const data = [
     {
       img: shot1,
