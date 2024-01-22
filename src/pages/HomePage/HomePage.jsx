@@ -44,7 +44,7 @@ function HomePage({ className }) {
     } else if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
     };
-  }, []); // use if there is a direct song in the url
+  }, [rrdLocation]); // use if there is a direct song in the url
 
   function callSongIfQuery(sname) {
     let songTitle = sname;
