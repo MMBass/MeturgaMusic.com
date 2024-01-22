@@ -20,7 +20,6 @@ const lsSaveWord = (toSave /* { word: string, results: [string] } */) => {
 };
 
 const lsSaveSong = (song /*provide trimmed title*/) => {
-    console.log(song);
     if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
 
     const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));

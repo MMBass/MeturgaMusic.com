@@ -136,11 +136,6 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     img{
-      filter: ${props =>
-        props.theme.palette.secondary.main === "#000"
-          ? 'invert(100%)'
-          : 'unset'
-      };
       margin: auto;
       width: 95%;
       height: auto;
@@ -150,7 +145,6 @@ const StyledAboutBody = styled(AboutBody)`
         height: auto;
         max-height: 90%;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        /* max-height: 200px; */
       }
     }
   }

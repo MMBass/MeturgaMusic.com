@@ -209,15 +209,14 @@ export default function CurrLyricsContextProvider({ children }) {
                     setTranslatedBy(data.service + '-translator');
                     sessionStorage.setItem('currLines', JSON.stringify(newLines));
                     sessionStorage.setItem('currSongTitle', (title));
-
+                    putFullTrans(newLines, data.service);
                 } else {
                     console.error("status is ok but azure translation missing");
                     // checkNextTrans(); // doesn't work
                     setAzureServerError(true); // works
 
                 }
-            }
-            ).catch((e) => {
+            }).catch((e) => {
                 console.log(e);
                 // checkNextTrans(); // doesn't work
                 setAzureServerError(true); // works
@@ -352,7 +351,11 @@ export default function CurrLyricsContextProvider({ children }) {
                 "trans": JSON.stringify(trans),
                 "source": source,
             })
-        })
+        }) .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        }
+            )
     };
 
     const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort, setVideoId };

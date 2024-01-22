@@ -117,7 +117,7 @@ function HomePage({ className }) {
       }
 
       {!currLyricsContext.lines?.[0] &&
-        <AboutBody focusSearch={focusSearch}></AboutBody>
+        <AboutBody focusSearch={focusSearch} isDark={theme.palette.primary.main === '#DF808E' ? false : true}></AboutBody>
       }
 
       {currLyricsContext.lines?.[0] &&

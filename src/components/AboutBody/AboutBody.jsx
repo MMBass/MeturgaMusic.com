@@ -12,17 +12,20 @@ import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import shot1 from '@/images/screenshots/shotone.png';
-import shot1Dark from '@/images/screenshots/shotone.png';
+import shot1Dark from '@/images/screenshots/shotoneDark.png';
 import shot2 from '@/images/screenshots/shot2.png';
+import shot2Dark from '@/images/screenshots/shot2Dark.png';
 import shot5 from '@/images/screenshots/shot8.png';
-import shot3 from '@/images/screenshots/3.jpg';
+import shot5Dark from '@/images/screenshots/shot8Dark.png';
+import shot3 from '@/images/screenshots/shot3.png';
+import shot3Dark from '@/images/screenshots/shot3Dark.png';
 
-function AboutBody({ className }) {
-  const theme = useTheme();
+function AboutBody({ className, isDark }) {
+  const theme = useTheme(); // TODO check if listenin to changes
 
   const data = [
     {
-      img: shot1,
+      img: isDark ? shot1Dark : shot1,
       alt: T.Shot1Alt,
       header: T.Shot1Header,
       bodyStrings: T.Shot1Body.split(","),
@@ -30,20 +33,20 @@ function AboutBody({ className }) {
       footer: T.Shot1Footer,
     },
     {
-      img: shot5,
+      img: isDark ? shot5Dark : shot5,
       alt: T.Player1Alt,
       header: T.PlayerHadeer,
       bodyStrings: T.PlayerBody.split(","),
     },
     {
-      img: shot2,
+      img: isDark ? shot2Dark : shot2,
       alt: T.SingleTransAlt,
       header: T.SingleTransHeader,
       bodyStrings: T.SingleTransBody.split(","),
       footer: T.SingleTransFooter,
     },
     {
-      img: shot3,
+      img: isDark ? shot3Dark : shot3,
       alt: T.ExerciseAlt,
       header: T.ExerciseHeader,
       bodyStrings: T.ExerciseBody.split(","),
@@ -59,7 +62,12 @@ function AboutBody({ className }) {
     if (storedItems) {
       setVisibleItems(JSON.parse(storedItems));
     }
-  }, []);
+  }, [data]);
+
+  // on theme changes set the data then it will call the effect to setVisible again 
+  useEffect(() => {
+    setVisibleItems(data)
+  }, [isDark]);
 
   const handleRemove = (vItem) => {
     // Filter out the item from the visible items
@@ -75,7 +83,7 @@ function AboutBody({ className }) {
       {visibleItems.map((vItem, index) => (
         <Fragment key={uuidv4() + index}>
           <Grid
-            className={(index % 2 == 0) ? "even-item" : "not-even-item"} // set the bg gradient if even-index
+            className={(index % 2 == 0) ? " even-item" : " not-even-item"} // set the bg gradient if even-index
             container
             // sx={{backgroundColor: theme.mode.dark ? ((index % 2 == 0)  ? 'antiquewhite' : 'aliceblue') : }}
           >
