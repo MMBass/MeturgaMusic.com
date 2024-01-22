@@ -21,12 +21,19 @@ import TUtils from '@/i18n-utils';
 function LyricsBody({ className }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const { directSong } = useParams();
+  const sname = searchParams.get("song"); // use for hashRouter
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-    if (!directSong) {
-      setSearchParams(utils.titleToParams(currLyricsContext.title)); // use if hashRouter
+    // Avoiding infinite HomePage useEffect that depends on rrdLocation (page params) 
+    const paramsSong = directSong || sname || null;
+    if (!paramsSong) {
+      setSearchParams(utils.titleToParams(currLyricsContext.title));
+    }else if(!utils.titleToParams(currLyricsContext.title) == paramsSong){
+      setSearchParams(utils.titleToParams(currLyricsContext.title));
+    }else{
+      return;
     }
   }, [currLyricsContext.title]);
 
