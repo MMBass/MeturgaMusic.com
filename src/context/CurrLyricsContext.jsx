@@ -35,9 +35,9 @@ export default function CurrLyricsContextProvider({ children }) {
         }
     }, []);
 
-    const serverUri = 'https://musicline-backend.vercel.app';
+    // const serverUri = 'https://musicline-backend.vercel.app';
 
-    // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
+    const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
 
     const getSongLyrics = (splittedSongTitle, songTitle) => {
         setAbort(true);
@@ -339,7 +339,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const putFullTrans = (newLines, source) => {
         const trans = [];
         newLines.forEach(e => trans.push(e.trans));
-
+        
         fetch(`${serverUri}/trans/lines?initId=` + localStorage.getItem('init'), {
             method: 'put',
             headers: {
@@ -354,8 +354,7 @@ export default function CurrLyricsContextProvider({ children }) {
         }) .then(response => response.json())
         .then(data => {
             console.log(data);
-        }
-            )
+        });
     };
 
     const actions = { getSongLyrics, getFullTrans, checkNextTrans, setLines, setTitle, setAbort, setVideoId };

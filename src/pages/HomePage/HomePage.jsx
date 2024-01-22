@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import { useSearchParams, useParams } from "react-router-dom";
+import { useSearchParams, useParams, useLocation } from "react-router-dom";
 import T from "./HomePageI18n";
 
 import Container from "@mui/material/Container";
@@ -28,6 +28,7 @@ function HomePage({ className }) {
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams(); // using the react-router hook, works with hashed pages
   const sname = searchParams.get("song"); // use for hashRouter
+  const rrdLocation = useLocation();
   const { directSong } = useParams();
 
   const theme = useTheme();
@@ -36,8 +37,9 @@ function HomePage({ className }) {
     // note! the params in HashRouter works only this pattern: http://.../#/?song=artist_title
     drawerContext.closeDrawer();
     if (bannersContext.error) bannersContext.closeBanner('error');
-
+    
     if (directSong && directSong.includes("_")) {
+      console.log(directSong);
       callSongIfQuery(directSong);
     } else if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
