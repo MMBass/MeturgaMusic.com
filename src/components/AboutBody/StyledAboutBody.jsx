@@ -63,7 +63,7 @@ const StyledAboutBody = styled(AboutBody)`
     .remove-icon{
       padding: 3px;
       font-size: medium;
-      color: ${props => props.theme.palette.secondary.dark};
+      color: ${props => props.theme.palette.secondary.contrastText};
 
       :hover{
         color: #2b2b2bef;
@@ -81,6 +81,7 @@ const StyledAboutBody = styled(AboutBody)`
       margin-bottom: 5px;
       font-size: 3.6vw;
       font-weight: 300;
+      color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
         font-size: 5.8vw;
       }
@@ -89,8 +90,9 @@ const StyledAboutBody = styled(AboutBody)`
     .about-string{
       width: 100%;
       height: 100%;
-      
+
       p{
+        color: ${props => props.theme.palette.primary.main};
         margin: auto;
         padding: 15px;
         width: 80%;
@@ -99,8 +101,8 @@ const StyledAboutBody = styled(AboutBody)`
 
     .about-bottom{
       padding-top: 15px;
-      font-weight: 300;
-      
+      font-weight: 400;
+      color: ${props => props.theme.palette.secondary.contrastText};
       @media (max-width: 600px) {
         font-size: 5vw;
       }
