@@ -44,7 +44,7 @@ function OfferInstall({ className }) {
                 </Typography>
               </Grid>
               <Grid item xs={12}>
-                <img src={bgImage} alt="app-icon" />
+                <img loading="lazy" src={bgImage} alt="app-icon" />
               </Grid>
 
               {/* <Grid item xs={4}>

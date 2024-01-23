@@ -85,7 +85,7 @@ function AboutBody({ className, isDark }) {
           <Grid
             className={(index % 2 == 0) ? " even-item" : " not-even-item"} // set the bg gradient if even-index
             container
-            // sx={{backgroundColor: theme.mode.dark ? ((index % 2 == 0)  ? 'antiquewhite' : 'aliceblue') : }}
+          // sx={{backgroundColor: theme.mode.dark ? ((index % 2 == 0)  ? 'antiquewhite' : 'aliceblue') : }}
           >
 
             <Grid item xs={12} className="about-body-top">
@@ -98,6 +98,7 @@ function AboutBody({ className, isDark }) {
             <Grid item xs={12} sm={6} className="img-item">
               <div className="img-container">
                 <img
+                  loading="lazy"
                   src={vItem.img}
                   alt={vItem.alt}
                 />
@@ -106,25 +107,25 @@ function AboutBody({ className, isDark }) {
 
             <Grid item xs={12} sm={6} className="strings-item">
               {vItem.header &&
-                 <Typography className="about-header" variant="p" component="p">
-                 {vItem.header }
-               </Typography>
+                <Typography className="about-header" variant="p" component="p">
+                  {vItem.header}
+                </Typography>
               }
 
               <div className="strings-container">
                 {vItem.bodyStrings.length && vItem.bodyStrings.map((str, strIndex) => {
                   return (
                     <Typography className="about-string" key={uuidv4() + strIndex} variant="p" component="p">
-                      {str.replace(',','')}
+                      {str.replace(',', '')}
                     </Typography>
                   )
                 })}
               </div>
 
               {vItem.bottom &&
-                 <Typography className="about-bottom" variant="p" component="p">
-                 {vItem.bottom }
-               </Typography>
+                <Typography className="about-bottom" variant="p" component="p">
+                  {vItem.bottom}
+                </Typography>
               }
 
               {vItem.btnAction &&
