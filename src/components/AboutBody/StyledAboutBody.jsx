@@ -21,10 +21,8 @@ const StyledAboutBody = styled(AboutBody)`
     background-color: ${props => props.theme.palette.secondary.light};
 
     @media (max-width: 600px) {
-      background-color: antiquewhite;
       text-align: center;
       margin-bottom: 0px;
-      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; 
     }
   }
   
@@ -36,7 +34,6 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     @media (max-width: 600px) {
-      background-color: ${props => props.theme.palette.secondary.main === "#000" ? '#000' : 'aliceblue'};
       .strings-item{
         text-align: center;
       }
@@ -45,7 +42,6 @@ const StyledAboutBody = styled(AboutBody)`
 
   .not-even-item{
     @media (max-width: 600px) {
-      background-color: ${props => props.theme.palette.secondary.main === "#000" ? '#000' : 'antiquewhite'};
       .strings-item{
         text-align: center;
       }
@@ -127,12 +123,12 @@ const StyledAboutBody = styled(AboutBody)`
       background: ${props =>
         props.theme.palette.secondary.main === "#000"
           ? '#303030'
-          : `radial-gradient(circle, #edcbcb 60%, rgb(223, 128, 142) 100%)`
+          : `linear-gradient( to left, rgb(237, 203, 203) 70%, rgb(223, 128, 142) 100%)`
+          // : `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
       };
       border-radius: 13px;
 
       @media (max-width: 600px) {
-        background: unset;
         padding: 15px 4px;
       }
     }
@@ -143,7 +139,7 @@ const StyledAboutBody = styled(AboutBody)`
       height: auto;
       border-radius: 5px;
       @media (max-width: 600px) {
-        width: 99%;
+        width: 80%;
         height: auto;
         max-height: 90%;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

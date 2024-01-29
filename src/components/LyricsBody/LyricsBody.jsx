@@ -20,8 +20,8 @@ import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { directSong } = useParams();
-  const sname = searchParams.get("song"); // use for hashRouter
+  const { directSong } = useParams(); // song of path="/songs/:directSong"
+  const sname = searchParams.get("song"); // song of /?song= (with hash and without)
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
@@ -30,9 +30,9 @@ function LyricsBody({ className }) {
     const paramsSong = directSong || sname || null;
     if (!paramsSong) {
       setSearchParams(utils.titleToParams(currLyricsContext.title));
-    }else if(!utils.titleToParams(currLyricsContext.title) == paramsSong){
+    } else if (!utils.titleToParams(currLyricsContext.title) == paramsSong) {
       setSearchParams(utils.titleToParams(currLyricsContext.title));
-    }else{
+    } else {
       return;
     }
   }, [currLyricsContext.title]);
@@ -77,6 +77,9 @@ function LyricsBody({ className }) {
             </Typography>
           }
 
+
+          {/* This section creates H1 for the songs in site-map, for seo (crawlers)
+          if the url is from path="/songs/:directSong" */}
           {directSong &&
             <Typography
               variant="h6"
@@ -115,7 +118,7 @@ function LyricsBody({ className }) {
                 {line.src.split(' ').map((word, i) => {
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} open={(y == 1 & i == 1)}></LyricToolTip>
+                    <LyricToolTip key={uuidv4()} lyric={word} lyricIndex={y.toString() + i.toString()} ></LyricToolTip>
                   )
                 })}
               </Box>
@@ -131,7 +134,7 @@ function LyricsBody({ className }) {
                     line.trans?.length ?
                       <>{line.trans === '   ' ? '' : <p className="single-trans">{line.trans}</p>}</>
                       :
-                      <small className="single-trans">טוען תרגום...</small>
+                      <small className="single-trans">{TUtils.LoadingTrans}</small>
                   }
                 </>
               </Box>

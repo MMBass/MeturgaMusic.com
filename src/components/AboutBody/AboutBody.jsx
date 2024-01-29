@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
 
 import shot1 from '@/images/screenshots/shotone.png';
 import shot1Dark from '@/images/screenshots/shotoneDark.png';
@@ -21,11 +22,18 @@ import shot3 from '@/images/screenshots/shot3.png';
 import shot3Dark from '@/images/screenshots/shot3Dark.png';
 
 function AboutBody({ className, isDark }) {
-  const theme = useTheme(); // TODO check if listenin to changes
+  const showRemoveTrigger = useScrollTrigger({
+    target: window,
+    disableHysteresis: true,
+    threshold: 200,
+  });
+
+  const theme = useTheme(); // TODO check why not listenin to changes - but in HomePage it does 
 
   const data = [
     {
-      img: isDark ? shot1Dark : shot1,
+      img: shot1,
+      imgDark: shot1Dark,
       alt: T.Shot1Alt,
       header: T.Shot1Header,
       bodyStrings: T.Shot1Body.split(","),
@@ -33,25 +41,28 @@ function AboutBody({ className, isDark }) {
       footer: T.Shot1Footer,
     },
     {
-      img: isDark ? shot5Dark : shot5,
+      img: shot5,
+      imgDark: shot5Dark,
       alt: T.Player1Alt,
       header: T.PlayerHadeer,
       bodyStrings: T.PlayerBody.split(","),
     },
     {
-      img: isDark ? shot2Dark : shot2,
+      img: shot2,
+      imgDark: shot2Dark,
       alt: T.SingleTransAlt,
       header: T.SingleTransHeader,
       bodyStrings: T.SingleTransBody.split(","),
       footer: T.SingleTransFooter,
     },
     {
-      img: isDark ? shot3Dark : shot3,
+      img: shot3,
+      imgDark: shot3Dark,
       alt: T.ExerciseAlt,
       header: T.ExerciseHeader,
       bodyStrings: T.ExerciseBody.split(","),
       bottom: "",
-    },
+    }
   ];
 
   const [visibleItems, setVisibleItems] = useState(data);
@@ -62,12 +73,7 @@ function AboutBody({ className, isDark }) {
     if (storedItems) {
       setVisibleItems(JSON.parse(storedItems));
     }
-  }, [data]);
-
-  // on theme changes set the data then it will call the effect to setVisible again 
-  useEffect(() => {
-    setVisibleItems(data)
-  }, [isDark]);
+  }, []);
 
   const handleRemove = (vItem) => {
     // Filter out the item from the visible items
@@ -77,21 +83,19 @@ function AboutBody({ className, isDark }) {
     localStorage.setItem("visibleItems", JSON.stringify(newItems));
   };
 
-
   return (
     <Box className={className}>
       {visibleItems.map((vItem, index) => (
         <Fragment key={uuidv4() + index}>
           <Grid
-            className={(index % 2 == 0) ? " even-item" : " not-even-item"} // set the bg gradient if even-index
+            className={(index % 2 == 0) ? " even-item" : " not-even-item"} // for different style if even-index
             container
-          // sx={{backgroundColor: theme.mode.dark ? ((index % 2 == 0)  ? 'antiquewhite' : 'aliceblue') : }}
           >
 
             <Grid item xs={12} className="about-body-top">
               <IconButton aria-label="delete"
                 onClick={() => handleRemove(vItem)}>
-                <CloseOutlinedIcon className='remove-icon' />
+                {showRemoveTrigger && <CloseOutlinedIcon className='remove-icon' />}
               </IconButton>
             </Grid>
 
@@ -99,7 +103,7 @@ function AboutBody({ className, isDark }) {
               <div className="img-container">
                 <img
                   loading="lazy"
-                  src={vItem.img}
+                  src={isDark ? vItem.imgDark : vItem.img}
                   alt={vItem.alt}
                 />
               </div>

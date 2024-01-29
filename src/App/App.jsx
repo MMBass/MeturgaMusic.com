@@ -6,9 +6,8 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
-import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import CssBaseline from '@mui/material/CssBaseline';
 
 import { mainPinkTheme } from '@/themes/mainPinkTheme';
 import { darkTheme } from '@/themes/darkTheme';
@@ -62,7 +61,7 @@ function App({ className }) {
   }, []);
 
   const init = () => {
-    serverInit();
+    if(!(location.hostname === "localhost" || location.hostname === "127.0.0.1")) serverInit();
   };
 
   // Send every visit to the server
@@ -82,7 +81,6 @@ function App({ className }) {
   return (
     <div className={className}>
       <MuiThemeProvider theme={currTheme}>
-        {/* <CssBaseline /> */}
         <CacheProvider value={cacheRtl}>
           <Router>
             <HeadTags currTitle={currTitle} theme={currTheme}></HeadTags>

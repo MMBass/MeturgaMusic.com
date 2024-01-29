@@ -22,6 +22,8 @@ export default function CurrLyricsContextProvider({ children }) {
     const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans
     const [videoId, setVideoId] = useState(sessionStorage.getItem('currVideoId') || '');
 
+    const initId = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? "localhost" : localStorage.getItem('init');
+
     useEffect(() => {
         if (lines[0]) {
             checkNextTrans();
@@ -51,7 +53,7 @@ export default function CurrLyricsContextProvider({ children }) {
             return;
         }
 
-        fetch(`${serverUri}/lyrics?initId=` + localStorage.getItem('init'), {
+        fetch(`${serverUri}/lyrics?initId=` + initId, {
             // mode: "no-cors",
             method: 'post',
             headers: {
@@ -81,7 +83,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
                     if (data.combined[2].trans.length > 1 && data.service) setTranslatedBy(data.service + '-translator');
 
-                    utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
+                    utils.lsSaveSong({ title: songTitle, videoId: '', lines: data.combined, service: data.service || 'legacy' });
                     utils.clearGsc();
                     sessionStorage.setItem('currLines', JSON.stringify(data.combined));
                     sessionStorage.setItem('currSongTitle', (songTitle));
@@ -98,7 +100,8 @@ export default function CurrLyricsContextProvider({ children }) {
 
                             if (utils.isMostlyEnglish(line)) {
 
-                                if (line.length > 90) { // split by commas if the line is too long
+                                if (line.length > 90) { 
+                                    // split by commas if the line is too long
                                     let byCommas = line.split(',');
                                     if (byCommas[0].length > 10) {
                                         byCommas.map((byCommaLine) => {
@@ -271,7 +274,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const RetSingleLineTrans = (src, index) => {
         let newLines = [...lines];
 
-        fetch(`${serverUri}/trans/single-line?initId=` + localStorage.getItem('init'), {
+        fetch(`${serverUri}/trans/single-line?initId=` + initId, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -340,7 +343,7 @@ export default function CurrLyricsContextProvider({ children }) {
         const trans = [];
         newLines.forEach(e => trans.push(e.trans));
         
-        fetch(`${serverUri}/trans/lines?initId=` + localStorage.getItem('init'), {
+        fetch(`${serverUri}/trans/lines?initId=` + initId, {
             method: 'put',
             headers: {
                 'Accept': 'application/json',

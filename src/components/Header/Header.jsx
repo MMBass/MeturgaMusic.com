@@ -48,7 +48,7 @@ const Header = ({ className, changeColors }) => {
 
   useEffect(() => {
     setTopSearchBar(false);
-    window.scrollTo(0, 0); // scroll on router or song changes
+    window.scrollTo(0, 0); // scroll top on router or song changes
     if (bannersContext.error) bannersContext.closeBanner('error');
     drawerContext.closeDrawer();
   }, [rrdLocation, currLyricsContext.title]);
@@ -101,7 +101,7 @@ const Header = ({ className, changeColors }) => {
 
           {(currLyricsContext.lines?.[0] || rrdLocation.pathname !== "/") &&
             <>
-              {rrdLocation.pathname !== "/wish-list" &&
+              {(rrdLocation.pathname !== "/wish-list" && !drawerContext.open) &&
                 <>
                   <IconButton className='mui-search-icon-wrapper' onClick={() => setTopSearchBar(!topSearchBar)}>
                     <SearchIcon className='mui-search-icon'></SearchIcon>

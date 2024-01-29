@@ -7,7 +7,7 @@ import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 
-function ScrollTop({className}) {
+function ScrollTop({ className }) {
   const trigger = useScrollTrigger({
     target: window,
     disableHysteresis: true,
@@ -15,31 +15,31 @@ function ScrollTop({className}) {
   });
 
   const scrollToTop = () => {
-     window.scrollTo({ top: 0, behavior: "auto" });
-   }; 
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
 
   return (
-      <Zoom  className={className} in={trigger}>
-        <Box
-          role="presentation"
-          sx={{
-            position: "fixed",
-            bottom: 32,
-            right: 32,
-            zIndex: 1200,
-          }}
+    <Zoom className={className} in={trigger}>
+      <Box
+        role="presentation"
+        sx={{
+          position: "fixed",
+          bottom: 32,
+          right: 32,
+          zIndex: 1200,
+        }}
+      >
+        <Fab
+          onClick={scrollToTop}
+          color="primary"
+          size="small"
+          aria-label="scroll back to top"
         >
-          <Fab
-            onClick={scrollToTop}
-            color="primary"
-            size="small"
-            aria-label="scroll back to top"
-          >
-            <KeyboardArrowUpIcon htmlColor="white"/>
-          </Fab>
-        </Box>
-      </Zoom> 
-      );
+          <KeyboardArrowUpIcon htmlColor="white" />
+        </Fab>
+      </Box>
+    </Zoom>
+  );
 }
 
 export default ScrollTop;

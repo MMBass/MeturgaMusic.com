@@ -3,9 +3,11 @@ export default {
   LyricsInGoogle: 'חיפוש מילים בגוגל',
   TryingAgain: 'מנסה שוב',
   TransMissing: '[תרגום חסר]',
+  MoreTrans: 'תרגומים נוספים',
   NoMore: 'לא נמצאו עוד',
-  TransBy: 'מתורגם באמצעות ',
+  TransBy: 'מתורגם באמצעות',
   UnderBuilding: "האתר בבניה",
   NoExactTransMessage: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק",
-  Translated: "מתורגם"
+  Translated: "מתורגם",
+  LoadingTrans: "טוען תרגום...",
 };

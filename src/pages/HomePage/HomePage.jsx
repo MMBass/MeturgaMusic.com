@@ -27,9 +27,9 @@ function HomePage({ className }) {
 
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams(); // using the react-router hook, works with hashed pages
-  const sname = searchParams.get("song"); // use for hashRouter
+  const sname = searchParams.get("song"); // song of /?song= (with hash and without)
   const rrdLocation = useLocation();
-  const { directSong } = useParams();
+  const { directSong } = useParams(); // song of path="/songs/:directSong" 
 
   const theme = useTheme();
 
@@ -84,7 +84,7 @@ function HomePage({ className }) {
               {theme.palette.primary.main === '#DF808E' ?
                 <img className="wide-pic" alt="site-in-action" src={mainPic} loading="lazy" ></img>
                 :
-                <img className="wide-pic wide-pic-dark" alt="site-in-action" src={mainPicDark} loading="lazy" ></img>
+                <img className="wide-pic wide-pic-dark" alt="site-in-action" src={mainPicDark} loading="lazy"></img>
               }
 
             </Grid>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import Tooltip from '@mui/material/Tooltip';
 
@@ -7,12 +7,13 @@ import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
 
 import getSingleTrans from '@services/getSingleTrans';
 
-function LyricToolTip({ className, lyric, }) {
+function LyricToolTip({ className, lyric }) {
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState([]);
 
   const handleTooltipOpen = () => {
     setOpen(true);
+
     if (!results[0]) {
       callResults();
     }

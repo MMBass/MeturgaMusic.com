@@ -10,7 +10,7 @@ import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
 import { SettingsContext } from '@context/SettingsContext';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
-function LyricToolTipChilds({ className, results, tooltipClose, lyric}) {
+function LyricToolTipChilds({ className, results, tooltipClose, lyric }) {
   const settingsContext = useContext(SettingsContext);
   const currLyricsContext = useContext(CurrLyricsContext);
 
@@ -25,7 +25,9 @@ function LyricToolTipChilds({ className, results, tooltipClose, lyric}) {
       return <p className="tt-p">{rText}</p>;
     } else {
       return (
-        <p className="tt-p">לא נמצאו עוד</p>
+        <p className="tt-p">
+          {TUtils.NoMore}
+        </p>
       );
     }
   }
@@ -33,7 +35,9 @@ function LyricToolTipChilds({ className, results, tooltipClose, lyric}) {
   return (
     <ClickAwayListener onClickAway={tooltipClose}>
       <span className={className}>
-        <Typography className="tt-top" color="inherit" style={{ fontSize: settingsContext.fontSize.md - 2 }}> תרגומים נוספים </Typography>
+        <Typography className="tt-top" color="inherit" style={{ fontSize: settingsContext.fontSize.md - 2 }}>
+          {TUtils.MoreTrans}
+        </Typography>
         {results[0] && <hr></hr>}
         <div className="tt-body" style={{ fontSize: settingsContext.fontSize.md - 2 }}>
           {results[0] ?
