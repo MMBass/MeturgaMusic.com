@@ -14,8 +14,6 @@ import { ServiceTypes } from '@/enums';
 
 export const CurrLyricsContext = React.createContext(undefined);
 
-// TODO move reqs and ls/ss logic to serveices
-// TODO reqs to async-await
 export default function CurrLyricsContextProvider({ children }) {
     const loadersContext = useContext(LoadersContext);
     const bannersContext = useContext(BannersContext);
@@ -44,7 +42,7 @@ export default function CurrLyricsContextProvider({ children }) {
         let linesParent = document.querySelectorAll(".gsc-expansionArea")[0];
         loadersContext.openLoader('backdrop');
 
-        // first try to get from LS
+        // first try to get from local-storage
         if (localStorageGetSong(songTitle, linesParent)) {
             return;
         }
@@ -187,8 +185,6 @@ export default function CurrLyricsContextProvider({ children }) {
                     newLines[i] = { src: lines[i].src, trans: li };
                 });
 
-                debugger
-
                 setLines(newLines);
                 utils.lsSaveSong({ title: title, lines: newLines, service: data.service });
                 console.log(data);
@@ -256,13 +252,13 @@ export default function CurrLyricsContextProvider({ children }) {
             setTranslatedBy('');
         }
     }
-    
+
     const RgetSingleLineTrans = async (src, index) => {
         let newLines = [...lines];
-    
+
         try {
             const data = await fetchRsingletrans(src);
-    
+
             if (data?.trans) {
                 newLines[index] = { src: src, trans: data?.trans };
             } else {
@@ -279,11 +275,11 @@ export default function CurrLyricsContextProvider({ children }) {
                 newLines[index] = { src: src, trans: TUtils.TransMissing, transError: false };
             }
         }
-    
+
         setLines(newLines);
-    
+
         let lastTrans = lines[lines.length - 1]?.trans;
-    
+
         if (lastTrans.length >= 1) {
             sessionStorage.setItem('currSong', JSON.stringify({
                 Lines: newLines,
@@ -291,7 +287,7 @@ export default function CurrLyricsContextProvider({ children }) {
                 VideoId: videoId,
                 Service: ServiceTypes.REVERSO
             }));
-    
+
             setTranslatedBy(ServiceTypes.REVERSO);
             setAzureServerError(false);
         }
