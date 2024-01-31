@@ -5,9 +5,9 @@ import Tooltip from '@mui/material/Tooltip';
 import LyricToolTipChilds from '@components/LyricToolTipChilds/StyledLyricToolTipChilds';
 import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
 
-import getSingleTrans from '@services/getSingleTrans';
+import fetchSingleTrans from '@services/fetchSingleTrans';
 
-function LyricToolTip({ className, lyric }) {
+function LyricToolTip({ className, lyric, lyricIndex, /* open, setOpen */ }) {
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState([]);
 
@@ -24,7 +24,7 @@ function LyricToolTip({ className, lyric }) {
   };
 
   async function callResults() {
-    const res = await getSingleTrans(lyric);
+    const res = await fetchSingleTrans(lyric);
     setResults(res);
   }
 

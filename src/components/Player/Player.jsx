@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
+import Draggable from 'react-draggable';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -18,8 +19,7 @@ import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
-
-import Draggable from 'react-draggable';
+import Constants from '@/constants';
 
 function Player({ className }) {
   const [hide, setHide] = useState(true);
@@ -74,7 +74,7 @@ function Player({ className }) {
             </Box>
             <CardMedia
               children={<iframe
-                src={`https://www.youtube.com/embed/${currLyricsContext.videoId}`}
+                src={Constants.youtubeEmbedUri + currLyricsContext.videoId}
                 title={'video'}
                 allowFullScreen={false}
                 className={fullSize ? "full-frame" : ""}

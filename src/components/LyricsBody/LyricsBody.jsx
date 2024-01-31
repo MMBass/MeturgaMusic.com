@@ -37,27 +37,18 @@ function LyricsBody({ className }) {
     }
   }, [currLyricsContext.title]);
 
-  const removeSsLines = () => {
-    currLyricsContext.setAbort(true);
-    sessionStorage.removeItem('currLines');
-    currLyricsContext.setLines([]);
-    currLyricsContext.setTitle('');
-    currLyricsContext.setVideoId('');
-    setSearchParams('');
-  }
-
   return (
     <Paper elevation={3} className={className}>
       <Grid container rowSpacing={1} columnSpacing={0}>
 
         <Grid item xs={12} className="l-body-top">
-          <IconButton onClick={() => removeSsLines()}>
+          <IconButton onClick={() => currLyricsContext.removeSsLines(setSearchParams)}>
             <CloseOutlinedIcon className='remove-icon' />
           </IconButton>
 
           {currLyricsContext.translatedBy &&
             <Chip className='trans-by-chip'
-              label={TUtils.TransBy + currLyricsContext.translatedBy}
+              label={TUtils.TransBy + currLyricsContext.translatedBy + '-translator'}
               color="default" variant="filled" size='small' />
           }
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import T from "./FooterLinksI18n";
+import Constants from "@/constants";
 
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
@@ -52,7 +53,7 @@ function FooterLinks({ className, canInstall }) {
             {T.Share}
           </ListSubheader>
           <ListItem>
-            <ListItemButton component="a" aria-label="whatsapp" href={"https://api.whatsapp.com/send?text=" + T.WhatsappMessage + " MeturgaMusic.com "} target="_blank">
+            <ListItemButton component="a" aria-label="whatsapp" href={Constants.whatsappDraftMessageUri + T.WhatsappMessage + " MeturgaMusic.com "} target="_blank">
               <WhatsAppIcon />
               <ListItemText primary={T.WPShare} />
             </ListItemButton>
@@ -92,7 +93,7 @@ function FooterLinks({ className, canInstall }) {
             {T.HelpUs}
           </ListSubheader>
           <ListItem>
-            <ListItemButton component="a" href="https://www.instagram.com/meturgamusic" target="_blank" aria-label="link">
+            <ListItemButton component="a" href={Constants.instaPageUri} target="_blank" aria-label="link">
               <InstagramIcon />
 
               <ListItemText primary={T.Insta} />
@@ -100,7 +101,7 @@ function FooterLinks({ className, canInstall }) {
           </ListItem>
 
           <ListItem>
-            <ListItemButton component="a" href="https://www.facebook.com/people/MeturgaMusic/100088145167989" target="_blank" aria-label="link">
+            <ListItemButton component="a" href={Constants.faceBookPageUri} target="_blank" aria-label="link">
               <FacebookIcon />
 
               <ListItemText primary={T.FB} />
@@ -119,17 +120,17 @@ function FooterLinks({ className, canInstall }) {
             {T.ReportUs}
           </ListSubheader>
           <ListItem>
-          <ListItemButton component="a" href="mailto:meturgamusic@gmail.com" target="_blank" aria-label="link">
-            <EmailIcon />
-            <ListItemText primary={'MeturgaMusic@gmail.com'} />
-          </ListItemButton>
+            <ListItemButton component="a" href={"mailto:" + Constants.MeturgamusicMail} target="_blank" aria-label="link">
+              <EmailIcon />
+              <ListItemText primary={Constants.MeturgamusicMail} />
+            </ListItemButton>
           </ListItem>
 
           <ListItem>
-          <ListItemButton component="a" href="https://www.facebook.com/people/MeturgaMusic/100088145167989 " target="_blank" aria-label="link">
-            <MessageIcon />
-            <ListItemText primary={T.SendFBMessage} />
-          </ListItemButton>
+            <ListItemButton component="a" href={Constants.faceBookPageUri} target="_blank" aria-label="link">
+              <MessageIcon />
+              <ListItemText primary={T.SendFBMessage} />
+            </ListItemButton>
           </ListItem>
         </List>
       </Grid>

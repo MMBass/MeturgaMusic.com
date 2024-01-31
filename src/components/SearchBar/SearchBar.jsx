@@ -7,8 +7,10 @@ import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
+import searchStarter from '@services/searchStarter';
 import utils from '@/utils';
 import T from "./SearchBarI18n";
+import Constants from "@/constants";
 
 function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
@@ -26,64 +28,10 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     }
   }, [currLyricsContext.title]);
 
-  function showGscBar() {
-    const hiddenElem = document.querySelectorAll(".gsc-control-cse")[0];
-    hiddenElem.style.visibility = "visible";
-    hiddenElem.style.marginTop = "90px";
-  }
-
   useEffect(() => {
     utils.loadGscScript();
-    observeMyWrapper();
+    searchStarter(linesChange, setStart);
   }, []);
-
-  function observeMyWrapper() {
-    // observe when gsc loaded, then we can find the .gsc-results-wrapper-nooverlay to observe it
-
-    // Loads faster without window.onload ?
-    // window.onload = () => {
-    const checkgsc = document.querySelector("#gcse-my-wrapper #___gcse_0");
-    if (checkgsc) {
-      showGscBar();
-      track___gcse_0SearchInput();
-    } else {
-      const wrapperNode = document.querySelector("#gcse-my-wrapper");
-      const observerOptions = {
-        childList: true,
-        attributes: true,
-
-        // Omit (or set to false) to observe only changes to the parent node
-        subtree: false
-      }
-
-      function callback() {
-        track___gcse_0SearchInput();
-      }
-
-      const observer = new MutationObserver(callback);
-      observer.observe(wrapperNode, observerOptions);
-    }
-    // }
-  }
-
-  function track___gcse_0SearchInput() { // observe when gsc lines change
-    setStart(true); // replacing the loader and able search
-    const targetNode = document.querySelectorAll("#___gcse_0 .gsc-results-wrapper-nooverlay")[0];
-    const observerOptions = {
-      childList: false,
-      attributes: true,
-
-      // Omit (or set to false) to observe only changes to the parent node
-      subtree: false
-    }
-
-    function callback() {
-      linesChange();
-    }
-
-    const observer = new MutationObserver(callback);
-    observer.observe(targetNode, observerOptions);
-  }
 
   function setVal(e) {
     setCurrVal(e.target.value);
@@ -97,7 +45,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     if (bannersContext.error) bannersContext.closeBanner('error');
 
     let gsc_input = document.querySelector('#gsc-i-id1');
-    let en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9- ]+$/;
 
     if (gsc_input) {
       if (eValue.length <= 1) {
@@ -106,7 +53,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         if (gsc_clear) {
           gsc_clear.dispatchEvent(new Event('click'));
         }
-      } else if (en_pattern.test(eValue)) {
+      } else if (Constants.en_pattern.test(eValue)) {
         gsc_input.value = eValue;
         let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
 
@@ -143,18 +90,18 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     setTimeout(() => {
       let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
 
-      // move the ads to bottom
+      // move the ads to bottom - if displayed
       // const gscAdBlocks = document.querySelectorAll('.gsc-adBlock');
       // gscAdBlocks.forEach((ad)=>{
       //   ad.parentNode.appendChild(ad);
       // }); 
 
       if (sResults) {
-        sResults.forEach((line, i) => {
+        sResults.forEach((line) => {
           if (line.innerText.includes("Lyrics")) {
 
             if (line.innerText.includes("(")) {
-              let inside = line.innerText.match(/\(([^)]+)\)/)[1].toLowerCase();
+              let inside = line.innerText.match(Constants.insideSearchResultsPattern)[1].toLowerCase();
               if (inside?.includes("live") || inside?.includes("mix") || inside?.includes("remix")) {
                 line.parentElement.parentElement.parentElement.remove();
                 return;
@@ -197,7 +144,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
   }
 
   const handleLineClickEvent = (line, songTitle, splittedSongTitle) => {
-
     line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 
     if (addRecordMode === true) {

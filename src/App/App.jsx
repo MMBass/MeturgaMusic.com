@@ -19,8 +19,10 @@ import AlertTitle from '@mui/material/AlertTitle';
 import { DrawerContext } from '@context/DrawerContext';
 import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
+
 import utils from '@/utils';
-import T from "./AppI18n";
+import Constants from '@/constants';
+import T from './AppI18n';
 
 import Header from '@components/Header/StyledHeader';
 import Layout from '@components/Layout/StyledLayout';
@@ -32,7 +34,7 @@ import Modal from '@components/Modal/StyledModal';
 import ScrollTop from '@components/ScrollTop/StyledScrollTop';
 import Player from '@components/Player/StyledPlayer';
 import HeadTags from '@components/HeadTags/HeadTags';
-// import   MiniDrawer } from '@components/MiniDrawer/StyledMiniDrawer';
+// import MiniDrawer from '@components/MiniDrawer/StyledMiniDrawer';
 
 import HomePage from '@pages/HomePage/StyledHomePage';
 import HistoryPage from '@pages/HistoryPage/StyledHistoryPage';
@@ -61,15 +63,14 @@ function App({ className }) {
   }, []);
 
   const init = () => {
-    if(!(location.hostname === "localhost" || location.hostname === "127.0.0.1")) serverInit();
+    if(!utils.isLocalhost()) serverInit();
   };
 
   // Send every visit to the server
   const serverInit = () => {
-    const serverUri = 'https://musicline-backend.vercel.app';
     if (!localStorage.getItem('init')) localStorage.setItem('init', 'INITID:' + uuidv4());
     let initId = localStorage.getItem('init');
-    fetch(`${serverUri}/?initId=` + initId);
+    fetch(`${Constants.devServerUri}/?initId=` + initId);
   };
 
   const changeTheme = () => {

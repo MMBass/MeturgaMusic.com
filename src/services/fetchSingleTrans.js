@@ -1,17 +1,15 @@
 import TUtils from '@/i18n-utils';
+import Constants from '@/constants';
+import utils from '@/utils.js';
+const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
 
 const getSingleTrans = async (lyric) => {
-    const serverUri = 'https://musicline-backend.vercel.app';
-
-    // const serverUri = 'https://musicline-backend-dev.vercel.app';
-
-    // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
 
     lyric.trim().toLowerCase();
-    lyric = lyric.replaceAll(/[^a-zA-Z0-9']/g, ""); // removes special chars exept '
+    lyric = lyric.replaceAll(Constants.specialCharsPattern, ""); // removes special chars exept '
     if (lyric.slice(-1) === "'") lyric = lyric.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
 
-    return fetch(`${serverUri}/trans/single?initId=` + localStorage.getItem('init'), {
+    return fetch(`${Constants.prodServerUri}/trans/single?initId=` + initId, {
         method: 'post',
         headers: {
             'Accept': 'application/json',
@@ -37,9 +35,7 @@ const getSingleTrans = async (lyric) => {
 async function getSingleFromG(lyric) {
     try {
 
-        let gUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${'he'}&dt=t&q=${encodeURIComponent(
-            lyric
-        )}`;
+        const gUrl = `${Constants.gUrl}${encodeURIComponent(lyric)}`;
 
         const response = await fetch(gUrl);
         const data = await response.json();

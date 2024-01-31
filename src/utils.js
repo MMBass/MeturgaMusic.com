@@ -1,3 +1,7 @@
+
+/** Get if app currently running on local @returns {boolean} */
+const isLocalhost = () => (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+
 const loadGscScript = () => {
     const script = document.createElement("script");
     script.type = "text/javascript";
@@ -97,7 +101,7 @@ function isMostlyEnglish(str) {
 
 /** GOOGLE ads tag - Global for all account sites */
 const loadGoogleAds = () => {
-    // the script will work if the option ois on on google site. otherwise the custom ads will show
+    // the script will work if the option is ON in google console. otherwise the custom ads will show
     const existingAdsScript = document.querySelector('script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
     if (!existingAdsScript) {
         const script = document.createElement('script');
@@ -126,4 +130,4 @@ const directParamsToHash = () => {
     }
 };
 
-export default { directParamsToHash, loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, getMobileOS, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams }
+export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, getMobileOS, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams }

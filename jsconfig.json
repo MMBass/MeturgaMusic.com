@@ -6,6 +6,8 @@
         "@pages_songs/*": ["./src/pages_songs/*"],
         "@components/*": ["./src/components/*"],
         "@context/*": ["./src/context/*"],
+        "@services/*": ["./src/services/*"],
+        "@hooks/*": ["./src/hooks/*"],
         "@/*": ["./src/*"]
       }
     }
