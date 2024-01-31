@@ -25,6 +25,8 @@ function LyricsBody({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
+  const [currTTip, setCurrTTip] = useState(null);
+
   useEffect(() => {
     // Avoiding infinite HomePage useEffect that depends on rrdLocation (page params) 
     const paramsSong = directSong || sname || null;
@@ -59,15 +61,14 @@ function LyricsBody({ className }) {
               style={{ fontSize: settingsContext.fontSize.lg, direction: "ltr" }}
             >
               {currLyricsContext.title &&
-                currLyricsContext.title.split(' ').map((word) => {
+                currLyricsContext.title.split(' ').map((word, i) => {
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} open={false}></LyricToolTip>
+                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={'title' + i} open={ 'title' + i === currTTip} setOpen={setCurrTTip} ></LyricToolTip>
                   )
                 })
               }
             </Typography>
           }
-
 
           {/* This section creates H1 for the songs in site-map, for seo (crawlers)
           if the url is from path="/songs/:directSong" */}
@@ -78,9 +79,9 @@ function LyricsBody({ className }) {
               style={{ fontSize: settingsContext.fontSize.lg + 8, direction: "ltr", textAlign: 'center' }}
             >
               {currLyricsContext.title &&
-                currLyricsContext.title.split(' ').map((word) => {
+                currLyricsContext.title.split(' ').map((word, i) => {
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} open={false}></LyricToolTip>
+                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={'h1' + i} open={'h1' + i === currTTip} setOpen={setCurrTTip} ></LyricToolTip>
                   )
                 })
               }
@@ -109,7 +110,7 @@ function LyricsBody({ className }) {
                 {line.src.split(' ').map((word, i) => {
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} lyricIndex={y.toString() + i.toString()} ></LyricToolTip>
+                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={y.toString() + i.toString()} open={y.toString() + i.toString() === currTTip} setOpen={setCurrTTip} ></LyricToolTip>
                   )
                 })}
               </Box>

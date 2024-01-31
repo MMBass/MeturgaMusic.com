@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import TUtils from '@/i18n-utils';
 
 import Typography from '@mui/material/Typography';
@@ -9,10 +9,20 @@ import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
 
 import { SettingsContext } from '@context/SettingsContext';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
+import fetchSingleTrans from '@services/fetchSingleTrans';
 
-function LyricToolTipChilds({ className, results, tooltipClose, lyric }) {
+function LyricToolTipChilds({ className, tooltipClose, lyric }) {
   const settingsContext = useContext(SettingsContext);
   const currLyricsContext = useContext(CurrLyricsContext);
+  const [results, setResults] = useState(JSON.parse(sessionStorage.getItem('currTTip')) || []);
+
+  useEffect(async () => {
+    if (!results[0]) {
+      const res = await fetchSingleTrans(lyric);
+      setResults(res);
+      sessionStorage.setItem('currTTip', JSON.stringify(res));
+    }
+  }, []);
 
   const Results = () => {
     if (results[0]) {

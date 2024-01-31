@@ -1,40 +1,32 @@
-import { useState, useRef, useEffect } from "react";
-
 import Tooltip from '@mui/material/Tooltip';
 
 import LyricToolTipChilds from '@components/LyricToolTipChilds/StyledLyricToolTipChilds';
 import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
 
-import fetchSingleTrans from '@services/fetchSingleTrans';
-
-function LyricToolTip({ className, lyric, lyricIndex, /* open, setOpen */ }) {
-  const [open, setOpen] = useState(false);
-  const [results, setResults] = useState([]);
+function LyricToolTip({ className, lyric, lyricID, open, setOpen}) {
 
   const handleTooltipOpen = () => {
-    setOpen(true);
-
-    if (!results[0]) {
-      callResults();
-    }
+    if(lyricID) sessionStorage.removeItem('currTTip');
+    setOpen(lyricID);
   };
 
   const handleTooltipClose = () => {
-    setOpen(false);
+    setOpen(null);
+    sessionStorage.removeItem('currTTip');
   };
-
-  async function callResults() {
-    const res = await fetchSingleTrans(lyric);
-    setResults(res);
-  }
 
   return (
     <>
       {/* <BookMarkWord toSave={{ word: lyric, results: results || ['top bookMark'] }} saved={saved} variant={'BookMark'}></BookMarkWord> */}
       <Tooltip className={className}
         title={
-          <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={lyric} results={results}></LyricToolTipChilds>}
+          <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={lyric}></LyricToolTipChilds>}
         arrow
+
+        enterNextDelay={0}
+        enterDelay={0}
+        enterTouchDelay={0}
+        TransitionProps={{ timeout: 0 }}
         leaveTouchDelay={60 * 1000}
         leaveDelay={3 * 1000}
 
