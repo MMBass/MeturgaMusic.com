@@ -1,18 +1,33 @@
+import { useState } from "react";
+
 import Tooltip from '@mui/material/Tooltip';
 
 import LyricToolTipChilds from '@components/LyricToolTipChilds/StyledLyricToolTipChilds';
 import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
+import fetchSingleTrans from '@services/fetchSingleTrans';
 
-function LyricToolTip({ className, lyric, lyricID, open, setOpen}) {
+function LyricToolTip({ className, lyric, lyricID }) {
+  const currTTip = JSON.parse(sessionStorage.getItem("TTip" + lyricID)); // Make the tooltip stay open while rerendering 
+  const [results, setResults] = useState(currTTip || []);
+  const [open, setOpen] = useState(currTTip || false);
 
-  const handleTooltipOpen = () => {
-    if(lyricID) sessionStorage.removeItem('currTTip');
-    setOpen(lyricID);
+  const handleTooltipOpen = async () => {
+    setOpen(true);
+    if (!results[0]) {
+      Object.keys(sessionStorage).forEach(key => { if (key.includes("TTip")) sessionStorage.removeItem(key) });
+      sessionStorage.setItem("TTip" + lyricID, JSON.stringify([]));
+      const res = await fetchSingleTrans(lyric);
+      setResults(res);
+      sessionStorage.setItem("TTip" + lyricID, JSON.stringify(res));
+    } else {
+      sessionStorage.setItem("TTip" + lyricID, JSON.stringify(results));
+    }
+
   };
 
   const handleTooltipClose = () => {
-    setOpen(null);
-    sessionStorage.removeItem('currTTip');
+    Object.keys(sessionStorage).forEach(key => { if (key.includes("TTip")) sessionStorage.removeItem(key) });
+    setOpen(false);
   };
 
   return (
@@ -20,16 +35,11 @@ function LyricToolTip({ className, lyric, lyricID, open, setOpen}) {
       {/* <BookMarkWord toSave={{ word: lyric, results: results || ['top bookMark'] }} saved={saved} variant={'BookMark'}></BookMarkWord> */}
       <Tooltip className={className}
         title={
-          <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={lyric}></LyricToolTipChilds>}
+          <LyricToolTipChilds tooltipClose={handleTooltipClose} className="tt-childs" lyric={lyric} results={results}></LyricToolTipChilds>}
         arrow
-
-        enterNextDelay={0}
-        enterDelay={0}
-        enterTouchDelay={0}
         TransitionProps={{ timeout: 0 }}
         leaveTouchDelay={60 * 1000}
         leaveDelay={3 * 1000}
-
         PopperProps={{
           disablePortal: false,
         }}

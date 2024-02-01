@@ -25,8 +25,6 @@ function LyricsBody({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
-  const [currTTip, setCurrTTip] = useState(null);
-
   useEffect(() => {
     // Avoiding infinite HomePage useEffect that depends on rrdLocation (page params) 
     const paramsSong = directSong || sname || null;
@@ -63,7 +61,7 @@ function LyricsBody({ className }) {
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={'title' + i} open={ 'title' + i === currTTip} setOpen={setCurrTTip} ></LyricToolTip>
+                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={'title' + i}></LyricToolTip>
                   )
                 })
               }
@@ -81,7 +79,7 @@ function LyricsBody({ className }) {
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={'h1' + i} open={'h1' + i === currTTip} setOpen={setCurrTTip} ></LyricToolTip>
+                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={'h1' + i}></LyricToolTip>
                   )
                 })
               }
@@ -110,7 +108,7 @@ function LyricsBody({ className }) {
                 {line.src.split(' ').map((word, i) => {
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={y.toString() + i.toString()} open={y.toString() + i.toString() === currTTip} setOpen={setCurrTTip} ></LyricToolTip>
+                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
                   )
                 })}
               </Box>

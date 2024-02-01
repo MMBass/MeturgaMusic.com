@@ -187,7 +187,6 @@ export default function CurrLyricsContextProvider({ children }) {
 
                 setLines(newLines);
                 utils.lsSaveSong({ title: title, lines: newLines, service: data.service });
-                console.log(data);
                 setTranslatedBy(data.service);
 
                 sessionStorage.setItem('currSong', JSON.stringify({

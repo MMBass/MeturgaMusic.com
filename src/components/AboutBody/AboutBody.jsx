@@ -67,7 +67,7 @@ function AboutBody({ className, isDark }) {
 
   const [visibleItems, setVisibleItems] = useState(data);
 
-  // Effect to load the preference from the local storage
+  // Load the visible from the local storage
   useEffect(() => {
     const storedItems = localStorage.getItem("visibleItems");
     if (storedItems) {
@@ -78,7 +78,6 @@ function AboutBody({ className, isDark }) {
   const handleRemove = (vItem) => {
     // Filter out the item from the visible items
     const newItems = visibleItems.filter((i) => i !== vItem);
-    // Update the state and the local storage
     setVisibleItems(newItems);
     localStorage.setItem("visibleItems", JSON.stringify(newItems));
   };

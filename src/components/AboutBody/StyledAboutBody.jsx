@@ -10,6 +10,7 @@ const StyledAboutBody = styled(AboutBody)`
   text-align: center;
 
   @media (max-width: 600px) {
+    padding-top: 0px;
     font-size: 4.6vw;
   }
 
@@ -126,7 +127,7 @@ const StyledAboutBody = styled(AboutBody)`
           : `linear-gradient( to left, rgb(237, 203, 203) 70%, rgb(223, 128, 142) 100%)`
           // : `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
       };
-      border-radius: 13px;
+      border-radius: 8px;
 
       @media (max-width: 600px) {
         padding: 15px 4px;
