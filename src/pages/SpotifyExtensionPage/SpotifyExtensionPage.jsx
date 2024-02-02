@@ -29,13 +29,15 @@ function SpotifyExtensionPage({ className }) {
               <br/>
               <br/>
               <br/>
-              <Typography variant="h6" style={{fontSize: '20px'}} >
+              {/*to change - fontSize: '6vw' on small */}
+              <Typography variant="h6" style={{fontSize: '15px'}} >
                 {T.NeedToCopyKey}
               </Typography>
               <br/>
               <br/>
               <CopyToClipboard text={"MC476db2b49M92347bYeRCe"} onCopy={() => handleCopy()} aria-label="share">
-                <Chip sx={{padding: '15px', fontSize: '20px', background: 'gray', color: '#fff' }} size="large" variant="evelated" label="MC476db2b49M92347bYeRCe" onClick={()=>{}} icon={<ContentCopyIcon color="white"/>}/>
+              {/*to change - fontSize: '5vw' on small */}
+                <Chip sx={{padding: '10px', fontSize: '15px', background: 'gray', color: '#fff' }} size="large" variant="evelated" label="MC476db2b49M92347bYeRCe" onClick={()=>{}} icon={<ContentCopyIcon color="white"/>}/>
               </CopyToClipboard>
             </Grid>
           </Grid>
