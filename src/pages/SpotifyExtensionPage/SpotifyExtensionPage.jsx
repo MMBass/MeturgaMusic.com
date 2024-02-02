@@ -1,9 +1,12 @@
 
 import T from "./SpotifyExtensionPageI18n";
 import extensionImage from '../../images/screenshots/spoShot2.png';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 function SpotifyExtensionPage({ className }) {
 
@@ -23,17 +26,19 @@ function SpotifyExtensionPage({ className }) {
               <Typography variant="h3">
                 {T.H3}
               </Typography>
+              <br/>
+              <br/>
+              <br/>
+              <Typography variant="h6" style={{fontSize: '20px'}} >
+                {T.NeedToCopyKey}
+              </Typography>
+              <br/>
+              <br/>
+              <CopyToClipboard text={"MC476db2b49M92347bYeRCe"} onCopy={() => handleCopy()} aria-label="share">
+                <Chip sx={{padding: '15px', fontSize: '20px', background: 'gray', color: '#fff' }} size="large" variant="evelated" label="MC476db2b49M92347bYeRCe" onClick={()=>{}} icon={<ContentCopyIcon color="white"/>}/>
+              </CopyToClipboard>
             </Grid>
           </Grid>
-
-          {/* <Grid item className='img-container'>
-              <img
-                src={extensionImage}
-                alt={'extension-screenshot-image'}
-                loading="lazy"
-                className="screenshot-img"
-              />
-          </Grid> */}
         </Grid>
       </Grid>
     </div>

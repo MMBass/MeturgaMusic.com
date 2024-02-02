@@ -1,3 +1,3 @@
 export default {
-    Save: "שמור לתרגול",
+    Save: "שמירה לתרגול",
 };

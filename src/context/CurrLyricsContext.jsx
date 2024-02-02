@@ -31,7 +31,7 @@ export default function CurrLyricsContextProvider({ children }) {
     useEffect(() => {
         if (lines[0]) checkNextTrans();
 
-        // Temporarly, gives every user 3 fast translations, and one on every visit (session)
+        // Temporarily, gives every user 3 fast translations, and one on every visit (session)
         if (JSON.parse(localStorage.getItem('meturgamm_songs'))?.length > 2) setAzureServerError(true);
     }, [lines, azureServerError]);
 

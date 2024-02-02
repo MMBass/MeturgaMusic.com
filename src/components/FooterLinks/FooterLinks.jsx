@@ -53,7 +53,7 @@ function FooterLinks({ className, canInstall }) {
             {T.Share}
           </ListSubheader>
           <ListItem>
-            <ListItemButton component="a" aria-label="whatsapp" href={Constants.whatsappDraftMessageUri + T.WhatsappMessage + " MeturgaMusic.com "} target="_blank">
+            <ListItemButton component="a" aria-label="whatsapp" href={Constants.whatsappDraftMessageUri + T.WhatsappMessage + " Https://MeturgaMusic.com "} target="_blank">
               <WhatsAppIcon />
               <ListItemText primary={T.WPShare} />
             </ListItemButton>
