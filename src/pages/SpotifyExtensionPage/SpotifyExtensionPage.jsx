@@ -2,13 +2,16 @@
 import T from "./SpotifyExtensionPageI18n";
 import extensionImage from '../../images/screenshots/spoShot2.png';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import useCopyToClipboard from '@hooks/useCopyToClipboard';
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import Tooltip from '@mui/material/Tooltip';
 
 function SpotifyExtensionPage({ className }) {
+  const { copiedOpen, handleCopy } = useCopyToClipboard();
 
   return (
     <div className={className} style={{ backgroundImage: `url(${extensionImage.toString()})` }}>
@@ -26,18 +29,25 @@ function SpotifyExtensionPage({ className }) {
               <Typography variant="h3">
                 {T.H3}
               </Typography>
-              <br/>
-              <br/>
-              <br/>
+              <br />
+              <br />
+              <br />
               {/*to change - fontSize: '6vw' on small */}
-              <Typography variant="h6" style={{fontSize: '15px'}} >
+              <Typography variant="h6" style={{ fontSize: '15px' }} >
                 {T.NeedToCopyKey}
               </Typography>
-              <br/>
-              <br/>
+              <br />
+              <br />
               <CopyToClipboard text={"MC476db2b49M92347bYeRCe"} onCopy={() => handleCopy()} aria-label="share">
-              {/*to change - fontSize: '5vw' on small */}
-                <Chip sx={{padding: '10px', fontSize: '15px', background: 'gray', color: '#fff' }} size="large" variant="evelated" label="MC476db2b49M92347bYeRCe" onClick={()=>{}} icon={<ContentCopyIcon color="white"/>}/>
+                {/*to change - fontSize: '5vw' on small */}
+                <Tooltip
+                  title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
+                  PopperProps={{ disablePortal: false }}
+                  open={copiedOpen}
+                  arrow
+                >
+                  <Chip sx={{ padding: '10px', fontSize: '15px', background: 'gray', color: '#fff' }} size="large" variant="evelated" label="MC476db2b49M92347bYeRCe" icon={<ContentCopyIcon color="white" />} />
+                </Tooltip>
               </CopyToClipboard>
             </Grid>
           </Grid>

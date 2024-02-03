@@ -1,16 +1,9 @@
-import { useState } from "react";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-
-import T from "./FooterLinksI18n";
-import Constants from "@/constants";
-
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
 import Typography from "@mui/material/Typography";
 import Tooltip from '@mui/material/Tooltip';
 
@@ -21,19 +14,15 @@ import MessageIcon from '@mui/icons-material/Message';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkIcon from '@mui/icons-material/Link';
 
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+import T from "./FooterLinksI18n";
+import Constants from "@/constants";
+import useCopyToClipboard from '@hooks/useCopyToClipboard';
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
 
 function FooterLinks({ className, canInstall }) {
-  const [copiedOpen, setCopiedOpen] = useState(false);
-
-  const handleCopy = () => {
-    setTimeout(() => {
-      setCopiedOpen(true);
-    }, 200);
-    setTimeout(() => {
-      setCopiedOpen(false);
-    }, 1000);
-  };
+  const { copiedOpen, handleCopy } = useCopyToClipboard();
 
   return (
     <Grid className={className} container rowSpacing={1} columnSpacing={0}>
@@ -64,14 +53,9 @@ function FooterLinks({ className, canInstall }) {
               <ListItemButton>
                 <Tooltip
                   title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
-                  arrow
-                  PopperProps={{
-                    disablePortal: false,
-                  }}
+                  PopperProps={{disablePortal: false}}
                   open={copiedOpen}
-                  disableFocusListener
-                  disableTouchListener
-                  disableHoverListener
+                  disabled={true}
                 >
                   <LinkIcon />
                 </Tooltip>
