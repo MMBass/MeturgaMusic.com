@@ -47,6 +47,7 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
     .copy-key-p{
       h6{
         font-size: 1.6vw;
+        
         @media (max-width: 600px) {
           font-size: 4vw;
         }
@@ -58,6 +59,8 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
       color: white;
       padding: 10px;
       text-align: center;
+
+
       @media (max-width: 600px) {
         font-size: 4vw;
       }
