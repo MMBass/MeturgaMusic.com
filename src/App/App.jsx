@@ -63,7 +63,7 @@ function App({ className }) {
   }, []);
 
   const init = () => {
-    if(!utils.isLocalhost()) serverInit();
+    if (!utils.isLocalhost()) serverInit();
   };
 
   // Send every visit to the server
@@ -86,7 +86,6 @@ function App({ className }) {
           <Router>
             <HeadTags currTitle={currTitle} theme={currTheme}></HeadTags>
             <Layout>
-              {/* {isMobile ? <Header className="header" changeColors={ChangeColors}></Header> : <MiniDrawer></MiniDrawer>} */}
               <Header className="header" changeColors={changeTheme}></Header>
 
               {(bannersContext.main?.open) &&
@@ -102,13 +101,13 @@ function App({ className }) {
                 <Route path="/History" element={<HistoryPage className={'page'} rank={1} />} />
                 <Route path="/Wish-list" element={<WishlistPage className={'page'} rank={1} />} />
                 <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} rank={1} />} />
-                <Route path="/songs/:directSong" element={<HomePage className={'page'} rank={1} />} />
+                <Route path="/songs/:directSong" element={<HomePage className={'page'} setCurrTitle={setCurrTitle} rank={1} />} />
 
                 {/* NoMatchPage works only in hash paths */}
                 <Route path="*" element={<NoMatchPage className={'page'} />} />
               </Routes>
 
-              {/*dynamic global elements*/}
+              {/*Dynamic global elements*/}
               {(loadersContext.backdrop.open) &&
                 <MainBackdrop></MainBackdrop>
               }
@@ -122,11 +121,8 @@ function App({ className }) {
                   </Alert>
                 </Snackbar>
               }
-              {/* <Dialog></Dialog> */}
-              {/* <Modal> */}
-              {/* Modal must have a children */}
-              {/* </Modal> */}
-              {/*end dynamic global elements*/}
+              {/*end of Dynamic global elements*/}
+
               <Footer></Footer>
               <ScrollTop></ScrollTop>
 

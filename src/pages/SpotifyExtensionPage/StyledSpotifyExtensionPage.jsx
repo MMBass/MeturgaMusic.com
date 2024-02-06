@@ -40,18 +40,27 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
     color: #1BB151;
   }
 
-  .img-container{
-    padding-top: 50px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+  .copy-key-container{
+    font-weight: 400;
+    padding: 30px;
 
-    .screenshot-img{
-      border: 1px solid #1BB151;
-      border-radius: 8px;
-      aspect-ratio: 780/373;
-      width: 90%;
-      max-width: 600px;
+    .copy-key-p{
+      h6{
+        font-size: 1.6vw;
+        @media (max-width: 600px) {
+          font-size: 4vw;
+        }
+      }
+      margin-bottom: 13px;
+    }
+    .copy-key-chip{
+      background: gray;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      @media (max-width: 600px) {
+        font-size: 4vw;
+      }
     }
   }
 

@@ -1,5 +1,6 @@
 export default {
     MeturgaMusic: "מתורגמיוזיק",
+    Translated: "מתורגם",
     OldPageH1part1: "שירים",
     OldPageH1part2: "מתורגמים",
     H3StartTop: " האתר ללימוד אנגלית באמצעות שירים",

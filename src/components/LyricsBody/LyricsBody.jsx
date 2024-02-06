@@ -77,11 +77,7 @@ function LyricsBody({ className }) {
               style={{ fontSize: settingsContext.fontSize.lg + 8, direction: "ltr", textAlign: 'center' }}
             >
               {currLyricsContext.title &&
-                currLyricsContext.title.split(' ').map((word, i) => {
-                  return (
-                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={'h1' + i}></LyricToolTip>
-                  )
-                })
+                currLyricsContext.title
               }
               <br></br>
               {TUtils.Translated}

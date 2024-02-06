@@ -20,7 +20,7 @@ import { useTheme } from '@mui/material/styles';
 import mainPic from '../../images/screenshots/combined-shot-whiteBg-player.png';
 import mainPicDark from '../../images/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
 
-function HomePage({ className }) {
+function HomePage({ className, setCurrTitle }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
   const drawerContext = useContext(DrawerContext);
@@ -39,7 +39,6 @@ function HomePage({ className }) {
     if (bannersContext.error) bannersContext.closeBanner('error');
     
     if (directSong && directSong.includes("_")) {
-      console.log(directSong);
       callSongIfQuery(directSong);
     } else if (sname && sname.includes("_")) {
       callSongIfQuery(sname);
@@ -60,6 +59,7 @@ function HomePage({ className }) {
     if(currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')){
       return;
     }else{
+      setCurrTitle(songTitle + " " + T.Translated);
       currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, 'direct');
     }
   }

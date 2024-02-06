@@ -293,6 +293,7 @@ export default function CurrLyricsContextProvider({ children }) {
     };
 
     const removeSsLines = (setSearchParams) => {
+        // (TODO not working in songs/ direct song)
         setAbort(true);
         sessionStorage.removeItem('currSong');
         setLines([]);
