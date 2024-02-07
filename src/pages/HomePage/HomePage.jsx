@@ -26,10 +26,10 @@ function HomePage({ className, setCurrTitle }) {
   const drawerContext = useContext(DrawerContext);
 
   const [searchFocused, setSearchFocused] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams(); // using the react-router hook, works with hashed pages
-  const sname = searchParams.get("song"); // song of /?song= (with hash and without)
+  const [searchParams, setSearchParams] = useSearchParams();
+  const paramsSong = searchParams.get("song"); // song of /?song= (with hash and without)
   const rrdLocation = useLocation();
-  const { directSong } = useParams(); // song of path="/songs/:directSong" 
+  const { urlSong } = useParams(); // song of path="/songs/:directSong" 
 
   const theme = useTheme();
 
@@ -37,30 +37,27 @@ function HomePage({ className, setCurrTitle }) {
     // note! the params in HashRouter works only this pattern: http://.../#/?song=artist_title
     drawerContext.closeDrawer();
     if (bannersContext.error) bannersContext.closeBanner('error');
-    
-    if (directSong && directSong.includes("_")) {
-      callSongIfQuery(directSong);
-    } else if (sname && sname.includes("_")) {
-      callSongIfQuery(sname);
+    if (urlSong && urlSong.includes("_")) {
+      callSongIfQuery(urlSong);
+    } else if (paramsSong && paramsSong.includes("_")) {
+      callSongIfQuery(paramsSong);
     };
   }, [rrdLocation]); // use if there is a direct song in the url
 
-  function callSongIfQuery(sname) {
-    let songTitle = sname;
-    songTitle = songTitle.replaceAll('-', " ");
-
+  function callSongIfQuery(passedSong) {
+    passedSong = passedSong.replaceAll('-', " ");
     const splittedSongTitle = {
-      artistName: encodeURI(` ${songTitle.split('_')[0]} `),
-      songName: encodeURI(` ${songTitle.split('_')[1]} `)
+      artistName: encodeURI(` ${passedSong.split('_')[0]} `),
+      songName: encodeURI(` ${passedSong.split('_')[1]} `)
     };
-
-    songTitle = songTitle.replaceAll('_', " - ");
-
-    if(currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')){
-      return;
+    passedSong = passedSong.replaceAll('_', " - ");
+    if(currLyricsContext.title.replaceAll(' ', '') == passedSong.replaceAll(' ', '')){
+      return; // Break if the song is the same song
     }else{
-      if (sname && sname.includes("_")) {setCurrTitle(songTitle + " " + T.Translated)};
-      currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, 'direct');
+      // If the song is from /songs path - change the page title 
+      if (urlSong) {setCurrTitle(passedSong + " " + T.Translated)};
+      // Call the song
+      currLyricsContext.getSongLyrics(splittedSongTitle, passedSong);
     }
   }
 

@@ -20,15 +20,16 @@ import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { directSong } = useParams(); // song of path="/songs/:directSong"
-  const sname = searchParams.get("song"); // song of /?song= (with hash and without)
+  const { urlSong } = useParams(); // song of path="/songs/:directSong"
+  const paramsSong = searchParams.get("song"); // song of /?song= (with hash and without)
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
     // Avoiding infinite HomePage useEffect that depends on rrdLocation (page params) 
-    const paramsSong = directSong || sname || null;
-    if (!paramsSong) {
+    if (urlSong) {
+      return;
+    } else if (!paramsSong) {
       setSearchParams(utils.titleToParams(currLyricsContext.title));
     } else if (!utils.titleToParams(currLyricsContext.title) == paramsSong) {
       setSearchParams(utils.titleToParams(currLyricsContext.title));
@@ -42,9 +43,11 @@ function LyricsBody({ className }) {
       <Grid container rowSpacing={1} columnSpacing={0}>
 
         <Grid item xs={12} className="l-body-top">
-          <IconButton onClick={() => currLyricsContext.removeSsLines(setSearchParams)}>
-            <CloseOutlinedIcon className='remove-icon' />
-          </IconButton>
+          {!urlSong && // if the song is from /songs path don't show the remove icon, couse in this case we can't change the url without page reload
+            <IconButton onClick={() => currLyricsContext.removeSsLines(setSearchParams)}>
+              <CloseOutlinedIcon className='remove-icon' />
+            </IconButton>
+          }
 
           {currLyricsContext.translatedBy &&
             <Chip className='trans-by-chip'
@@ -52,7 +55,7 @@ function LyricsBody({ className }) {
               color="default" variant="filled" size='small' />
           }
 
-          {!directSong &&
+          {!urlSong &&
             <Typography
               variant="h6"
               component="h3"
@@ -70,7 +73,7 @@ function LyricsBody({ className }) {
 
           {/* This section creates H1 for the songs in site-map, for seo (crawlers)
           if the url is from path="/songs/:directSong" */}
-          {directSong &&
+          {urlSong &&
             <Typography
               variant="h6"
               component="h1"
