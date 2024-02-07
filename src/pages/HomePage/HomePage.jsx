@@ -59,7 +59,7 @@ function HomePage({ className, setCurrTitle }) {
     if(currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')){
       return;
     }else{
-      setCurrTitle(songTitle + " " + T.Translated);
+      if (sname && sname.includes("_")) {setCurrTitle(songTitle + " " + T.Translated)};
       currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, 'direct');
     }
   }
