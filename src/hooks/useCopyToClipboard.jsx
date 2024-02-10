@@ -4,7 +4,6 @@ export default function useCopyToClipboard() {
     const [copiedOpen, setCopiedOpen] = useState(false);
   
     const handleCopy = () => {
-      console.log('handleCopy');
       setTimeout(() => {
         setCopiedOpen(true);
       }, 200);

@@ -1,8 +1,10 @@
 import utils from "@/utils";
 
+const MeturgaMusicUrl = " Https://MeturgaMusic.com ";
+
 // data links
 const prodServerUri = 'https://musicline-backend.vercel.app';
-const devServerUri = utils.isLocalhost() ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app'; // if running on server - use the prod url anyway (for case of mistake while deploying)
+const devServerUri = utils.isLocalhost() ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app'; // if running on a server - use the prod url anyway (for case of mistake while deploying)
 const gUrl = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=he&dt=t&q=';
 
 // redirect out links
@@ -21,6 +23,8 @@ const allBracketsPattern = /[\])}[{(]/g;
 const lineBreakPattern = /(?:\r\n|\r|\n)/g;
 
 export default {
+    MeturgaMusicUrl,
+
     prodServerUri,
     devServerUri,
     gUrl,

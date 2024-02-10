@@ -21,7 +21,7 @@ import shot5Dark from '@/images/screenshots/shot8Dark.png';
 import shot3 from '@/images/screenshots/shot3.png';
 import shot3Dark from '@/images/screenshots/shot3Dark.png';
 
-function AboutBody({ className, isDark }) {
+function AboutBody({ className }) {
   const showRemoveTrigger = useScrollTrigger({
     target: window,
     disableHysteresis: true,
@@ -102,7 +102,7 @@ function AboutBody({ className, isDark }) {
               <div className="img-container">
                 <img
                   loading="lazy"
-                  src={isDark ? vItem.imgDark : vItem.img}
+                  src={theme.mode !== 'dark' ? vItem.img : vItem.imgDark }
                   alt={vItem.alt}
                 />
               </div>

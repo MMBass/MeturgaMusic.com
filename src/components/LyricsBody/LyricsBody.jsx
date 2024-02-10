@@ -43,7 +43,7 @@ function LyricsBody({ className }) {
       <Grid container rowSpacing={1} columnSpacing={0}>
 
         <Grid item xs={12} className="l-body-top">
-          {!urlSong && // if the song is from /songs path don't show the remove icon, couse in this case we can't change the url without page reload
+          {!urlSong && // if the song is from /songs path don't show the remove icon
             <IconButton onClick={() => currLyricsContext.removeSsLines(setSearchParams)}>
               <CloseOutlinedIcon className='remove-icon' />
             </IconButton>
@@ -68,6 +68,7 @@ function LyricsBody({ className }) {
                   )
                 })
               }
+           
             </Typography>
           }
 

@@ -1,8 +1,9 @@
 //** Uses for conditional and dynamic head tags **/
 import { Helmet } from "react-helmet";
+import { useTheme } from '@mui/material/styles';
 
-function HeadTags({ currTitle, theme }) {
-
+function HeadTags({ currTitle }) {
+  const theme = useTheme();
   return (
     <Helmet>
       <title>

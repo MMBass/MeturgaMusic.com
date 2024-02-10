@@ -104,7 +104,7 @@ function SidePagesList({ className, changeColors }) {
 
       <ListItem>
         <ListItemButton onClick={changeColors} sx={{ justifyContent: 'center' }}>
-          <Chip icon={<ChangeColors changeColors={changeColors}></ChangeColors>} className='pages-list-chip extension-chip' label={T.DarkMode} color="secondary" variant="outlined" size='large' />
+          <Chip icon={<ChangeColors></ChangeColors>} className='pages-list-chip extension-chip' label={T.DarkMode} color="secondary" variant="outlined" size='large' />
         </ListItemButton>
       </ListItem>
 

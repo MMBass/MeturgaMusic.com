@@ -10,7 +10,7 @@ import { BannersContext } from '@context/BannersContext';
 import searchStarter from '@services/searchStarter';
 import utils from '@/utils';
 import T from "./SearchBarI18n";
-import Constants from "@/constants";
+import constants from "@/constants";
 
 function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
@@ -53,7 +53,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         if (gsc_clear) {
           gsc_clear.dispatchEvent(new Event('click'));
         }
-      } else if (Constants.en_pattern.test(eValue)) {
+      } else if (constants.en_pattern.test(eValue)) {
         gsc_input.value = eValue;
         let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
 
@@ -101,7 +101,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
           if (line.innerText.includes("Lyrics")) {
 
             if (line.innerText.includes("(")) {
-              let inside = line.innerText.match(Constants.insideSearchResultsPattern)[1].toLowerCase();
+              let inside = line.innerText.match(constants.insideSearchResultsPattern)[1].toLowerCase();
               if (inside?.includes("live") || inside?.includes("mix") || inside?.includes("remix")) {
                 line.parentElement.parentElement.parentElement.remove();
                 return;

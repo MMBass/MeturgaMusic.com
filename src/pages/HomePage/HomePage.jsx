@@ -61,14 +61,10 @@ function HomePage({ className, setCurrTitle }) {
     }
   }
 
-  function focusSearch() {
-    setSearchFocused(true);
-  }
-
   return (
 
     <div className={`${className} page`}>
-      {!currLyricsContext.lines?.[0] &&
+      {(!currLyricsContext.lines?.[0] || !currLyricsContext.title ) &&
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
 
@@ -78,7 +74,7 @@ function HomePage({ className, setCurrTitle }) {
 
             <Grid item className="mainPics-container" xs={12} sm={6}>
 
-              {theme.palette.primary.main === '#DF808E' ?
+              {theme.mode !== 'dark' ?
                 <img className="wide-pic" alt="site-in-action" src={mainPic} loading="lazy" ></img>
                 :
                 <img className="wide-pic wide-pic-dark" alt="site-in-action" src={mainPicDark} loading="lazy"></img>
@@ -119,11 +115,11 @@ function HomePage({ className, setCurrTitle }) {
         </Container>
       }
 
-      {!currLyricsContext.lines?.[0] &&
-        <AboutBody focusSearch={focusSearch} isDark={theme.palette.primary.main === '#DF808E' ? false : true}></AboutBody>
+      {(!currLyricsContext.lines?.[0] && !currLyricsContext.title ) &&
+        <AboutBody></AboutBody>
       }
 
-      {currLyricsContext.lines?.[0] &&
+      {(currLyricsContext.lines?.[0] && currLyricsContext.title ) &&
         <Grid container spacing={1}>
           <Grid item md={12} lg={9}>
             <LyricsBody className={'lyrics-body'}></LyricsBody>

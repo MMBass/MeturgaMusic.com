@@ -19,7 +19,7 @@ import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
-import Constants from '@/constants';
+import constants from '@/constants';
 
 function Player({ className }) {
   const [hide, setHide] = useState(true);
@@ -74,7 +74,7 @@ function Player({ className }) {
             </Box>
             <CardMedia
               children={<iframe
-                src={Constants.youtubeEmbedUri + currLyricsContext.videoId}
+                src={constants.youtubeEmbedUri + currLyricsContext.videoId}
                 title={'video'}
                 allowFullScreen={false}
                 className={fullSize ? "full-frame" : ""}

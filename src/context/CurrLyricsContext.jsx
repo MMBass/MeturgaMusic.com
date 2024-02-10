@@ -9,7 +9,7 @@ import putFullTrans from '@services/putFullTrans';
 
 import utils from '@/utils.js';
 import TUtils from '@/i18n-utils';
-import Constants from '@/constants';
+import constants from '@/constants';
 import { ServiceTypes } from '@/enums';
 
 export const CurrLyricsContext = React.createContext(undefined);
@@ -38,7 +38,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const getSongLyrics = async (splittedSongTitle, songTitle) => {
         setAbort(true);
 
-        songTitle = songTitle.replace(Constants.allBracketsPattern, '').trim();
+        songTitle = songTitle.replace(constants.allBracketsPattern, '').trim();
         let linesParent = document.querySelectorAll(".gsc-expansionArea")[0];
         loadersContext.openLoader('backdrop');
 
@@ -62,7 +62,7 @@ export default function CurrLyricsContextProvider({ children }) {
                 setSongLyrics(data, songTitle)
             } else {
                 setAbort(false);
-                bannersContext.createBanner('error', 'error', '', TUtils.LyricsNotFound, { actionText: TUtils.LyricsInGoogle, actionHref: Constants.googleSearchRefUri + songTitle.replaceAll(' ', '+') + ' lyrics' });
+                bannersContext.createBanner('error', 'error', '', TUtils.LyricsNotFound, { actionText: TUtils.LyricsInGoogle, actionHref: constants.googleSearchRefUri + songTitle.replaceAll(' ', '+') + ' lyrics' });
             };
         } catch (e) {
             setAbort(false);
@@ -97,7 +97,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setTitle(songTitle);
         let newLines = [];
 
-        data.lyrics.split(Constants.lineBreakPattern).map((line) => {
+        data.lyrics.split(constants.lineBreakPattern).map((line) => {
             if (line.length >= 2) {
 
                 if (utils.isMostlyEnglish(line)) {
@@ -211,7 +211,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const GgetSingleLineTrans = async (src, index) => {
         try {
             let newLines = [...lines];
-            const response = await fetch(Constants.gUrl + encodeURI(src));
+            const response = await fetch(constants.gUrl + encodeURI(src));
 
             const data = await response.json();
 
@@ -291,12 +291,11 @@ export default function CurrLyricsContextProvider({ children }) {
             setAzureServerError(false);
         }
     };
-
+    
     const removeSsLines = (setSearchParams) => {
-        // (TODO not working in songs/ direct song)
-        setAbort(true);
         sessionStorage.removeItem('currSong');
         setLines([]);
+        setAbort(true);
         setTitle('');
         setVideoId('');
         setSearchParams('');

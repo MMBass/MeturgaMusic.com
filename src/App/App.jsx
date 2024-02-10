@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useMemo } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,7 +21,7 @@ import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
 
 import utils from '@/utils';
-import Constants from '@/constants';
+import constants from '@/constants';
 import T from './AppI18n';
 
 import Header from '@components/Header/StyledHeader';
@@ -34,7 +34,6 @@ import Modal from '@components/Modal/StyledModal';
 import ScrollTop from '@components/ScrollTop/StyledScrollTop';
 import Player from '@components/Player/StyledPlayer';
 import HeadTags from '@components/HeadTags/HeadTags';
-// import MiniDrawer from '@components/MiniDrawer/StyledMiniDrawer';
 
 import HomePage from '@pages/HomePage/StyledHomePage';
 import HistoryPage from '@pages/HistoryPage/StyledHistoryPage';
@@ -70,7 +69,7 @@ function App({ className }) {
   const serverInit = () => {
     if (!localStorage.getItem('init')) localStorage.setItem('init', 'INITID:' + uuidv4());
     let initId = localStorage.getItem('init');
-    fetch(`${Constants.devServerUri}/?initId=` + initId);
+    fetch(`${constants.devServerUri}/?initId=` + initId);
   };
 
   const changeTheme = () => {
@@ -84,7 +83,7 @@ function App({ className }) {
       <MuiThemeProvider theme={currTheme}>
         <CacheProvider value={cacheRtl}>
           <Router>
-            <HeadTags currTitle={currTitle} theme={currTheme}></HeadTags>
+            <HeadTags currTitle={currTitle}></HeadTags>
             <Layout>
               <Header className="header" changeColors={changeTheme}></Header>
 
