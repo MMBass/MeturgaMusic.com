@@ -53,7 +53,6 @@ export default function CurrLyricsContextProvider({ children }) {
             loadersContext.closeLoader('backdrop');
             sessionStorage.removeItem('currSong');
             setVideoId('');
-
             if (linesParent) linesParent.style.pointerEvents = "all";
 
             if (data?.combined && Array.isArray(data?.combined)) {
@@ -78,10 +77,9 @@ export default function CurrLyricsContextProvider({ children }) {
         setTitle(songTitle);
         setSong_id(data.id);
         setLines(data.combined);
+        if (data.combined[2].trans.length > 1 && data.service) setTranslatedBy(data.service);
         if (data.videoId) setVideoId(data.videoId);
         else setVideoId('');
-
-        if (data.combined[2].trans.length > 1 && data.service) setTranslatedBy(data.service);
 
         utils.lsSaveSong({ title: songTitle, videoId: '', lines: data.combined, service: data.service || 'legacy' });
         utils.clearGsc();
@@ -99,12 +97,9 @@ export default function CurrLyricsContextProvider({ children }) {
 
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
             if (line.length >= 2) {
-
                 if (utils.isMostlyEnglish(line)) {
-
                     if (line.length > 90) {
-                        // split by commas if the line is too long
-                        let byCommas = line.split(',');
+                        let byCommas = line.split(',');  // split by commas if the line is too long
                         if (byCommas[0].length > 10) {
                             byCommas.map((byCommaLine) => {
                                 newLines.push({ src: byCommaLine, trans: '', transError: false });
@@ -112,7 +107,6 @@ export default function CurrLyricsContextProvider({ children }) {
                         } else {
                             newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
                         }
-
                     } else {
                         newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
                     }
@@ -120,14 +114,11 @@ export default function CurrLyricsContextProvider({ children }) {
                     console.log("Not supported lang: " + line);
                     newLines.push({ src: "*NOT SUPPORTED TEXT*", trans: '', transError: false });
                 }
-
             };
         });
         setAbort(false);
         setLines(newLines);
-        if (data.videoId) {
-            setVideoId(data.videoId);
-        }
+        if (data.videoId) { setVideoId(data.videoId) };
         utils.clearGsc();
     }
 
@@ -151,7 +142,6 @@ export default function CurrLyricsContextProvider({ children }) {
             }));
 
             setAbort(false);
-
             return true;
         } else {
             return false;
@@ -159,9 +149,7 @@ export default function CurrLyricsContextProvider({ children }) {
     }
 
     const checkNextTrans = () => {
-        if (abort) {
-            return;
-        };
+        if (abort) { return };
         lines.every((line, index) => {
             if (!line.trans.length || line.transError) {
                 azureServerError ? GgetSingleLineTrans(line.src, index) : getFullTrans(); // get single translation if azure is blocked
@@ -197,13 +185,11 @@ export default function CurrLyricsContextProvider({ children }) {
 
             } else {
                 console.error("status is ok but azure translation missing");
-                // checkNextTrans(); // doesn't work
-                setAzureServerError(true); // works
+                setAzureServerError(true); // works.  // checkNextTrans(); // doesn't work
             }
         } catch (e) {
             console.log(e);
-            // checkNextTrans(); // doesn't work
-            setAzureServerError(true); // works
+            setAzureServerError(true); // works.  // checkNextTrans(); // doesn't work
         }
     };
 
@@ -216,20 +202,14 @@ export default function CurrLyricsContextProvider({ children }) {
 
             var translatedTexts = [];
             if (data && data[0]) {
-                data[0].forEach((element) => {
-                    translatedTexts.push(element[0]);
-                });
+                data[0].forEach(elem => translatedTexts.push(elem[0])); // extract the translated text
 
                 newLines[index] = { src: src, trans: translatedTexts.join(" ") };
                 setLines(newLines);
-
-                if (translatedBy !== (ServiceTypes.GOOGLE)) {
-                    setTranslatedBy(ServiceTypes.GOOGLE);
-                }
+                if (translatedBy !== (ServiceTypes.GOOGLE)) setTranslatedBy(ServiceTypes.GOOGLE);
 
                 if (index + 1 == lines.length) {
                     utils.lsSaveSong({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
-
                     sessionStorage.setItem('currSong', JSON.stringify({
                         Lines: newLines,
                         Title: title,
@@ -240,7 +220,6 @@ export default function CurrLyricsContextProvider({ children }) {
                     putFullTrans(newLines, ServiceTypes.GOOGLE);
                     setAzureServerError(false);
                 };
-
             } else {
                 throw new Error("Google Translation failed.");
             }
@@ -285,7 +264,6 @@ export default function CurrLyricsContextProvider({ children }) {
                 VideoId: videoId,
                 Service: ServiceTypes.REVERSO
             }));
-
             setTranslatedBy(ServiceTypes.REVERSO);
             setAzureServerError(false);
         }
@@ -301,7 +279,6 @@ export default function CurrLyricsContextProvider({ children }) {
     };
 
     const actions = { getSongLyrics, removeSsLines };
-
     return (
         <CurrLyricsContext.Provider value={{ title, lines, azureServerError, translatedBy, videoId, ...actions }}>
             {children}
