@@ -66,11 +66,11 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
           }, 50 * Math.floor(Math.random() * 4));
 
         } else {
-          bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)'); // TODO i18n
+          bannersContext.createBanner('error', 'error', T.TryReloadBanner, '(no gsc loaded)');
           console.error("no gsc loaded, try reload the page");
         }
       } else {
-        bannersContext.createBanner('error', 'error', ' החיפוש הוא עבור שירים באנגלית בלבד', '');
+        bannersContext.createBanner('error', 'error', T.EnglishOnlyBanner, '');
         setTimeout(() => {
           let gsc_clear = document.querySelector('.gsst_a');
           if (gsc_clear) {
@@ -81,7 +81,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         return;
       }
     } else {
-      bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)');
+      bannersContext.createBanner('error', 'error', T.TryReloadBanner, '(no gsc loaded)');
       console.error("no gsc loaded, try reload the page");
     }
   }

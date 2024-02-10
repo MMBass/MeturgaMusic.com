@@ -24,28 +24,22 @@ export default function CurrLyricsContextProvider({ children }) {
     const [lines, setLines] = useState(currSsSong?.Lines || []);
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.Service || '');
     const [videoId, setVideoId] = useState(currSsSong?.VideoId || '');
-
     const [azureServerError, setAzureServerError] = useState(false); // set if azure trans didn't work
-    const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans
+    const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans()
 
     useEffect(() => {
         if (lines[0]) checkNextTrans();
-
-        // Temporarily, gives every user 3 fast translations, and one on every visit (session)
-        if (JSON.parse(localStorage.getItem('meturgamm_songs'))?.length > 2) setAzureServerError(true);
+        if (JSON.parse(localStorage.getItem('meturgamm_songs'))?.length > 2) setAzureServerError(true); // Temporarily, gives every user 3 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
     const getSongLyrics = async (splittedSongTitle, songTitle) => {
         setAbort(true);
 
         songTitle = songTitle.replace(constants.allBracketsPattern, '').trim();
-        let linesParent = document.querySelectorAll(".gsc-expansionArea")[0];
+        let searchResultsParent = document.querySelectorAll(".gsc-expansionArea")[0];
         loadersContext.openLoader('backdrop');
 
-        // first try to get from local-storage
-        if (localStorageGetSong(songTitle, linesParent)) {
-            return;
-        }
+        if (localStorageGetSong(songTitle, searchResultsParent)) {return} // first try to get from local-storage
 
         try {
             const data = await fetchSongLyrics(splittedSongTitle);
@@ -53,7 +47,7 @@ export default function CurrLyricsContextProvider({ children }) {
             loadersContext.closeLoader('backdrop');
             sessionStorage.removeItem('currSong');
             setVideoId('');
-            if (linesParent) linesParent.style.pointerEvents = "all";
+            if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
 
             if (data?.combined && Array.isArray(data?.combined)) {
                 setCombined(songTitle, data);
@@ -68,7 +62,7 @@ export default function CurrLyricsContextProvider({ children }) {
             console.log(e);
             loadersContext.closeLoader('backdrop');
             bannersContext.createBanner('error', 'error', TUtils.LyricsNotFound, '');
-            if (linesParent) linesParent.style.pointerEvents = "all";
+            if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
         }
     }
 
@@ -122,10 +116,10 @@ export default function CurrLyricsContextProvider({ children }) {
         utils.clearGsc();
     }
 
-    const localStorageGetSong = (songTitle, linesParent) => {
+    const localStorageGetSong = (songTitle, searchResultsParent) => {
         let lsSong = utils.lsFindSong(songTitle);
         if (lsSong && Array.isArray(lsSong.lines)) {
-            if (linesParent) linesParent.style.pointerEvents = "all";
+            if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
             setTitle(songTitle);
             setLines(lsSong.lines);
             setVideoId(lsSong.videoId);
@@ -152,7 +146,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (abort) { return };
         lines.every((line, index) => {
             if (!line.trans.length || line.transError) {
-                azureServerError ? GgetSingleLineTrans(line.src, index) : getFullTrans(); // get single translation if azure is blocked
+                azureServerError ? gGetSingleLineTrans(line.src, index) : getFullTrans(); // get single translation if azure is blocked
                 return false; // break the loop (will start again after getSingleLineTrans(); )
             }
             return true;
@@ -193,7 +187,7 @@ export default function CurrLyricsContextProvider({ children }) {
         }
     };
 
-    const GgetSingleLineTrans = async (src, index) => {
+    const gGetSingleLineTrans = async (src, index) => {
         try {
             let newLines = [...lines];
             const response = await fetch(constants.gUrl + encodeURI(src));
@@ -225,12 +219,12 @@ export default function CurrLyricsContextProvider({ children }) {
             }
         } catch (error) {
             console.error("Google Translation error:", error);
-            RgetSingleLineTrans(src, index);
+            rGetSingleLineTrans(src, index);
             setTranslatedBy('');
         }
     }
 
-    const RgetSingleLineTrans = async (src, index) => {
+    const rGetSingleLineTrans = async (src, index) => {
         let newLines = [...lines];
 
         try {
@@ -269,7 +263,7 @@ export default function CurrLyricsContextProvider({ children }) {
         }
     };
     
-    const removeSsLines = (setSearchParams) => {
+    const resetSong = (setSearchParams) => {
         sessionStorage.removeItem('currSong');
         setLines([]);
         setAbort(true);
@@ -278,7 +272,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setSearchParams('');
     };
 
-    const actions = { getSongLyrics, removeSsLines };
+    const actions = { getSongLyrics, resetSong };
     return (
         <CurrLyricsContext.Provider value={{ title, lines, azureServerError, translatedBy, videoId, ...actions }}>
             {children}
