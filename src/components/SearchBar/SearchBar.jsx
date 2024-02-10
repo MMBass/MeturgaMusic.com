@@ -66,7 +66,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
           }, 50 * Math.floor(Math.random() * 4));
 
         } else {
-          bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)');
+          bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)'); // TODO i18n
           console.error("no gsc loaded, try reload the page");
         }
       } else {

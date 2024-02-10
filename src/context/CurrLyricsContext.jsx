@@ -160,7 +160,6 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const checkNextTrans = () => {
         if (abort) {
-            // setLines([]); // todo - fixing the removeLines problem, but clearing the lines when searching new song. 
             return;
         };
         lines.every((line, index) => {

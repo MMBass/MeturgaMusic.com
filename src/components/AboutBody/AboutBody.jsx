@@ -28,7 +28,7 @@ function AboutBody({ className }) {
     threshold: 200,
   });
 
-  const theme = useTheme(); // TODO check why not listenin to changes - but in HomePage it does 
+  const theme = useTheme();
 
   const data = [
     {
