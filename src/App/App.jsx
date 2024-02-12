@@ -40,6 +40,7 @@ import HistoryPage from '@pages/HistoryPage/StyledHistoryPage';
 import WishlistPage from '@pages/WishlistPage/StyledWishlistPage';
 import ExercisePage from '@pages/ExercisePage/StyledExercisePage';
 import SpotifyExtensionPage from '@pages/SpotifyExtensionPage/StyledSpotifyExtensionPage';
+import AboutPage from '@pages/AboutPage/StyledAboutPage';
 import NoMatchPage from '@pages/NoMatchPage/StyledNoMatchPage';
 
 function App({ className }) {
@@ -100,6 +101,7 @@ function App({ className }) {
                 <Route path="/History" element={<HistoryPage className={'page'} rank={1} />} />
                 <Route path="/Wish-list" element={<WishlistPage className={'page'} rank={1} />} />
                 <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} rank={1} />} />
+                <Route path="/About" element={<AboutPage className={'page'} rank={1} />} />
                 <Route path="/songs/:urlSong" element={<HomePage className={'page'} setCurrTitle={setCurrTitle} rank={1} />} />
 
                 {/* NoMatchPage works only in hash paths */}

@@ -10,4 +10,5 @@ export default {
   NoExactTransMessage: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק",
   Translated: "מתורגם",
   LoadingTrans: "טוען תרגום...",
+  ExampleSongs: "שירים לדוגמא:",
 };
