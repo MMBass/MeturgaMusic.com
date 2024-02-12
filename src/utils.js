@@ -114,7 +114,7 @@ const loadGoogleAds = () => {
 }
 
 const titleToParams = (str) => {
-    if (typeof str === 'string') return '?song=' + str.replaceAll(' - ', '_').replaceAll(' ', '-');
+    if (typeof str === 'string') return '?song=' + str.replaceAll(' - ', '_').replaceAll(' ', '-').replaceAll('&', 'and');
     else return;
 };
 

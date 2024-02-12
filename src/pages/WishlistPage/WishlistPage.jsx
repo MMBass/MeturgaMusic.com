@@ -36,7 +36,7 @@ function WishlistPage({ className }) {
   function handleAddSong(title) {
     if (!localStorage.getItem('meturgamm_wish')) localStorage.setItem('meturgamm_wish', JSON.stringify([]));
     const lsSongs = JSON.parse(localStorage.getItem('meturgamm_wish'));
-    const song = { title, id: lsSongs.length.toString() };
+    const song = { title: title.replaceAll('&', 'and'), id: lsSongs.length.toString() };
 
     lsSongs.unshift(song);  // {title: string, id: num}
     if (lsSongs.length >= 500) songs.shift();
