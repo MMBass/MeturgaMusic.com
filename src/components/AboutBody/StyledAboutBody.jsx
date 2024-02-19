@@ -4,7 +4,7 @@ import AboutBody from './AboutBody';
 const StyledAboutBody = styled(AboutBody)`
   width: 100%;
   font-size: 2vw;
-  font-weight: 300;
+  font-weight: 400;
   padding-top: 50px;
   font-family: 'Assistant','Roboto', 'sans-serif';
   text-align: center;
@@ -77,7 +77,7 @@ const StyledAboutBody = styled(AboutBody)`
     .about-header{
       margin-bottom: 5px;
       font-size: 3.6vw;
-      font-weight: 300;
+      font-weight: 400;
       color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
         font-size: 5.8vw;
@@ -98,7 +98,7 @@ const StyledAboutBody = styled(AboutBody)`
 
     .about-bottom{
       padding-top: 15px;
-      font-weight: 400;
+      font-weight: 500;
       color: ${props => props.theme.palette.secondary.contrastText};
       @media (max-width: 600px) {
         font-size: 5vw;
