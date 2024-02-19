@@ -77,7 +77,7 @@ const StyledAboutBody = styled(AboutBody)`
     .about-header{
       margin-bottom: 5px;
       font-size: 3.6vw;
-      font-weight: 400;
+      font-weight: 300;
       color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
         font-size: 5.8vw;
