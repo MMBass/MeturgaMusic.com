@@ -1,12 +1,12 @@
-import Constants from '@/constants';
+import constants from '@/constants';
 import utils from '@/utils.js';
 const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
 
-export default (newLines, source) => {
+export default (title, newLines, source) => {
     const trans = [];
     newLines.forEach(e => trans.push(e.trans));
 
-    fetch(`${Constants.prodServerUri}/trans/lines?initId=` + initId, {
+    fetch(`${constants.prodServerUri}/trans/lines?initId=` + initId, {
         method: 'put',
         headers: {
             'Accept': 'application/json',

@@ -211,7 +211,7 @@ export default function CurrLyricsContextProvider({ children }) {
                         Service: ServiceTypes.GOOGLE
                     }));
 
-                    putFullTrans(newLines, ServiceTypes.GOOGLE);
+                    putFullTrans(title, newLines, ServiceTypes.GOOGLE);
                     setAzureServerError(false);
                 };
             } else {

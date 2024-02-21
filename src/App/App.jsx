@@ -70,7 +70,7 @@ function App({ className }) {
   const serverInit = () => {
     if (!localStorage.getItem('init')) localStorage.setItem('init', 'INITID:' + uuidv4());
     let initId = localStorage.getItem('init');
-    fetch(`${constants.devServerUri}/?initId=` + initId);
+    fetch(`${constants.prodServerUri}/?initId=` + initId);
   };
 
   const changeTheme = () => {
