@@ -46,7 +46,7 @@ function HomePage({ className, setCurrTitle }) {
 
   function callSongIfQuery(passedSong) {
     passedSong = passedSong.replaceAll('-', " ");
-    passedSong.replace(passedSong.charAt(0), passedSong.charAt(0).toUpperCase());
+    passedSong = passedSong.replace(passedSong.charAt(0), passedSong.charAt(0).toUpperCase());
 
     const splittedSongTitle = {
       artistName: encodeURI(` ${passedSong.split('_')[0]} `),
@@ -58,7 +58,7 @@ function HomePage({ className, setCurrTitle }) {
       return; // Break if the song is the same song
     }else{
       // If the song is from /songs path - change the page title 
-      if (urlSong) {setCurrTitle(passedSong + " " + T.Translated)};
+      if (urlSong) { setCurrTitle(passedSong + " " + T.Translated) };
       // Call the song
       currLyricsContext.getSongLyrics(splittedSongTitle, passedSong);
     }
