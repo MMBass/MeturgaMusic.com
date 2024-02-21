@@ -1,7 +1,6 @@
 import { useEffect, useState, Fragment } from "react";
 import T from "./AboutBodyI18n";
 
-import { v4 as uuidv4 } from 'uuid';
 import { useTheme } from '@mui/material/styles';
 
 import Box from "@mui/material/Box";
@@ -32,6 +31,7 @@ function AboutBody({ className }) {
 
   const data = [
     {
+      id: 1,
       img: shot1,
       imgDark: shot1Dark,
       alt: T.Shot1Alt,
@@ -41,6 +41,7 @@ function AboutBody({ className }) {
       footer: T.Shot1Footer,
     },
     {
+      id: 2,
       img: shot5,
       imgDark: shot5Dark,
       alt: T.Player1Alt,
@@ -48,6 +49,7 @@ function AboutBody({ className }) {
       bodyStrings: T.PlayerBody.split(","),
     },
     {
+      id: 3,
       img: shot2,
       imgDark: shot2Dark,
       alt: T.SingleTransAlt,
@@ -56,6 +58,7 @@ function AboutBody({ className }) {
       footer: T.SingleTransFooter,
     },
     {
+      id: 4,
       img: shot3,
       imgDark: shot3Dark,
       alt: T.ExerciseAlt,
@@ -85,7 +88,7 @@ function AboutBody({ className }) {
   return (
     <Box className={className}>
       {visibleItems.map((vItem, index) => (
-        <Fragment key={uuidv4() + index}>
+        <Fragment key={ vItem.id }>
           <Grid
             className={(index % 2 == 0) ? " even-item" : " not-even-item"} // for different style if even-index
             container
@@ -102,7 +105,7 @@ function AboutBody({ className }) {
               <div className="img-container">
                 <img
                   loading="lazy"
-                  src={theme.mode !== 'dark' ? vItem.img : vItem.imgDark }
+                  src={theme.mode !== 'dark' ? vItem.img : vItem.imgDark}
                   alt={vItem.alt}
                 />
               </div>
@@ -118,7 +121,7 @@ function AboutBody({ className }) {
               <div className="strings-container">
                 {vItem.bodyStrings.length && vItem.bodyStrings.map((str, strIndex) => {
                   return (
-                    <Typography className="about-string" key={uuidv4() + strIndex} variant="p" component="p">
+                    <Typography className="about-string" key={ strIndex } variant="p" component="p">
                       {str.replace(',', '')}
                     </Typography>
                   )

@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { useContext, useEffect } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
 
 import Grid from '@mui/material/Grid';
@@ -64,7 +63,7 @@ function LyricsBody({ className }) {
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={'title' + i}></LyricToolTip>
+                    <LyricToolTip key={ i } lyric={word} lyricID={'title' + i}></LyricToolTip>
                   )
                 })
               }
@@ -96,7 +95,7 @@ function LyricsBody({ className }) {
             line.src = line.src.replaceAll(']', '|')
           }
           return (
-            <Grid item xs={12} key={uuidv4()}>
+            <Grid item xs={12} key={ y }>
 
               <Box className="lyrics-line en-line"
                 style={{
@@ -108,7 +107,7 @@ function LyricsBody({ className }) {
                 {line.src.split(' ').map((word, i) => {
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
                   return (
-                    <LyricToolTip key={uuidv4()} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
+                    <LyricToolTip key={ i } lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
                   )
                 })}
               </Box>
