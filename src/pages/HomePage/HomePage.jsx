@@ -46,7 +46,7 @@ function HomePage({ className, setCurrTitle }) {
 
   function callSongIfQuery(passedSong) {
     passedSong = passedSong.replaceAll('-', " ");
-    str.replace(str.charAt(0), str.charAt(0).toUpperCase());
+    passedSong.replace(passedSong.charAt(0), passedSong.charAt(0).toUpperCase());
 
     const splittedSongTitle = {
       artistName: encodeURI(` ${passedSong.split('_')[0]} `),
