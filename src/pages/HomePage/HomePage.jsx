@@ -46,10 +46,13 @@ function HomePage({ className, setCurrTitle }) {
 
   function callSongIfQuery(passedSong) {
     passedSong = passedSong.replaceAll('-', " ");
+    str.replace(str.charAt(0), str.charAt(0).toUpperCase());
+
     const splittedSongTitle = {
       artistName: encodeURI(` ${passedSong.split('_')[0]} `),
       songName: encodeURI(` ${passedSong.split('_')[1]} `)
     };
+    
     passedSong = passedSong.replaceAll('_', " - ");
     if(currLyricsContext.title.replaceAll(' ', '') == passedSong.replaceAll(' ', '')){
       return; // Break if the song is the same song
