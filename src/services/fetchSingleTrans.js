@@ -6,8 +6,8 @@ const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
 const getSingleTrans = async (lyric) => {
 
     lyric.trim().toLowerCase();
-    lyric = lyric.replaceAll(constants.specialCharsPattern, ""); // removes special chars exept '
-    if (lyric.slice(-1) === "'") lyric = lyric.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
+    lyric = lyric.replaceAll(constants.specialCharsPattern, ""); // Removes special chars exept '
+    if (lyric.slice(-1) === "'") lyric = lyric.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
 
     return fetch(`${constants.prodServerUri}/trans/single?initId=` + initId, {
         method: 'post',

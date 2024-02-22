@@ -48,7 +48,7 @@ const Header = ({ className, changeColors }) => {
 
   useEffect(() => {
     setTopSearchBar(false);
-    window.scrollTo(0, 0); // scroll top on router or song changes
+    window.scrollTo(0, 0); // Scroll top on router or song changes
     if (bannersContext.error) bannersContext.closeBanner('error');
     drawerContext.closeDrawer();
   }, [rrdLocation, currLyricsContext.title]);

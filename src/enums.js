@@ -4,3 +4,11 @@ export const ServiceTypes = {
     REVERSO: 'reverso',
     LEGACY: 'legacy',
 };
+
+// TODO finish the use of LocalStorageKeys
+export const LocalStorageKeys = {
+    WORDS: 'meturgamm_words',
+    SONGS: 'meturgamm_songs',
+    HISTORY: 'meturgamm_history',
+    WISHLIST: 'meturgamm_wishlist',
+}

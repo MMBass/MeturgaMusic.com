@@ -24,8 +24,8 @@ export default function CurrLyricsContextProvider({ children }) {
     const [lines, setLines] = useState(currSsSong?.Lines || []);
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.Service || '');
     const [videoId, setVideoId] = useState(currSsSong?.VideoId || '');
-    const [azureServerError, setAzureServerError] = useState(false); // set if azure trans didn't work
-    const [abort, setAbort] = useState(false); // force to cancel prev song checkNextTrans()
+    const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
+    const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
 
     useEffect(() => {
         if (lines[0]) checkNextTrans();
@@ -39,7 +39,7 @@ export default function CurrLyricsContextProvider({ children }) {
         let searchResultsParent = document.querySelectorAll(".gsc-expansionArea")[0];
         loadersContext.openLoader('backdrop');
 
-        if (localStorageGetSong(songTitle, searchResultsParent)) {return} // first try to get from local-storage
+        if (localStorageGetSong(songTitle, searchResultsParent)) {return} // First try to get from local-storage
 
         try {
             const data = await fetchSongLyrics(splittedSongTitle);
@@ -93,7 +93,7 @@ export default function CurrLyricsContextProvider({ children }) {
             if (line.length >= 2) {
                 if (utils.isMostlyEnglish(line)) {
                     if (line.length > 90) {
-                        let byCommas = line.split(',');  // split by commas if the line is too long
+                        let byCommas = line.split(',');  // Split by commas if the line is too long
                         if (byCommas[0].length > 10) {
                             byCommas.map((byCommaLine) => {
                                 newLines.push({ src: byCommaLine, trans: '', transError: false });
@@ -146,8 +146,8 @@ export default function CurrLyricsContextProvider({ children }) {
         if (abort) { return };
         lines.every((line, index) => {
             if (!line.trans.length || line.transError) {
-                azureServerError ? gGetSingleLineTrans(line.src, index) : getFullTrans(); // get single translation if azure is blocked
-                return false; // break the loop (will start again after getSingleLineTrans(); )
+                azureServerError ? gGetSingleLineTrans(line.src, index) : getFullTrans(); // Get single translation if azure is blocked
+                return false; // Break the loop (will start again after getSingleLineTrans(); )
             }
             return true;
         });
@@ -179,11 +179,11 @@ export default function CurrLyricsContextProvider({ children }) {
 
             } else {
                 console.error("status is ok but azure translation missing");
-                setAzureServerError(true); // works.  // checkNextTrans(); // doesn't work
+                setAzureServerError(true); // Works.  // checkNextTrans(); // doesn't work
             }
         } catch (e) {
             console.log(e);
-            setAzureServerError(true); // works.  // checkNextTrans(); // doesn't work
+            setAzureServerError(true); // Works.  // checkNextTrans(); // doesn't work
         }
     };
 
@@ -196,7 +196,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
             var translatedTexts = [];
             if (data && data[0]) {
-                data[0].forEach(elem => translatedTexts.push(elem[0])); // extract the translated text
+                data[0].forEach(elem => translatedTexts.push(elem[0])); // Extract the translated text
 
                 newLines[index] = { src: src, trans: translatedTexts.join(" ") };
                 setLines(newLines);

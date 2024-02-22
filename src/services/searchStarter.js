@@ -1,5 +1,6 @@
+
+/**  Observe when gsc loaded, then we can find the .gsc-results-wrapper-nooverlay to observe it */
 export default function observeMyWrapper(linesChange, setStart) {
-    // observe when gsc loaded, then we can find the .gsc-results-wrapper-nooverlay to observe it
 
     const checkgsc = document.querySelector("#gcse-my-wrapper #___gcse_0");
 
@@ -20,8 +21,9 @@ export default function observeMyWrapper(linesChange, setStart) {
     }
 }
 
-function track___gcse_0SearchInput(callBack, setStart) { // observe every time gsc-lines changes
-    setStart(true); // replacing the loader and enable search
+/** Observe every time gsc-lines changes */
+function track___gcse_0SearchInput(callBack, setStart) {
+    setStart(true); // Replacing the loader and enable search
     const targetNode = document.querySelectorAll("#___gcse_0 .gsc-results-wrapper-nooverlay")[0];
     const observerOptions = {
         childList: false,

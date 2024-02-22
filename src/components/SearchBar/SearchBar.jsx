@@ -48,11 +48,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
     if (gsc_input) {
       if (eValue.length <= 1) {
-        // clear gsc input
-        let gsc_clear = document.querySelector('.gsst_a');
-        if (gsc_clear) {
-          gsc_clear.dispatchEvent(new Event('click'));
-        }
+        utils.clearGsc(); // Clear gsc input
       } else if (constants.en_pattern.test(eValue)) {
         gsc_input.value = eValue;
         let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
@@ -90,7 +86,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     setTimeout(() => {
       let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
 
-      // move the ads to bottom - if displayed
+      // Move the ads to bottom - if displayed
       // const gscAdBlocks = document.querySelectorAll('.gsc-adBlock');
       // gscAdBlocks.forEach((ad)=>{
       //   ad.parentNode.appendChild(ad);
@@ -110,12 +106,12 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
             let songTitle = line.innerText.split("Lyrics")[0];
             songTitle = songTitle.replaceAll(' | Genius', "");
-            songTitle = songTitle.replaceAll('–', "-"); // g results comes with some special ' – ' sign
+            songTitle = songTitle.replaceAll('–', "-"); // g Results comes with some special ' – ' sign
 
             if (!utils.isMostlyEnglish(songTitle)) {
               line.parentElement.parentElement.parentElement.remove();
               return;
-            } // after removing all the around text - check its lang
+            } // After removing all the around text - check its lang
 
             line.innerHTML = `<strong>${songTitle.split(' - ')[0]}</strong> - <span>${songTitle.split(' - ')[1]}</span>`;
 

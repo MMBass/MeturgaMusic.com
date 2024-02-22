@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
 import T from "./HomePageI18n";
+import TUtils from '@/i18n-utils';
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -20,21 +21,21 @@ import { useTheme } from '@mui/material/styles';
 import mainPic from '../../images/screenshots/combined-shot-whiteBg-player.png';
 import mainPicDark from '../../images/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
 
-function HomePage({ className, setCurrTitle }) {
+function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
   const drawerContext = useContext(DrawerContext);
 
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const paramsSong = searchParams.get("song"); // song of /?song= (with hash and without)
+  const paramsSong = searchParams.get("song"); // Song of /?song= (with hash and without)
   const rrdLocation = useLocation();
-  const { urlSong } = useParams(); // song of path="/songs/:directSong" 
+  const { urlSong } = useParams(); // Song of path="/songs/:directSong" 
 
   const theme = useTheme();
 
   useEffect(() => {
-    // note! the params in HashRouter works only this pattern: http://.../#/?song=artist_title
+    // Note! the params in HashRouter works only this pattern: http://.../#/?song=artist_title
     drawerContext.closeDrawer();
     if (bannersContext.error) bannersContext.closeBanner('error');
     if (urlSong && urlSong.includes("_")) {
@@ -42,7 +43,7 @@ function HomePage({ className, setCurrTitle }) {
     } else if (paramsSong && paramsSong.includes("_")) {
       callSongIfQuery(paramsSong);
     };
-  }, [rrdLocation]); // use if there is a direct song in the url
+  }, [rrdLocation]); // Use if there is a direct song in the url
 
   function callSongIfQuery(passedSong) {
     passedSong = passedSong.replaceAll('-', " ");
@@ -52,13 +53,13 @@ function HomePage({ className, setCurrTitle }) {
       artistName: encodeURI(` ${passedSong.split('_')[0]} `),
       songName: encodeURI(` ${passedSong.split('_')[1]} `)
     };
-    
+
     passedSong = passedSong.replaceAll('_', " - ");
-    if(currLyricsContext.title.replaceAll(' ', '') == passedSong.replaceAll(' ', '')){
+    if (currLyricsContext.title.replaceAll(' ', '') == passedSong.replaceAll(' ', '')) {
       return; // Break if the song is the same song
-    }else{
+    } else {
       // If the song is from /songs path - change the page title 
-      if (urlSong) { setCurrTitle(passedSong + " " + T.Translated) };
+      if (urlSong) { document.title = (TUtils.SiteName + " " + passedSong + " " + T.Translated) };
       // Call the song
       currLyricsContext.getSongLyrics(splittedSongTitle, passedSong);
     }
@@ -67,7 +68,7 @@ function HomePage({ className, setCurrTitle }) {
   return (
 
     <div className={`${className} page`}>
-      {(!currLyricsContext.lines?.[0] || !currLyricsContext.title ) &&
+      {(!currLyricsContext.lines?.[0] || !currLyricsContext.title) &&
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
 
@@ -118,11 +119,11 @@ function HomePage({ className, setCurrTitle }) {
         </Container>
       }
 
-      {(!currLyricsContext.lines?.[0] && !currLyricsContext.title ) &&
+      {(!currLyricsContext.lines?.[0] && !currLyricsContext.title) &&
         <AboutBody></AboutBody>
       }
 
-      {(currLyricsContext.lines?.[0] && currLyricsContext.title ) &&
+      {(currLyricsContext.lines?.[0] && currLyricsContext.title) &&
         <Grid container spacing={1}>
           <Grid item md={12} lg={9}>
             <LyricsBody className={'lyrics-body'}></LyricsBody>

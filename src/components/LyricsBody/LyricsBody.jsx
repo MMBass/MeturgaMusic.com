@@ -19,8 +19,8 @@ import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { urlSong } = useParams(); // song of path="/songs/:directSong"
-  const paramsSong = searchParams.get("song"); // song of /?song= (with hash and without)
+  const { urlSong } = useParams(); // Song of path="/songs/:directSong"
+  const paramsSong = searchParams.get("song"); // Song of /?song= (with hash and without)
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
 
@@ -42,7 +42,7 @@ function LyricsBody({ className }) {
       <Grid container rowSpacing={1} columnSpacing={0}>
 
         <Grid item xs={12} className="l-body-top">
-          {!urlSong && // if the song is from /songs path don't show the remove icon
+          {!urlSong && // If the song is from /songs path - don't show the remove icon
             <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
               <CloseOutlinedIcon className='remove-icon' />
             </IconButton>
@@ -105,7 +105,7 @@ function LyricsBody({ className }) {
                 }}
               >
                 {line.src.split(' ').map((word, i) => {
-                  if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // change short Pronunciation spelling like goin' to - going
+                  if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
                   return (
                     <LyricToolTip key={ i } lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
                   )

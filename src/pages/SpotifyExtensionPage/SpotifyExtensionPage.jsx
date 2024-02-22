@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import T from "./SpotifyExtensionPageI18n";
 import extensionImage from '../../images/screenshots/spoShot2.png';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -9,8 +11,12 @@ import Chip from '@mui/material/Chip';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Tooltip from '@mui/material/Tooltip';
 
-function SpotifyExtensionPage({ className }) {
+function SpotifyExtensionPage({ className, pageTitle }) {
   const { copiedOpen, handleCopy } = useCopyToClipboard();
+
+  useEffect(() => {
+    document.title = pageTitle;
+  }, []); 
 
   return (
     <div className={className} style={{ backgroundImage: `url(${extensionImage.toString()})` }}>

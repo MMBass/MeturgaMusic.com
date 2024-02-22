@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import T from "./HistoryPageI18n";
 import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 
@@ -10,8 +10,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-function HistoryPage({ className }) {
+function HistoryPage({ className, pageTitle }) {
   const [songs, setSongs] = useState(JSON.parse(localStorage.getItem('meturgamm_songs')) || []);
+
+  useEffect(() => {
+    document.title = pageTitle;
+  }, []);
 
   const handleDeleteClick = (id) => {
     let newSongs = songs.filter((row) => row.id !== id);

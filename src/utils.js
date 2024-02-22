@@ -23,12 +23,12 @@ const lsSaveWord = (toSave /* { word: string, results: [string] } */) => {
     localStorage.setItem("meturgamm_words", JSON.stringify(words));
 };
 
-const lsSaveSong = (song /*provide trimmed title*/) => {
+const lsSaveSong = (song /*Provide a trimmed title*/) => {
     if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
 
     const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
 
-    // update if exsist
+    // Update if exsist
     if(lsFindSong(song.title)){
         songs.forEach(s =>{if(s.title.toLowerCase() === song.title.toLowerCase()){
             s.id = s.id || s.id
@@ -55,7 +55,8 @@ const lsFindSong = (title /*provide trimmed title*/) => {
     return songs.find(s => s.title.toLowerCase() === title.toLowerCase());  // {title: "", lines: {src:"", trans:""}}
 };
 
-const clearGsc = () => { // clear the gsc search input
+/**  Clear the gsc search input */
+const clearGsc = () => { //
     let gsc_clear = document.querySelector('.gsst_a');
     if (gsc_clear) {
         gsc_clear.dispatchEvent(new Event('click'));
@@ -101,7 +102,7 @@ function isMostlyEnglish(str) {
 
 /** GOOGLE ads tag - Global for all account sites */
 const loadGoogleAds = () => {
-    // the script will work if the option is ON in google console. otherwise the custom ads will show
+    // The script will work if the option is ON in google console. Otherwise the custom ads will show
     const existingAdsScript = document.querySelector('script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
     if (!existingAdsScript) {
         const script = document.createElement('script');
@@ -118,7 +119,7 @@ const titleToParams = (str) => {
     else return;
 };
 
-/** Hack the gh-pages hash router - To access directly*/
+/** Hack the gh-pages hash router - For direct access */
 const directParamsToHash = () => {
     const searchParams = new URLSearchParams(location.search);
     if (searchParams.get('page')) {

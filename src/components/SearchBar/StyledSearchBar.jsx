@@ -22,7 +22,7 @@ const StyledSearchBar = styled(SearchBar)`
   } 
 
   .main-input, .top-input{
-      direction: rtl; // will turn to LTR, mui settings replace to opposite
+      direction: rtl; // Will turn to LTR, mui settings replace to opposite
       margin: auto;
 
       input, fieldset, label{

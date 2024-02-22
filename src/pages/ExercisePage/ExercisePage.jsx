@@ -8,13 +8,14 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 
-function ExercisePage({ className }) {
+function ExercisePage({ className, pageTitle }) {
   const settingsContext = useContext(SettingsContext);
 
   const [words, setWords] = useState(JSON.parse(localStorage.getItem('meturgamm_words')) || []);
 
   useEffect(() => {
     settingsContext.updateBadge(false);
+    document.title = pageTitle;
   }, []);
 
   const deleteOneWord = (id) => {

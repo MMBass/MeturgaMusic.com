@@ -96,13 +96,13 @@ function App({ className }) {
               }
 
               <Routes>
-                <Route path={"/"} element={<HomePage className={'page'} setCurrTitle={null} rank={1} />} />
-                <Route path="/Exercise" element={<ExercisePage className={'page'} rank={1} />} />
-                <Route path="/History" element={<HistoryPage className={'page'} rank={1} />} />
-                <Route path="/Wish-list" element={<WishlistPage className={'page'} rank={1} />} />
-                <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} rank={1} />} />
-                <Route path="/About" element={<AboutPage className={'page'} rank={1} />} />
-                <Route path="/songs/:urlSong" element={<HomePage className={'page'} setCurrTitle={setCurrTitle} rank={1} />} />
+                <Route path={"/"} element={<HomePage className={'page'} rank={1} />} />
+                <Route path="/Exercise" element={<ExercisePage className={'page'} pageTitle={T.MainH1 + " - " + T.Exercise} rank={1} />} />
+                <Route path="/History" element={<HistoryPage className={'page'} pageTitle={T.MainH1 + " - " + T.History} rank={1} />} />
+                <Route path="/Wish-list" element={<WishlistPage className={'page'} pageTitle={T.MainH1 + " - " + T.Wishlist} rank={1} />} />
+                <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} pageTitle={T.MainH1 + " - " + T.SpotifyExtension} rank={1} />} />
+                <Route path="/About" element={<AboutPage className={'page'} pageTitle={T.MainH1 + " - " + T.About} rank={1} />} />
+                <Route path="/songs/:urlSong" element={<HomePage className={'page'} rank={1} />} />
 
                 {/* NoMatchPage works only in hash paths */}
                 <Route path="*" element={<NoMatchPage className={'page'} />} />
