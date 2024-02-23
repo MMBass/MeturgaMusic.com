@@ -118,7 +118,7 @@ const StyledAboutBody = styled(AboutBody)`
 
   .img-item{
     height: 100%;
-    padding: 0 30px;
+    padding: 0 15px;
     @media (max-width: 600px) {
       min-height: 35vh;
       padding-top: 0;
@@ -132,10 +132,10 @@ const StyledAboutBody = styled(AboutBody)`
       height: 100%;
 
       background: ${props =>
-    props.theme.palette.secondary.main === "#000"
+    props.theme.mode === "dark"
       ? '#303030'
       : `linear-gradient( to left, rgb(237, 203, 203) 70%, rgb(223, 128, 142) 100%)`
-    //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
+      //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
   };
       border-radius: 8px;
 
