@@ -39,6 +39,11 @@ const StyledAboutBody = styled(AboutBody)`
         text-align: center;
       }
     }
+
+    img{
+      transform: perspective(1000px) rotateY(15deg);
+      box-shadow: 18px 13px 4px #4949494a;
+    }
   }
 
   .not-even-item{
@@ -46,6 +51,11 @@ const StyledAboutBody = styled(AboutBody)`
       .strings-item{
         text-align: center;
       }
+    }
+
+    img{
+      transform: perspective(1000px) rotateY(-15deg);
+      box-shadow: -18px 13px 4px #4949494a;
     }
   }
 
@@ -122,15 +132,15 @@ const StyledAboutBody = styled(AboutBody)`
       height: 100%;
 
       background: ${props =>
-        props.theme.palette.secondary.main === "#000"
-          ? '#303030'
-          : `linear-gradient( to left, rgb(237, 203, 203) 70%, rgb(223, 128, 142) 100%)`
-          // : `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
-      };
+    props.theme.palette.secondary.main === "#000"
+      ? '#303030'
+      : `linear-gradient( to left, rgb(237, 203, 203) 70%, rgb(223, 128, 142) 100%)`
+    //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
+  };
       border-radius: 8px;
 
       @media (max-width: 600px) {
-        padding: 15px 4px;
+        padding: 35px 4px;
       }
     }
 
@@ -143,7 +153,7 @@ const StyledAboutBody = styled(AboutBody)`
         width: 80%;
         height: auto;
         max-height: 90%;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
       }
     }
   }
