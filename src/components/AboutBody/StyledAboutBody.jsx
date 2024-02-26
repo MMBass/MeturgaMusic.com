@@ -43,6 +43,9 @@ const StyledAboutBody = styled(AboutBody)`
     img{
       transform: perspective(1000px) rotateY(15deg);
       box-shadow: 18px 13px 4px #4949494a;
+      @media (max-width: 600px) {
+        box-shadow: 12px 10px 4px #4949494a;
+      }
     }
   }
 
@@ -56,6 +59,9 @@ const StyledAboutBody = styled(AboutBody)`
     img{
       transform: perspective(1000px) rotateY(-15deg);
       box-shadow: -18px 13px 4px #4949494a;
+      @media (max-width: 600px) {
+        box-shadow: -12px 10px 4px #4949494a;
+      }
     }
   }
 
@@ -70,7 +76,7 @@ const StyledAboutBody = styled(AboutBody)`
     .remove-icon{
       padding: 3px;
       font-size: medium;
-      color: ${props => props.theme.palette.secondary.contrastText};
+      color: #9f9f9f5d;
 
       :hover{
         color: #2b2b2bef;
@@ -80,6 +86,8 @@ const StyledAboutBody = styled(AboutBody)`
   
   .strings-item{
     text-align: start;
+    text-shadow: 0px 1px 2px rgb(159, 159, 159);
+    
     @media (max-width: 600px) {
       padding: 8px 40px 70px 40px;
     }
@@ -132,11 +140,12 @@ const StyledAboutBody = styled(AboutBody)`
       height: 100%;
 
       background: ${props =>
-    props.theme.mode === "dark"
-      ? '#303030'
-      : `linear-gradient( to left, rgb(237, 203, 203) 70%, rgb(223, 128, 142) 100%)`
-      //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
-  };
+      props.theme.mode === "dark"
+        ? '#303030'
+        : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
+        //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
+      };
+      
       border-radius: 8px;
 
       @media (max-width: 600px) {
@@ -153,13 +162,14 @@ const StyledAboutBody = styled(AboutBody)`
         width: 80%;
         height: auto;
         max-height: 90%;
-        /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
       }
     }
   }
 
   .about-footer{
     padding: 60px;
+    text-shadow: 0px 1px 2px rgb(159, 159, 159);
+
     p{
       font-size: 2vw;
       @media (max-width: 600px) {

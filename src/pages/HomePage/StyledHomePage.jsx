@@ -52,7 +52,12 @@ const StyledHomePage = styled(HomePage)`
        
        .home-t-container{
             padding: 30px 0;
-        
+            text-shadow: 0px 1px 2px rgb(159, 159, 159);
+
+            label{
+                text-shadow: 0 0 black;
+            }
+
             @media (max-width: 600px) {
                 text-align: center;
 
