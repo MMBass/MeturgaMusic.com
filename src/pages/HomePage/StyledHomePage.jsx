@@ -52,7 +52,8 @@ const StyledHomePage = styled(HomePage)`
        
        .home-t-container{
             padding: 30px 0;
-            text-shadow: 0px 1px 2px rgb(159, 159, 159);
+            /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
+            text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
 
             label{
                 text-shadow: 0 0 black;

@@ -86,7 +86,8 @@ const StyledAboutBody = styled(AboutBody)`
   
   .strings-item{
     text-align: start;
-    text-shadow: 0px 1px 2px rgb(159, 159, 159);
+    /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
+    text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
     
     @media (max-width: 600px) {
       padding: 8px 40px 70px 40px;
@@ -140,11 +141,11 @@ const StyledAboutBody = styled(AboutBody)`
       height: 100%;
 
       background: ${props =>
-      props.theme.mode === "dark"
-        ? '#303030'
-        : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
-        //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
-      };
+    props.theme.mode === "dark"
+      ? '#303030'
+      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
+  //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
+  };
       
       border-radius: 8px;
 
@@ -168,7 +169,8 @@ const StyledAboutBody = styled(AboutBody)`
 
   .about-footer{
     padding: 60px;
-    text-shadow: 0px 1px 2px rgb(159, 159, 159);
+    /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
+    text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
 
     p{
       font-size: 2vw;
