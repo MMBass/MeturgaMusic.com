@@ -43,6 +43,17 @@ const StyledAboutBody = styled(AboutBody)`
 
     img{
       transform: perspective(1000px) rotateY(15deg);
+      -webkit-perspective: 1000px;
+      -moz-perspective: 1000px;
+      perspective: 1000px;
+      /* -webkit-transform: rotateY(15deg);
+      -moz-transform: rotateY(15deg);
+      transform: rotateY(15deg); */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+
       box-shadow: 18px 13px 4px #4949494a;
       @media (max-width: 600px) {
         box-shadow: 12px 10px 4px #4949494a;
@@ -59,6 +70,17 @@ const StyledAboutBody = styled(AboutBody)`
 
     img{
       transform: perspective(1000px) rotateY(-15deg);
+      -webkit-perspective: 1000px;
+      -moz-perspective: 1000px;
+      perspective: 1000px;
+      /* -webkit-transform: rotateY(-15deg); */
+      /* -moz-transform: rotateY(-15deg); */
+      /* transform: rotateY(-15deg); */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+
       box-shadow: -18px 13px 4px #4949494a;
       @media (max-width: 600px) {
         box-shadow: -12px 10px 4px #4949494a;
@@ -143,11 +165,11 @@ const StyledAboutBody = styled(AboutBody)`
       height: 100%;
 
       background: ${props =>
-      props.theme.mode === "dark"
-        ? '#303030'
-        : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
-        //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
-      };
+    props.theme.mode === "dark"
+      ? '#303030'
+      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
+  //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
+  };
       
       border-radius: 8px;
 
