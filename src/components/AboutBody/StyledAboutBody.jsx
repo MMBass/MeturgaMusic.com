@@ -11,7 +11,8 @@ const StyledAboutBody = styled(AboutBody)`
 
   @media (max-width: 600px) {
     padding-top: 0px;
-    font-size: 4.6vw;
+    /* font-size: 4.6vw; */
+    font-size: 5.4vw;
   }
 
   .even-item, .not-even-item{
@@ -90,7 +91,7 @@ const StyledAboutBody = styled(AboutBody)`
     text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
     
     @media (max-width: 600px) {
-      padding: 8px 40px 70px 40px;
+      padding: 40px 40px 70px 40px;
     }
 
     .about-header{
@@ -99,7 +100,8 @@ const StyledAboutBody = styled(AboutBody)`
       font-weight: 300;
       color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
-        font-size: 5.8vw;
+        /* font-size: 5.8vw; */
+        font-size: 6.8vw;
       }
     }
 
@@ -141,11 +143,11 @@ const StyledAboutBody = styled(AboutBody)`
       height: 100%;
 
       background: ${props =>
-    props.theme.mode === "dark"
-      ? '#303030'
-      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
-  //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
-  };
+      props.theme.mode === "dark"
+        ? '#303030'
+        : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
+        //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
+      };
       
       border-radius: 8px;
 
