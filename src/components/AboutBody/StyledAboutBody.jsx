@@ -43,16 +43,6 @@ const StyledAboutBody = styled(AboutBody)`
 
     img{
       transform: perspective(1000px) rotateY(15deg);
-      -webkit-perspective: 1000px;
-      -moz-perspective: 1000px;
-      perspective: 1000px;
-      /* -webkit-transform: rotateY(15deg);
-      -moz-transform: rotateY(15deg);
-      transform: rotateY(15deg); */
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
 
       box-shadow: 18px 13px 4px #4949494a;
       @media (max-width: 600px) {
@@ -69,17 +59,10 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     img{
-      transform: perspective(1000px) rotateY(-15deg);
-      -webkit-perspective: 1000px;
-      -moz-perspective: 1000px;
-      perspective: 1000px;
-      /* -webkit-transform: rotateY(-15deg); */
-      /* -moz-transform: rotateY(-15deg); */
-      /* transform: rotateY(-15deg); */
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
+      @supports not (-webkit-touch-callout: none) {
+        transform: perspective(1000px) rotateY(-15deg);
+      }
+
 
       box-shadow: -18px 13px 4px #4949494a;
       @media (max-width: 600px) {

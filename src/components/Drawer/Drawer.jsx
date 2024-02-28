@@ -25,7 +25,7 @@ function MyDrawer({ className, changeColors }) {
       >
         <SidePagesList changeColors={changeColors} closeDrawer={() => { drawerContext.closeDrawer() }}></SidePagesList>
 
-      {/* {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
+      {/* {(utils.isApple() && !window.matchMedia('(display-mode: standalone)').matches) &&
        <SideLinks></SideLinks>
       } */}
       </Box>

@@ -112,7 +112,7 @@ function SidePagesList({ className, changeColors }) {
         <LangsSwitch></LangsSwitch>
       </ListItem> */}
       
-      {(utils.getMobileOS !== "Apple" && !window.matchMedia('(display-mode: standalone)').matches) &&
+      {(utils.isApple() && !window.matchMedia('(display-mode: standalone)').matches) &&
         <ListItem sx={{ justifyContent: 'center' }}>
           <OfferInstall></OfferInstall>
         </ListItem>

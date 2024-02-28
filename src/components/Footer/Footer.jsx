@@ -10,7 +10,7 @@ function Footer({ className }) {
       {!window.matchMedia('(display-mode: standalone)').matches &&
         <div id="FOOTER" className={className} >
           <FooterLinks
-            canInstall={(utils.getMobileOS !== "Apple")}></FooterLinks>
+            canInstall={(utils.isApple())}></FooterLinks>
         </div>
       }
       

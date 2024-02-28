@@ -64,13 +64,16 @@ const clearGsc = () => { //
 };
 
 /** Get if apple device or not @returns {boolean} */
-const getMobileOS = () => {
-    const ua = navigator.userAgent;
-    if (/android/i.test(ua)) {
-        return 'Android';
-    } else if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
-        return 'Apple';
-    }
+const isApple = () => {
+    let iosQuirkPresent = function () {
+        var audio = new Audio();
+        audio.volume = 0.5;
+        return audio.volume === 1;   // volume cannot be changed from "1" on iOS 12 and below
+    };
+    let isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    let isAppleDevice = navigator.userAgent.includes('Macintosh');
+    let isTouchScreen = navigator.maxTouchPoints >= 1;   // true for iOS 13 (and hopefully beyond)
+    return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()));
 };
 
 /** @param {string} str @returns {string} */
@@ -131,4 +134,4 @@ const directParamsToHash = () => {
     }
 };
 
-export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, getMobileOS, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams }
+export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams }
