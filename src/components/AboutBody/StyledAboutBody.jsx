@@ -60,7 +60,7 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     img{
-      ${!utils.isApple() && `transform: perspective(1000px) rotateY(15deg);`}
+      ${!utils.isApple() && `transform: perspective(1000px) rotateY(-15deg);`}
 
       box-shadow: -18px 13px 4px #4949494a;
       @media (max-width: 600px) {
