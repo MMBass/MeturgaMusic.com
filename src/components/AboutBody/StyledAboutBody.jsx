@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import utils from '@/utils';
 import AboutBody from './AboutBody';
 
 const StyledAboutBody = styled(AboutBody)`
@@ -42,7 +43,7 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     img{
-      transform: perspective(1000px) rotateY(15deg);
+      ${!utils.isApple() && `transform: perspective(1000px) rotateY(15deg);`}
 
       box-shadow: 18px 13px 4px #4949494a;
       @media (max-width: 600px) {
@@ -59,10 +60,7 @@ const StyledAboutBody = styled(AboutBody)`
     }
 
     img{
-      @supports not (-webkit-touch-callout: none) {
-        transform: perspective(1000px) rotateY(-15deg);
-      }
-
+      ${!utils.isApple() && `transform: perspective(1000px) rotateY(15deg);`}
 
       box-shadow: -18px 13px 4px #4949494a;
       @media (max-width: 600px) {
