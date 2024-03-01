@@ -22,7 +22,6 @@ const StyledAboutBody = styled(AboutBody)`
     margin-bottom: 90px;
     display: flex;
     align-items: flex-end;
-    background-color: ${props => props.theme.palette.secondary.light};
 
     .about-ico svg{
       font-size: 60px;
@@ -44,7 +43,7 @@ const StyledAboutBody = styled(AboutBody)`
       margin-bottom: 0px;
 
       .img-container{
-        margin-inline-end: -25px;
+        ${!utils.isApple() && `margin-inline-end: -25px`};
       }
     }
   }
@@ -62,8 +61,8 @@ const StyledAboutBody = styled(AboutBody)`
       }
 
       .img-container{
-        margin-inline-end: 0px;
-        margin-inline-start: -25px;
+        ${!utils.isApple() && `margin-inline-end: 0px`};
+        ${!utils.isApple() && `margin-inline-start: -25px`};
       }
     }
 
