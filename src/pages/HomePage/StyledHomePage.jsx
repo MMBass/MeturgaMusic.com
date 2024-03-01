@@ -52,12 +52,6 @@ const StyledHomePage = styled(HomePage)`
        
        .home-t-container{
             padding: 30px 0;
-            /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
-            text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
-
-            label{
-                text-shadow: 0 0 black;
-            }
 
             @media (max-width: 600px) {
                 text-align: center;
@@ -80,6 +74,8 @@ const StyledHomePage = styled(HomePage)`
     .h3-start-top{
         margin: 40px 0px 0px 0px;
         font-size: 2.7vw;
+        /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
+        text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
         @media (max-width: 600px) {
             margin: 3px 0px 0px 0px;
             font-size: 5.5vw;
@@ -89,6 +85,8 @@ const StyledHomePage = styled(HomePage)`
     .page-h3{
         margin: 0px 0px 15px 0px;
         font-size: 3.5vw;
+        /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
+        text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
         font-weight: 400;
         color: ${props => props.theme.palette.primary.contrastText};
 
