@@ -12,6 +12,11 @@ import IconButton from "@mui/material/IconButton";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 
+import QueueMusicOutlinedIcon from '@mui/icons-material/QueueMusicOutlined';
+import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
+import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
+import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
+
 import shot1 from '@/images/screenshots/shotone.png';
 import shot1Dark from '@/images/screenshots/shotoneDark.png';
 import shot2 from '@/images/screenshots/shot2.png';
@@ -36,6 +41,7 @@ function AboutBody({ className }) {
       img: shot1,
       imgDark: shot1Dark,
       alt: T.Shot1Alt,
+      ico: <QueueMusicOutlinedIcon></QueueMusicOutlinedIcon>,
       header: T.Shot1Header,
       bodyStrings: T.Shot1Body.split(","),
       bottom: T.Shot1Bottom,
@@ -46,6 +52,7 @@ function AboutBody({ className }) {
       img: shot5,
       imgDark: shot5Dark,
       alt: T.Player1Alt,
+      ico: <VideoLibraryOutlinedIcon></VideoLibraryOutlinedIcon>,
       header: T.PlayerHadeer,
       bodyStrings: T.PlayerBody.split(","),
     },
@@ -54,6 +61,7 @@ function AboutBody({ className }) {
       img: shot2,
       imgDark: shot2Dark,
       alt: T.SingleTransAlt,
+      ico: <TranslateOutlinedIcon></TranslateOutlinedIcon>,
       header: T.SingleTransHeader,
       bodyStrings: T.SingleTransBody.split(","),
       footer: T.SingleTransFooter,
@@ -63,6 +71,7 @@ function AboutBody({ className }) {
       img: shot3,
       imgDark: shot3Dark,
       alt: T.ExerciseAlt,
+      ico: <EditCalendarOutlinedIcon></EditCalendarOutlinedIcon>,
       header: T.ExerciseHeader,
       bodyStrings: T.ExerciseBody.split(","),
       bottom: "",
@@ -89,7 +98,7 @@ function AboutBody({ className }) {
   return (
     <Box className={className}>
       {visibleItems.map((vItem, index) => (
-        <Fragment key={ vItem.id }>
+        <Fragment key={vItem.id}>
           <Grid
             className={(index % 2 == 0) ? " even-item" : " not-even-item"} // for different style if even-index
             container
@@ -113,6 +122,10 @@ function AboutBody({ className }) {
             </Grid>
 
             <Grid item xs={12} sm={6} className="strings-item">
+              {vItem.ico &&
+                <span className="about-ico">{vItem.ico}</span>
+              }
+
               {vItem.header &&
                 <Typography className="about-header" variant="p" component="p">
                   {vItem.header}
@@ -122,7 +135,7 @@ function AboutBody({ className }) {
               <div className="strings-container">
                 {vItem.bodyStrings.length && vItem.bodyStrings.map((str, strIndex) => {
                   return (
-                    <Typography className="about-string" key={ strIndex } variant="p" component="p">
+                    <Typography className="about-string" key={strIndex} variant="p" component="p">
                       {str.replace(',', '')}
                     </Typography>
                   )

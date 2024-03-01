@@ -4,9 +4,9 @@ import AboutBody from './AboutBody';
 
 const StyledAboutBody = styled(AboutBody)`
   width: 100%;
-  font-size: 2vw;
+  font-size: 2.6vw;
   font-weight: 400;
-  padding-top: 50px;
+  padding: 50px 0;
   font-family: 'Assistant','Roboto', 'sans-serif';
   color: #6c6c6c;
   @media (max-width: 600px) {
@@ -19,10 +19,21 @@ const StyledAboutBody = styled(AboutBody)`
   .even-item, .not-even-item{
     width: unset;
     margin: 5px 7px;
-    margin-bottom: 30px;
+    margin-bottom: 90px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     background-color: ${props => props.theme.palette.secondary.light};
+
+    .about-ico svg{
+      font-size: 60px;
+      color: #6d6d6d36;
+
+      @media (max-width: 600px) {
+        font-size: 40px;
+        color: #6c6c6c;
+        margin-bottom: 10px;
+      }
+    }
 
     @media (max-width: 600px) {
       border-radius: 10px;
@@ -67,7 +78,6 @@ const StyledAboutBody = styled(AboutBody)`
   }
 
   .not-even-item{
-
     img{
       ${!utils.isApple() && `transform: perspective(1000px) rotateY(-15deg);`}
 
@@ -110,7 +120,7 @@ const StyledAboutBody = styled(AboutBody)`
     .about-header{
       margin-bottom: 5px;
       font-size: 3.6vw;
-      font-size: 4vw;
+      font-size: 2.3vw;
       font-weight: 400;
       color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
@@ -187,10 +197,12 @@ const StyledAboutBody = styled(AboutBody)`
 
   .about-footer{
     text-align: center;
-    padding: 80px;
+    padding: 110px;
+    padding-bottom: unset;
+    margin-bottom: -40px;
 
     p{
-      font-size: 2.8vw;
+      font-size: 2vw;
       @media (max-width: 600px) {
         font-size: 4.3vw;
       }
