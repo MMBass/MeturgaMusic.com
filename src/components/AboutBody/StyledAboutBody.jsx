@@ -5,7 +5,7 @@ import AboutBody from './AboutBody';
 const StyledAboutBody = styled(AboutBody)`
   width: 100%;
   font-size: 2vw;
-  font-weight: 600;
+  font-weight: 400;
   padding-top: 50px;
   font-family: 'Assistant','Roboto', 'sans-serif';
   color: #6c6c6c;
@@ -31,6 +31,10 @@ const StyledAboutBody = styled(AboutBody)`
 
       margin-top: 100px;
       margin-bottom: 0px;
+
+      .img-container{
+        margin-inline-end: -25px;
+      }
     }
   }
   
@@ -44,6 +48,11 @@ const StyledAboutBody = styled(AboutBody)`
     @media (max-width: 600px) {
       .strings-item{
         text-align: center;
+      }
+
+      .img-container{
+        margin-inline-end: 0px;
+        margin-inline-start: -25px;
       }
     }
 
@@ -105,7 +114,7 @@ const StyledAboutBody = styled(AboutBody)`
       font-weight: 400;
       color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
-        font-size: 5.8vw;
+        font-size: 5vw;
       }
     }
 
