@@ -6,7 +6,7 @@ const StyledAboutBody = styled(AboutBody)`
   width: 100%;
   font-size: 2.6vw;
   font-weight: 400;
-  padding: 50px 0;
+  padding: 50px 0px;
   font-family: 'Assistant','Roboto', 'sans-serif';
   color: #6c6c6c;
   @media (max-width: 600px) {
@@ -43,7 +43,7 @@ const StyledAboutBody = styled(AboutBody)`
       margin-bottom: 0px;
 
       .img-container{
-        ${!utils.isApple() && `margin-inline-end: -25px`};
+        ${!utils.isApple() && `margin-inline-end: -24px`};
       }
     }
   }
