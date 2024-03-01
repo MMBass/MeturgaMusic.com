@@ -91,7 +91,8 @@ const StyledAboutBody = styled(AboutBody)`
   
   .strings-item{
     text-align: start;
-    
+    padding: 10px;
+
     @media (max-width: 600px) {
       text-align: center;
       padding: 40px 40px 70px 40px;
