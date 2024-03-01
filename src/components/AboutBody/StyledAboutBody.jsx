@@ -5,26 +5,31 @@ import AboutBody from './AboutBody';
 const StyledAboutBody = styled(AboutBody)`
   width: 100%;
   font-size: 2vw;
-  font-weight: 400;
+  font-weight: 600;
   padding-top: 50px;
   font-family: 'Assistant','Roboto', 'sans-serif';
-  text-align: center;
-
+  color: #6c6c6c;
   @media (max-width: 600px) {
     padding-top: 0px;
+    padding-bottom: 25px;
     /* font-size: 4.6vw; */
-    font-size: 5.4vw;
+    font-size: 4.6vw;
   }
 
   .even-item, .not-even-item{
-    margin: 5px 0;
+    width: unset;
+    margin: 5px 7px;
     margin-bottom: 30px;
     display: flex;
     align-items: center;
     background-color: ${props => props.theme.palette.secondary.light};
 
     @media (max-width: 600px) {
-      text-align: center;
+      border-radius: 10px;
+      border: 2px solid #e5e5e5;
+      background: #80808017;
+
+      margin-top: 100px;
       margin-bottom: 0px;
     }
   }
@@ -53,11 +58,6 @@ const StyledAboutBody = styled(AboutBody)`
   }
 
   .not-even-item{
-    @media (max-width: 600px) {
-      .strings-item{
-        text-align: center;
-      }
-    }
 
     img{
       ${!utils.isApple() && `transform: perspective(1000px) rotateY(-15deg);`}
@@ -73,13 +73,14 @@ const StyledAboutBody = styled(AboutBody)`
     text-align: start;
 
     @media (max-width: 600px) {
-      margin-top: 30px;
+      text-align: center;
+      margin-top: 10px;
       height: 30px;
     }
 
     .remove-icon{
       padding: 3px;
-      font-size: medium;
+      font-size: small;
       color: #9f9f9f5d;
 
       :hover{
@@ -90,21 +91,20 @@ const StyledAboutBody = styled(AboutBody)`
   
   .strings-item{
     text-align: start;
-    /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
-    text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
     
     @media (max-width: 600px) {
+      text-align: center;
       padding: 40px 40px 70px 40px;
     }
 
     .about-header{
       margin-bottom: 5px;
       font-size: 3.6vw;
-      font-weight: 300;
+      font-size: 4vw;
+      font-weight: 400;
       color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
-        /* font-size: 5.8vw; */
-        font-size: 6.8vw;
+        font-size: 5.8vw;
       }
     }
 
@@ -113,7 +113,6 @@ const StyledAboutBody = styled(AboutBody)`
       height: 100%;
 
       p{
-        color: ${props => props.theme.palette.primary.main};
         margin: auto;
         padding: 15px;
         width: 80%;
@@ -137,6 +136,7 @@ const StyledAboutBody = styled(AboutBody)`
       min-height: 35vh;
       padding-top: 0;
       margin: 0;
+      margin-top: -130px;
     }
 
     .img-container{
@@ -147,14 +147,15 @@ const StyledAboutBody = styled(AboutBody)`
 
       background: ${props =>
     props.theme.mode === "dark"
-      ? '#303030'
-      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
-  //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
-  };
+        ? '#303030'
+        : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
+    //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
+    };
       
       border-radius: 8px;
 
       @media (max-width: 600px) {
+        background: unset;
         padding: 35px 4px;
       }
     }
@@ -165,27 +166,28 @@ const StyledAboutBody = styled(AboutBody)`
       height: auto;
       border-radius: 5px;
       @media (max-width: 600px) {
-        width: 80%;
+        width: 88%;
         height: auto;
         max-height: 90%;
-      }
+
+        border: 2px solid;
+        border-color: ${props => props.theme.mode === "dark"?'#303030':'rgb(213 121 135 / 9%)'};}
     }
   }
 
   .about-footer{
-    padding: 60px;
-    /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
-    text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
+    text-align: center;
+    padding: 80px;
 
     p{
-      font-size: 2vw;
+      font-size: 2.8vw;
       @media (max-width: 600px) {
         font-size: 4.3vw;
       }
     }
     @media (max-width: 600px) {
-        background-color: ${props => props.theme.palette.primary.main};
-        color: white;
+        margin: 3px 15px;
+        border-top: 2px solid #e5e5e5;
         padding: 40px;
     }
   }
