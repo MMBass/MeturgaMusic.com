@@ -166,8 +166,8 @@ const StyledAboutBody = styled(AboutBody)`
 
       background: ${props =>
     props.theme.mode === "dark"
-        ? '#303030'
-        : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
+      ? '#303030'
+      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
     //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
     };
       
@@ -190,7 +190,7 @@ const StyledAboutBody = styled(AboutBody)`
         max-height: 90%;
 
         border: 2px solid;
-        border-color: ${props => props.theme.mode === "dark"?'#303030':'rgb(213 121 135 / 9%)'};}
+        border-color: ${props => props.theme.mode === "dark" ? '#303030' : 'rgb(213 121 135 / 9%)'};}
     }
   }
 
