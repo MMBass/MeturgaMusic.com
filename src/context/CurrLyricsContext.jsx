@@ -20,10 +20,10 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const currSsSong = JSON.parse(sessionStorage.getItem('currSong'));
     const [song_id, setSong_id] = useState('');
-    const [title, setTitle] = useState(currSsSong?.Title || '');
-    const [lines, setLines] = useState(currSsSong?.Lines || []);
-    const [translatedBy, setTranslatedBy] = useState(currSsSong?.Service || '');
-    const [videoId, setVideoId] = useState(currSsSong?.VideoId || '');
+    const [title, setTitle] = useState(currSsSong?.title || '');
+    const [lines, setLines] = useState(currSsSong?.lines || []);
+    const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
+    const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
     const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
 
@@ -32,6 +32,12 @@ export default function CurrLyricsContextProvider({ children }) {
         if (JSON.parse(localStorage.getItem('meturgamm_songs'))?.length > 2) setAzureServerError(true); // Temporarily, gives every user 3 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
+    useEffect(() => {
+        if (title.length > 2 && videoId.length > 2) {
+            utils.lsSaveSong({ title, lines, videoId, translatedBy });
+        } // Update the ls videoId after the id sets
+    }, [videoId]);
+
     const getSongLyrics = async (splittedSongTitle, songTitle) => {
         setAbort(true);
 
@@ -39,14 +45,13 @@ export default function CurrLyricsContextProvider({ children }) {
         let searchResultsParent = document.querySelectorAll(".gsc-expansionArea")[0];
         loadersContext.openLoader('backdrop');
 
-        if (localStorageGetSong(songTitle, searchResultsParent)) {return} // First try to get from local-storage
+        if (localStorageGetSong(songTitle, searchResultsParent)) { return }; // First try to get from local-storage
 
         try {
             const data = await fetchSongLyrics(splittedSongTitle);
 
             loadersContext.closeLoader('backdrop');
             sessionStorage.removeItem('currSong');
-            setVideoId('');
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
 
             if (data?.combined && Array.isArray(data?.combined)) {
@@ -75,13 +80,14 @@ export default function CurrLyricsContextProvider({ children }) {
         if (data.videoId) setVideoId(data.videoId);
         else setVideoId('');
 
-        utils.lsSaveSong({ title: songTitle, videoId: '', lines: data.combined, service: data.service || 'legacy' });
+        utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
         utils.clearGsc();
+
         sessionStorage.setItem('currSong', JSON.stringify({
-            Lines: data.combined,
-            Title: songTitle,
-            VideoId: data.videoId,
-            Service: data.service || ServiceTypes.LEGACY
+            lines: data.combined,
+            title: songTitle,
+            videoId: data.videoId,
+            service: data.service || ServiceTypes.LEGACY
         }));
     }
 
@@ -112,7 +118,8 @@ export default function CurrLyricsContextProvider({ children }) {
         });
         setAbort(false);
         setLines(newLines);
-        if (data.videoId) { setVideoId(data.videoId) };
+        if (data.videoId) setVideoId(data.videoId);
+        else setVideoId('');
         utils.clearGsc();
     }
 
@@ -129,10 +136,10 @@ export default function CurrLyricsContextProvider({ children }) {
             loadersContext.closeLoader('backdrop');
 
             sessionStorage.setItem('currSong', JSON.stringify({
-                Lines: lsSong.lines,
-                Title: songTitle,
-                VideoId: lsSong.videoId,
-                Service: lsSong.service
+                lines: lsSong.lines,
+                title: songTitle,
+                videoId: lsSong.videoId,
+                service: lsSong.service
             }));
 
             setAbort(false);
@@ -167,16 +174,22 @@ export default function CurrLyricsContextProvider({ children }) {
                 });
 
                 setLines(newLines);
-                utils.lsSaveSong({ title: title, lines: newLines, service: data.service });
-                setTranslatedBy(data.service);
+
+                utils.lsSaveSong({
+                    title: title,
+                    lines: newLines,
+                    videoId: videoId, // The id remains the first state (an empty string) instead of the curr ID 
+                    service: data.service, // The service and title updating correctly
+                });
 
                 sessionStorage.setItem('currSong', JSON.stringify({
-                    Lines: newLines,
-                    Title: title,
-                    VideoId: videoId,
-                    Service: data.service
+                    lines: newLines,
+                    title: title,
+                    videoId: videoId, // The id remains the first state, an empty string '' 
+                    service: data.service // The service and title updating correctly
                 }));
 
+                setTranslatedBy(data.service);
             } else {
                 console.error("status is ok but azure translation missing");
                 setAzureServerError(true); // Works.  // checkNextTrans(); // doesn't work
@@ -205,10 +218,10 @@ export default function CurrLyricsContextProvider({ children }) {
                 if (index + 1 == lines.length) {
                     utils.lsSaveSong({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
                     sessionStorage.setItem('currSong', JSON.stringify({
-                        Lines: newLines,
-                        Title: title,
-                        VideoId: videoId,
-                        Service: ServiceTypes.GOOGLE
+                        lines: newLines,
+                        title: title,
+                        videoId: videoId,
+                        service: ServiceTypes.GOOGLE
                     }));
 
                     putFullTrans(title, newLines, ServiceTypes.GOOGLE);
@@ -253,16 +266,16 @@ export default function CurrLyricsContextProvider({ children }) {
 
         if (lastTrans.length >= 1) {
             sessionStorage.setItem('currSong', JSON.stringify({
-                Lines: newLines,
-                Title: title,
-                VideoId: videoId,
-                Service: ServiceTypes.REVERSO
+                lines: newLines,
+                title: title,
+                videoId: videoId,
+                service: ServiceTypes.REVERSO
             }));
             setTranslatedBy(ServiceTypes.REVERSO);
             setAzureServerError(false);
         }
     };
-    
+
     const resetSong = (setSearchParams) => {
         sessionStorage.removeItem('currSong');
         setLines([]);
