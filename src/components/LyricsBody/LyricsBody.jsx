@@ -44,7 +44,7 @@ function LyricsBody({ className }) {
         <Grid item xs={12} className="l-body-top">
           {!urlSong && // If the song is from /songs path - don't show the remove icon
             <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
-              <CloseOutlinedIcon className='remove-icon' />
+              <CloseOutlinedIcon className='remove-icon'/>
             </IconButton>
           }
 

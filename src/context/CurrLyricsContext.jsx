@@ -33,9 +33,9 @@ export default function CurrLyricsContextProvider({ children }) {
     }, [lines, azureServerError]);
 
     useEffect(() => {
-        if (title.length > 2 && videoId.length > 2) {
+        if (!azureServerError && title.length > 2 && videoId.length > 2) {
             utils.lsSaveSong({ title, lines, videoId, translatedBy });
-        } // Update the ls videoId after the id sets
+        } // Update the ls videoId after all the state sets
     }, [videoId]);
 
     const getSongLyrics = async (splittedSongTitle, songTitle) => {
@@ -57,6 +57,7 @@ export default function CurrLyricsContextProvider({ children }) {
             if (data?.combined && Array.isArray(data?.combined)) {
                 setCombined(songTitle, data);
             } else if (data?.lyrics) {
+                resetSong()
                 setSongLyrics(data, songTitle)
             } else {
                 setAbort(false);
@@ -178,14 +179,14 @@ export default function CurrLyricsContextProvider({ children }) {
                 utils.lsSaveSong({
                     title: title,
                     lines: newLines,
-                    videoId: videoId, // The id remains the first state (an empty string) instead of the curr ID 
+                    videoId: videoId, // The id remains the first state, an empty string 
                     service: data.service, // The service and title updating correctly
                 });
 
                 sessionStorage.setItem('currSong', JSON.stringify({
                     lines: newLines,
                     title: title,
-                    videoId: videoId, // The id remains the first state, an empty string '' 
+                    videoId: videoId, // The id remains the first state, an empty string 
                     service: data.service // The service and title updating correctly
                 }));
 
@@ -282,7 +283,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setAbort(true);
         setTitle('');
         setVideoId('');
-        setSearchParams('');
+        if(setSearchParams) setSearchParams('');
     };
 
     const actions = { getSongLyrics, resetSong };
