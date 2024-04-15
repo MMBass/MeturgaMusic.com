@@ -77,6 +77,7 @@ const StyledHomePage = styled(HomePage)`
         /* text-shadow: 0px 1px 2px rgb(159, 159, 159); */
         text-shadow: rgb(159, 159, 159) 0.5px 0.5px 1px;
         @media (max-width: 600px) {
+            text-shadow: unset;
             margin: 3px 0px 0px 0px;
             font-size: 5.5vw;
         }
@@ -95,6 +96,7 @@ const StyledHomePage = styled(HomePage)`
         }
 
         @media (max-width: 600px) {
+            text-shadow: unset;
             margin: 0px 0px 35px  0px;
             font-size: 7.4vw;
         }

@@ -33,6 +33,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     searchStarter(linesChange, setStart);
   }, []);
 
+  // Setting the mui TextField value, and calling the g search handler
   function setVal(e) {
     setCurrVal(e.target.value);
     if (e.nativeEvent.data !== ' ') {
@@ -41,6 +42,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     else return;
   }
 
+  // Programmatically clicking the g search btn
   function handleSearch(eValue) {
     if (bannersContext.error) bannersContext.closeBanner('error');
 
@@ -73,7 +75,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             gsc_clear.dispatchEvent(new Event('click'));
           }
         }, 250);
-        // setCurrVal(utils.keyboardHEENSwitcher(eValue)); //to fix - still cuts the first letter every time
+        // setCurrVal(utils.keyboardHEENSwitcher(eValue)); // to fix - still cuts the first letter every time
         return;
       }
     } else {
@@ -82,7 +84,9 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     }
   }
 
+  // Recreating and adding click event to every text inside the results dropdown
   const linesChange = () => {
+    debugger
     setTimeout(() => {
       let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
 
@@ -139,6 +143,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     }, 50);
   }
 
+  // Click event for very text in results dropdown
   const handleLineClickEvent = (line, songTitle, splittedSongTitle) => {
     line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 
