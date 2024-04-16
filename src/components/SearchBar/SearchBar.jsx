@@ -86,7 +86,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   // Recreating and adding click event to every text inside the results dropdown
   const linesChange = () => {
-    debugger
     setTimeout(() => {
       let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
 
