@@ -1,5 +1,10 @@
 User-agent: *
+
 Disallow: /NoMatchPage
+Disallow: /History
+Disallow: /Wish-list
+Disallow: /Exercise
+
 Allow: /
 Allow: /*
 

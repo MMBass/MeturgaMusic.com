@@ -14,7 +14,7 @@ const StyledLayout = styled(Layout)`
 
   .page-h1{
     padding: 0px 0px 0px 0px;
-    font-size: 13vw; 
+    font-size: 13vw;
     letter-spacing: -8px;
     font-weight: 100;
     color: ${props => props.theme.palette.primary.contrastText};
