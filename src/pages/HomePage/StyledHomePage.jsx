@@ -53,7 +53,7 @@ const StyledHomePage = styled(HomePage)`
         .home-t-container{
             padding: 30px 0;
             @media (max-width: 600px) {
-               padding: 0px;
+               padding-top: 0px;
             }
         }
 
