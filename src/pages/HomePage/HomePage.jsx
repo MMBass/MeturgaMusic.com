@@ -72,10 +72,6 @@ function HomePage({ className }) {
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
 
-            <Typography variant="h2" className="page-h2">
-              {T.MeturgaMusic}
-            </Typography>
-
             <Grid item className="mainPics-container" xs={12} sm={6}>
 
               {theme.mode !== 'dark' ?
@@ -86,13 +82,13 @@ function HomePage({ className }) {
 
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            <Grid className="home-top-p2" item xs={12} sm={6}>
               <Typography variant="h1" className="h3-start h3-start-top">
-                {T.H3StartTop}
+                {T.H3StartTop} <span>{"."}</span>
               </Typography>
 
               <Typography variant="h3" className="page-h3">
-
+                {/* {T.H3StartOne}{" "} {T.H3StartTwo}{" "}  {T.H3Middle}{" "}  {T.H3Bottom} */}
                 <span className="h3-start h3-start-one">
                   {T.H3StartOne}
                 </span>

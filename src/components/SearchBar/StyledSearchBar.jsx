@@ -33,6 +33,7 @@ const StyledSearchBar = styled(SearchBar)`
 
   .main-input{ 
       width: 80%;
+      max-width: 535px;
 
       @media (max-width: 600px) {
         width: 95%;
@@ -40,7 +41,9 @@ const StyledSearchBar = styled(SearchBar)`
 
       input, fieldset, label{
         color: ${props => props.theme.palette.primary.dark + "!important"};
-        border-color: ${props => props.theme.palette.secondary.contrastText + "!important"};
+        /* border-color: ${props => props.theme.palette.primary.contrastText + "!important"}; */
+        border-color: #6c6c6cd6 !important;
+        border-radius: 9px;
       }
 
       label{
@@ -183,13 +186,12 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   .gsc-webResult {
-    /* min-height: 50px; */
     background-color: ${props => props.theme.palette.secondary.light + "!important"};
     cursor: pointer;
   }
 
   .gsc-result{
-    padding: 5px 0px;
+    padding: 8px 0px;
     @media (min-width: 600px) {
       padding: 5px;
     }
