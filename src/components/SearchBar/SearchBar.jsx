@@ -65,7 +65,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
         } else {
           bannersContext.createBanner('error', 'error', T.TryReloadBanner, '(no gsc loaded)');
-          console.error("no gsc loaded, try reload the page");
+          console.error("No gsc loaded, try reload the page");
         }
       } else {
         bannersContext.createBanner('error', 'error', T.EnglishOnlyBanner, '');
@@ -79,8 +79,8 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         return;
       }
     } else {
-      bannersContext.createBanner('error', 'error', T.TryReloadBanner, '(no gsc loaded)');
-      console.error("no gsc loaded, try reload the page");
+      bannersContext.createBanner('error', 'error', T.TryReloadBanner, '(No gsc loaded)');
+      console.error("No gsc loaded, try reload the page");
     }
   }
 
@@ -101,20 +101,27 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
             if (line.innerText.includes("(")) {
               let inside = line.innerText.match(constants.insideSearchResultsPattern)[1].toLowerCase();
-              if (inside?.includes("live") || inside?.includes("mix") || inside?.includes("remix")) {
+              if (inside?.toLowerCase().includes("live") || inside?.toLowerCase().includes("mix") || inside?.toLowerCase().includes("remix")) {
                 line.parentElement.parentElement.parentElement.remove();
                 return;
               };
             }
 
-            let songTitle = line.innerText.split("Lyrics")[0];
+       
+            let songTitle = line.innerText.replaceAll('–', "-"); // g Results comes with some special ' – ' sign
+            if (songTitle.split('-')[0].includes('Lyrics')) { // Check for the edge case
+              // Revers in edge cases when the title comes before the artist:
+              songTitle = songTitle.replaceAll('Lyrics', ""); // They comes with extra 'Lyrics'
+              songTitle = songTitle.split(' - ')[1] +" - "+ songTitle.split(' - ')[0]; // Reorder
+            }else{
+              songTitle = songTitle.split("Lyrics")[0];
+            }
             songTitle = songTitle.replaceAll(' | Genius', "");
-            songTitle = songTitle.replaceAll('–', "-"); // g Results comes with some special ' – ' sign
 
             if (!utils.isMostlyEnglish(songTitle)) {
               line.parentElement.parentElement.parentElement.remove();
               return;
-            } // After removing all the around text - check its lang
+            } // After removing all the around text - check it's lang
 
             line.innerHTML = `<strong>${songTitle.split(' - ')[0]}</strong> - <span>${songTitle.split(' - ')[1]}</span>`;
 
