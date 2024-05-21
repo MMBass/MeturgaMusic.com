@@ -191,9 +191,9 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   .gsc-result{
-    padding: 8px 0px;
+    padding: 7px 0px;
     @media (min-width: 600px) {
-      padding: 5px;
+      padding: 8px;
     }
   }
 
