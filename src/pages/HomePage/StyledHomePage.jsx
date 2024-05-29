@@ -88,7 +88,6 @@ const StyledHomePage = styled(HomePage)`
         color: ${props => props.theme.palette.primary.contrastText};
  
         span{
-            margin-inline-end: 2px;
             display: inline;
         }
 

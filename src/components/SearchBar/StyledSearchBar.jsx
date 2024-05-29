@@ -177,7 +177,7 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   .gs-title strong {
-    color: #a78cd1 !important;
+    color: ${props => props.theme.palette.primary.main};
   }
 
   .gcsc-find-more-on-google-root,

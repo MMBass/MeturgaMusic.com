@@ -112,11 +112,12 @@ function SidePagesList({ className, changeColors }) {
         <LangsSwitch></LangsSwitch>
       </ListItem> */}
       
-      {(!utils.isApple() && !window.matchMedia('(display-mode: standalone)').matches) &&
+      {/* TODO not working in every component, because is using uniqe window event */}
+      {/* {(!utils.isApple() && !window.matchMedia('(display-mode: standalone)').matches) &&
         <ListItem sx={{ justifyContent: 'center' }}>
           <OfferInstall></OfferInstall>
         </ListItem>
-      }
+      } */}
     </List>
   );
 }
