@@ -6,7 +6,7 @@ const StyledExercisePage = styled(ExercisePage)`
 
    .muirtl-a5rdam-MuiGrid-root>.MuiGrid-item {
       @media (max-width: 600px) {
-         padding-top: 0;
+         padding-top: 0 !important;
       }
    }
 `;
