@@ -42,7 +42,7 @@ const StyledHomePage = styled(HomePage)`
     }
     
     .home-top{
-       min-height: 85vh;
+       min-height: 100vh;
        padding: 0 35px;
        
         @media (max-width: 600px) {
