@@ -18,7 +18,7 @@ const StyledAboutBody = styled(AboutBody)`
 
   .even-item, .not-even-item{
     width: unset;
-    margin: 5px 15px;
+    margin: 5px 7px;
     margin-bottom: 90px;
     display: flex;
     align-items: flex-end;
@@ -36,8 +36,7 @@ const StyledAboutBody = styled(AboutBody)`
 
     @media (max-width: 600px) {
       border-radius: 10px;
-      border: 2px solid #848484;
-
+      border: 2px solid #e5e5e5;
       background: #80808017;
 
       margin-top: 100px;

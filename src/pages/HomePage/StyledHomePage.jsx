@@ -47,7 +47,8 @@ const StyledHomePage = styled(HomePage)`
        
         @media (max-width: 600px) {
             padding: 0 25px;
-            min-height: 70vh;
+            align-content: center;
+            min-height: 90vh;
         }
         
         .home-t-container{
