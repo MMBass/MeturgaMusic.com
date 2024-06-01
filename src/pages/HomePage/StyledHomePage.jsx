@@ -94,7 +94,7 @@ const StyledHomePage = styled(HomePage)`
 
         @media (max-width: 600px) {
             margin: 0px 0px 10px  0px;
-            max-width: unset;
+            max-width: 320px;
             font-size: 20px;
             font-weight: 600;
         }
