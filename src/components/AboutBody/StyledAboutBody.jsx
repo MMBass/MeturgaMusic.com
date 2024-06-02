@@ -36,7 +36,7 @@ const StyledAboutBody = styled(AboutBody)`
 
     @media (max-width: 600px) {
       border-radius: 10px;
-      border: 2px solid #e5e5e5;
+      border: 2px solid #848484;
       background: #80808017;
 
       margin-top: 100px;
