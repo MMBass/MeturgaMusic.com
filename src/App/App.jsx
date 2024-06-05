@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -52,18 +52,6 @@ function App({ className }) {
   const [currTitle, setCurrTitle] = useState(T.MainTitle);
   const [currTheme, setCurrTheme] = useState(localStorage.getItem('preferedDark') === 'true' ? darkTheme : mainPinkTheme);
 
-  const appRef = useRef(null);
-
-  const handleFullscreen = () => {
-    if (appRef.current) {
-      if (!document.fullscreenElement) {
-        appRef.current.requestFullscreen();
-      } else {
-        document.exitFullscreen();
-      }
-    }
-  };
-
   // Create rtl cache
   const cacheRtl = createCache({
     key: 'muirtl',
@@ -92,13 +80,14 @@ function App({ className }) {
   }
 
   return (
-    <div className={className} ref={appRef}>
+    <div className={className}>
       <MuiThemeProvider theme={currTheme}>
         <CacheProvider value={cacheRtl}>
           <Router>
             <HeadTags currTitle={currTitle}></HeadTags>
             <Layout>
-              <Header className="header" changeColors={changeTheme} changeToFullScreen={handleFullscreen}></Header>
+              <Header className="header" changeColors={changeTheme}></Header>
+
               {(bannersContext.main?.open) &&
                 <Alert severity="warning" className='main-alert'>
                   <AlertTitle>{bannersContext.main.title}</AlertTitle>
