@@ -1,12 +1,14 @@
 import { useContext, useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 
+import T from "./HeaderI18n";
+
 import { useTheme } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-
-import T from "./HeaderI18n";
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import OpenInFullRoundedIcon from '@mui/icons-material/OpenInFullRounded';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -33,7 +35,7 @@ import { SettingsContext } from '@context/SettingsContext';
 
 import { NavLink } from 'react-router-dom';
 
-const Header = ({ className, changeColors }) => {
+const Header = ({ className, changeColors, changeToFullScreen }) => {
   const [topSearchBar, setTopSearchBar] = useState(false);
 
   const theme = useTheme();
@@ -146,6 +148,9 @@ const Header = ({ className, changeColors }) => {
           }
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <ChangeSize></ChangeSize>
+          }
+          {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
+            <IconButton onClick={changeToFullScreen} ><OpenInFullRoundedIcon></OpenInFullRoundedIcon></IconButton>
           }
 
         </Toolbar>
