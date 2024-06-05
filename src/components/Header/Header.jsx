@@ -149,9 +149,9 @@ const Header = ({ className, changeColors, changeToFullScreen }) => {
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <ChangeSize></ChangeSize>
           }
-          {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
-            <IconButton onClick={changeToFullScreen} ><OpenInFullRoundedIcon></OpenInFullRoundedIcon></IconButton>
-          }
+          {/* {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
+            <IconButton onClick={changeToFullScreen}><OpenInFullRoundedIcon></OpenInFullRoundedIcon></IconButton>
+          } */}
 
         </Toolbar>
       </Container>
