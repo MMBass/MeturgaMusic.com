@@ -24,6 +24,7 @@ import ChangeSize from '@components/ChangeSize/StyledChangeSize';
 import DeterminateLinearProgress from '@components/DeterminateLinearProgress/StyledDeterminateLinearProgress';
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import ChangeColors from '@components/ChangeColors/StyledChangeColors';
+import ToggleFullScreen from '@components/ToggleFullScreen/ToggleFullScreen';
 
 import { DrawerContext } from '@context/DrawerContext';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
@@ -35,7 +36,6 @@ import { NavLink } from 'react-router-dom';
 
 const Header = ({ className, changeColors }) => {
   const [topSearchBar, setTopSearchBar] = useState(false);
-
   const theme = useTheme();
 
   const drawerContext = useContext(DrawerContext);
@@ -134,7 +134,7 @@ const Header = ({ className, changeColors }) => {
                 <span id="h2-part2" style={{
                   color: 'white'
                 }}>
-                   {T.H2Part2}
+                  {T.H2Part2}
                 </span>
 
               </Typography>
@@ -144,6 +144,10 @@ const Header = ({ className, changeColors }) => {
           {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
             <ChangeColors changeColors={changeColors}></ChangeColors>
           }
+          {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
+            <ToggleFullScreen></ToggleFullScreen>
+          }
+
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <ChangeSize></ChangeSize>
           }
