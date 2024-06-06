@@ -22,7 +22,7 @@ const StyledSearchBar = styled(SearchBar)`
   } 
 
   .main-input, .top-input{
-      direction: rtl; // Will turn to LTR, mui settings replace to opposite
+      direction: rtl; // Will be LTR, Mui settings turn to opposite
       margin: auto;
 
       input, fieldset, label{
@@ -33,7 +33,7 @@ const StyledSearchBar = styled(SearchBar)`
 
   .main-input{ 
       width: 80%;
-      max-width: 535px;
+      /* max-width: 535px; */
 
       @media (max-width: 600px) {
         width: 95%;

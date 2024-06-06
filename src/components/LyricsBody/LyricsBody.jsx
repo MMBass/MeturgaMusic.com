@@ -37,14 +37,23 @@ function LyricsBody({ className }) {
     }
   }, [currLyricsContext.title]);
 
+  const handleBackToHome = () => {
+    window.location.href = "/";
+  }
+
   return (
     <Paper elevation={3} className={className}>
       <Grid container rowSpacing={1} columnSpacing={0}>
 
         <Grid item xs={12} className="l-body-top">
-          {!urlSong && // If the song is from /songs path - don't show the remove icon
+          {!urlSong && // If the song is from /songs path - Don't show the remove icon
             <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
-              <CloseOutlinedIcon className='remove-icon'/>
+              <CloseOutlinedIcon className='remove-icon' />
+            </IconButton>
+          }
+          {urlSong && // If the song is from /songs path - Don't show the remove icon
+            <IconButton onClick={() => currLyricsContext.resetSong(handleBackToHome)}>
+              <CloseOutlinedIcon className='remove-icon' />
             </IconButton>
           }
 
@@ -63,11 +72,11 @@ function LyricsBody({ className }) {
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
                   return (
-                    <LyricToolTip key={ i } lyric={word} lyricID={'title' + i}></LyricToolTip>
+                    <LyricToolTip key={i} lyric={word} lyricID={'title' + i}></LyricToolTip>
                   )
                 })
               }
-           
+
             </Typography>
           }
 
@@ -95,7 +104,7 @@ function LyricsBody({ className }) {
             line.src = line.src.replaceAll(']', '|')
           }
           return (
-            <Grid item xs={12} key={ y }>
+            <Grid item xs={12} key={y}>
 
               <Box className="lyrics-line en-line"
                 style={{
@@ -107,7 +116,7 @@ function LyricsBody({ className }) {
                 {line.src.split(' ').map((word, i) => {
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
                   return (
-                    <LyricToolTip key={ i } lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
+                    <LyricToolTip key={i} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
                   )
                 })}
               </Box>

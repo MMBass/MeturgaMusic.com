@@ -97,6 +97,8 @@ function HomePage({ className }) {
                   {T.H3StartTwo}
                 </span>
 
+                <br className="page-h3-break"></br>
+                
                 <span className="h3-middle">
                   {T.H3Middle}
                 </span>

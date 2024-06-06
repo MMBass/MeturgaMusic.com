@@ -65,9 +65,9 @@ const StyledHomePage = styled(HomePage)`
 
     .h3-start-top{
         line-height: 0.96;
-        font-size: 80px;
+        font-size: 5.7vw;
         font-weight: 700;
-        max-width: 535px;
+        /* max-width: 535px; */
         
         span{
             color: ${props => props.theme.palette.primary.main};
@@ -83,8 +83,9 @@ const StyledHomePage = styled(HomePage)`
     .page-h3{
         max-width: 700px;
         margin: 0px 0px 15px 0px;
-        max-width: 535px;
+        /* max-width: 565px; */
         font-size: 24px;
+        font-size: 1.9vw;
         font-weight: 600;
         color: ${props => props.theme.palette.primary.contrastText};
  
@@ -97,6 +98,10 @@ const StyledHomePage = styled(HomePage)`
             max-width: 320px;
             font-size: 20px;
             font-weight: 600;
+
+            .page-h3-break{
+                display: none;
+            }
         }
 
         .h3-middle{

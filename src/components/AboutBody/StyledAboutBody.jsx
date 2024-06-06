@@ -12,7 +12,6 @@ const StyledAboutBody = styled(AboutBody)`
   @media (max-width: 600px) {
     padding-top: 0px;
     padding-bottom: 25px;
-    /* font-size: 4.6vw; */
     font-size: 4.6vw;
   }
 

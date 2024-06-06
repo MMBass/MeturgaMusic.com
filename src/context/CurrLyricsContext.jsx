@@ -277,13 +277,13 @@ export default function CurrLyricsContextProvider({ children }) {
         }
     };
 
-    const resetSong = (setSearchParams) => {
+    const resetSong = (changeUrl) => {
         sessionStorage.removeItem('currSong');
         setLines([]);
         setAbort(true);
         setTitle('');
         setVideoId('');
-        if(setSearchParams) setSearchParams('');
+        if(changeUrl) changeUrl('');
     };
 
     const actions = { getSongLyrics, resetSong };
