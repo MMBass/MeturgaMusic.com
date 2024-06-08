@@ -4,5 +4,5 @@ export default {
     AddRecordLabel: "הוספת שיר ללימוד בעתיד +",
     PoweredBy: "מופעל באמצעות",
     TryReloadBanner: 'משהו השתבש, נסה לרענן את העמוד',
-    EnglishOnlyBanner: ' החיפוש הוא עבור שירים באנגלית בלבד',
+    EnglishOnlyBanner: ' הזינו אנגלית בלבד',
 };

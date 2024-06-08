@@ -22,6 +22,10 @@ const StyledLyricsBody = styled(LyricsBody)`
     color: ${props => props.theme.palette.secondary.dark};
   }
 
+  .full-screen-toggle svg{
+    font-size: 20px;
+  }
+
   .trans-by-chip{
     padding: 3px;
     margin-inline-start: 30px;

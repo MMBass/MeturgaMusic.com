@@ -11,6 +11,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import LyricToolTip from '@components/LyricToolTip/StyledLyricToolTip';
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
+import ToggleFullScreen from '@components/ToggleFullScreen/ToggleFullScreen';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
@@ -41,21 +42,39 @@ function LyricsBody({ className }) {
     window.location.href = "/";
   }
 
+  const lyricsBodyToFullScreen = (condition) => {
+     // TODO here change the style of LyricsBody on mobile to full, and hide/clear the page header - maybe by settingsContext 
+    switch (condition) {
+      case 'enter':
+
+        break;
+      case 'exsit':
+
+        break;
+
+      default:
+        break;
+    }
+   
+  }
+
   return (
     <Paper elevation={3} className={className}>
       <Grid container rowSpacing={1} columnSpacing={0}>
 
         <Grid item xs={12} className="l-body-top">
-          {!urlSong && // If the song is from /songs path - Don't show the remove icon
+          {!urlSong &&
             <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
               <CloseOutlinedIcon className='remove-icon' />
             </IconButton>
           }
-          {urlSong && // If the song is from /songs path - Don't show the remove icon
+          {urlSong && // If the song is from /songs path, change also the path while reset
             <IconButton onClick={() => currLyricsContext.resetSong(handleBackToHome)}>
               <CloseOutlinedIcon className='remove-icon' />
             </IconButton>
           }
+
+          <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
 
           {currLyricsContext.translatedBy &&
             <Chip className='trans-by-chip'
