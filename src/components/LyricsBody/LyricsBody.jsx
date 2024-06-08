@@ -74,7 +74,7 @@ function LyricsBody({ className }) {
             </IconButton>
           }
 
-          <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+          {/* <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen> */}
 
           {currLyricsContext.translatedBy &&
             <Chip className='trans-by-chip'
