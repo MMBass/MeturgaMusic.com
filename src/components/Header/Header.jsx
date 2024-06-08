@@ -144,9 +144,10 @@ const Header = ({ className, changeColors }) => {
           {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
             <ChangeColors changeColors={changeColors}></ChangeColors>
           }
+{/*           
           {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
             <ToggleFullScreen></ToggleFullScreen>
-          }
+          } */}
 
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <ChangeSize></ChangeSize>
