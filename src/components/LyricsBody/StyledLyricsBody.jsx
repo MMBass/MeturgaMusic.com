@@ -28,7 +28,7 @@ const StyledLyricsBody = styled(LyricsBody)`
 
   .trans-by-chip{
     padding: 3px;
-    margin-inline-start: 30px;
+    /* margin-inline-start: 30px; */
   }
 
   h3{

@@ -88,7 +88,7 @@ function LyricsBody({ className }) {
             <Typography
               variant="h6"
               component="h3"
-              style={{ fontSize: settingsContext.fontSize.lg, direction: "ltr" }}
+              style={{ fontSize: settingsContext.fontSize.lg, direction: "ltr", marginTop: '20px' }}
             >
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
@@ -107,7 +107,7 @@ function LyricsBody({ className }) {
             <Typography
               variant="h6"
               component="h1"
-              style={{ fontSize: settingsContext.fontSize.lg + 8, direction: "ltr", textAlign: 'center' }}
+              style={{ fontSize: settingsContext.fontSize.lg + 8, direction: "ltr", textAlign: 'center', marginTop: '20px' }}
             >
               {currLyricsContext.title &&
                 currLyricsContext.title
