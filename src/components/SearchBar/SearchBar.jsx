@@ -75,7 +75,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             gsc_clear.dispatchEvent(new Event('click'));
           }
         }, 250);
-        // setCurrVal(utils.keyboardHEENSwitcher(eValue)); // to fix - still cuts the first letter every time
+        // setCurrVal(utils.keyboardHEENSwitcher(eValue)); // To fix - still cuts the first letter every time
         return;
       }
     } else {

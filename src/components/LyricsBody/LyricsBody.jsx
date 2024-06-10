@@ -43,7 +43,7 @@ function LyricsBody({ className }) {
   }
 
   const lyricsBodyToFullScreen = (condition) => {
-     // TODO here change the style of LyricsBody on mobile to full, and hide/clear the page header - maybe by settingsContext 
+    // TODO here change the style of LyricsBody on mobile to full, and hide/clear the page header - maybe by settingsContext 
     switch (condition) {
       case 'enter':
 
@@ -55,7 +55,7 @@ function LyricsBody({ className }) {
       default:
         break;
     }
-   
+
   }
 
   return (
@@ -63,24 +63,26 @@ function LyricsBody({ className }) {
       <Grid container rowSpacing={1} columnSpacing={0}>
 
         <Grid item xs={12} className="l-body-top">
-          {!urlSong &&
-            <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
-              <CloseOutlinedIcon className='remove-icon' />
-            </IconButton>
-          }
-          {urlSong && // If the song is from /songs path, change also the path while reset
-            <IconButton onClick={() => currLyricsContext.resetSong(handleBackToHome)}>
-              <CloseOutlinedIcon className='remove-icon' />
-            </IconButton>
-          }
 
-          {/* <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen> */}
+          <Grid container className="l-body-top-actions" justifyContent="space-between" alignItems="center">
+            {!urlSong &&
+              <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
+                <CloseOutlinedIcon className='remove-icon' />
+              </IconButton>
+            }
+            {urlSong && // If the song is from /songs path, change also the path while reset
+              <IconButton onClick={() => currLyricsContext.resetSong(handleBackToHome)}>
+                <CloseOutlinedIcon className='remove-icon' />
+              </IconButton>
+            }
 
-          {currLyricsContext.translatedBy &&
-            <Chip className='trans-by-chip'
-              label={TUtils.TransBy + currLyricsContext.translatedBy + '-translator'}
-              color="default" variant="filled" size='small' />
-          }
+            {currLyricsContext.translatedBy &&
+              <Chip className='trans-by-chip'
+                label={TUtils.TransBy + currLyricsContext.translatedBy + '-translator'}
+                color="default" variant="filled" size='small' />
+            }
+             <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+          </Grid>
 
           {!urlSong &&
             <Typography
