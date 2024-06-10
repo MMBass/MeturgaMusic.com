@@ -93,7 +93,7 @@ const StyledSearchBar = styled(SearchBar)`
     overflow: hidden;
   }
 
-  /* the gsc whole element */
+  /* The gsc whole element */
   .gsc-control-cse,
   .gsc-control-cse-en {
     max-width: 432px !important;
@@ -101,6 +101,11 @@ const StyledSearchBar = styled(SearchBar)`
     
     form, input{
       height: 0px !important;
+    }
+
+    .muirtl-gysw57 #___gcse_0 .gs-captcha-outer-wrapper{
+      padding: unset !important;
+      margin: unset !important;
     }
   }
 
