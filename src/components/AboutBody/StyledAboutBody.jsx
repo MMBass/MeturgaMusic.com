@@ -4,7 +4,7 @@ import AboutBody from './AboutBody';
 
 const StyledAboutBody = styled(AboutBody)`
   width: 100%;
-  font-size: 2.6vw;
+  font-size: 1.7vw;
   font-weight: 600;
   padding: 50px 0px;
   font-family: 'Assistant','Roboto', 'sans-serif';
@@ -29,7 +29,7 @@ const StyledAboutBody = styled(AboutBody)`
       @media (max-width: 600px) {
         font-size: 40px;
         color: #6c6c6c;
-        margin-bottom: 10px;
+        margin: 5px 7px 10px 7px;
       }
     }
 
@@ -118,7 +118,7 @@ const StyledAboutBody = styled(AboutBody)`
     .about-header{
       margin-bottom: 5px;
       font-size: 3.6vw;
-      font-size: 2.3vw;
+      font-size: 1.7vw;
       font-weight: 600;
       color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
@@ -195,13 +195,16 @@ const StyledAboutBody = styled(AboutBody)`
 
   .about-footer{
     text-align: center;
-    padding: 110px;
+    padding-top: 130px;
     padding-bottom: unset;
-    margin-bottom: -40px;
+    margin: auto;
+    margin-bottom: 40px;
+    max-width: 70%;
 
     p{
       font-weight: 600;
-      font-size: 2vw;
+      font-size: 1.7vw;
+
       @media (max-width: 600px) {
         font-size: 4.3vw;
       }
@@ -210,6 +213,7 @@ const StyledAboutBody = styled(AboutBody)`
         margin: 3px 15px;
         border-top: 2px solid #e5e5e5;
         padding: 40px;
+        max-width: unset;
     }
   }
 

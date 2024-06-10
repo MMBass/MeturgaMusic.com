@@ -81,10 +81,9 @@ const StyledHomePage = styled(HomePage)`
     }
 
     .page-h3{
-        max-width: 700px;
+        max-width: 740px;
         margin: 0px 0px 15px 0px;
-        /* max-width: 565px; */
-        font-size: 24px;
+        /* font-size: 24px; */
         font-size: 1.9vw;
         font-weight: 600;
         color: ${props => props.theme.palette.primary.contrastText};
