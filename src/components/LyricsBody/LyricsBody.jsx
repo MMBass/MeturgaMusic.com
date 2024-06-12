@@ -64,7 +64,8 @@ function LyricsBody({ className }) {
 
         <Grid item xs={12} className="l-body-top">
 
-          <Grid container className="l-body-top-actions" justifyContent="space-between" alignItems="center">
+
+          <Grid container className="l-body-top-actions" justifyContent="space-start" alignItems="center">
             {!urlSong &&
               <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
                 <CloseOutlinedIcon className='remove-icon' />
@@ -81,7 +82,8 @@ function LyricsBody({ className }) {
                 label={TUtils.TransBy + currLyricsContext.translatedBy + '-translator'}
                 color="default" variant="filled" size='small' />
             }
-             <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+
+            {/* <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen> */}
           </Grid>
 
           {!urlSong &&
