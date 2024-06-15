@@ -28,6 +28,7 @@ import Header from '@components/Header/StyledHeader';
 import Layout from '@components/Layout/StyledLayout';
 import Footer from '@components/Footer/StyledFooter';
 import Drawer from '@components/Drawer/StyledDrawer';
+import MiniDrawer from '@components/MiniDrawer/MiniDrawer';
 import MainBackdrop from '@components/MainBackdrop/StyledMainBackdrop';
 import Dialog from '@components/Dialog/StyledDialog';
 import Modal from '@components/Modal/StyledModal';
