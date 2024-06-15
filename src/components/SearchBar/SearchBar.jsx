@@ -106,7 +106,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
                 return;
               };
             }
-
        
             let songTitle = line.innerText.replaceAll('–', "-"); // g Results comes with some special ' – ' sign
             if (songTitle.split('-')[0].includes('Lyrics')) { // Check for the edge case

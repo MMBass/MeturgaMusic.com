@@ -64,7 +64,6 @@ function LyricsBody({ className }) {
 
         <Grid item xs={12} className="l-body-top">
 
-
           <Grid container className="l-body-top-actions" justifyContent="space-start" alignItems="center">
             {!urlSong &&
               <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
@@ -133,7 +132,7 @@ function LyricsBody({ className }) {
                 style={{
                   fontSize: settingsContext.fontSize.md,
                   paddingTop: ((y > 0 && line.src.includes('|')) ? '20px' : '0px'),
-                  lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : settingsContext.fontSize.md + 10 + 'px'),
+                  lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : (settingsContext.fontSize.md > 35 ? settingsContext.fontSize.md + 30 + 'px' : settingsContext.fontSize.md + 10 + 'px')),
                 }}
               >
                 {line.src.split(' ').map((word, i) => {
@@ -147,7 +146,7 @@ function LyricsBody({ className }) {
               <Box className="lyrics-line he-line"
                 style={{
                   fontSize: settingsContext.fontSize.md,
-                  lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : settingsContext.fontSize.md + 10 + 'px'),
+                  lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : (settingsContext.fontSize.md > 35 ? settingsContext.fontSize.md + 30 + 'px' : settingsContext.fontSize.md + 10 + 'px')),
                 }}
               >
                 <>
