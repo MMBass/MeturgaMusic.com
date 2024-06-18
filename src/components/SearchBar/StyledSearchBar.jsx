@@ -69,8 +69,8 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   .top-input input {
-  color: ${props => props.theme.palette.primary.light + "!important"};
-}
+    color: ${props => props.theme.palette.primary.light + "!important"};
+  }
 
   /* google search styling - elements from out of REACT */
 
@@ -172,12 +172,16 @@ const StyledSearchBar = styled(SearchBar)`
     direction: rtl;
   }
 
-  .gs-title * {
-    font-weight: 700 !important;
-    color: rgb(71, 71, 71) !important;
+  .gs-title *{
+    color: rgba(255, 255, 255, 0) !important; // Clear color until filtering
   }
 
-  .gs-title span {
+  .fixed-gs-title * {
+    font-weight: 700 !important;
+    color: rgb(81, 81, 81) !important;
+  }
+
+  .fixed-gs-title span {
     color: #DF808E !important;
   }
 
@@ -205,8 +209,6 @@ const StyledSearchBar = styled(SearchBar)`
   .gsc-result * {
     font-family: 'Assistant', 'Roboto', 'sans-serif' !important;
     font-weight: 500;
-    /* background-color: ${props => props.theme.palette.secondary.light + "!important"}; */
-    color: rgb(81, 81, 81) !important;
   }
 
   .gsc-result:hover,
