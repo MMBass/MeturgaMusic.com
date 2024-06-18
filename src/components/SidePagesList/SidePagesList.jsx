@@ -95,7 +95,7 @@ function SidePagesList({ className, changeColors }) {
           <PlayCircleIcon />
         </ListItemIcon>
         <Switch
-          checked={showPlayer}
+          checked={!showPlayer}
           onChange={handleShowPlayer}
           inputProps={{ 'aria-label': 'controlled' }}
         />
