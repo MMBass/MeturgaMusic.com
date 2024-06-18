@@ -40,6 +40,8 @@ function HomePage({ className }) {
     if (bannersContext.error) bannersContext.closeBanner('error');
     if (urlSong && urlSong.includes("_")) {
       callSongIfQuery(urlSong);
+      const canonicalTag = document.head.querySelector('link[rel="canonical"]');
+      if (canonicalTag) { canonicalTag.remove() }; // Remove for google indexing
     } else if (paramsSong && paramsSong.includes("_")) {
       callSongIfQuery(paramsSong);
     };
