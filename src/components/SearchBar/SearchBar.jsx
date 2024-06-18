@@ -124,14 +124,15 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
             line.classList.add('fixed-gs-title');
             line.innerHTML = `<strong>${songTitle.split(' - ')[0]}</strong> - <span>${songTitle.split(' - ')[1]}</span>`;
-
+            const webSongUrl = line.href;
+            
             const splittedSongTitle = {
               artistName: encodeURI(songTitle.split('-')[0]),
               songName: encodeURI(songTitle.split('-')[1])
             };
 
             if (line.nodeName !== 'A') {
-              line.parentElement.parentElement.parentElement.addEventListener('click', () => { handleLineClickEvent(line, songTitle, splittedSongTitle) });
+              line.parentElement.parentElement.parentElement.addEventListener('click', () => { handleLineClickEvent(line, songTitle, splittedSongTitle, webSongUrl || null) });
             };
 
             line.style.display = "block";
@@ -150,7 +151,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
   }
 
   // Click event for very text in results dropdown
-  const handleLineClickEvent = (line, songTitle, splittedSongTitle) => {
+  const handleLineClickEvent = (line, songTitle, splittedSongTitle, webSongUrl) => {
     line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 
     if (addRecordMode === true) {
@@ -163,7 +164,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
     } else {
-      currLyricsContext.getSongLyrics(splittedSongTitle, songTitle);
+      currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, webSongUrl);
     }
     setCurrVal(songTitle);
     if (location.hash != "#/") routerNavigate("/");

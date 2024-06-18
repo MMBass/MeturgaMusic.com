@@ -38,7 +38,7 @@ export default function CurrLyricsContextProvider({ children }) {
         } // Update the ls videoId after all the state sets
     }, [videoId]);
 
-    const getSongLyrics = async (splittedSongTitle, songTitle) => {
+    const getSongLyrics = async (splittedSongTitle, songTitle, webSongUrl) => {
         setAbort(true);
 
         songTitle = songTitle.replace(constants.allBracketsPattern, '').trim();
@@ -48,7 +48,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (localStorageGetSong(songTitle, searchResultsParent)) { return }; // First try to get from local-storage
 
         try {
-            const data = await fetchSongLyrics(splittedSongTitle);
+            const data = await fetchSongLyrics(splittedSongTitle, webSongUrl);
 
             loadersContext.closeLoader('backdrop');
             sessionStorage.removeItem('currSong');
