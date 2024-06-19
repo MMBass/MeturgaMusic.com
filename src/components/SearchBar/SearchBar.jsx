@@ -124,7 +124,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
             line.classList.add('fixed-gs-title');
             line.innerHTML = `<strong>${songTitle.split(' - ')[0]}</strong> - <span>${songTitle.split(' - ')[1]}</span>`;
-            const webSongUrl = line.parentElement.parentElement.parentElement.querySelector('a').href;
             
             const splittedSongTitle = {
               artistName: encodeURI(songTitle.split('-')[0]),
@@ -132,6 +131,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             };
 
             if (line.nodeName !== 'A') {
+              const webSongUrl = line.parentElement.parentElement.parentElement.querySelector('a').href;
               line.parentElement.parentElement.parentElement.addEventListener('click', () => { handleLineClickEvent(line, songTitle, splittedSongTitle, webSongUrl || null) });
             };
 
