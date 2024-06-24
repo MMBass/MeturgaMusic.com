@@ -88,9 +88,9 @@ function LyricsBody({ className }) {
                 <CloseOutlinedIcon className='remove-icon' />
               </IconButton>
             }
-            <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
+            {/* <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
               <BookmarkAddIcon className='add-wish-icon'/>
-            </IconButton>
+            </IconButton> */}
 
             {currLyricsContext.translatedBy &&
               <Chip className='trans-by-chip'
