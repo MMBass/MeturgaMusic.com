@@ -14,6 +14,12 @@ const StyledHeader = styled(Header)`
         color: ${props => props.theme.palette.secondary.dark};
       }
 
+      /* @media (min-width: 600px) {
+        .menu-button{
+          display: none;
+        }
+      } */ // Use when miniDrawer is used
+
       .burger-icon{
         margin-top: 2px;
       }

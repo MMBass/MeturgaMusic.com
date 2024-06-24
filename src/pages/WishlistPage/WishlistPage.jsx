@@ -16,6 +16,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import LaunchIcon from '@mui/icons-material/Launch';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 import utils from '@/utils';
 import T from "./WishlistPageI18n";
@@ -37,6 +38,7 @@ function WishlistPage({ className }) {
     if (!localStorage.getItem('meturgamm_wish')) localStorage.setItem('meturgamm_wish', JSON.stringify([]));
     const lsSongs = JSON.parse(localStorage.getItem('meturgamm_wish'));
     const song = { title: title.replaceAll('&', 'and'), id: lsSongs.length.toString() };
+    if (lsSongs.some(s => s.title === song.title)) return;
 
     lsSongs.unshift(song);  // {title: string, id: num}
     if (lsSongs.length >= 500) songs.shift();
@@ -79,7 +81,7 @@ function WishlistPage({ className }) {
               <ListItem key={i}
                 secondaryAction={
                   <IconButton onClick={() => { handleDeleteClick(song.id) }} edge="end" aria-label="deletcoe">
-                    <DeleteIcon />
+                    <ClearRoundedIcon size="small" className='remove-wish-icon' />
                   </IconButton>
                 }>
                 <ListItemText sx={{ border: "1px solid #e8e8e8", borderRadius: '3px' }}>

@@ -116,7 +116,7 @@ function App({ className }) {
               {(drawerContext.open) &&
                 <Drawer className="drawer" changeColors={changeTheme}></Drawer>
               }
-              {/* <MiniDrawer className="" changeColors={changeTheme}></MiniDrawer> */}
+              {/* <MiniDrawer className="desktop-mini-drawer" changeColors={changeTheme}></MiniDrawer> */}
               
               {(bannersContext.infoSnackbar?.open) &&
                 <Snackbar open={bannersContext.infoSnackbar.open} autoHideDuration={6000} onClose={() => { }}>

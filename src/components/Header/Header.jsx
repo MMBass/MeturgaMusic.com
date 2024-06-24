@@ -81,6 +81,7 @@ const Header = ({ className, changeColors }) => {
         <Toolbar disableGutters>
           <Box>
             <IconButton
+              className='menu-button'
               size="large"
               aria-label="menu-appbar"
               aria-controls="menu-appbar"

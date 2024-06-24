@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 
 import LyricToolTip from '@components/LyricToolTip/StyledLyricToolTip';
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
@@ -42,6 +43,18 @@ function LyricsBody({ className }) {
     window.location.href = "/";
   }
 
+  function handleAddWishSong(title) {
+    if (!localStorage.getItem('meturgamm_wish')) localStorage.setItem('meturgamm_wish', JSON.stringify([]));
+    const lsSongs = JSON.parse(localStorage.getItem('meturgamm_wish'));
+    const song = { title: title.replaceAll('&', 'and'), id: lsSongs.length.toString() };
+    if (lsSongs.some(s => s.title === song.title)) return;
+
+    lsSongs.unshift(song);  // {title: string, id: num}
+    if (lsSongs.length >= 500) songs.shift();
+
+    localStorage.setItem("meturgamm_wish", JSON.stringify(lsSongs));
+  };
+
   const lyricsBodyToFullScreen = (condition) => {
     // TODO here change the style of LyricsBody on mobile to full, and hide/clear the page header - maybe by settingsContext 
     switch (condition) {
@@ -75,11 +88,14 @@ function LyricsBody({ className }) {
                 <CloseOutlinedIcon className='remove-icon' />
               </IconButton>
             }
+            <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
+              <BookmarkAddIcon className='add-wish-icon'/>
+            </IconButton>
 
             {currLyricsContext.translatedBy &&
               <Chip className='trans-by-chip'
                 label={TUtils.TransBy + currLyricsContext.translatedBy + '-translator'}
-                color="default" variant="filled" size='small' />
+                color="default" variant="filled" size='small'/>
             }
 
             {/* <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen> */}

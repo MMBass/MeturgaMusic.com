@@ -7,10 +7,14 @@ const StyledApp = styled(App)`
   min-height: 700px;
 
   @media (max-width: 600px) {
-  ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
+    /* .desktop-mini-drawer{
+        display: none;
+    } */
+
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
 }`;
 
 export default StyledApp;

@@ -11,6 +11,12 @@ const StyledWishlistPage = styled(WishlistPage)`
   svg{
     color:  ${props => props.theme.palette.primary.contrastText};
   }
+
+  .remove-wish-icon{
+    svg{
+      color: rgba(${props => props.theme.palette.primary.contrastText}, 0.4);
+    }
+  }
 `;
 
 export default StyledWishlistPage;

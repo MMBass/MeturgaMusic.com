@@ -89,7 +89,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MiniDrawer() {
+export default function MiniDrawer(sidePageList) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -102,7 +102,7 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} className="desktop-mini-drawer">
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
