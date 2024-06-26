@@ -107,13 +107,12 @@ function LyricsBody({ className }) {
                     <BookmarkAddIcon className='add-wish-icon' />
                   </IconButton>
                 </Tooltip>
-
+                {/* 
                 <Tooltip title="Full Screen">
                   <span>
-                     <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+                    <ToggleFullScreen className='full-screen-toggle' fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
                   </span>
-                 
-                </Tooltip>
+                </Tooltip> */}
               </div>
             }
 
