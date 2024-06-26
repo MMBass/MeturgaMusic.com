@@ -75,7 +75,7 @@ function SidePagesList({ className, changeColors }) {
           </ListItem>
         </NavLink>
       ))}
-{/* 
+
       <NavLink to={'/spotify-extension'} className={'nav-link'}>
         <ListItem sx={{ backgroundColor: 'lightGray' }}>
           <ListItemButton>
@@ -86,7 +86,7 @@ function SidePagesList({ className, changeColors }) {
             <Chip className='pages-list-chip extension-chip' label={T.LabelForComingSoon} color="secondary" variant="outlined" size='small' />
           </ListItemButton>
         </ListItem>
-      </NavLink> */}
+      </NavLink>
 
       <Divider light />
 

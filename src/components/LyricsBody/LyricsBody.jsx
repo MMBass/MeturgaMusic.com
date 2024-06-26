@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 
 import LyricToolTip from '@components/LyricToolTip/StyledLyricToolTip';
@@ -77,28 +78,35 @@ function LyricsBody({ className }) {
 
         <Grid item xs={12} className="l-body-top">
 
-          <Grid container className="l-body-top-actions" justifyContent="space-start" alignItems="center">
+          <Grid container className="l-body-top-actions" justifyContent="space-between" alignItems="center">
             {!urlSong &&
               <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
-                <CloseOutlinedIcon className='remove-icon' />
+                <HighlightOffRoundedIcon className='remove-icon' />
               </IconButton>
             }
             {urlSong && // If the song is from /songs path, change also the path while reset
               <IconButton onClick={() => currLyricsContext.resetSong(handleBackToHome)}>
-                <CloseOutlinedIcon className='remove-icon' />
+                <HighlightOffRoundedIcon className='remove-icon' />
               </IconButton>
             }
-            {/* <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
-              <BookmarkAddIcon className='add-wish-icon'/>
-            </IconButton> */}
+
 
             {currLyricsContext.translatedBy &&
               <Chip className='trans-by-chip'
                 label={TUtils.TransBy + currLyricsContext.translatedBy + '-translator'}
-                color="default" variant="filled" size='small'/>
+                color="default" variant="filled" size='small' />
             }
 
-            {/* <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen> */}
+            {/* Todo fit the design for mobile: */}
+            {window.innerWidth > 600 &&
+              <div className="l-body-top-actions">
+                <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
+                  <BookmarkAddIcon className='add-wish-icon' />
+                </IconButton>
+                <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+              </div>
+            }
+
           </Grid>
 
           {!urlSong &&

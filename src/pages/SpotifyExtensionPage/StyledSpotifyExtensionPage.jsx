@@ -67,6 +67,13 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
     }
   }
 
+  .premium-only-desc{
+    display: inline-block;
+    text-align: center;
+    margin: 30px 25px;
+    max-width: 450px;
+  }
+
 `;
 
 export default StyledSpotifyExtensionPage;

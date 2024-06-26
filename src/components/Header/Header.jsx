@@ -46,6 +46,12 @@ const Header = ({ className, changeColors }) => {
   const rrdLocation = useLocation();
 
   useEffect(() => {
+
+    if(document.fullscreenElement) {
+      document.exitFullscreen();
+      document.body.style.overflowY = 'auto';
+    }
+
     setTopSearchBar(false);
     window.scrollTo(0, 0); // Scroll top on router or song changes
     if (bannersContext.error) bannersContext.closeBanner('error');
