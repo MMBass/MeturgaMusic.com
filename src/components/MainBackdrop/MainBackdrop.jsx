@@ -9,7 +9,7 @@ function MainBackdrop({ className }) {
       className={className}
       open={true}
       style={{
-        backgroundImage: "url("+bgImage+")",
+        // backgroundImage: "url("+bgImage+")",
         backgroundSize: '200px',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
