@@ -123,7 +123,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             } // After removing all the around text - check it's lang
 
             line.classList.add('fixed-gs-title');
-            line.innerHTML = `<strong>${songTitle.split(' - ')[0]}</strong> - <span>${songTitle.split(' - ')[1]}</span>`;
+            line.innerHTML = `<strong>${songTitle.split(' - ')[0]} - <span>${songTitle.split(' - ')[1]}</span> </strong>`;
             
             const splittedSongTitle = {
               artistName: encodeURI(songTitle.split('-')[0]),
