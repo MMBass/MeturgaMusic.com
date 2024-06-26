@@ -22,8 +22,15 @@ const StyledLyricsBody = styled(LyricsBody)`
     color: ${props => props.theme.palette.secondary.dark};
   }
 
+  .l-body-top-actions{
+    svg{
+      color: ${props => props.theme.palette.primary.contrastText};
+    }
+   
+  }
+
   .full-screen-toggle svg{
-    font-size: 20px;
+    font-size: 21px;
   }
 
   .trans-by-chip{

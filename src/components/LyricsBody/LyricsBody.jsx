@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
+import Tooltip from '@mui/material/Tooltip';
+
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
@@ -100,10 +102,18 @@ function LyricsBody({ className }) {
             {/* Todo fit the design for mobile: */}
             {window.innerWidth > 600 &&
               <div className="l-body-top-actions">
-                <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
-                  <BookmarkAddIcon className='add-wish-icon' />
-                </IconButton>
-                <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+                <Tooltip title="Save For Later" >
+                  <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
+                    <BookmarkAddIcon className='add-wish-icon' />
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title="Full Screen">
+                  <span>
+                     <ToggleFullScreen className={'full-screen-toggle'} fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+                  </span>
+                 
+                </Tooltip>
               </div>
             }
 

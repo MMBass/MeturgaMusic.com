@@ -30,7 +30,9 @@ body {
 .MuiTooltip-tooltip {
   padding: 8px !important;
   max-width: 85% !important;
-  min-width: 150px;
+  /* min-width: 150px; */
+  min-width: min-content; /* 150 px is good for lyrict-ttip but not for others on the page */
+
 }
 @media (min-width: 600px) {
 
