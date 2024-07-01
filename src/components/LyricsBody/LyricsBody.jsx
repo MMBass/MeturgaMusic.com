@@ -80,7 +80,7 @@ function LyricsBody({ className }) {
 
         <Grid item xs={12} className="l-body-top">
 
-          <Grid container className="l-body-top-actions" justifyContent="space-between" alignItems="center">
+          <Grid container className="l-body-top-actions" justifyContent={window.innerWidth > 600 ? "space-between" : "flex-start"} alignItems="center">
             {!urlSong &&
               <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
                 <HighlightOffRoundedIcon className='remove-icon' />
@@ -102,11 +102,11 @@ function LyricsBody({ className }) {
             {/* Todo fit the design for mobile: */}
             {window.innerWidth > 600 &&
               <div className="l-body-top-actions">
-                <Tooltip title="Save For Later" >
+                {/* <Tooltip title="Save For Later" > */}
                   <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
                     <BookmarkAddIcon className='add-wish-icon' />
                   </IconButton>
-                </Tooltip>
+                {/* </Tooltip> */}
                 {/* 
                 <Tooltip title="Full Screen">
                   <span>
