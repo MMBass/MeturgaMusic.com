@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
+import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 
@@ -16,6 +17,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   const [start, setStart] = useState(false);
   const [currVal, setCurrVal] = useState('');
+  const [searchOptions, setSearchOptions] = useState([]);
 
   const routerNavigate = useNavigate();
 
@@ -96,6 +98,9 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       // }); 
 
       if (sResults) {
+        setSearchOptions([]);
+        const tempOptions = [];
+
         sResults.forEach((line) => {
           if (line.innerText.includes("Lyrics")) {
 
@@ -106,13 +111,13 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
                 return;
               };
             }
-       
+
             let songTitle = line.innerText.replaceAll('–', "-"); // g Results comes with some special ' – ' sign
             if (songTitle.split('-')[0].includes('Lyrics')) { // Check for the edge case
               // Revers in edge cases when the title comes before the artist:
               songTitle = songTitle.replaceAll('Lyrics', ""); // They comes with extra 'Lyrics'
-              songTitle = songTitle.split(' - ')[1] +" - "+ songTitle.split(' - ')[0]; // Reorder
-            }else{
+              songTitle = songTitle.split(' - ')[1] + " - " + songTitle.split(' - ')[0]; // Reorder
+            } else {
               songTitle = songTitle.split("Lyrics")[0];
             }
             songTitle = songTitle.replaceAll(' | Genius', "");
@@ -124,7 +129,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
             line.classList.add('fixed-gs-title');
             line.innerHTML = `<strong>${songTitle.split(' - ')[0]} - <span>${songTitle.split(' - ')[1]}</span> </strong>`;
-            
+
             const splittedSongTitle = {
               artistName: encodeURI(songTitle.split('-')[0]),
               songName: encodeURI(songTitle.split('-')[1])
@@ -132,10 +137,12 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
             if (line.nodeName !== 'A') {
               const webSongUrl = line.parentElement.parentElement.parentElement.querySelector('a').href;
-              line.parentElement.parentElement.parentElement.addEventListener('click', () => { handleLineClickEvent(line, songTitle, splittedSongTitle, webSongUrl || null) });
+              // line.parentElement.parentElement.parentElement.addEventListener('click', () => { handleLineClickEvent(line, songTitle, splittedSongTitle, webSongUrl || null) });
+
+              tempOptions.push({ label: songTitle, webSongUrl: webSongUrl });
             };
 
-            line.style.display = "block";
+            // line.style.display = "block";
 
           } else if (!line.innerText.includes("Lyrics")) {
 
@@ -146,6 +153,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
         });
 
+        setSearchOptions(tempOptions);
       }
     }, 50);
   }
@@ -170,27 +178,65 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     if (location.hash != "#/") routerNavigate("/");
   };
 
+  const handleLabelSelected = (e, newVal) => {
+    console.log('handleLabelSelected', newVal);
+    if(!newVal) return;
+
+    if (addRecordMode === true) {
+      if (addRecord) { addRecord(newVal) };
+      utils.clearGsc();
+      setCurrVal(' ');
+      return;
+    } else if (currLyricsContext.title.replaceAll(' ', '') == newVal.replaceAll(' ', '')) {
+      utils.clearGsc();
+    } else {
+      currLyricsContext.getSongLyrics(newVal, newVal, '');
+    }
+    setCurrVal(newVal);
+    if (location.hash != "#/") routerNavigate("/");
+  }
+
   return (
     <div className={className} >
 
       {(!addRecordMode) &&
-        <TextField size={size}
-          id="outlined-search"
-          className={locat == "main" ? "main-input" : "top-input"}
-          label={!start ?
-            <CircularProgress size={18} ></CircularProgress>
-            :
-            <><TravelExploreIcon></TravelExploreIcon>{T.Label}</>
+        <Autocomplete
+          disablePortal
+          options={searchOptions}
+          onChange={handleLabelSelected()}
+          renderInput={
+            (params) => <TextField size={size}
+              {...params}
+              id="outlined-search"
+              className={locat == "main" ? "main-input" : "top-input"}
+              label={!start ?
+                <CircularProgress size={18} ></CircularProgress>
+                :
+                <><TravelExploreIcon></TravelExploreIcon>{T.Label}</>
+              }
+              type="search"
+              onChange={start ? setVal : null}
+              autoFocus={false} autoComplete='off'
+              placeholder={"GOOGLE " + T.PoweredBy}
+              value={currVal} />
           }
-          type="search"
-          onChange={start ? setVal : null}
-          autoFocus={false} autoComplete='off'
-          placeholder={"GOOGLE " + T.PoweredBy}
-          value={currVal} />
+        // renderOption={( option) => (
+        //   <span component="li" onClick={()=>{}}>
+        //     {option.title}
+        //   </span>
+        // )}
+        ></Autocomplete>
       }
 
       {(addRecordMode) &&
-        <TextField label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" />
+        <Autocomplete
+          disablePortal
+          options={searchOptions}
+          renderInput={
+            (params) =>
+              <TextField {...params} label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" />
+          }
+        ></Autocomplete>
       }
 
       <div id="gcse-my-wrapper" className={(addRecordMode && "gcse-my-wrapper-add-record-mode")}>
