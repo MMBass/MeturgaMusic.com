@@ -1,13 +1,14 @@
 import { useContext, useEffect } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
 
+import T from "./LyricsBodyI18n"; 
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
-import Tooltip from '@mui/material/Tooltip';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
@@ -102,17 +103,14 @@ function LyricsBody({ className }) {
             {/* Todo fit the design for mobile: */}
             {window.innerWidth > 600 &&
               <div className="l-body-top-actions">
-                {/* <Tooltip title="Save For Later" > */}
-                  <IconButton onClick={() => handleAddWishSong(currLyricsContext.title)}>
-                    <BookmarkAddIcon className='add-wish-icon' />
-                  </IconButton>
-                {/* </Tooltip> */}
+                <IconButton title={T.Save} onClick={() => handleAddWishSong(currLyricsContext.title)}>
+                  <BookmarkAddIcon className='add-wish-icon' />
+                </IconButton>
                 {/* 
-                <Tooltip title="Full Screen">
                   <span>
-                    <ToggleFullScreen className='full-screen-toggle' fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+                    <ToggleFullScreen title="Full Screen" className='full-screen-toggle' fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
                   </span>
-                </Tooltip> */}
+               */}
               </div>
             }
 
