@@ -17,10 +17,10 @@ import { DrawerContext } from '@context/DrawerContext';
 
 import { useTheme } from '@mui/material/styles';
 
-import mainPic from '../../images/screenshots/latest/combined-shot-whiteBg-player.png';
-import mainPicPinkBorder from '../../images/screenshots/latest/no-pink-shot-bordered-pink.png';
-import mainPicMobile from '../../images/screenshots/latest/no-pink-shot-bordered-pink-mobile.png';
-import mainPicDark from '../../images/screenshots/latest/no-pink-shot-bordered-pink-dark-mode.png';
+import mainPic from '../../assets/screenshots/latest/combined-shot-whiteBg-player.png';
+import mainPicPinkBorder from '../../assets/screenshots/latest/no-pink-shot-bordered-pink.png';
+import mainPicMobile from '../../assets/screenshots/latest/no-pink-shot-bordered-pink-mobile.png';
+import mainPicDark from '../../assets/screenshots/latest/no-pink-shot-bordered-pink-dark-mode.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);

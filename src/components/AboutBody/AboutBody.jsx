@@ -4,7 +4,7 @@ import T from "./AboutBodyI18n";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import aboutBody1 from '../../images/screenshots/latest/shot1.png';
+import aboutBody1 from '../../assets/screenshots/latest/shot1.png';
 
 function AboutBody({ className }) {
 
