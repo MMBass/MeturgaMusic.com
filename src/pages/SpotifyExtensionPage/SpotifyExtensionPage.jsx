@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import T from "./SpotifyExtensionPageI18n";
-import extensionImage from '../../images/screenshots/spoShot2.png';
+import extensionImage from '@assets/screenshots/spoShot2.png';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useCopyToClipboard from '@hooks/useCopyToClipboard';
 

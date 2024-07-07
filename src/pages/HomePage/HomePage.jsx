@@ -18,8 +18,8 @@ import { DrawerContext } from '@context/DrawerContext';
 
 import { useTheme } from '@mui/material/styles';
 
-import mainPic from '../../images/screenshots/combined-shot-whiteBg-player.png';
-import mainPicDark from '../../images/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
+import mainPic from '@/assets/screenshots/combined-shot-whiteBg-player.png';
+import mainPicDark from '@/assets/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
