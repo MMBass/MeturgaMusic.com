@@ -8,6 +8,7 @@
         "@context/*": ["./src/context/*"],
         "@services/*": ["./src/services/*"],
         "@hooks/*": ["./src/hooks/*"],
+        "@assets/*": ["./src/assets/*"],
         "@/*": ["./src/*"]
       }
     }

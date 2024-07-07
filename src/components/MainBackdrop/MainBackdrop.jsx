@@ -1,4 +1,4 @@
-// import bgImage from '../../images/bg-loader-8.png';
+// import bgImage from '../../assets/bg-loader-8.png';
 
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';

@@ -17,7 +17,7 @@ const StyledAboutBody = styled(AboutBody)`
 
   .even-item, .not-even-item{
     width: unset;
-    margin: 5px 7px;
+    margin: 5px 45px;
     margin-bottom: 90px;
     display: flex;
     align-items: flex-end;

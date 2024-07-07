@@ -17,14 +17,14 @@ import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 
-import shot1 from '@/images/screenshots/shotone.png';
-import shot1Dark from '@/images/screenshots/shotoneDark.png';
-import shot2 from '@/images/screenshots/shot2.png';
-import shot2Dark from '@/images/screenshots/shot2Dark.png';
-import shot5 from '@/images/screenshots/shot8.png';
-import shot5Dark from '@/images/screenshots/shot8Dark.png';
-import shot3 from '@/images/screenshots/shot3.png';
-import shot3Dark from '@/images/screenshots/shot3Dark.png';
+import shot1 from '@/assets/screenshots/shotone.png';
+import shot1Dark from '@/assets/screenshots/shotoneDark.png';
+import shot2 from '@/assets/screenshots/shot2.png';
+import shot2Dark from '@/assets/screenshots/shot2Dark.png';
+import shot5 from '@/assets/screenshots/shot8.png';
+import shot5Dark from '@/assets/screenshots/shot8Dark.png';
+import shot3 from '@/assets/screenshots/shot3.png';
+import shot3Dark from '@/assets/screenshots/shot3Dark.png';
 
 function AboutBody({ className }) {
   const showRemoveTrigger = useScrollTrigger({

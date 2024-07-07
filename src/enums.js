@@ -5,7 +5,7 @@ export const ServiceTypes = {
     LEGACY: 'legacy',
 };
 
-// TODO finish the use of LocalStorageKeys
+// TODO finish the use of LocalStorageKeys enums
 export const LocalStorageKeys = {
     WORDS: 'meturgamm_words',
     SONGS: 'meturgamm_songs',
