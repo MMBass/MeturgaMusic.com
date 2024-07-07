@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
 
-import T from "./LyricsBodyI18n"; 
+import T from "./LyricsBodyI18n";
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -106,11 +106,11 @@ function LyricsBody({ className }) {
                 <IconButton title={T.Save} onClick={() => handleAddWishSong(currLyricsContext.title)}>
                   <BookmarkAddIcon className='add-wish-icon' />
                 </IconButton>
-                {/* 
-                  <span>
-                    <ToggleFullScreen title="Full Screen" className='full-screen-toggle' fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
-                  </span>
-               */}
+
+                <span>
+                  <ToggleFullScreen title="Full Screen" className='full-screen-toggle' fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+                </span>
+
               </div>
             }
 
