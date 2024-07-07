@@ -107,12 +107,8 @@ function SidePagesList({ className, changeColors }) {
           <Chip icon={<ChangeColors></ChangeColors>} className='pages-list-chip extension-chip' label={T.DarkMode} color="secondary" variant="outlined" size='large' />
         </ListItemButton>
       </ListItem>
-
-      {/* <ListItem>
-        <LangsSwitch></LangsSwitch>
-      </ListItem> */}
       
-      {/* TODO not working in every component, because is using uniqe window event */}
+      {/* NOTE - OfferInstall is not working in more than once in a page, because is using uniqe window event */}
       {/* {(!utils.isApple() && !window.matchMedia('(display-mode: standalone)').matches) &&
         <ListItem sx={{ justifyContent: 'center' }}>
           <OfferInstall></OfferInstall>
