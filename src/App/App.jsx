@@ -105,7 +105,6 @@ function App({ className }) {
                 <Route path="/About" element={<AboutPage className={'page'} pageTitle={T.MainH1 + " - " + T.About} rank={1} />} />
                 <Route path="/songs/:urlSong" element={<HomePage className={'page'} rank={1} />} />
 
-                {/* NoMatchPage works only in hash paths */}
                 <Route path="*" element={<NoMatchPage className={'page'} />} />
               </Routes>
 
@@ -125,7 +124,7 @@ function App({ className }) {
                   </Alert>
                 </Snackbar>
               }
-              {/*end of Dynamic global elements*/}
+              {/*End of Dynamic global elements*/}
 
               <Footer></Footer>
               <ScrollTop></ScrollTop>
