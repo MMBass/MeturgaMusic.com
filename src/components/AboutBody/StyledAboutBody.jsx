@@ -38,8 +38,7 @@ const StyledAboutBody = styled(AboutBody)`
       border: 2px solid #848484;
       background: #80808017;
 
-      margin-top: 100px;
-      margin-bottom: 0px;
+      margin: 100px 7px 0px 7px;
 
       .img-container{
         ${!utils.isApple() && `margin-inline-end: -24px`};
