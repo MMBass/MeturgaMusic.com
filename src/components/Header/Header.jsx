@@ -133,6 +133,7 @@ const Header = ({ className, changeColors }) => {
                 variant="h6"
                 noWrap
                 component="h2"
+                className="header-title"
                 sx={{ display: 'flex' }}
               >
                 <span id="h2-part1" style={{

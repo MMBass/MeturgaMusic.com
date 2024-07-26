@@ -16,7 +16,13 @@ const StyledHeader = styled(Header)`
         }
       }
 
-      a{
+      svg{
+        font-size: 20px;
+      }
+
+      .header-title{
+        display: inline-block;
+        font-size: 20px;
         #h2-part1, #h2-part2{
           font-weight: 600;
           @media (min-width: 600px) {
@@ -26,6 +32,7 @@ const StyledHeader = styled(Header)`
       }
       
       button{
+        font-size: 25px;
         color: ${props => props.theme.palette.secondary.dark};
       }
 
@@ -36,7 +43,7 @@ const StyledHeader = styled(Header)`
       } */ // Use when miniDrawer is used
 
       .drawer-menu-icon{
-        margin-top: 2px;
+        /* margin-top: 2px; */
       }
 
       .mui-search-icon-wrapper{
