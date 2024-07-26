@@ -1,12 +1,16 @@
 import { useContext, useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 import T from "./HeaderI18n";
 
 import { useTheme } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -31,8 +35,6 @@ import { BannersContext } from '@context/BannersContext';
 import { LoadersContext } from '@context/LoadersContext';
 import { SettingsContext } from '@context/SettingsContext';
 
-import { NavLink } from 'react-router-dom';
-
 const Header = ({ className, changeColors }) => {
   const [topSearchBar, setTopSearchBar] = useState(false);
   const theme = useTheme();
@@ -47,7 +49,7 @@ const Header = ({ className, changeColors }) => {
 
   useEffect(() => {
 
-    if(document.fullscreenElement) {
+    if (document.fullscreenElement) {
       document.exitFullscreen();
       document.body.style.overflowY = 'auto';
     }
@@ -72,6 +74,26 @@ const Header = ({ className, changeColors }) => {
     };
   };
 
+  const iconPages = [
+    {
+      name: T.ExercisePage,
+      url: '/exercise',
+      icon:
+        <BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon>,
+    },
+    {
+      name: T.WishListPage,
+      url: '/wish-list',
+      icon: <PlaylistAddIcon className="side-icons"></PlaylistAddIcon>,
+    },
+    {
+      name: T.HistoryPage,
+      url: '/history',
+      icon: <RestoreOutlinedIcon className="side-icons"></RestoreOutlinedIcon>,
+    },
+
+  ];
+
   return (
     <AppBar position="sticky" className={className} sx={{
       backgroundColor: theme.palette.primary.main,
@@ -85,25 +107,62 @@ const Header = ({ className, changeColors }) => {
       <Container maxWidth={false}>
 
         <Toolbar disableGutters>
-          <Box>
-            <IconButton
-              className='menu-button'
-              size="large"
-              aria-label="menu-appbar"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleToggleSideBar}
-            >
-              {!drawerContext.open ?
-                <Badge variant='dot' invisible={!settingsContext.badge}>
-                  <MenuIcon className='burger-icon' />
-                </Badge>
-                :
-                <CloseOutlinedIcon className='burger-icon' />
-              }
+          {/* <Box> */}
+          <IconButton
+            className='menu-button'
+            size="large"
+            aria-label="menu-appbar"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleToggleSideBar}
+          >
+            {!drawerContext.open ?
+              <Badge variant='dot' invisible={!settingsContext.badge}>
+                <MoreVertIcon className='drawer-menu-icon' />
+              </Badge>
+              :
+              <CloseOutlinedIcon className='drawer-menu-icon' />
+            }
 
-            </IconButton>
-          </Box>
+          </IconButton>
+
+
+          {!topSearchBar &&
+            <NavLink to={'/'} onClick={() => { return; }}>
+              <Typography
+                variant="h6"
+                noWrap
+                component="h2"
+                sx={{ display: 'flex' }}
+              >
+                <span id="h2-part1" style={{
+                  color: theme.palette.secondary.dark
+                }}>
+                  {T.H2Part1}
+                </span>
+                <span id="h2-part2" style={{
+                  color: 'white'
+                }}>
+                  {T.H2Part2}
+                </span>
+
+              </Typography>
+            </NavLink>
+          }
+
+          {iconPages.map((page, index) => (
+            <NavLink to={page.url} key={index} className={'nav-link'}>
+              <IconButton
+                className='top-nav-button'
+                size="large"
+                title={page.name}
+              >
+                {page.icon}
+              </IconButton>
+            </NavLink>
+          ))}
+
+          {/* </Box> */}
 
           {(currLyricsContext.lines?.[0] || rrdLocation.pathname !== "/") &&
             <>
@@ -121,31 +180,8 @@ const Header = ({ className, changeColors }) => {
                 </>
               }
             </>
-
           }
 
-          {!topSearchBar &&
-            <NavLink to={'/'} onClick={() => { return; }}>
-              <Typography
-                variant="h6"
-                noWrap
-                component="h2"
-                sx={{ mr: 2, display: 'flex' }}
-              >
-                <span id="h2-part1" style={{
-                  color: theme.palette.secondary.dark
-                }}>
-                  {T.H2Part1}
-                </span>
-                <span id="h2-part2" style={{
-                  color: 'white'
-                }}>
-                  {T.H2Part2}
-                </span>
-
-              </Typography>
-            </NavLink>
-          }
 
           {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&
             <ChangeColors changeColors={changeColors}></ChangeColors>

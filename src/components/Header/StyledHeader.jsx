@@ -4,9 +4,24 @@ import Header from './Header';
 const StyledHeader = styled(Header)`
       z-index: 2000;
 
+      @media (max-width: 600px) {
+        .nav-link{
+          display: none;
+        }
+      }
+
+      @media (min-width: 600px) {
+        h2{
+          margin-inline-end: 35px;
+        }
+      }
+
       a{
         #h2-part1, #h2-part2{
           font-weight: 600;
+          @media (min-width: 600px) {
+ 
+          }
         }
       }
       
@@ -20,7 +35,7 @@ const StyledHeader = styled(Header)`
         }
       } */ // Use when miniDrawer is used
 
-      .burger-icon{
+      .drawer-menu-icon{
         margin-top: 2px;
       }
 
