@@ -106,7 +106,7 @@ const Header = ({ className, changeColors }) => {
 
       <Container maxWidth={false}>
 
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{height: '52px', minHeight: 'unset !important'}}>
           {/* <Box> */}
           <IconButton
             className='menu-button'
@@ -152,8 +152,9 @@ const Header = ({ className, changeColors }) => {
           }
 
           {iconPages.map((page, index) => (
-            <NavLink to={page.url} key={index} className={'nav-link'}>
+            <NavLink to={page.url} key={index} className={'nav-link top-nav-link'}>
               <IconButton
+                disabled={rrdLocation.pathname === page.url}
                 className='top-nav-button'
                 size="large"
                 title={page.name}

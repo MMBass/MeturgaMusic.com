@@ -30,7 +30,7 @@ const StyledHeader = styled(Header)`
           }
         }
       }
-      
+
       button{
         font-size: 25px;
         color: ${props => props.theme.palette.secondary.dark};
@@ -48,9 +48,11 @@ const StyledHeader = styled(Header)`
 
       .mui-search-icon-wrapper{
         margin-inline-end: 10px;
+        margin-inline-start: 10px;
+        color: ${props => props.theme.palette.primary.light};;
 
         .mui-search-icon{
-          margin-top: 5px;
+          margin-top: 2px;
         }
       }
 
