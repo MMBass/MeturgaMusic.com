@@ -21,6 +21,17 @@ import { useTheme } from '@mui/material/styles';
 import mainPic from '@/assets/screenshots/combined-shot-whiteBg-player.png';
 import mainPicDark from '@/assets/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
 
+import Draggable from 'react-draggable';
+import shot1 from '@/assets/screenshots/shotone.png';
+import shot1Dark from '@/assets/screenshots/shotoneDark.png';
+import shot2 from '@/assets/screenshots/shot2.png';
+import shot2Dark from '@/assets/screenshots/shot2Dark.png';
+import shot3 from '@/assets/screenshots/shot3.png';
+import shot3Dark from '@/assets/screenshots/shot3Dark.png';
+import shot5 from '@/assets/screenshots/shot8.png';
+import shot5Dark from '@/assets/screenshots/shot8Dark.png';
+import shot6Trimmed from '@/assets/screenshots/shot6-trimmed.png';
+
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
@@ -77,7 +88,29 @@ function HomePage({ className }) {
             <Grid item className="mainPics-container" xs={12} sm={6}>
 
               {theme.mode !== 'dark' ?
-                <img className="wide-pic" alt="site-in-action" src={mainPic} loading="lazy" ></img>
+                // <img className="wide-pic" alt="site-in-action" src={mainPic} loading="lazy" ></img>
+                <>
+                  <Draggable>
+                    <img className="top-pics" alt="site-in-action" src={shot1} loading="lazy" ></img>
+                  </Draggable>
+                  <>
+                  <Draggable>
+                    <img className="top-pics" alt="site-in-action" src={shot3} loading="lazy" ></img>
+                  </Draggable>
+                  </>
+               
+                  <Draggable>
+                    <img className="top-pics" alt="site-in-action" src={shot2} loading="lazy" ></img>
+                  </Draggable>
+                  <Draggable>
+                    <img className="top-pics" alt="site-in-action" src={shot5} loading="lazy" ></img>
+                  </Draggable>
+                  <Draggable>
+                    <img className="top-pics shot6-pic" alt="site-in-action" src={shot6Trimmed} loading="lazy" ></img>
+                  </Draggable>
+
+                </>
+
                 :
                 <img className="wide-pic wide-pic-dark" alt="site-in-action" src={mainPicDark} loading="lazy"></img>
               }
@@ -100,7 +133,7 @@ function HomePage({ className }) {
                 </span>
 
                 <br className="page-h3-break"></br>
-                
+
                 <span className="h3-middle">
                   {T.H3Middle}
                 </span>

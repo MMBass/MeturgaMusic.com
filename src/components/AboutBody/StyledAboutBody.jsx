@@ -3,6 +3,7 @@ import utils from '@/utils';
 import AboutBody from './AboutBody';
 
 const StyledAboutBody = styled(AboutBody)`
+margin-top: -70px;
   width: 100%;
   font-size: 1.7vw;
   font-weight: 600;
