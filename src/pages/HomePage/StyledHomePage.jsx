@@ -3,20 +3,9 @@ import HomePage from './HomePage';
 
 const StyledHomePage = styled(HomePage)`
     .mainPics-container{
-        display: inline;
-        width: 100vw !important;
-        height: 90vh;
+        width: 610px;
+        height: 400px;
         padding-top: 10px;
-        margin-top: -40px;
-        margin-inline-start: -80px;
-        margin-inline-end: 80px;
-
-
-        /* TODO: pink container to 90 or 100 VH, inside just 2 rows with vertical imgs, imgs width by VH, and spacing.  */
-        background-color: #df808e27;
-        background-color: #f9f4f5;
-        /* background-color: #edcbcb; */
-        border-radius: 25px;
 
         @media (max-width: 600px) {
             display: none;
@@ -25,17 +14,6 @@ const StyledHomePage = styled(HomePage)`
         img{
             z-index: 9999;
             border-radius: 15px;
-        }
-
-        .top-pics{
-            border-radius: 11px;
-            /* box-shadow: 0 1px 2px 0 #7c7c7c; */
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-            width: 45vh;
-        }
-
-        .shot6-pic{
-            border-radius: 8px;
         }
 
         .wide-pic{
