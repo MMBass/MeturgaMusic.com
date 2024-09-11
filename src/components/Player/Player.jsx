@@ -74,17 +74,16 @@ function Player({ className }) {
             </Box>
             <CardMedia
               children={<iframe
-                src={constants.youtubeEmbedUri + currLyricsContext.videoId}
+                src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
                 title={'video'}
                 allowFullScreen={false}
                 className={fullSize ? "full-frame" : ""}
                 width={fullSize ? "420" : "250"}
                 height={fullSize ? "240" : "135"}
-                rel='0'
                 frameBorder={0}
               ></iframe>}
               component="div"
-              alt="Music plsyer"
+              alt="Youtube Music Player"
             />
           </Card>
         </Draggable>
