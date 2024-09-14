@@ -37,6 +37,7 @@ const StyledSearchBar = styled(SearchBar)`
 
       @media (max-width: 600px) {
         width: 95%;
+        max-width: 315px;
       }
 
       input, fieldset, label{
