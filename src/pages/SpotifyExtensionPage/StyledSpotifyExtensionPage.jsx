@@ -29,6 +29,7 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
       font-weight: 800;
 
       @media (max-width: 600px) {
+        max-width: unset;
         font-size: 12vw;
       }
     }
