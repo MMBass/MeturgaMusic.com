@@ -35,7 +35,7 @@ function AboutBody({ className }) {
 
   const theme = useTheme();
 
-  const data = [
+  const aboutCardsData = [
     {
       id: 1,
       img: shot1,
@@ -78,7 +78,7 @@ function AboutBody({ className }) {
     }
   ];
 
-  const [visibleItems, setVisibleItems] = useState(data);
+  const [visibleItems, setVisibleItems] = useState(aboutCardsData);
 
   // Load the visible from the local storage
   useEffect(() => {

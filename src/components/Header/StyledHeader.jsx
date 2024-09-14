@@ -43,7 +43,7 @@ const StyledHeader = styled(Header)`
       } */ // Use when miniDrawer is used
 
       .menu-button{
-        padding-top: 10px;
+        padding-top: 8px;
       }
 
       .mui-search-icon-wrapper{

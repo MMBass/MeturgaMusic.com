@@ -76,7 +76,7 @@ const StyledHomePage = styled(HomePage)`
 
         @media (max-width: 600px) {
             margin: 0px 0px 0px 0px;
-            font-size: 78px;
+            font-size: 80px;
         }
     }
 
@@ -95,7 +95,7 @@ const StyledHomePage = styled(HomePage)`
         @media (max-width: 600px) {
             margin: 0px 0px 10px  0px;
             max-width: 320px;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 600;
 
             .page-h3-break{

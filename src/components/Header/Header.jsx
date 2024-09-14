@@ -118,8 +118,8 @@ const Header = ({ className, changeColors }) => {
           >
             {!drawerContext.open ?
               <Badge variant='dot' invisible={!settingsContext.badge}>
-                <svg className='drawer-menu-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 24" width="24" height="24">
-                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6h12M6 12h12M6 18h12" />
+                <svg className='drawer-menu-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 24" width="24" height="24">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </Badge>
               :
