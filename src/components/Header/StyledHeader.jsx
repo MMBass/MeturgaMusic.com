@@ -42,8 +42,8 @@ const StyledHeader = styled(Header)`
         }
       } */ // Use when miniDrawer is used
 
-      .drawer-menu-icon{
-        /* margin-top: 2px; */
+      .menu-button{
+        padding-top: 10px;
       }
 
       .mui-search-icon-wrapper{

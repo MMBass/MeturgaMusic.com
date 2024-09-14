@@ -106,7 +106,7 @@ const Header = ({ className, changeColors }) => {
 
       <Container maxWidth={false}>
 
-        <Toolbar disableGutters sx={{height: '52px', minHeight: 'unset !important'}}>
+        <Toolbar disableGutters sx={{ height: '52px', minHeight: 'unset !important' }}>
           {/* <Box> */}
           <IconButton
             className='menu-button'
@@ -118,7 +118,9 @@ const Header = ({ className, changeColors }) => {
           >
             {!drawerContext.open ?
               <Badge variant='dot' invisible={!settingsContext.badge}>
-                <MoreVertIcon className='drawer-menu-icon' />
+                <svg className='drawer-menu-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 24" width="24" height="24">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6h12M6 12h12M6 18h12" />
+                </svg>
               </Badge>
               :
               <CloseOutlinedIcon className='drawer-menu-icon' />
