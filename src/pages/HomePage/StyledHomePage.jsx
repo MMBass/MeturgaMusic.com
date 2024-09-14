@@ -76,7 +76,7 @@ const StyledHomePage = styled(HomePage)`
 
         @media (max-width: 600px) {
             margin: 0px 0px 0px 0px;
-            font-size: 80px;
+            font-size: 85px;
         }
     }
 
