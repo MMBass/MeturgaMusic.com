@@ -20,5 +20,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist'
-  }
+  },
+  server: {
+    host: '192.168.43.5',
+  },
 });
