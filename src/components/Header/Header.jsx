@@ -3,7 +3,7 @@ import { useLocation, NavLink } from "react-router-dom";
 
 import T from "./HeaderI18n";
 
-import { useTheme } from '@mui/material/styles';
+import { useTheme, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
@@ -166,13 +166,15 @@ const Header = ({ className, changeColors }) => {
           }
 
           {iconPages.map((page, index) => (
-            <NavLink to={page.url} key={index} className={'nav-link top-nav-link'}>
+            <NavLink to={page.url} key={index} className={'nav-link top-nav-link'}
+            sx={{}}
+            >
               <IconButton
-                disabled={rrdLocation.pathname === page.url}
+                // disabled={rrdLocation.pathname === page.url}
                 className='top-nav-button'
                 size="large"
                 title={page.name}
-                sx={{ color: scrolled || !isWelcomePage ? theme.palette.primary.contrastText : theme.palette.primary.dark }}
+                sx={{ color: scrolled || !isWelcomePage ? theme.palette.primary.contrastText : theme.palette.primary.dark, backgroundColor: rrdLocation.pathname === page.url ? alpha(theme.palette.primary.contrastText, 0.2)  : 'transparent' }} 
               >
                 {page.icon}
               </IconButton>
