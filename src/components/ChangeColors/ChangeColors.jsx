@@ -7,7 +7,7 @@ function ChangeColors({ className, changeColors = () => { } }) {
   const theme = useTheme();
 
   return (
-    <div className={className}>
+    <div className={className + " change-colors-container"}>
       <IconButton onClick={() => changeColors()}>
         {theme.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>

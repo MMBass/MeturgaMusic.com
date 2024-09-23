@@ -18,7 +18,7 @@ export const mainPinkTheme = createTheme({
       contrastText: '#555555' // med gray - gray
     },
     secondary: {
-      main: '#fcfcfc',
+      main: '#fcfcfc', // darker white
       dark: '#262626', // darkgray - black
       light: '#fcfcfc', // darker white
       contrastText: '#C0A8E6' // purple

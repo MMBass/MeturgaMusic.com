@@ -60,6 +60,10 @@ const StyledHomePage = styled(HomePage)`
 
         .home-top-p2{
             margin-top: 50px;
+            @media (min-width: 600px) {
+                margin-top: 80px;
+                padding-inline-start: 30px;
+            }
         }
     }
 
@@ -85,7 +89,7 @@ const StyledHomePage = styled(HomePage)`
         max-width: 740px;
         margin: 0px 0px 15px 0px;
         /* font-size: 24px; */
-        font-size: 1.9vw;
+        font-size: 1.88vw;
         font-weight: 600;
         color: ${props => props.theme.palette.primary.contrastText};
  

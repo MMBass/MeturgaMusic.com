@@ -18,7 +18,7 @@ import { DrawerContext } from '@context/DrawerContext';
 
 import { useTheme } from '@mui/material/styles';
 
-import mainPic from '@/assets/screenshots/combined-shot-whiteBg-player.png';
+import mainPic from '@/assets/screenshots/3Parts-main-shot.png';
 import mainPicDark from '@/assets/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
 
 function HomePage({ className }) {
@@ -74,16 +74,6 @@ function HomePage({ className }) {
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-container">
 
-            <Grid item className="mainPics-container" xs={12} sm={6}>
-
-              {theme.mode !== 'dark' ?
-                <img className="wide-pic" alt="site-in-action" src={mainPic} loading="lazy" ></img>
-                :
-                <img className="wide-pic wide-pic-dark" alt="site-in-action" src={mainPicDark} loading="lazy"></img>
-              }
-
-            </Grid>
-
             <Grid className="home-top-p2" item xs={12} sm={6}>
               <Typography variant="h1" className="h3-start h3-start-top">
                 {T.H3StartTop} <span>{"."}</span>
@@ -100,7 +90,7 @@ function HomePage({ className }) {
                 </span>
 
                 <br className="page-h3-break"></br>
-                
+
                 <span className="h3-middle">
                   {T.H3Middle}
                 </span>
@@ -112,6 +102,16 @@ function HomePage({ className }) {
               </Typography>
 
               <SearchBar focused={searchFocused} locat={"main"} size={"large"}></SearchBar>
+            </Grid>
+
+            <Grid item className="mainPics-container" xs={12} sm={6}>
+
+              {theme.mode !== 'dark' ?
+                <img className="wide-pic" alt="site-in-action" src={mainPic} loading="lazy" ></img>
+                :
+                <img className="wide-pic wide-pic-dark" alt="site-in-action" src={mainPicDark} loading="lazy"></img>
+              }
+
             </Grid>
 
           </Grid>

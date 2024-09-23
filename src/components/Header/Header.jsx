@@ -6,6 +6,7 @@ import T from "./HeaderI18n";
 import { useTheme } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
@@ -36,7 +37,9 @@ import { LoadersContext } from '@context/LoadersContext';
 import { SettingsContext } from '@context/SettingsContext';
 
 const Header = ({ className, changeColors }) => {
+  const rrdLocation = useLocation();
   const [topSearchBar, setTopSearchBar] = useState(false);
+  const [isWelcomePage, setIsWelcomePage] = useState(true);
   const theme = useTheme();
 
   const drawerContext = useContext(DrawerContext);
@@ -45,8 +48,6 @@ const Header = ({ className, changeColors }) => {
   const loadersContext = useContext(LoadersContext);
   const settingsContext = useContext(SettingsContext);
 
-  const rrdLocation = useLocation();
-
   useEffect(() => {
 
     if (document.fullscreenElement) {
@@ -54,8 +55,10 @@ const Header = ({ className, changeColors }) => {
       document.body.style.overflowY = 'auto';
     }
 
+    setIsWelcomePage(rrdLocation.pathname === "/" && !currLyricsContext.lines?.[0]);
+
     setTopSearchBar(false);
-    window.scrollTo(0, 0); // Scroll top on router or song changes
+    // window.scrollTo(0, 0); // Scroll top on router or song changes
     if (bannersContext.error) bannersContext.closeBanner('error');
     drawerContext.closeDrawer();
   }, [rrdLocation, currLyricsContext.title]);
@@ -94,17 +97,25 @@ const Header = ({ className, changeColors }) => {
 
   ];
 
+  const scrolled = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
   return (
-    <AppBar position="sticky" className={className} sx={{
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.secondary.dark
+    <AppBar position="sticky" className={className}
+     sx={{
+      backgroundColor: scrolled || !isWelcomePage ? theme.palette.primary.main : theme.palette.secondary.main,
+      boxShadow: scrolled || !isWelcomePage ? 3 : 0,
+      color: theme.palette.secondary.dark,
+      transition: 'background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
     }}>
 
       {(loadersContext.main.open) &&
         <DeterminateLinearProgress color={loadersContext.main.color}></DeterminateLinearProgress>
       }
 
-      <Container maxWidth={false}>
+      <Container maxWidth={false} className='header-container'>
 
         <Toolbar disableGutters sx={{ height: '52px', minHeight: 'unset !important' }}>
           {/* <Box> */}
@@ -115,6 +126,7 @@ const Header = ({ className, changeColors }) => {
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleToggleSideBar}
+            sx={{ color: scrolled || !isWelcomePage ?  theme.palette.primary.contrastText : theme.palette.primary.dark }}
           >
             {!drawerContext.open ?
               <Badge variant='dot' invisible={!settingsContext.badge}>
@@ -139,12 +151,12 @@ const Header = ({ className, changeColors }) => {
                 sx={{ display: 'flex' }}
               >
                 <span id="h2-part1" style={{
-                  color: theme.palette.secondary.dark
+                  color: theme.palette.primary.contrastText
                 }}>
                   {T.H2Part1}
                 </span>
                 <span id="h2-part2" style={{
-                  color: 'white'
+                    color: scrolled || !isWelcomePage ? 'white' :  theme.palette.primary.dark
                 }}>
                   {T.H2Part2}
                 </span>
@@ -160,6 +172,7 @@ const Header = ({ className, changeColors }) => {
                 className='top-nav-button'
                 size="large"
                 title={page.name}
+                sx={{ color: scrolled || !isWelcomePage ? theme.palette.primary.contrastText : theme.palette.primary.dark }}
               >
                 {page.icon}
               </IconButton>

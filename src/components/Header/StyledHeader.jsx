@@ -3,7 +3,7 @@ import Header from './Header';
 
 const StyledHeader = styled(Header)`
       z-index: 2000;
-
+      
       @media (max-width: 600px) {
         .nav-link{
           display: none;
@@ -31,9 +31,9 @@ const StyledHeader = styled(Header)`
         }
       }
 
-      button{
+      .change-colors-container>button{
         font-size: 25px;
-        color: ${props => props.theme.palette.secondary.dark};
+        color: ${ props => props.theme.palette.primary.contrastText };
       }
 
       /* @media (min-width: 600px) {
