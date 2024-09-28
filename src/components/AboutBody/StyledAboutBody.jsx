@@ -67,8 +67,8 @@ const StyledAboutBody = styled(AboutBody)`
 
     img{
       ${!utils.isApple() && `transform: perspective(1000px) rotateY(15deg);`}
-
-      box-shadow: 18px 13px 4px #4949494a;
+      ${props => props.theme.mode === "dark" ? `box-shadow: 10px 10px 2px #4949494a` : `box-shadow: 18px 13px 4px #4949494a`};
+      
       @media (max-width: 600px) {
         box-shadow: 12px 10px 4px #4949494a;
       }
@@ -78,8 +78,7 @@ const StyledAboutBody = styled(AboutBody)`
   .not-even-item{
     img{
       ${!utils.isApple() && `transform: perspective(1000px) rotateY(-15deg);`}
-
-      box-shadow: -18px 13px 4px #4949494a;
+      ${props => props.theme.mode === "dark" ? `box-shadow: -10px 10px 2px #4949494a` : `box-shadow: -18px 13px 4px #4949494a`};
       @media (max-width: 600px) {
         box-shadow: -12px 10px 4px #4949494a;
       }

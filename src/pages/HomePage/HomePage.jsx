@@ -20,6 +20,7 @@ import { useTheme } from '@mui/material/styles';
 
 import mainPic from '@/assets/screenshots/3Parts-main-shot.png';
 import mainPicDark from '@/assets/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
+import shot1Dark from '@/assets/screenshots/shotoneDark.png';
 
 function HomePage({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
@@ -109,7 +110,7 @@ function HomePage({ className }) {
               {theme.mode !== 'dark' ?
                 <img className="wide-pic" alt="site-in-action" src={mainPic} loading="lazy" ></img>
                 :
-                <img className="wide-pic wide-pic-dark" alt="site-in-action" src={mainPicDark} loading="lazy"></img>
+                <img className="wide-pic wide-pic-dark" alt="site-in-action" src={shot1Dark} loading="lazy"></img>
               }
 
             </Grid>
