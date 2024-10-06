@@ -9,23 +9,27 @@ const StyledPlayer = styled(Player)`
    left: 80px;
    z-index: 1200;
    
-   iframe {
-      margin: 5px 5px 5px 0px;
-   }
+   .iframe-parent-btn{
+      width: 35px;
+      height: 35px;
+      border-radius: 25px;
+      border: unset;
+      position: relative;
 
-      @media (max-width: 600px) {
-         left: 10px;
-
-         iframe{
-            width: 190px;
-            height: 109px;
-         }
-
-         .full-frame{
-            width: 250px;
-            height: 135px;
-         }
+      iframe{
+         margin-top: 4px;
       }
+
+      &::before {
+         content: '\u25B6'; // Unicode for play sign
+         position: absolute;
+         width: 110%;
+         height: 110%;
+         border-radius: 25px;
+         background-color: rgb(228 228 228); // Adjust color and opacity as needed
+         pointer-events: none; // Allows clicks to pass through
+      }
+   }
 `;
 
 export default StyledPlayer;

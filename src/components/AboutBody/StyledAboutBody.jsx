@@ -165,7 +165,7 @@ const StyledAboutBody = styled(AboutBody)`
       background: ${props =>
     props.theme.mode === "dark"
       ? '#303030'
-      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
+      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgba(223, 128, 142, 0.748) 100%)`
     //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
     };
       

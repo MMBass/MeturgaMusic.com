@@ -156,7 +156,8 @@ const Header = ({ className, changeColors }) => {
                   {T.H2Part1}
                 </span>
                 <span id="h2-part2" style={{
-                    color: scrolled || !isWelcomePage ? 'white' :  theme.palette.primary.dark
+                    color: scrolled || !isWelcomePage ? 'white' :  theme.palette.primary.dark,
+                    transition: 'unset'
                 }}>
                   {T.H2Part2}
                 </span>
