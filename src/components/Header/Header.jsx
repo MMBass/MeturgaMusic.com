@@ -112,7 +112,7 @@ const Header = ({ className, changeColors }) => {
     }}>
 
       {(loadersContext.main.open) &&
-        <DeterminateLinearProgress color={loadersContext.main.color}></DeterminateLinearProgress>
+        <DeterminateLinearProgress className={'main-linear'} color={loadersContext.main.color}></DeterminateLinearProgress>
       }
 
       <Container maxWidth={false} className='header-container'>

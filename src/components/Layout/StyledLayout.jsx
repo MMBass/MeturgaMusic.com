@@ -35,7 +35,7 @@ const StyledLayout = styled(Layout)`
     text-decoration: none;
   }
 
-  .MuiLinearProgress-root{
+  .main-linear{
     width: 100%;
     position: fixed;
     top: 0;

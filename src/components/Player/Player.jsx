@@ -17,6 +17,7 @@ import FastRewindIcon from '@mui/icons-material/FastRewind';
 import FastForwardIcon from '@mui/icons-material/FastForward';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
@@ -34,23 +35,48 @@ function Player({ className }) {
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
-    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
-    if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
+    console.log('player start, D:' + duration);
 
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // Reset player state when title or videoId changes
+    setCurrentTime(0);
+    setDuration(0);
+    setIsPlaying(false);
+    setIsFirstPlaying(true);
 
-    window.onYouTubeIframeAPIReady = () => {
-      youtubePlayer.current = new window.YT.Player('youtube-player', {
-        events: {
-          onReady: onPlayerReady,
-          onStateChange: onPlayerStateChange
+    if (youtubePlayer.current) {
+      youtubePlayer.current.destroy(); // Destroy the old player
+    }
+    window.onYouTubeIframeAPIReady = null; // Remove the old listener
+    
+    if (currLyricsContext.title && currLyricsContext.videoId) {
+      setHide(!JSON.parse(localStorage.getItem('showPlayer')));
+      if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
+
+      document.querySelector('script[src="https://www.youtube.com/iframe_api"]')?.remove();
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        console.log('ouTubeIframeAPIReady');
+
+        youtubePlayer.current = new window.YT.Player('youtube-player', {
+          events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange
+          }
+        });
+      };
+
+      return () => {
+        if (youtubePlayer.current) {
+          youtubePlayer.current.destroy(); // Destroy the old player
         }
-      });
-    };
-  }, []);
+        window.onYouTubeIframeAPIReady = null; // Remove the old listener
+      };
+    }
+  }, [currLyricsContext.title, currLyricsContext.videoId]);
 
   useEffect(() => {
     setHide(!JSON.parse(localStorage.getItem('showPlayer')));
@@ -71,6 +97,7 @@ function Player({ className }) {
   }, [isPlaying]);
 
   const onPlayerReady = (event) => {
+    event.target.playVideo(); // Not working?
     setDuration(event.target.getDuration());
     youtubePlayer.current.setVolume(100); // TODO remove if using volume slider
   };
@@ -136,7 +163,6 @@ function Player({ className }) {
 
   return (
     <>
-
       {(!hide && currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
         <Draggable handle=".drag-handle" bounds="parent">
           <Card sx={{ display: 'flex', flexDirection: 'column', width: fullSize ? '300px' : '250px' }} className={className}>
@@ -158,7 +184,7 @@ function Player({ className }) {
               <IconButton onClick={() => setHide(true)}>
                 <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} />
               </IconButton>
-     
+
               <IconButton onClick={() => skipSeconds(-10)}>
                 <FastForwardIcon />
               </IconButton>
@@ -175,6 +201,7 @@ function Player({ className }) {
                   ></iframe>
                 </span>
               </IconButton>
+
               <IconButton onClick={togglePlay} style={{ display: isFirstPlaying ? 'none' : 'flex' }}>
                 {isPlaying ? <PauseIcon fontSize='large' /> : <PlayArrowIcon fontSize='large' />}
               </IconButton>
@@ -187,13 +214,17 @@ function Player({ className }) {
               </IconButton>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', margin: '5px 20px', }}>
-              <Typography variant='button' component='p' >{formatTime(currentTime)}</Typography>
-              <Slider
-                value={currentTime}
-                max={duration}
-                onChange={(e, newValue) => skipBySlider(newValue)}
-                sx={{ margin: '0 13px' }}
-              />
+              <Typography variant='button' component='p'>{formatTime(currentTime)}</Typography>
+              {duration ?
+                <Slider
+                  value={currentTime}
+                  max={duration}
+                  onChange={(e, newValue) => skipBySlider(newValue)}
+                  sx={{ margin: '0 13px' }}
+                />
+                :
+                <LinearProgress size={18} sx={{ margin: '0 13px', width: '100%' }} ></LinearProgress>
+              }
               <Typography variant='body2' component='p'>{formatTime(duration)}</Typography>
             </Box>
 
