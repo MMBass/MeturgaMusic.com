@@ -44,39 +44,51 @@ function Player({ className }) {
     setIsFirstPlaying(true);
 
     if (youtubePlayer.current) {
-      youtubePlayer.current.destroy(); // Destroy the old player
+        youtubePlayer.current.destroy(); // Destroy the old player
     }
-    window.onYouTubeIframeAPIReady = null; // Remove the old listener
-    
+
     if (currLyricsContext.title && currLyricsContext.videoId) {
-      setHide(!JSON.parse(localStorage.getItem('showPlayer')));
-      if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
-
-      document.querySelector('script[src="https://www.youtube.com/iframe_api"]')?.remove();
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      window.onYouTubeIframeAPIReady = () => {
-        console.log('ouTubeIframeAPIReady');
-
-        youtubePlayer.current = new window.YT.Player('youtube-player', {
-          events: {
-            onReady: onPlayerReady,
-            onStateChange: onPlayerStateChange
-          }
-        });
-      };
-
-      return () => {
-        if (youtubePlayer.current) {
-          youtubePlayer.current.destroy(); // Destroy the old player
+        setHide(!JSON.parse(localStorage.getItem('showPlayer')));
+        if (!localStorage.getItem('showPlayer')) {
+            localStorage.setItem('showPlayer', 'true');
         }
-        window.onYouTubeIframeAPIReady = null; // Remove the old listener
-      };
+
+        // Check if API is already loaded
+        if (window.YT && window.YT.Player) {
+            // API already loaded, create player directly
+            youtubePlayer.current = new window.YT.Player('youtube-player', {
+                videoId: currLyricsContext.videoId, // Make sure to set the videoId
+                events: {
+                    onReady: onPlayerReady,
+                    onStateChange: onPlayerStateChange
+                }
+            });
+        } else {
+            // First time - need to load API
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            window.onYouTubeIframeAPIReady = () => {
+                console.log('YouTubeIframeAPIReady');
+                youtubePlayer.current = new window.YT.Player('youtube-player', {
+                    videoId: currLyricsContext.videoId, // Make sure to set the videoId
+                    events: {
+                        onReady: onPlayerReady,
+                        onStateChange: onPlayerStateChange
+                    }
+                });
+            };
+        }
+
+        return () => {
+            if (youtubePlayer.current) {
+                youtubePlayer.current.destroy();
+            }
+        };
     }
-  }, [currLyricsContext.title, currLyricsContext.videoId]);
+}, [currLyricsContext.title, currLyricsContext.videoId]);
 
   useEffect(() => {
     setHide(!JSON.parse(localStorage.getItem('showPlayer')));
