@@ -35,65 +35,47 @@ function Player({ className }) {
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
-    console.log('player start, D:' + duration);
-
-    // Reset player state when title or videoId changes
+    // Reset player state when title or videoId changes:
     setCurrentTime(0);
     setDuration(0);
     setIsPlaying(false);
     setIsFirstPlaying(true);
 
-    if (youtubePlayer.current) {
-        youtubePlayer.current.destroy(); // Destroy the old player
-    }
-
-    if (currLyricsContext.title && currLyricsContext.videoId) {
-        setHide(!JSON.parse(localStorage.getItem('showPlayer')));
-        if (!localStorage.getItem('showPlayer')) {
-            localStorage.setItem('showPlayer', 'true');
-        }
-
-        // Check if API is already loaded
-        if (window.YT && window.YT.Player) {
-            // API already loaded, create player directly
-            youtubePlayer.current = new window.YT.Player('youtube-player', {
-                videoId: currLyricsContext.videoId, // Make sure to set the videoId
-                events: {
-                    onReady: onPlayerReady,
-                    onStateChange: onPlayerStateChange
-                }
-            });
-        } else {
-            // First time - need to load API
-            const tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-            window.onYouTubeIframeAPIReady = () => {
-                console.log('YouTubeIframeAPIReady');
-                youtubePlayer.current = new window.YT.Player('youtube-player', {
-                    videoId: currLyricsContext.videoId, // Make sure to set the videoId
-                    events: {
-                        onReady: onPlayerReady,
-                        onStateChange: onPlayerStateChange
-                    }
-                });
-            };
-        }
-
-        return () => {
-            if (youtubePlayer.current) {
-                youtubePlayer.current.destroy();
-            }
-        };
-    }
-}, [currLyricsContext.title, currLyricsContext.videoId]);
-
-  useEffect(() => {
     setHide(!JSON.parse(localStorage.getItem('showPlayer')));
     if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
-  }, [currLyricsContext.title]);
+    console.log(youtubePlayer.current);
+
+    if (currLyricsContext.title && currLyricsContext.videoId) {
+      if (youtubePlayer.current) {
+        // API already loaded, skip the window.onYouTubeIframeAPIReady (while it's run only once at a session anyway - no use to wait for it)
+        youtubePlayer.current = new window.YT.Player('youtube-player', {
+          videoId: currLyricsContext.videoId,
+          events: {
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange
+          }
+        });
+      } else {
+        // First time - need to load the API
+        if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]') === null) {
+          const tag = document.createElement('script');
+          tag.src = 'https://www.youtube.com/iframe_api';
+          const firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        window.onYouTubeIframeAPIReady = () => {
+          youtubePlayer.current = new window.YT.Player('youtube-player', {
+            videoId: currLyricsContext.videoId,
+            events: {
+              onReady: onPlayerReady,
+              onStateChange: onPlayerStateChange
+            }
+          });
+        };
+      }
+    }
+  }, [currLyricsContext.videoId]);
 
   useEffect(() => {
     const trackInterval = setInterval(() => {
@@ -109,7 +91,7 @@ function Player({ className }) {
   }, [isPlaying]);
 
   const onPlayerReady = (event) => {
-    event.target.playVideo(); // Not working?
+    // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
     setDuration(event.target.getDuration());
     youtubePlayer.current.setVolume(100); // TODO remove if using volume slider
   };
