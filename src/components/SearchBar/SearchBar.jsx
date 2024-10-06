@@ -164,6 +164,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
     } else {
+      console.log('webSongUrl: ' + webSongUrl);
       currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, webSongUrl);
     }
     setCurrVal(songTitle);

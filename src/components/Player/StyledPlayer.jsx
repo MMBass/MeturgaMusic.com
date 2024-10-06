@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Player from './Player';
 
 const StyledPlayer = styled(Player)`
-   background-color: #e4e4e4;
+   background-color: #d9d9d9f7;
 
    position: fixed;
    bottom: 32px;
@@ -15,6 +15,7 @@ const StyledPlayer = styled(Player)`
       border-radius: 25px;
       border: unset;
       position: relative;
+      margin: auto;
 
       iframe{
          margin-top: 4px;
@@ -23,11 +24,15 @@ const StyledPlayer = styled(Player)`
       &::before {
          content: '\u25B6'; // Unicode for play sign
          position: absolute;
-         width: 110%;
+         width: 100%;
          height: 110%;
+         padding-top: 2px;
          border-radius: 25px;
-         background-color: rgb(228 228 228); // Adjust color and opacity as needed
+         background-color: #d9d9d9;
          pointer-events: none; // Allows clicks to pass through
+         display: flex;
+         justify-content: center;
+         font-size: calc(1em + 2px);
       }
    }
 `;

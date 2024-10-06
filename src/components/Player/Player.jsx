@@ -22,7 +22,7 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
 
 function Player({ className }) {
-  const [hide, setHide] = useState(true);
+  const [hide, setHide] = useState(!JSON.parse(localStorage.getItem('showPlayer')));
   const [fullSize, setFullSize] = useState(false);
   const currLyricsContext = useContext(CurrLyricsContext);
   const youtubePlayer = useRef(null);
@@ -54,6 +54,7 @@ function Player({ className }) {
 
   useEffect(() => {
     setHide(!JSON.parse(localStorage.getItem('showPlayer')));
+    if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
   }, [currLyricsContext.title]);
 
   useEffect(() => {
@@ -71,6 +72,7 @@ function Player({ className }) {
 
   const onPlayerReady = (event) => {
     setDuration(event.target.getDuration());
+    youtubePlayer.current.setVolume(100); // TODO remove if using volume slider
   };
 
   const onPlayerStateChange = (event) => {
@@ -156,10 +158,7 @@ function Player({ className }) {
               <IconButton onClick={() => setHide(true)}>
                 <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} />
               </IconButton>
-              {/* <IconButton onTouchStart={toggleFull} onClick={toggleFull}>
-                {fullSize ? <CloseFullscreenIcon fontSize={'small'} /> : <OpenInFullIcon fontSize={'small'} />}
-              </IconButton> */}
-
+     
               <IconButton onClick={() => skipSeconds(-10)}>
                 <FastForwardIcon />
               </IconButton>
@@ -175,11 +174,11 @@ function Player({ className }) {
                     height={isFirstPlaying ? "30" : "0"}
                   ></iframe>
                 </span>
-
               </IconButton>
-              <IconButton onClick={togglePlay} style={{ display: isFirstPlaying ? 'none' : 'block' }}>
+              <IconButton onClick={togglePlay} style={{ display: isFirstPlaying ? 'none' : 'flex' }}>
                 {isPlaying ? <PauseIcon fontSize='large' /> : <PlayArrowIcon fontSize='large' />}
               </IconButton>
+
               <IconButton onClick={() => skipSeconds(10)}>
                 <FastRewindIcon />
               </IconButton>
