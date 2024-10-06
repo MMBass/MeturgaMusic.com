@@ -33,6 +33,11 @@ const StyledPlayer = styled(Player)`
          display: flex;
          justify-content: center;
          font-size: calc(1em + 2px);
+
+         @media (max-width: 600px) {
+            padding-top: 0px; 
+            align-items: center;
+         }
       }
    }
 `;
