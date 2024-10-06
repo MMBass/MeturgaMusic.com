@@ -20,7 +20,6 @@ import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
-import { Visibility } from '@mui/icons-material';
 
 function Player({ className }) {
   const [hide, setHide] = useState(true);
@@ -153,7 +152,7 @@ function Player({ className }) {
                 />
               </Box>
             </Box> */}
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 8px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3px 8px' }}>
               <IconButton onClick={() => setHide(true)}>
                 <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} />
               </IconButton>
@@ -164,7 +163,7 @@ function Player({ className }) {
               <IconButton onClick={() => skipSeconds(-10)}>
                 <FastForwardIcon />
               </IconButton>
-              <IconButton sx={{ visibility: !isFirstPlaying ? 'hidden' : 'visible', position: !isFirstPlaying ? 'fixed' : 'relative' }}>
+              <IconButton disableRipple={true} sx={{ visibility: !isFirstPlaying ? 'hidden' : 'visible', position: !isFirstPlaying ? 'fixed' : 'relative' }}>
                 <span className='iframe-parent-btn'>
                   <iframe
                     style={{ borderRadius: '25px' }}
