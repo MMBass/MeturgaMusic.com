@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import IconButton from '@mui/material/IconButton';
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
@@ -17,7 +18,11 @@ import FastRewindIcon from '@mui/icons-material/FastRewind';
 import FastForwardIcon from '@mui/icons-material/FastForward';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
-import LinearProgress from '@mui/material/LinearProgress';
+import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
+
+import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
+import FastForwardOutlinedIcon from '@mui/icons-material/FastForwardOutlined';
+import FastRewindOutlinedIcon from '@mui/icons-material/FastRewindOutlined';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
@@ -33,6 +38,7 @@ function Player({ className }) {
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(100);
   const [isMuted, setIsMuted] = useState(false);
+  const [playerError, setPlayerError] = useState(false);
 
   useEffect(() => {
     // Reset player state when title or videoId changes:
@@ -40,6 +46,7 @@ function Player({ className }) {
     setDuration(0);
     setIsPlaying(false);
     setIsFirstPlaying(true);
+    setPlayerError(false);
 
     setHide(!JSON.parse(localStorage.getItem('showPlayer')));
     if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
@@ -69,7 +76,8 @@ function Player({ className }) {
             videoId: currLyricsContext.videoId,
             events: {
               onReady: onPlayerReady,
-              onStateChange: onPlayerStateChange
+              onStateChange: onPlayerStateChange,
+              onError: onPlayerError
             }
           });
         };
@@ -98,6 +106,15 @@ function Player({ className }) {
 
   const onPlayerStateChange = (event) => {
     setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
+  };
+
+  const onPlayerError = (event) => {
+    console.log('Player Error: ' + event.data);
+    if (event.data === 150) {
+      setPlayerError("Video Unavailable");
+    } else {
+      setPlayerError("Something went wrong");
+    }
   };
 
   // function toggleFull() {
@@ -180,8 +197,9 @@ function Player({ className }) {
               </IconButton>
 
               <IconButton onClick={() => skipSeconds(-10)}>
-                <FastForwardIcon />
+                <FastForwardOutlinedIcon />
               </IconButton>
+
               <IconButton disableRipple={true} sx={{ visibility: !isFirstPlaying ? 'hidden' : 'visible', position: !isFirstPlaying ? 'fixed' : 'relative' }}>
                 <span className='iframe-parent-btn'>
                   <iframe
@@ -193,35 +211,67 @@ function Player({ className }) {
                     width={isFirstPlaying ? "30" : "0"}
                     height={isFirstPlaying ? "30" : "0"}
                   ></iframe>
+
+                  {/* Play icon overlay */}
+                  <div className="play-icon-overlay">
+                    <PlayArrowOutlinedIcon fontSize="large" />
+                  </div>
                 </span>
               </IconButton>
 
               <IconButton onClick={togglePlay} style={{ display: isFirstPlaying ? 'none' : 'flex' }}>
-                {isPlaying ? <PauseIcon fontSize='large' /> : <PlayArrowIcon fontSize='large' />}
+                {playerError ?
+                  <ErrorOutlineOutlinedIcon></ErrorOutlineOutlinedIcon>
+                  :
+                  <>{isPlaying ? <PauseIcon fontSize='large' /> : <PlayArrowOutlinedIcon fontSize='large' />}</>
+                }
               </IconButton>
 
               <IconButton onClick={() => skipSeconds(10)}>
-                <FastRewindIcon />
+                <FastRewindOutlinedIcon />
               </IconButton>
               <IconButton className='drag-handle'>
                 <DragIndicatorIcon className='drag-icon' />
               </IconButton>
             </Box>
+
             <Box sx={{ display: 'flex', alignItems: 'center', margin: '5px 20px', }}>
-              <Typography variant='button' component='p'>{formatTime(currentTime)}</Typography>
-              {duration ?
-                <Slider
-                  value={currentTime}
-                  max={duration}
-                  onChange={(e, newValue) => skipBySlider(newValue)}
-                  sx={{ margin: '0 13px' }}
-                />
+              {playerError ?
+                <Typography variant='body2' component='p' margin={'auto'}>{playerError}</Typography>
                 :
-                <LinearProgress size={18} sx={{ margin: '0 13px', width: '100%' }} ></LinearProgress>
+                <>
+                  <Typography variant='button' component='p'>{formatTime(currentTime)}</Typography>
+                  {duration ?
+                    <Slider
+                      value={currentTime}
+                      max={duration}
+                      onChange={(e, newValue) => skipBySlider(newValue)}
+                      sx={{ margin: '0 13px' }}
+                    />
+                    :
+                    <LinearProgress size={18} sx={{ margin: '0 13px', width: '100%' }} ></LinearProgress>
+                  }
+                  <Typography variant='body2' component='p'>{formatTime(duration)}</Typography>
+
+                </>
+
               }
-              <Typography variant='body2' component='p'>{formatTime(duration)}</Typography>
+
             </Box>
 
+          </Card>
+        </Draggable>
+      }
+      {(!hide && !currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
+        <Draggable handle=".drag-handle" bounds="parent">
+          <Card sx={{ display: 'flex', flexDirection: 'column', width: '250px' }} className={className}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3px 8px' }}>
+              <ErrorOutlineOutlinedIcon></ErrorOutlineOutlinedIcon>
+              <Typography variant='body2' component='p' margin={'auto'}>No video found</Typography>
+              <IconButton onClick={() => setHide(true)}>
+                <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} />
+              </IconButton>
+            </Box>
           </Card>
         </Draggable>
       }

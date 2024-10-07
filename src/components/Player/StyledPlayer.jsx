@@ -21,23 +21,17 @@ const StyledPlayer = styled(Player)`
          margin-top: 4px;
       }
 
-      &::before {
-         content: '\u25B6'; // Unicode for play sign
+      .play-icon-overlay {
          position: absolute;
-         width: 100%;
-         height: 110%;
-         padding-top: 2px;
-         border-radius: 25px;
          background-color: #d9d9d9;
-         pointer-events: none; // Allows clicks to pass through
+         pointer-events: none; /* Allow clicks to pass through */
+         top: 0;
+         left: 0;
+         width: 105%;
+         height: 110%;
          display: flex;
          justify-content: center;
-         font-size: calc(1em + 2px);
-
-         @media (max-width: 600px) {
-            padding-top: 0px; 
-            align-items: center;
-         }
+         align-items: center;
       }
    }
 `;
