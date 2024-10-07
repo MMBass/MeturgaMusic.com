@@ -235,7 +235,7 @@ function Player({ className }) {
               </IconButton>
             </Box>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', margin: '5px 20px', }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', margin: '0px 20px', marginBottom: '5px' }}>
               {playerError ?
                 <Typography variant='body2' component='p' margin={'auto'}>{playerError}</Typography>
                 :
