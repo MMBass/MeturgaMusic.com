@@ -108,7 +108,7 @@ function Player({ className }) {
   };
 
   const onPlayerStateChange = (event) => {
-    if(event.data === -1) setFirstUserClickLoader(true);
+    if (event.data === -1) setFirstUserClickLoader(true);
     setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
   };
 
@@ -134,9 +134,10 @@ function Player({ className }) {
     setIsPlaying(!isPlaying);
   };
 
+
   const skipSeconds = (seconds) => {
     if (youtubePlayer.current) {
-      const newTime = currentTime + seconds;
+      const newTime = Math.max(0, Math.min(currentTime + seconds, duration));
       youtubePlayer.current.seekTo(newTime, true);
       setCurrentTime(newTime);
     }
@@ -212,7 +213,7 @@ function Player({ className }) {
                     src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
                     title={'video'}
                     allowFullScreen={false}
-                    allow='autoplay'
+                    allow='autoplay' // Probably blocked by browser
                     width={isFirstPlaying ? "30" : "0"}
                     height={isFirstPlaying ? "30" : "0"}
                   ></iframe>
@@ -221,10 +222,7 @@ function Player({ className }) {
                   <div className="play-icon-overlay">
                     {firstUserClickLoader ?
                       <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
-                      :
-                      <PlayArrowOutlinedIcon fontSize="large" />
-                    }
-
+                      : <PlayArrowOutlinedIcon fontSize="large" />}
                   </div>
                 </span>
               </IconButton>
@@ -266,9 +264,7 @@ function Player({ className }) {
                 </>
 
               }
-
             </Box>
-
           </Card>
         </Draggable>
       }
