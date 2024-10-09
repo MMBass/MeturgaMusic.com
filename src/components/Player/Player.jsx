@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
@@ -39,6 +40,7 @@ function Player({ className }) {
   const [volume, setVolume] = useState(100);
   const [isMuted, setIsMuted] = useState(false);
   const [playerError, setPlayerError] = useState(false);
+  const [firstUserClickLoader, setFirstUserClickLoader] = useState(false);
 
   useEffect(() => {
     // Reset player state when title or videoId changes:
@@ -101,10 +103,12 @@ function Player({ className }) {
   const onPlayerReady = (event) => {
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
     setDuration(event.target.getDuration());
+    setFirstUserClickLoader(false);
     youtubePlayer.current.setVolume(100); // TODO remove if using volume slider
   };
 
   const onPlayerStateChange = (event) => {
+    if(event.data === -1) setFirstUserClickLoader(true);
     setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
   };
 
@@ -208,13 +212,19 @@ function Player({ className }) {
                     src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
                     title={'video'}
                     allowFullScreen={false}
+                    allow='autoplay'
                     width={isFirstPlaying ? "30" : "0"}
                     height={isFirstPlaying ? "30" : "0"}
                   ></iframe>
 
                   {/* Play icon overlay */}
                   <div className="play-icon-overlay">
-                    <PlayArrowOutlinedIcon fontSize="large" />
+                    {firstUserClickLoader ?
+                      <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
+                      :
+                      <PlayArrowOutlinedIcon fontSize="large" />
+                    }
+
                   </div>
                 </span>
               </IconButton>
