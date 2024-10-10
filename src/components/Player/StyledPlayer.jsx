@@ -42,7 +42,7 @@ const StyledPlayer = styled(Player)`
    }
 
    .drag-icon{
-      cursor: grab;
+      cursor: all-scroll;
    }
 `;
 

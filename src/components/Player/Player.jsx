@@ -21,12 +21,11 @@ import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
+import embedApiStarterService from '@services/embedApiStarter';
 
 function Player({ className }) {
   const [hide, setHide] = useState(!JSON.parse(localStorage.getItem('showPlayer')));
   const [fullSize, setFullSize] = useState(false);
-  const currLyricsContext = useContext(CurrLyricsContext);
-  const youtubePlayer = useRef(null);
   const [isFirstPlaying, setIsFirstPlaying] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -36,8 +35,11 @@ function Player({ className }) {
   const [playerError, setPlayerError] = useState(false);
   const [firstUserClickLoader, setFirstUserClickLoader] = useState(false);
 
+  const currLyricsContext = useContext(CurrLyricsContext);
+  const youtubePlayer = useRef(null);
+
   useEffect(() => {
-    // Reset player state when title or videoId changes:
+    // Reset player state when videoId changes:
     if (isPlaying) youtubePlayer.current.pauseVideo();
     setCurrentTime(0);
     setDuration(0);
@@ -45,54 +47,25 @@ function Player({ className }) {
     setIsFirstPlaying(true);
     setPlayerError(false);
 
-    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
-    if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
-
-    if (currLyricsContext.title && currLyricsContext.videoId) {
-      if (youtubePlayer.current) {
-        // API already loaded, skip the window.onYouTubeIframeAPIReady (while it's run only once at a session anyway - no use to wait for it)
-        youtubePlayer.current = new window.YT.Player('youtube-player', {
-          videoId: currLyricsContext.videoId,
-          events: {
-            onReady: onPlayerReady,
-            onStateChange: onPlayerStateChange
-          }
-        });
-      } else {
-        // First time - need to load the API
-        if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]') === null) {
-          const tag = document.createElement('script');
-          tag.src = 'https://www.youtube.com/iframe_api';
-          const firstScriptTag = document.getElementsByTagName('script')[0];
-          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        }
-
-        window.onYouTubeIframeAPIReady = () => {
-          youtubePlayer.current = new window.YT.Player('youtube-player', {
-            videoId: currLyricsContext.videoId,
-            events: {
-              onReady: onPlayerReady,
-              onStateChange: onPlayerStateChange,
-              onError: onPlayerError
-            }
-          });
-        };
-      }
+    if(currLyricsContext.videoId && currLyricsContext.title){
+      embedApiStarterService(currLyricsContext.videoId, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError);
     }
   }, [currLyricsContext.videoId]);
 
   useEffect(() => {
+    embedAPITracker();
+  }, [isPlaying]);
+
+  const embedAPITracker = () => {
     const trackInterval = setInterval(() => {
       if (youtubePlayer.current && isPlaying) {
         const time = youtubePlayer.current.getCurrentTime();
-        if (time > 0) {
-          setIsFirstPlaying(false);
-        }
+        if (time > 0) setIsFirstPlaying(false);
         setCurrentTime(time);
       }
     }, 200);
     return () => clearInterval(trackInterval);
-  }, [isPlaying]);
+  };
 
   const onPlayerReady = (event) => {
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
@@ -113,11 +86,8 @@ function Player({ className }) {
   };
 
   const togglePlay = () => {
-    if (isPlaying) {
-      youtubePlayer.current.pauseVideo();
-    } else {
-      youtubePlayer.current.playVideo();
-    }
+    if (isPlaying) youtubePlayer.current.pauseVideo();
+    else youtubePlayer.current.playVideo();
     setIsPlaying(!isPlaying);
   };
 
@@ -140,9 +110,7 @@ function Player({ className }) {
 
   const handleVolumeChange = (e, newValue) => {
     setVolume(newValue);
-    if (youtubePlayer.current) {
-      youtubePlayer.current.setVolume(newValue);
-    }
+    if (youtubePlayer.current) youtubePlayer.current.setVolume(newValue);
   };
 
   const toggleMute = () => {
@@ -206,12 +174,11 @@ function Player({ className }) {
                   ></iframe>
 
                   {/* Play icon overlay */}
-
                   <div className="play-icon-overlay">
-                    {playerError ? <ErrorOutlineOutlinedIcon className='playerError-icon'></ErrorOutlineOutlinedIcon>:
+                    {playerError ? <ErrorOutlineOutlinedIcon className='playerError-icon'></ErrorOutlineOutlinedIcon> :
                       <>{firstUserClickLoader ?
-                          <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
-                          : <PlayArrowIcon fontSize="large" />}</>}
+                        <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
+                        : <PlayArrowIcon fontSize="large" />}</>}
                   </div>
                 </span>
               </IconButton>
@@ -248,9 +215,7 @@ function Player({ className }) {
                     <LinearProgress size={18} sx={{ margin: '0 13px', width: '100%' }} ></LinearProgress>
                   }
                   <Typography variant='body2' component='p'>{formatTime(duration)}</Typography>
-
                 </>
-
               }
             </Box>
           </Card>

@@ -5,17 +5,15 @@ const StyledWishlistPage = styled(WishlistPage)`
   min-height: 70vh;
 
   p{
-    color:  ${props => props.theme.palette.secondary.dark};
+    color: ${props => props.theme.palette.secondary.dark};
   }
 
   svg{
-    color:  ${props => props.theme.palette.primary.contrastText};
+    color: ${props => props.theme.palette.primary.contrastText};
   }
 
   .remove-wish-icon{
-    svg{
-      color: rgba(${props => props.theme.palette.primary.contrastText}, 0.4);
-    }
+    color: #b6b6b6;
   }
 `;
 
