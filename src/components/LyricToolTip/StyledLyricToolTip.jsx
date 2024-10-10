@@ -6,9 +6,10 @@ const StyledLyricToolTip = styled(LyricToolTip)`
    
    .single-lyric{
       cursor: pointer;
+
       :hover{
          background-color: rgb(244, 244, 244);
-         border: 0.3px solid rgb(162, 162, 162);
+         box-shadow: 0 0 0 0.5px rgb(162, 162, 162);
          border-radius: 5px;
       } 
    }

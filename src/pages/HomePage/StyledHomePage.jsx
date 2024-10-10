@@ -79,7 +79,7 @@ const StyledHomePage = styled(HomePage)`
         
         span{
             color: ${props => props.theme.palette.primary.main};
-            margin-inline-start: -12px;
+            margin-inline-start: -17px;
         }
 
         @media (max-width: 600px) {
