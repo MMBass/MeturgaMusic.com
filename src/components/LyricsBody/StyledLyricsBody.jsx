@@ -23,12 +23,15 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .l-body-top-actions{
-    /* .add-wish-icon{
-      margin-inline-end: 30px;
-    } */
-
-    svg>path{
-      color: ${props => props.theme.palette.primary.contrastText} !important;
+     
+    @media(max-width: 600px){
+      margin-inline-start: 3px;
+      /* padding-top: 10px;
+      width: 100%;
+      text-align: center; */
+      /* display: flex;
+      justify-content: space-around;
+      align-items: center; */
     }
   }
 

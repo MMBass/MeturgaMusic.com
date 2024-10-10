@@ -1,11 +1,10 @@
 <!-- markdownlint-disable-next-line -->
 
 <h1 align="center">MeturgaMusic</h1>
-
+<h2 align="center"> The website for Israeli English learners to learn English from songs </h2>
 <br>
 <br>
-
-## Automatic EN-HE songs translator For English learners     
+   
  ### Get English songs Translated to hebrew line after line, without loosing the source language
  ### Save words, song lyrics, and practice English in a fun way
 

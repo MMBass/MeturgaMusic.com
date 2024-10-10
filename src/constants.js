@@ -10,6 +10,7 @@ const gUrl = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=
 // Redirect out links
 const googleSearchRefUri = 'https://www.google.com/search?q=';
 const youtubeEmbedUri = 'https://www.youtube.com/embed/';
+const youtubeEmbedProps = '?rel=0&fs=0&loop=1&color=white&enablejsapi=1&'; // TODO loop and rel are not wotking
 const MeturgamusicMail = 'MeturgaMusic@gmail.com';
 const instaPageUri = "https://www.instagram.com/meturgamusic";
 const faceBookPageUri = "https://www.facebook.com/people/MeturgaMusic/100088145167989";
@@ -30,6 +31,7 @@ export default {
     gUrl,
     googleSearchRefUri,
     youtubeEmbedUri,
+    youtubeEmbedProps,
     MeturgamusicMail,
     instaPageUri,
     faceBookPageUri,

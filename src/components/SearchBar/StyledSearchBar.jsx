@@ -37,6 +37,7 @@ const StyledSearchBar = styled(SearchBar)`
 
       @media (max-width: 600px) {
         width: 95%;
+        max-width: 325px;
       }
 
       input, fieldset, label{
@@ -81,7 +82,7 @@ const StyledSearchBar = styled(SearchBar)`
     z-index: 1;
 
     @media (max-width: 600px) {
-      max-width: 390px;
+      max-width: 370px;
       overflow: hidden;
       * {
         font-size: 12px;
@@ -154,7 +155,7 @@ const StyledSearchBar = styled(SearchBar)`
     .gsc-control-cse,
     .gsc-control-cse-en {
       width: 90%;
-      max-width: 390px !important;
+      max-width: 370px !important;
       overflow: hidden;
     }
 

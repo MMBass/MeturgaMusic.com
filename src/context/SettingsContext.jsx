@@ -19,6 +19,7 @@ export default function SettingsContextProvider({children}) {
 
     const [settings, setSettings] = useState({
         fontSize: { sm: Number(fontsize_ls?.sm) || 14, md: Number(fontsize_ls?.md) || 16, lg:  Number(fontsize_ls?.lg) || 18 },
+        fullScreen : false
     });
 
     const [badge, setBadge] = useState(false);
@@ -49,7 +50,11 @@ export default function SettingsContextProvider({children}) {
         }));
     }
 
-    const actions = { reduceFontSize, increaseFontSize, updateBadge };
+    function toggleFullScreen(bool) {
+        setSettings({ ...settings, fullScreen: bool});
+    }
+
+    const actions = { reduceFontSize, increaseFontSize, updateBadge, toggleFullScreen };
 
     return (
         <SettingsContext.Provider value={{ ...settings, ...actions, badge }}>

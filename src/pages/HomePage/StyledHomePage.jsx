@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import HomePage from './HomePage';
+import utils from '@/utils';
 
 const StyledHomePage = styled(HomePage)`
     .mainPics-container{
@@ -26,7 +27,10 @@ const StyledHomePage = styled(HomePage)`
         }
 
         .wide-pic-dark{
+            margin-top: 25px;
             width: 73%;
+            ${!utils.isApple() && `transform: perspective(1000px) rotateY(9deg);`}
+            box-shadow: 9px 9px 4px #4949494a;
         }
 
         .mobile-pic{
@@ -60,6 +64,10 @@ const StyledHomePage = styled(HomePage)`
 
         .home-top-p2{
             margin-top: 50px;
+            @media (min-width: 600px) {
+                margin-top: 80px;
+                padding-inline-start: 30px;
+            }
         }
     }
 
@@ -71,12 +79,13 @@ const StyledHomePage = styled(HomePage)`
         
         span{
             color: ${props => props.theme.palette.primary.main};
-            margin-inline-start: -12px;
+            margin-inline-start: -17px;
         }
 
         @media (max-width: 600px) {
             margin: 0px 0px 0px 0px;
-            font-size: 78px;
+            /* font-size: 82.5px; */
+            font-size: 20.6vw;
         }
     }
 
@@ -84,7 +93,7 @@ const StyledHomePage = styled(HomePage)`
         max-width: 740px;
         margin: 0px 0px 15px 0px;
         /* font-size: 24px; */
-        font-size: 1.9vw;
+        font-size: 1.88vw;
         font-weight: 600;
         color: ${props => props.theme.palette.primary.contrastText};
  
@@ -95,7 +104,8 @@ const StyledHomePage = styled(HomePage)`
         @media (max-width: 600px) {
             margin: 0px 0px 10px  0px;
             max-width: 320px;
-            font-size: 20px;
+            /* font-size: 23.2px; */
+            font-size: 5.4vw;
             font-weight: 600;
 
             .page-h3-break{

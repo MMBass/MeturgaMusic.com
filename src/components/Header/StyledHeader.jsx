@@ -3,15 +3,37 @@ import Header from './Header';
 
 const StyledHeader = styled(Header)`
       z-index: 2000;
-
-      a{
-        #h2-part1, #h2-part2{
-          font-weight: 600;
+      
+      @media (max-width: 600px) {
+        .nav-link{
+          display: none;
         }
       }
-      
-      button{
-        color: ${props => props.theme.palette.secondary.dark};
+
+      @media (min-width: 600px) {
+        h2{
+          margin-inline-end: 35px;
+        }
+      }
+
+      svg{
+        font-size: 20px;
+      }
+
+      .header-title{
+        display: inline-block;
+        font-size: 20px;
+        #h2-part1, #h2-part2{
+          font-weight: 600;
+          @media (min-width: 600px) {
+ 
+          }
+        }
+      }
+
+      .change-colors-container>button{
+        font-size: 25px;
+        color: ${ props => props.theme.palette.primary.contrastText };
       }
 
       /* @media (min-width: 600px) {
@@ -20,15 +42,17 @@ const StyledHeader = styled(Header)`
         }
       } */ // Use when miniDrawer is used
 
-      .burger-icon{
-        margin-top: 2px;
+      .menu-button{
+        padding-top: 8px;
       }
 
       .mui-search-icon-wrapper{
         margin-inline-end: 10px;
+        margin-inline-start: 10px;
+        color: ${props => props.theme.palette.primary.light};;
 
         .mui-search-icon{
-          margin-top: 5px;
+          margin-top: 2px;
         }
       }
 

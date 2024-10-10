@@ -33,7 +33,7 @@ export default function CurrLyricsContextProvider({ children }) {
     }, [lines, azureServerError]);
 
     useEffect(() => {
-        if (!azureServerError && title.length > 2 && videoId.length > 2) {
+        if ( title.length > 2 && videoId.length > 2) {
             utils.lsSaveSong({ title, lines, videoId, translatedBy });
         } // Update the ls videoId after all the state sets
     }, [videoId]);
@@ -57,8 +57,8 @@ export default function CurrLyricsContextProvider({ children }) {
             if (data?.combined && Array.isArray(data?.combined)) {
                 setCombined(songTitle, data);
             } else if (data?.lyrics) {
-                resetSong()
-                setSongLyrics(data, songTitle)
+                resetSong();
+                setSongLyrics(data, songTitle);
             } else {
                 setAbort(false);
                 bannersContext.createBanner('error', 'error', '', TUtils.LyricsNotFound, { actionText: TUtils.LyricsInGoogle, actionHref: constants.googleSearchRefUri + songTitle.replaceAll(' ', '+') + ' lyrics' });

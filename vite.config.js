@@ -20,5 +20,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist'
-  }
+  },
+  // server: {
+  //   host: '192.168.196.114', // Use here your Wifi host if you wish to see live on your phone
+  // },
 });

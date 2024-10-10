@@ -7,7 +7,7 @@ import ContextComposer from '@context/ContextComposer';
 ReactDOM.render(
   <StrictMode>
     <ContextComposer>
-      <App className='app' />
+      <App className='app'/>
     </ContextComposer>
   </StrictMode>,
   document.getElementById('root')

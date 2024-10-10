@@ -1,12 +1,17 @@
 import { useContext, useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 import T from "./HeaderI18n";
 
-import { useTheme } from '@mui/material/styles';
+import { useTheme, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
+import RestoreOutlinedIcon from '@mui/icons-material/RestoreOutlined';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -31,10 +36,10 @@ import { BannersContext } from '@context/BannersContext';
 import { LoadersContext } from '@context/LoadersContext';
 import { SettingsContext } from '@context/SettingsContext';
 
-import { NavLink } from 'react-router-dom';
-
 const Header = ({ className, changeColors }) => {
+  const rrdLocation = useLocation();
   const [topSearchBar, setTopSearchBar] = useState(false);
+  const [isWelcomePage, setIsWelcomePage] = useState(true);
   const theme = useTheme();
 
   const drawerContext = useContext(DrawerContext);
@@ -43,17 +48,18 @@ const Header = ({ className, changeColors }) => {
   const loadersContext = useContext(LoadersContext);
   const settingsContext = useContext(SettingsContext);
 
-  const rrdLocation = useLocation();
-
   useEffect(() => {
-
-    if(document.fullscreenElement) {
+    console.log('headerrrr');
+    
+    if (document.fullscreenElement) {
       document.exitFullscreen();
       document.body.style.overflowY = 'auto';
-    }
+    } // Make sure the fullScreen close when moving pages
+
+    setIsWelcomePage(rrdLocation.pathname === "/" && !currLyricsContext.lines?.[0]);
 
     setTopSearchBar(false);
-    window.scrollTo(0, 0); // Scroll top on router or song changes
+    // window.scrollTo(0, 0); // Scroll top on router or song changes
     if (bannersContext.error) bannersContext.closeBanner('error');
     drawerContext.closeDrawer();
   }, [rrdLocation, currLyricsContext.title]);
@@ -72,38 +78,112 @@ const Header = ({ className, changeColors }) => {
     };
   };
 
+  const iconPages = [
+    {
+      name: T.ExercisePage,
+      url: '/exercise',
+      icon:
+        <BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon>,
+    },
+    {
+      name: T.WishListPage,
+      url: '/wish-list',
+      icon: <PlaylistAddIcon className="side-icons"></PlaylistAddIcon>,
+    },
+    {
+      name: T.HistoryPage,
+      url: '/history',
+      icon: <RestoreOutlinedIcon className="side-icons"></RestoreOutlinedIcon>,
+    },
+  ];
+
+  const scrolled = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
   return (
-    <AppBar position="sticky" className={className} sx={{
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.secondary.dark
+    <AppBar position="sticky" className={className}
+     sx={{
+      visibility: settingsContext.fullScreen ? 'hidden' : 'visible',
+      backgroundColor: scrolled || !isWelcomePage ? theme.palette.primary.main : theme.palette.secondary.main,
+      boxShadow: scrolled || !isWelcomePage ? 3 : 0,
+      color: theme.palette.secondary.dark,
+      transition: 'background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
     }}>
 
       {(loadersContext.main.open) &&
-        <DeterminateLinearProgress color={loadersContext.main.color}></DeterminateLinearProgress>
+        <DeterminateLinearProgress className={'main-linear'} color={loadersContext.main.color}></DeterminateLinearProgress>
       }
 
-      <Container maxWidth={false}>
+      <Container maxWidth={false} className='header-container'>
 
-        <Toolbar disableGutters>
-          <Box>
-            <IconButton
-              className='menu-button'
-              size="large"
-              aria-label="menu-appbar"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleToggleSideBar}
+        <Toolbar disableGutters sx={{ height: '52px', minHeight: 'unset !important' }}>
+          {/* <Box> */}
+          <IconButton
+            className='menu-button'
+            size="large"
+            aria-label="menu-appbar"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleToggleSideBar}
+            sx={{ color: scrolled || !isWelcomePage ?  theme.palette.primary.contrastText : theme.palette.primary.dark }}
+          >
+            {!drawerContext.open ?
+              <Badge variant='dot' invisible={!settingsContext.badge}>
+                <svg className='drawer-menu-icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 24" width="24" height="24">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </Badge>
+              :
+              <CloseOutlinedIcon className='drawer-menu-icon' />
+            }
+
+          </IconButton>
+
+
+          {!topSearchBar &&
+            <NavLink to={'/'} onClick={() => { return; }}>
+              <Typography
+                variant="h6"
+                noWrap
+                component="h2"
+                className="header-title"
+                sx={{ display: 'flex' }}
+              >
+                <span id="h2-part1" style={{
+                  color: theme.palette.primary.contrastText
+                }}>
+                  {T.H2Part1}
+                </span>
+                <span id="h2-part2" style={{
+                    color: scrolled || !isWelcomePage ? 'white' :  theme.palette.primary.dark,
+                    transition: 'unset'
+                }}>
+                  {T.H2Part2}
+                </span>
+
+              </Typography>
+            </NavLink>
+          }
+
+          {iconPages.map((page, index) => (
+            <NavLink to={page.url} key={index} className={'nav-link top-nav-link'}
+            sx={{}}
             >
-              {!drawerContext.open ?
-                <Badge variant='dot' invisible={!settingsContext.badge}>
-                  <MenuIcon className='burger-icon' />
-                </Badge>
-                :
-                <CloseOutlinedIcon className='burger-icon' />
-              }
+              <IconButton
+                // disabled={rrdLocation.pathname === page.url}
+                className='top-nav-button'
+                size="large"
+                title={page.name}
+                sx={{ color: scrolled || !isWelcomePage ? theme.palette.primary.contrastText : theme.palette.primary.dark, backgroundColor: rrdLocation.pathname === page.url ? alpha(theme.palette.primary.contrastText, 0.2)  : 'transparent' }} 
+              >
+                {page.icon}
+              </IconButton>
+            </NavLink>
+          ))}
 
-            </IconButton>
-          </Box>
+          {/* </Box> */}
 
           {(currLyricsContext.lines?.[0] || rrdLocation.pathname !== "/") &&
             <>
@@ -121,30 +201,6 @@ const Header = ({ className, changeColors }) => {
                 </>
               }
             </>
-
-          }
-
-          {!topSearchBar &&
-            <NavLink to={'/'} onClick={() => { return; }}>
-              <Typography
-                variant="h6"
-                noWrap
-                component="h2"
-                sx={{ mr: 2, display: 'flex' }}
-              >
-                <span id="h2-part1" style={{
-                  color: theme.palette.secondary.dark
-                }}>
-                  {T.H2Part1}
-                </span>
-                <span id="h2-part2" style={{
-                  color: 'white'
-                }}>
-                  {T.H2Part2}
-                </span>
-
-              </Typography>
-            </NavLink>
           }
 
           {(rrdLocation.pathname === "/" && !topSearchBar && !currLyricsContext.lines?.[0]) &&

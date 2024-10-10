@@ -4,7 +4,6 @@ import T from "./AboutBodyI18n";
 import { useTheme } from '@mui/material/styles';
 
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -21,10 +20,10 @@ import shot1 from '@/assets/screenshots/shotone.png';
 import shot1Dark from '@/assets/screenshots/shotoneDark.png';
 import shot2 from '@/assets/screenshots/shot2.png';
 import shot2Dark from '@/assets/screenshots/shot2Dark.png';
-import shot5 from '@/assets/screenshots/shot8.png';
-import shot5Dark from '@/assets/screenshots/shot8Dark.png';
 import shot3 from '@/assets/screenshots/shot3.png';
 import shot3Dark from '@/assets/screenshots/shot3Dark.png';
+import shot5 from '@/assets/screenshots/shot8.png';
+import shot5Dark from '@/assets/screenshots/shot8Dark.png';
 
 function AboutBody({ className }) {
   const showRemoveTrigger = useScrollTrigger({
@@ -35,7 +34,7 @@ function AboutBody({ className }) {
 
   const theme = useTheme();
 
-  const data = [
+  const aboutCardsData = [
     {
       id: 1,
       img: shot1,
@@ -78,7 +77,7 @@ function AboutBody({ className }) {
     }
   ];
 
-  const [visibleItems, setVisibleItems] = useState(data);
+  const [visibleItems, setVisibleItems] = useState(aboutCardsData);
 
   // Load the visible from the local storage
   useEffect(() => {

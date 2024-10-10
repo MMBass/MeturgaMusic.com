@@ -23,7 +23,7 @@ const StyledChangeSize = styled(ChangeSize)`
     color: #fff !important;
     font-size: 12px;
     padding: 0 10px;
-    background: #ffffff47;
+    background: #eaa0a06b;
   }
 
   .Mui-disabled {

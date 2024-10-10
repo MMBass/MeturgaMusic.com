@@ -12,3 +12,6 @@ export const LocalStorageKeys = {
     HISTORY: 'meturgamm_history',
     WISHLIST: 'meturgamm_wishlist',
 }
+export const SessionStorageKeys = {
+    CURR_SONG: 'currSong',
+}

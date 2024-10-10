@@ -13,13 +13,13 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Button from '@mui/material/Button';
 
-import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import LaunchIcon from '@mui/icons-material/Launch';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 import utils from '@/utils';
 import T from "./WishlistPageI18n";
+import savedSongsService from  '@services/savedSongs';
 
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 
@@ -35,22 +35,13 @@ function WishlistPage({ className }) {
   };
 
   function handleAddSong(title) {
-    if (!localStorage.getItem('meturgamm_wish')) localStorage.setItem('meturgamm_wish', JSON.stringify([]));
-    const lsSongs = JSON.parse(localStorage.getItem('meturgamm_wish'));
-    const song = { title: title.replaceAll('&', 'and'), id: lsSongs.length.toString() };
-    if (lsSongs.some(s => s.title === song.title)) return;
-
-    lsSongs.unshift(song);  // {title: string, id: num}
-    if (lsSongs.length >= 500) songs.shift();
-
-    localStorage.setItem("meturgamm_wish", JSON.stringify(lsSongs));
+    let lsSongs = savedSongsService.handleAddSong(title);
     setSongs(lsSongs);
   };
 
   const handleDeleteClick = (id) => {
-    let newSongs = songs.filter((row) => row.id !== id);
+    let newSongs = savedSongsService.handleDeleteClick(id);
     setSongs(newSongs);
-    localStorage.setItem("meturgamm_wish", JSON.stringify(newSongs));
   };
 
   return (
@@ -69,19 +60,14 @@ function WishlistPage({ className }) {
         </Alert>
       }
 
-      <List
-        subheader={
-          <SearchBar addRecordMode={true} locat={'main'} addRecord={handleAddSong}></SearchBar>
-        }
-      >
-
+      <List subheader={<SearchBar addRecordMode={true} locat={'main'} addRecord={handleAddSong}></SearchBar>}>
         <Grid container spacing={1}>
           {songs.map((song, i) => (
             <Grid item key={song.title + i} xs={12} md={6}>
               <ListItem key={i}
                 secondaryAction={
-                  <IconButton onClick={() => { handleDeleteClick(song.id) }} edge="end" aria-label="deletcoe">
-                    <ClearRoundedIcon size="small" className='remove-wish-icon' />
+                  <IconButton onClick={() => { handleDeleteClick(song.id) }} edge="end" aria-label="deletcoe" color='info'>
+                    <ClearRoundedIcon size="small" className='remove-wish-icon' color='info'/>
                   </IconButton>
                 }>
                 <ListItemText sx={{ border: "1px solid #e8e8e8", borderRadius: '3px' }}>
@@ -98,7 +84,6 @@ function WishlistPage({ className }) {
             </Grid>
           ))}
         </Grid>
-
         {!songs[0] && <Typography sx={{ margin: '100px', textAlign: 'center' }}>{T.NoSongs}</Typography>}
       </List>
     </Box>

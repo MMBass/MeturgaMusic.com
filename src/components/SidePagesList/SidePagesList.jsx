@@ -76,7 +76,7 @@ function SidePagesList({ className, changeColors }) {
         </NavLink>
       ))}
 
-      <NavLink to={'/spotify-extension'} className={'nav-link'}>
+      {/* <NavLink to={'/spotify-extension'} className={'nav-link'}>
         <ListItem sx={{ backgroundColor: 'lightGray' }}>
           <ListItemButton>
             <ListItemIcon>
@@ -86,7 +86,7 @@ function SidePagesList({ className, changeColors }) {
             <Chip className='pages-list-chip extension-chip' label={T.LabelForComingSoon} color="secondary" variant="outlined" size='small' />
           </ListItemButton>
         </ListItem>
-      </NavLink>
+      </NavLink> */}
 
       <Divider light />
 
@@ -108,7 +108,7 @@ function SidePagesList({ className, changeColors }) {
         </ListItemButton>
       </ListItem>
       
-      {/* NOTE - OfferInstall is not working in more than once in a page, because is using uniqe window event */}
+      {/* NOTE - OfferInstall is not working in more than once in a page, because is using a uniqe window event */}
       {/* {(!utils.isApple() && !window.matchMedia('(display-mode: standalone)').matches) &&
         <ListItem sx={{ justifyContent: 'center' }}>
           <OfferInstall></OfferInstall>

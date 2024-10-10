@@ -3,6 +3,7 @@ import utils from '@/utils';
 import AboutBody from './AboutBody';
 
 const StyledAboutBody = styled(AboutBody)`
+/* margin-top: -70px; */
   width: 100%;
   font-size: 1.7vw;
   font-weight: 600;
@@ -38,8 +39,7 @@ const StyledAboutBody = styled(AboutBody)`
       border: 2px solid #848484;
       background: #80808017;
 
-      margin-top: 100px;
-      margin-bottom: 0px;
+      margin: 100px 7px 0px 7px;
 
       .img-container{
         ${!utils.isApple() && `margin-inline-end: -24px`};
@@ -67,8 +67,8 @@ const StyledAboutBody = styled(AboutBody)`
 
     img{
       ${!utils.isApple() && `transform: perspective(1000px) rotateY(15deg);`}
-
-      box-shadow: 18px 13px 4px #4949494a;
+      ${props => props.theme.mode === "dark" ? `box-shadow: 10px 10px 2px #4949494a` : `box-shadow: 18px 13px 4px #4949494a`};
+      
       @media (max-width: 600px) {
         box-shadow: 12px 10px 4px #4949494a;
       }
@@ -78,8 +78,7 @@ const StyledAboutBody = styled(AboutBody)`
   .not-even-item{
     img{
       ${!utils.isApple() && `transform: perspective(1000px) rotateY(-15deg);`}
-
-      box-shadow: -18px 13px 4px #4949494a;
+      ${props => props.theme.mode === "dark" ? `box-shadow: -10px 10px 2px #4949494a` : `box-shadow: -18px 13px 4px #4949494a`};
       @media (max-width: 600px) {
         box-shadow: -12px 10px 4px #4949494a;
       }
@@ -166,7 +165,7 @@ const StyledAboutBody = styled(AboutBody)`
       background: ${props =>
     props.theme.mode === "dark"
       ? '#303030'
-      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgb(223, 128, 142) 100%)`
+      : `linear-gradient( to left, rgb(237, 203, 203) 20%, rgba(223, 128, 142, 0.748) 100%)`
     //: `radial-gradient(circle, #edcbcb 70%, rgb(223, 128, 142) 100%)`
     };
       
