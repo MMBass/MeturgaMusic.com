@@ -11,22 +11,17 @@ import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
-import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
-import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 
 import LyricToolTip from '@components/LyricToolTip/StyledLyricToolTip';
-import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
-import ToggleFullScreen from '@components/ToggleFullScreen/ToggleFullScreen';
+import ToggleFullScreen from '@components/ToggleFullScreen/StyledToggleFullScreen';
+import ToggleSaveSong from '@components/ToggleSaveSong/StyledToggleSaveSong';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
-import savedSongsService from  '@services/savedSongs';
 import utils from '@/utils';
 import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className }) {
-  const [isSongSaved, setIsSongSaved] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const { urlSong } = useParams(); // Song of path="/songs/:directSong"
   const paramsSong = searchParams.get("song"); // Song of /?song= (with hash and without)
@@ -50,28 +45,6 @@ function LyricsBody({ className }) {
     window.location.href = "/";
   }
 
-  function handleAddSong() {
-    let lsSongs = savedSongsService.handleAddSong(currLyricsContext.title);
-    setIsSongSaved(true);
-  };
-
-  const handleDeleteClick = (id) => {
-    let newSongs = savedSongsService.handleDeleteClick(id);
-    setIsSongSaved(false);
-  };
-
-  const lyricsBodyToFullScreen = (condition) => {
-    // TODO here change the style of LyricsBody on mobile to full, and hide/clear the page header - maybe by settingsContext 
-    switch (condition) {
-      case 'enter':
-        break;
-      case 'exsit':
-        break;
-      default:
-        break;
-    }
-  }
-
   return (
     <Paper elevation={3} className={className}>
       <Grid container rowSpacing={1} columnSpacing={0}>
@@ -79,17 +52,10 @@ function LyricsBody({ className }) {
         <Grid item xs={12} className="l-body-top">
 
           <Grid container className="l-body-top-actions" justifyContent={window.innerWidth > 600 ? "space-between" : "flex-start"} alignItems="center">
-            {!urlSong &&
-              <IconButton onClick={() => currLyricsContext.resetSong(setSearchParams)}>
-                <HighlightOffRoundedIcon className='remove-icon' />
-              </IconButton>
-            }
-            {urlSong && // If the song is from /songs path, change also the path while reset
-              <IconButton onClick={() => currLyricsContext.resetSong(handleBackToHome)}>
-                <HighlightOffRoundedIcon className='remove-icon' />
-              </IconButton>
-            }
 
+            <IconButton onClick={() => currLyricsContext.resetSong(urlSong ? handleBackToHome : setSearchParams /* If the song is from /songs path, change also the path while reset */)}>
+              <CloseOutlinedIcon className='remove-icon' />
+            </IconButton>
 
             {currLyricsContext.translatedBy &&
               <Chip className='trans-by-chip'
@@ -98,16 +64,12 @@ function LyricsBody({ className }) {
             }
 
             {/* Todo fit the design for mobile: */}
-            {/* {window.innerWidth > 600 &&
+            {window.innerWidth > 600 &&
               <div className="l-body-top-actions">
-                <IconButton title={T.Save} onClick={() => handleAddSong()}>
-                  {!isSongSaved ?  <BookmarkAddIcon className='add-wish-icon' /> : <BookmarkAddedIcon className='add-wish-icon'></BookmarkAddedIcon>}
-                </IconButton>
-
-                <ToggleFullScreen title="Full Screen" className='full-screen-toggle' fullScreenHelper={() => lyricsBodyToFullScreen()}></ToggleFullScreen>
+                <ToggleSaveSong songTitle={currLyricsContext.title}></ToggleSaveSong>
+                <ToggleFullScreen></ToggleFullScreen>
               </div>
-            } */}
-
+            }
           </Grid>
 
           {!urlSong &&
@@ -188,7 +150,6 @@ function LyricsBody({ className }) {
             </Grid>
           );
         })}
-        {/* <OfferInstall></OfferInstall> */}
       </Grid>
     </Paper>
   );

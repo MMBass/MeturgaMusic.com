@@ -23,13 +23,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .l-body-top-actions{
-    /* .add-wish-icon{
-      margin-inline-end: 30px;
-    } */
-
-    svg>path{
-      color: ${props => props.theme.palette.primary.contrastText} !important;
-    }
+  
   }
 
   .full-screen-toggle svg{

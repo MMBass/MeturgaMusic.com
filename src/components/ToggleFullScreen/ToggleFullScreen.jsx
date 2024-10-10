@@ -1,36 +1,50 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import IconButton from '@mui/material/IconButton';
+import Chip from '@mui/material/Chip';
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
-function ToggleFullScreen({ className, fullScreenHelper }) {
+import { SettingsContext } from '@context/SettingsContext';
+
+import T from './ToggleFullScreenI18n';
+function ToggleFullScreen({ className }) {
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener('fullscreenchange', handleFullScreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullScreenChange);
+    };
+  }, []);
+
+
+  const handleFullScreenChange = () => {
+    setIsFullScreen(!!document.fullscreenElement);
+  };
 
   const handleToggleFullScreen = () => {
     if (!isFullScreen) {
       document.body.requestFullscreen();
       document.body.style.overflowY = 'scroll';
-      document.body.style.setProperty('::-webkit-scrollbar', 'display: none');
-      fullScreenHelper('enter');
     } else {
       document.exitFullscreen();
       document.body.style.overflowY = 'auto';
-      fullScreenHelper('exsit');
     }
     setIsFullScreen(prev => !prev);
+    SettingsContext.toggleFullScreen();
   };
 
   return (
-    <IconButton className={className}>
-      {
-        isFullScreen ?
-          <CloseFullscreenIcon onClick={handleToggleFullScreen}></CloseFullscreenIcon>
-          :
-          <OpenInFullIcon onClick={handleToggleFullScreen}></OpenInFullIcon>
-      }
-    </IconButton>
+    <Chip className={className}
+    onClick={handleToggleFullScreen}
+      icon={isFullScreen ?
+        <CloseFullscreenIcon></CloseFullscreenIcon>
+        :
+        <OpenInFullIcon></OpenInFullIcon>}
+      label={!isFullScreen ? T.Title: T.Exit}
+    />
   );
 }
 
