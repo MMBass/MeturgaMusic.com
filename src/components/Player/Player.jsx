@@ -11,8 +11,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
-import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import FastRewindIcon from '@mui/icons-material/FastRewind';
@@ -20,10 +18,6 @@ import FastForwardIcon from '@mui/icons-material/FastForward';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
-
-import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined';
-import FastForwardOutlinedIcon from '@mui/icons-material/FastForwardOutlined';
-import FastRewindOutlinedIcon from '@mui/icons-material/FastRewindOutlined';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
@@ -44,6 +38,7 @@ function Player({ className }) {
 
   useEffect(() => {
     // Reset player state when title or videoId changes:
+    if (isPlaying) youtubePlayer.current.pauseVideo();
     setCurrentTime(0);
     setDuration(0);
     setIsPlaying(false);
@@ -52,7 +47,6 @@ function Player({ className }) {
 
     setHide(!JSON.parse(localStorage.getItem('showPlayer')));
     if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
-    console.log(youtubePlayer.current);
 
     if (currLyricsContext.title && currLyricsContext.videoId) {
       if (youtubePlayer.current) {
@@ -103,27 +97,20 @@ function Player({ className }) {
   const onPlayerReady = (event) => {
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
     setDuration(event.target.getDuration());
-    setFirstUserClickLoader(false);
     youtubePlayer.current.setVolume(100); // TODO remove if using volume slider
   };
 
   const onPlayerStateChange = (event) => {
     if (event.data === -1) setFirstUserClickLoader(true);
+    else if (firstUserClickLoader) setFirstUserClickLoader(false);
     setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
   };
 
   const onPlayerError = (event) => {
     console.log('Player Error: ' + event.data);
-    if (event.data === 150) {
-      setPlayerError("Video Unavailable");
-    } else {
-      setPlayerError("Something went wrong");
-    }
+    if (event.data === 150) setPlayerError("Video Unavailable");
+    else setPlayerError("Something went wrong");
   };
-
-  // function toggleFull() {
-  //   setFullSize(!fullSize);
-  // }
 
   const togglePlay = () => {
     if (isPlaying) {
@@ -202,7 +189,7 @@ function Player({ className }) {
               </IconButton>
 
               <IconButton onClick={() => skipSeconds(-10)}>
-                <FastForwardOutlinedIcon />
+                <FastForwardIcon />
               </IconButton>
 
               <IconButton disableRipple={true} sx={{ visibility: !isFirstPlaying ? 'hidden' : 'visible', position: !isFirstPlaying ? 'fixed' : 'relative' }}>
@@ -213,30 +200,31 @@ function Player({ className }) {
                     src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
                     title={'video'}
                     allowFullScreen={false}
-                    allow='autoplay' // Probably blocked by browser
+                    allow='autoplay' // Probably blocked by the browser
                     width={isFirstPlaying ? "30" : "0"}
                     height={isFirstPlaying ? "30" : "0"}
                   ></iframe>
 
                   {/* Play icon overlay */}
+
                   <div className="play-icon-overlay">
-                    {firstUserClickLoader ?
-                      <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
-                      : <PlayArrowOutlinedIcon fontSize="large" />}
+                    {playerError ? <ErrorOutlineOutlinedIcon className='playerError-icon'></ErrorOutlineOutlinedIcon>:
+                      <>{firstUserClickLoader ?
+                          <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
+                          : <PlayArrowIcon fontSize="large" />}</>}
                   </div>
                 </span>
               </IconButton>
 
-              <IconButton onClick={togglePlay} style={{ display: isFirstPlaying ? 'none' : 'flex' }}>
+              <IconButton onClick={togglePlay} sx={{ display: isFirstPlaying ? 'none' : 'flex', marginTop: '-3px' }}>
                 {playerError ?
                   <ErrorOutlineOutlinedIcon></ErrorOutlineOutlinedIcon>
                   :
-                  <>{isPlaying ? <PauseIcon fontSize='large' /> : <PlayArrowOutlinedIcon fontSize='large' />}</>
-                }
+                  <>{isPlaying ? <PauseIcon fontSize='large' /> : <PlayArrowIcon fontSize='large' />}</>}
               </IconButton>
 
               <IconButton onClick={() => skipSeconds(10)}>
-                <FastRewindOutlinedIcon />
+                <FastRewindIcon />
               </IconButton>
               <IconButton className='drag-handle'>
                 <DragIndicatorIcon className='drag-icon' />

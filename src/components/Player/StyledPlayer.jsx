@@ -33,6 +33,16 @@ const StyledPlayer = styled(Player)`
          justify-content: center;
          align-items: center;
       }
+
+      .playerError-icon{
+         pointer-events: all;
+         cursor: text;
+      }
+
+   }
+
+   .drag-icon{
+      cursor: grab;
    }
 `;
 
