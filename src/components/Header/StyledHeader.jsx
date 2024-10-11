@@ -25,9 +25,6 @@ const StyledHeader = styled(Header)`
         font-size: 20px;
         #h2-part1, #h2-part2{
           font-weight: 600;
-          @media (min-width: 600px) {
- 
-          }
         }
       }
 

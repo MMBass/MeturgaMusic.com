@@ -26,6 +26,7 @@ function ToggleSaveSong({ className, songTitle }) {
       icon={!isSongSaved ? <BookmarkAddIcon className='add-wish-icon' /> : <BookmarkRemoveIcon className='add-wish-icon' ></BookmarkRemoveIcon>}
       label={isSongSaved ? T.removeSong : T.saveSong}
       size='small' 
+      variant="outlined"
     />
   );
 }

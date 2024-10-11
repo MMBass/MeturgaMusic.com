@@ -44,6 +44,7 @@ function ToggleFullScreen({ className }) {
         <OpenInFullIcon></OpenInFullIcon>}
       label={!isFullScreen ? T.Title: T.Exit}
       size='small' 
+      variant="outlined"
     />
   );
 }

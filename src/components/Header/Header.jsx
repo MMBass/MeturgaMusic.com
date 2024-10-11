@@ -5,7 +5,6 @@ import T from "./HeaderI18n";
 
 import { useTheme, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -49,11 +48,11 @@ const Header = ({ className, changeColors }) => {
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-    console.log('headerrrr');
     
     if (document.fullscreenElement) {
       document.exitFullscreen();
       document.body.style.overflowY = 'auto';
+      settingsContext.toggleFullScreen(false);
     } // Make sure the fullScreen close when moving pages
 
     setIsWelcomePage(rrdLocation.pathname === "/" && !currLyricsContext.lines?.[0]);
@@ -106,6 +105,7 @@ const Header = ({ className, changeColors }) => {
     <AppBar position="sticky" className={className}
      sx={{
       visibility: settingsContext.fullScreen ? 'hidden' : 'visible',
+      height: settingsContext.fullScreen ? '0px' : '52px',
       backgroundColor: scrolled || !isWelcomePage ? theme.palette.primary.main : theme.palette.secondary.main,
       boxShadow: scrolled || !isWelcomePage ? 3 : 0,
       color: theme.palette.secondary.dark,

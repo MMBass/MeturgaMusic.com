@@ -64,13 +64,10 @@ function LyricsBody({ className }) {
                 color="default" variant="filled" size='small' />
             }
 
-            {/* Todo fit the design for mobile: */}
-            {/* {window.innerWidth > 600 && */}
-              <div className="l-body-top-actions">
-                <ToggleSaveSong songTitle={currLyricsContext.title}></ToggleSaveSong>
-                <ToggleFullScreen></ToggleFullScreen>
-              </div>
-            {/* } */}
+            <div className="l-body-top-actions">
+              <ToggleSaveSong songTitle={currLyricsContext.title}></ToggleSaveSong>
+              <ToggleFullScreen></ToggleFullScreen>
+            </div>
           </Grid>
 
           {!urlSong &&

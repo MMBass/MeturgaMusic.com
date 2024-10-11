@@ -23,16 +23,8 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .l-body-top-actions{
-     
-    @media(max-width: 600px){
-      margin-inline-start: 3px;
-      /* padding-top: 10px;
-      width: 100%;
-      text-align: center; */
-      /* display: flex;
-      justify-content: space-around;
-      align-items: center; */
-    }
+    justify-content: space-between;
+    padding-inline-start: 10px;
   }
 
   .full-screen-toggle svg{
@@ -42,6 +34,9 @@ const StyledLyricsBody = styled(LyricsBody)`
   .trans-by-chip{
     padding: 3px;
     margin-inline-start: 30px;
+    @media (max-width: 600px) {
+      margin-inline-start: 10px;
+  }
   }
 
   h3{

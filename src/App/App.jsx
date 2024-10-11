@@ -87,7 +87,7 @@ function App({ className }) {
           <Router>
             <HeadTags currTitle={currTitle}></HeadTags>
             <Layout>
-              <Header className="header" changeColors={changeTheme}></Header>
+              <Header className="layout-header" changeColors={changeTheme}></Header>
 
               {(bannersContext.main?.open) &&
                 <Alert severity="warning" className='main-alert'>
