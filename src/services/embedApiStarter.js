@@ -17,7 +17,7 @@ export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange,
         if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
 
 
-        if (youtubePlayer.current.loadVideoById ) {
+        if (youtubePlayer?.current?.loadVideoById ) {
             // API already loaded, skip the window.onYouTubeIframeAPIReady (while it's run only once at a session anyway - no use to wait for it)
             youtubePlayer.current.loadVideoById(vID);
         } else {
