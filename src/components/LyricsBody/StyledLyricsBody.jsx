@@ -25,6 +25,9 @@ const StyledLyricsBody = styled(LyricsBody)`
   .l-body-top-actions{
     justify-content: space-between;
     padding-inline-start: 10px;
+    @media (max-width: 600px) {
+      padding-inline-start: 5px;
+    }
   }
 
   .full-screen-toggle svg{
@@ -35,8 +38,8 @@ const StyledLyricsBody = styled(LyricsBody)`
     padding: 3px;
     margin-inline-start: 30px;
     @media (max-width: 600px) {
-      margin-inline-start: 10px;
-  }
+      margin-inline-start: 3px;
+    }
   }
 
   h3{
