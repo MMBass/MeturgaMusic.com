@@ -3,8 +3,8 @@ import utils from "@/utils";
 const MeturgaMusicUrl = " Https://MeturgaMusic.com ";
 
 // Data links
-const prodServerUri = 'https://musicline-backend.vercel.app';
-const devServerUri = utils.isLocalhost() ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app'; // if running on a cloud server - use the prod url anyway (for case of wrong deploying)
+const prodServerUri = 'Https://api.MeturgaMusic.com';
+const devServerUri = utils.isLocalhost() ? 'http://localhost:5000' : 'Https://api.MeturgaMusic.com'; // if running on a cloud server - use the prod url anyway (for case of wrong deploying)
 const gUrl = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=he&dt=t&q=';
 
 // Redirect out links
