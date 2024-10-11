@@ -28,7 +28,6 @@ const StyledLyricsBody = styled(LyricsBody)`
 
     @media (max-width: 600px) {
       justify-content: center;
-      padding-top: 8px;
       padding-inline-start: 5px;
     }
   }

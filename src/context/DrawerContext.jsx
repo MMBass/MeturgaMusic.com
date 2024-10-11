@@ -21,4 +21,3 @@ export default function DrawerContextProvider({children}) {
         </DrawerContext.Provider>
     );
 };
-

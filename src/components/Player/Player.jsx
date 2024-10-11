@@ -74,6 +74,8 @@ function Player({ className }) {
   };
 
   const onPlayerStateChange = (event) => {
+    console.log('Player State: ' + event.data);
+    
     if (event.data === -1) setFirstUserClickLoader(true);
     else if (firstUserClickLoader) setFirstUserClickLoader(false);
     setIsPlaying(event.data === window.YT.PlayerState.PLAYING);

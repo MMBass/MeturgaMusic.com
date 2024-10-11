@@ -43,6 +43,7 @@ import ExercisePage from '@pages/ExercisePage/StyledExercisePage';
 import SpotifyExtensionPage from '@pages/SpotifyExtensionPage/StyledSpotifyExtensionPage';
 import AboutPage from '@pages/AboutPage/StyledAboutPage';
 import NoMatchPage from '@pages/NoMatchPage/StyledNoMatchPage';
+import SiteMap from '@pages/SiteMap/SiteMap';
 
 function App({ className }) {
   const drawerContext = useContext(DrawerContext);
@@ -108,6 +109,7 @@ function App({ className }) {
                   <Route path="/song/:urlSong" element={<HomePage className={'page'} rank={1} />} />
 
                   <Route path="*" element={<NoMatchPage className={'page'} />} />
+                  <Route path="/map" element={<SiteMap />} />
                 </Routes>
               </main>
 

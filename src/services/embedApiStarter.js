@@ -13,49 +13,35 @@
  * It also manages the 'showPlayer' flag in localStorage.
  */
 export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError) {
-    if (vID) {
+    if(vID){
         if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
 
-        // if (youtubePlayer.current) {
-        //     // API already loaded, skip the window.onYouTubeIframeAPIReady (while it's run only once at a session anyway - no use to wait for it)
-        //     youtubePlayer.current = new window.YT.Player('youtube-player', {
-        //         videoId: vID,
-        //         events: {
-        //             onReady: onPlayerReady,
-        //             onStateChange: onPlayerStateChange,
-        //             onError: onPlayerError
-        //         }
-        //     });
-        // } else {
-        // First time - need to load the API
-        if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]') === null) {
-            const tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        } else {
-            const existingScript = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
-            if (existingScript) {
-                existingScript.remove();
-            }
-            const tag = document.createElement('script');
-            tag.src = 'https://www.youtube.com/iframe_api';
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        }
 
-        window.onYouTubeIframeAPIReady = () => {
-            console.log('onYouTubeIframeAPIReady');
-            
-            youtubePlayer.current = new window.YT.Player('youtube-player', {
-                videoId: vID,
-                events: {
-                    onReady: onPlayerReady,
-                    onStateChange: onPlayerStateChange,
-                    onError: onPlayerError
-                }
-            });
-        };
-        // }
+        if (youtubePlayer.current) {
+            // API already loaded, skip the window.onYouTubeIframeAPIReady (while it's run only once at a session anyway - no use to wait for it)
+            youtubePlayer.current.loadVideoById(vID);
+        } else {
+            // First time - need to load the API
+            if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]') === null) {
+                const tag = document.createElement('script');
+                tag.src = 'https://www.youtube.com/iframe_api';
+                const firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            }
+    
+            window.onYouTubeIframeAPIReady = () => {
+                youtubePlayer.current = new window.YT.Player('youtube-player', {
+                    videoId: vID,
+                    events: {
+                        onReady: onPlayerReady,
+                        onStateChange: onPlayerStateChange,
+                        onError: onPlayerError,
+                        onApiChange: (event) => {
+                            if(event.data)  console.log(event.data);
+                        }
+                    }
+                });
+            };
+        }
     }
 }
