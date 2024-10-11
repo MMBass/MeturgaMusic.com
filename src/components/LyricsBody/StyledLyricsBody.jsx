@@ -24,10 +24,11 @@ const StyledLyricsBody = styled(LyricsBody)`
 
   .l-body-top-actions{
     justify-content: space-between;
-    
     padding-inline-start: 10px;
+
     @media (max-width: 600px) {
       justify-content: center;
+      padding-top: 8px;
       padding-inline-start: 5px;
     }
   }
