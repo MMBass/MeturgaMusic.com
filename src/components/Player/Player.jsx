@@ -43,7 +43,7 @@ function Player({ className }) {
 
   useEffect(() => {
     // Reset player state when videoId changes:
-    if (isPlaying && youtubePlayer.current.pauseVideo ) youtubePlayer.current.pauseVideo();
+    if (isPlaying && youtubePlayer?.current?.pauseVideo ) youtubePlayer.current.pauseVideo();
     setCurrentTime(0);
     setDuration(0);
     setIsPlaying(false);
@@ -57,14 +57,18 @@ function Player({ className }) {
   }, [currLyricsContext.videoId]);
 
   useEffect(() => {
-    const cleanupFunction = embedAPITracker();
-    return cleanupFunction;
+    if(youtubePlayer?.current){
+      const cleanupFunction = embedAPITracker();
+      return cleanupFunction;
+    } else {
+      return;
+    }
   }, [isPlaying]);
   
   const embedAPITracker = () => {
     let trackInterval;
   
-    if (isPlaying && !youtubePlayer.current.getCurrentTime) {
+    if (isPlaying && !youtubePlayer?.current?.getCurrentTime) {
       youtubePlayer.current = null;
       setDisLegacyPlayer(true);
     } else {
