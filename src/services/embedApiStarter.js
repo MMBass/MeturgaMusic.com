@@ -36,6 +36,8 @@ export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange,
             }
     
             window.onYouTubeIframeAPIReady = () => {
+                console.log('onYouTubeIframeAPIReady');
+                
                 youtubePlayer.current = new window.YT.Player('youtube-player', {
                     videoId: vID,
                     events: {

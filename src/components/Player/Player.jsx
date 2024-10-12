@@ -23,6 +23,8 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
 import embedApiStarterService from '@services/embedApiStarter';
 
+import LegacyPlayer from '@components/LegacyPlayer/StyledLegacyPlayer';
+
 function Player({ className }) {
   const [hide, setHide] = useState(!JSON.parse(localStorage.getItem('showPlayer')));
   const [fullSize, setFullSize] = useState(false);
@@ -34,6 +36,7 @@ function Player({ className }) {
   const [isMuted, setIsMuted] = useState(false);
   const [playerError, setPlayerError] = useState(false);
   const [firstUserClickLoader, setFirstUserClickLoader] = useState(false);
+  const [disLegacyPlayer, setDisLegacyPlayer] = useState(false);
 
   const currLyricsContext = useContext(CurrLyricsContext);
   const youtubePlayer = useRef(null);
@@ -46,6 +49,7 @@ function Player({ className }) {
     setIsPlaying(false);
     setIsFirstPlaying(true);
     setPlayerError(false);
+    if (firstUserClickLoader) setFirstUserClickLoader(false);
 
     if (currLyricsContext.videoId && currLyricsContext.title) {
       embedApiStarterService(currLyricsContext.videoId, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError);
@@ -57,30 +61,35 @@ function Player({ className }) {
   }, [isPlaying]);
 
   const embedAPITracker = () => {
-    const trackInterval = setInterval(() => {
-      if (youtubePlayer.current && isPlaying) {
-        const time = youtubePlayer.current.getCurrentTime();
-        if(!time) setCurrentTime(0);
-        if (time > 0) {
-          setIsFirstPlaying(false);
-          setCurrentTime(time);
+    if (isPlaying && !youtubePlayer.current.getCurrentTime) {
+      setDisLegacyPlayer(true);
+    } else {
+      const trackInterval = setInterval(() => {
+        if (youtubePlayer.current && isPlaying) {
+          const time = youtubePlayer.current.getCurrentTime();
+          if (!time) setCurrentTime(0);
+          if (time > 0) {
+            setIsFirstPlaying(false);
+            setCurrentTime(time);
+          }
         }
-      }
-    }, 200);
-    return () => clearInterval(trackInterval);
+      }, 200);
+      return () => clearInterval(trackInterval);
+    }
   };
 
   const onPlayerReady = (event) => {
+    console.log('Player Ready Dur: ' + event.target.getDuration());
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
+    if (firstUserClickLoader) setFirstUserClickLoader(false);
     setDuration(event.target.getDuration());
     youtubePlayer.current.setVolume(100); // TODO remove if using volume slider
   };
 
   const onPlayerStateChange = (event) => {
-
     if (event.data === -1) setFirstUserClickLoader(true);
     else if (firstUserClickLoader) setFirstUserClickLoader(false);
-    setIsPlaying(event.data === 1); // TODO check if 1 is playing
+    setIsPlaying(event.data === 1)// TODO check if 1 is playing
   };
 
   const onPlayerError = (event) => {
@@ -138,7 +147,12 @@ function Player({ className }) {
 
   return (
     <>
-      {(!hide && currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
+      <p>PLAYER !</p>
+      {(disLegacyPlayer && !hide && currLyricsContext.videoId) &&
+        <LegacyPlayer> </LegacyPlayer>
+      }
+
+      {(!hide && currLyricsContext.videoId && !disLegacyPlayer) &&
         <Draggable handle=".drag-handle" bounds="parent">
           <Card sx={{ display: 'flex', flexDirection: 'column', width: fullSize ? '300px' : '250px' }} className={className}>
             {/* <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 8px' }}>
@@ -187,9 +201,9 @@ function Player({ className }) {
                 </span>
               </IconButton>
 
-              <IconButton onClick={togglePlay} sx={{ display: isFirstPlaying ? 'none' : 'flex', marginTop: '-2px' }}>
+              <IconButton className='main-play-icon-wrapper' onClick={togglePlay} sx={{ display: isFirstPlaying ? 'none' : 'flex', marginTop: '-2px' }}>
                 {playerError ?
-                  <ErrorOutlineOutlinedIcon></ErrorOutlineOutlinedIcon>
+                  <ErrorOutlineOutlinedIcon className='playerError-icon'></ErrorOutlineOutlinedIcon>
                   :
                   <>{isPlaying ? <PauseRounded fontSize='large' /> : <PlayArrowRounded fontSize='large' />}</>}
               </IconButton>
