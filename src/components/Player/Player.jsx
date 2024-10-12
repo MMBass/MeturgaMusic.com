@@ -62,6 +62,8 @@ function Player({ className }) {
 
   const embedAPITracker = () => {
     if (isPlaying && !youtubePlayer.current.getCurrentTime) {
+      if (isPlaying) youtubePlayer.current.pauseVideo();
+      youtubePlayer.current = null;
       setDisLegacyPlayer(true);
     } else {
       const trackInterval = setInterval(() => {
@@ -79,7 +81,6 @@ function Player({ className }) {
   };
 
   const onPlayerReady = (event) => {
-    console.log('Player Ready Dur: ' + event.target.getDuration());
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
     if (firstUserClickLoader) setFirstUserClickLoader(false);
     setDuration(event.target.getDuration());
