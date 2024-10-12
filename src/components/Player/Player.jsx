@@ -156,7 +156,6 @@ function Player({ className }) {
 
   return (
     <>
-      <p>PLAYER !</p>
       {(disLegacyPlayer && !hide && currLyricsContext.videoId) &&
         <LegacyPlayer> </LegacyPlayer>
       }
