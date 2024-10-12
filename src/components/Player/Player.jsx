@@ -11,10 +11,10 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
-import FastRewindIcon from '@mui/icons-material/FastRewind';
-import FastForwardIcon from '@mui/icons-material/FastForward';
+import PauseRounded from '@mui/icons-material/PauseRounded';
+import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
+import FastForwardRounded from '@mui/icons-material/FastForwardRounded';
+import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
@@ -47,7 +47,7 @@ function Player({ className }) {
     setIsFirstPlaying(true);
     setPlayerError(false);
 
-    if(currLyricsContext.videoId && currLyricsContext.title){
+    if (currLyricsContext.videoId && currLyricsContext.title) {
       embedApiStarterService(currLyricsContext.videoId, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError);
     }
   }, [currLyricsContext.videoId]);
@@ -60,8 +60,11 @@ function Player({ className }) {
     const trackInterval = setInterval(() => {
       if (youtubePlayer.current && isPlaying) {
         const time = youtubePlayer.current.getCurrentTime();
-        if (time > 0) setIsFirstPlaying(false);
-        setCurrentTime(time);
+        if(!time) setCurrentTime(0);
+        if (time > 0) {
+          setIsFirstPlaying(false);
+          setCurrentTime(time);
+        }
       }
     }, 200);
     return () => clearInterval(trackInterval);
@@ -74,11 +77,10 @@ function Player({ className }) {
   };
 
   const onPlayerStateChange = (event) => {
-    console.log('Player State: ' + event.data);
-    
+    console.log('Player quality:', youtubePlayer.current.getPlaybackQuality());
     if (event.data === -1) setFirstUserClickLoader(true);
     else if (firstUserClickLoader) setFirstUserClickLoader(false);
-    setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
+    setIsPlaying(event.data === 1); // TODO check if 1 is playing
   };
 
   const onPlayerError = (event) => {
@@ -159,7 +161,7 @@ function Player({ className }) {
               </IconButton>
 
               <IconButton onClick={() => skipSeconds(-10)}>
-                <FastForwardIcon />
+                <FastForwardRounded />
               </IconButton>
 
               <IconButton disableRipple={true} sx={{ visibility: !isFirstPlaying ? 'hidden' : 'visible', position: !isFirstPlaying ? 'fixed' : 'relative' }}>
@@ -170,7 +172,7 @@ function Player({ className }) {
                     src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
                     title={'video'}
                     allowFullScreen={false}
-                    allow='autoplay' // Probably blocked by the browser
+                    // allow='autoplay' // Probably blocked by the browser, and if not - cause issue when loadVideoById() that the play btn stay off 
                     width={isFirstPlaying ? "30" : "0"}
                     height={isFirstPlaying ? "30" : "0"}
                   ></iframe>
@@ -180,20 +182,20 @@ function Player({ className }) {
                     {playerError ? <ErrorOutlineOutlinedIcon className='playerError-icon'></ErrorOutlineOutlinedIcon> :
                       <>{firstUserClickLoader ?
                         <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
-                        : <PlayArrowIcon fontSize="large" />}</>}
+                        : <PlayArrowRounded fontSize="large" />}</>}
                   </div>
                 </span>
               </IconButton>
 
-              <IconButton onClick={togglePlay} sx={{ display: isFirstPlaying ? 'none' : 'flex', marginTop: '-3px' }}>
+              <IconButton onClick={togglePlay} sx={{ display: isFirstPlaying ? 'none' : 'flex', marginTop: '-2px' }}>
                 {playerError ?
                   <ErrorOutlineOutlinedIcon></ErrorOutlineOutlinedIcon>
                   :
-                  <>{isPlaying ? <PauseIcon fontSize='large' /> : <PlayArrowIcon fontSize='large' />}</>}
+                  <>{isPlaying ? <PauseRounded fontSize='large' /> : <PlayArrowRounded fontSize='large' />}</>}
               </IconButton>
 
               <IconButton onClick={() => skipSeconds(10)}>
-                <FastRewindIcon />
+                <FastRewindRounded />
               </IconButton>
               <IconButton className='drag-handle'>
                 <DragIndicatorIcon className='drag-icon' />
@@ -216,7 +218,7 @@ function Player({ className }) {
                     :
                     <LinearProgress size={18} sx={{ margin: '0 13px', width: '100%' }} ></LinearProgress>
                   }
-                  <Typography variant='body2' component='p'>{formatTime(duration)}</Typography>
+                  <Typography variant='button' component='p'>{formatTime(duration)}</Typography>
                 </>
               }
             </Box>

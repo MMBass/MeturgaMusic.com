@@ -4,6 +4,12 @@ import Player from './Player';
 const StyledPlayer = styled(Player)`
    background-color: #d9d9d9f7;
 
+   p{
+      font-family: 'Poppins','Roboto', 'sans-serif';
+      font-size: 11px;
+      color: #555555;
+   }
+
    position: fixed;
    bottom: 32px;
    left: 80px;

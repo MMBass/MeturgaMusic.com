@@ -3,6 +3,12 @@ https://MeturgaMusic.com
 https://meturgamusic.com/spotify-extension
 https://meturgamusic.com/about
 
+https://meturgamusic.com/song/*NSYNC_Bye-Bye-Bye
+https://meturgamusic.com/song/Billie-Eilish_WILDFLOWER
+https://meturgamusic.com/song/SYML_Where%27s-My-Love
+https://meturgamusic.com/song/Lady-Gaga-and-Bruno-Mars_Die-With-a-Smile
+https://meturgamusic.com/song/Sabrina-Carpenter_Taste
+https://meturgamusic.com/song/Coldplay%2C-Little-Simz%2C-Burna-Boy%2C-Elyanna-and-TINI_WE-PRAY
 
 https://meturgamusic.com/song/Tommy-Richman_MILLION-DOLLAR-BABY
 https://meturgamusic.com/song/Tyla_Water
@@ -14,6 +20,8 @@ https://meturgamusic.com/songs/Billie-Eilish_BIRDS-OF-A-FEATHER
 https://meturgamusic.com/songs/FloyyMenor-and-Cris-Mj_Gata-Only
 https://meturgamusic.com/songs/Eminem_Houdini
 https://meturgamusic.com/songs/Coldplay_Viva-La-Vida
+https://meturgamusic.com/songs/Miley-Cyrus_Flowers
+https://meturgamusic.com/songs/The-Alan-Parsons-Project_Eye-in-the-Sky
 
 https://meturgamusic.com/songs/Eden-Golan_Hurricane
 https://meturgamusic.com/songs/Beyonc%C3%A9_TEXAS-HOLD-%27EM

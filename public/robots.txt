@@ -9,3 +9,4 @@ Allow: /
 Allow: /*
 
 Sitemap: https://MeturgaMusic.com/sitemap.txt
+Sitemap: https://MeturgaMusic.com/focused-sitemap.txt
