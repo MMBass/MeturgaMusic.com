@@ -13,24 +13,17 @@
  * It also manages the 'showPlayer' flag in localStorage.
  */
 export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError) {
-    if (vID) {
+    if(vID){
         if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
 
-
-        if (youtubePlayer?.current?.loadVideoById) {
+        if (youtubePlayer.current) {
             // API already loaded, skip the window.onYouTubeIframeAPIReady (while it's run only once at a session anyway - no use to wait for it)
-            youtubePlayer.current.loadVideoById(vID); // Doesn't work when R translation is on. Also other mothods of creating a new instance Are not working in this case 
-        } else if (youtubePlayer.current) {
-            // API already loaded, skip the window.onYouTubeIframeAPIReady ...
             youtubePlayer.current = new window.YT.Player('youtube-player', {
                 videoId: vID,
                 events: {
                     onReady: onPlayerReady,
                     onStateChange: onPlayerStateChange,
-                    onError: onPlayerError,
-                    onApiChange: (event) => {
-                        if (event.data) console.log(event.data);
-                    }
+                    onError: onPlayerError
                 }
             });
         } else {
@@ -41,17 +34,14 @@ export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange,
                 const firstScriptTag = document.getElementsByTagName('script')[0];
                 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
             }
-
+    
             window.onYouTubeIframeAPIReady = () => {
                 youtubePlayer.current = new window.YT.Player('youtube-player', {
                     videoId: vID,
                     events: {
                         onReady: onPlayerReady,
                         onStateChange: onPlayerStateChange,
-                        onError: onPlayerError,
-                        onApiChange: (event) => {
-                            if (event.data) console.log('onApiChange: ' + event.data);
-                        }
+                        onError: onPlayerError
                     }
                 });
             };

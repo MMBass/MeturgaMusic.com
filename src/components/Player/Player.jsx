@@ -77,7 +77,7 @@ function Player({ className }) {
   };
 
   const onPlayerStateChange = (event) => {
-    console.log('Player quality:', youtubePlayer.current.getPlaybackQuality());
+
     if (event.data === -1) setFirstUserClickLoader(true);
     else if (firstUserClickLoader) setFirstUserClickLoader(false);
     setIsPlaying(event.data === 1); // TODO check if 1 is playing
