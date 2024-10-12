@@ -57,16 +57,19 @@ function Player({ className }) {
   }, [currLyricsContext.videoId]);
 
   useEffect(() => {
-    embedAPITracker();
+    const cleanupFunction = embedAPITracker();
+    return cleanupFunction;
   }, [isPlaying]);
-
+  
   const embedAPITracker = () => {
+    let trackInterval;
+  
     if (isPlaying && !youtubePlayer.current.getCurrentTime) {
       if (isPlaying) youtubePlayer.current.pauseVideo();
       youtubePlayer.current = null;
       setDisLegacyPlayer(true);
     } else {
-      const trackInterval = setInterval(() => {
+      trackInterval = setInterval(() => {
         if (youtubePlayer.current && isPlaying) {
           const time = youtubePlayer.current.getCurrentTime();
           if (!time) setCurrentTime(0);
@@ -76,9 +79,14 @@ function Player({ className }) {
           }
         }
       }, 200);
-      return () => clearInterval(trackInterval);
     }
-  };
+  
+    return () => {
+      if (trackInterval) {
+        clearInterval(trackInterval);
+      }
+    };
+  };  
 
   const onPlayerReady = (event) => {
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
