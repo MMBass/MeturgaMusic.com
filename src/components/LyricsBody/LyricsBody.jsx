@@ -29,17 +29,20 @@ function LyricsBody({ className }) {
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-    // Avoiding infinite HomePage useEffect that depends on rrdLocation (page params) 
+    urlOnTitleChange();
+  }, [currLyricsContext.title]);
+
+  const urlOnTitleChange = () => {
     if (urlSong) {
-      return;
+      return;  // Avoiding infinite HomePage useEffect that depends on rrdLocation (page params) 
     } else if (!paramsSong) {
       setSearchParams(utils.titleToParams(currLyricsContext.title));
-    } else if (!utils.titleToParams(currLyricsContext.title) == paramsSong) {
+    } else if (utils.titleToParams(currLyricsContext.title) !== paramsSong) {
       setSearchParams(utils.titleToParams(currLyricsContext.title));
     } else {
       return;
     }
-  }, [currLyricsContext.title]);
+  }
 
   const handleBackToHome = () => {
     window.location.href = "/";
@@ -54,7 +57,7 @@ function LyricsBody({ className }) {
           <Grid container className="l-body-top-actions" justifyContent={window.innerWidth > 600 ? "space-between" : "flex-start"} alignItems="center">
 
 
-            <IconButton onClick={() => currLyricsContext.resetSong(urlSong ? handleBackToHome : setSearchParams /* If the song is from /songs path, change also the path while reset */)}>
+            <IconButton onClick={() => currLyricsContext.resetSong(urlSong ? handleBackToHome : setSearchParams /* If the song is from /songs path, change also the path on reset */)}>
               <CloseOutlinedIcon className='remove-icon' />
             </IconButton>
 

@@ -58,7 +58,7 @@ function HomePage({ className }) {
     };
 
     passedSong = passedSong.replaceAll('_', " - ");
-    if (currLyricsContext.title.replaceAll(' ', '') == passedSong.replaceAll(' ', '')) {
+    if (currLyricsContext.title.replaceAll(' ', '').replaceAll('&', 'and') == passedSong.replaceAll(' ', '').replaceAll('&', 'and')) {
       return; // Break if the song is the same song
     } else {
       // If the song is from /songs path - change the page title 
