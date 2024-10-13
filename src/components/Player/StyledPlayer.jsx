@@ -2,8 +2,12 @@ import { styled } from '@mui/material/styles';
 import Player from './Player';
 
 const StyledPlayer = styled(Player)`
-   background-color: #d9d9d9f7;
-
+   .player-card{
+      background-color: #d9d9d9ed;
+      right: unset;
+      left: 25%
+   }
+   
    p{
       font-family: 'Poppins','Roboto', 'sans-serif';
       font-size: 11px;

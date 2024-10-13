@@ -6,7 +6,6 @@ const StyledAboutPage = styled(AboutPage)`
   text-align: center;
 
  .songs-list{
-    
     margin-top: 20px;
     
     h5{

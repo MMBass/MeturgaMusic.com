@@ -24,7 +24,6 @@ export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange,
         }
 
         window.onYouTubeIframeAPIReady = () => {
-            console.log('onYouTubeIframeAPIReady');
             newYTinstance();
         };
 
@@ -54,7 +53,7 @@ function loadYouTubeScript() {
     if (existingWidgetScript) existingWidgetScript.parentNode.removeChild(existingWidgetScript);
 
     var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api?v=" + new Date().getTime();
+    tag.src = "https://www.youtube.com/iframe_api?v=" + new Date().getTime(); // A random version to prevent caching
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }

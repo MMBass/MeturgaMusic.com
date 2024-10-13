@@ -34,13 +34,14 @@ function LyricsBody({ className }) {
 
   const urlOnTitleChange = () => {
     if (urlSong) {
-      return;  // Avoiding infinite HomePage useEffect that depends on rrdLocation (page params) 
+      return;  // Avoid infinite HomePage useEffect that depends on rrdLocation (page params) 
     } else if (!paramsSong) {
       setSearchParams(utils.titleToParams(currLyricsContext.title));
-    } else if (utils.titleToParams(currLyricsContext.title) !== paramsSong) {
+    } else if (!utils.titleToParams(currLyricsContext.title) == paramsSong) {
+      // TODO fix the logic - the !utils.titleToParams(currLyricsContext.title) == paramsSong is always true?
       setSearchParams(utils.titleToParams(currLyricsContext.title));
     } else {
-      return;
+      return; // The song is the same, do nothing
     }
   }
 

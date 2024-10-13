@@ -73,7 +73,7 @@ const StyledHomePage = styled(HomePage)`
 
     .h3-start-top{
         line-height: 0.96;
-        font-size: 5.7vw;
+        font-size: min(5.7vw, 80px);
         font-weight: 700;
         /* max-width: 535px; */
         
@@ -94,6 +94,7 @@ const StyledHomePage = styled(HomePage)`
         margin: 0px 0px 15px 0px;
         /* font-size: 24px; */
         font-size: 1.88vw;
+        font-size: min(1.88vw, 28px);
         font-weight: 600;
         color: ${props => props.theme.palette.primary.contrastText};
  

@@ -12,9 +12,10 @@ const StyledLayout = styled(Layout)`
     min-height: 80vh;
   }
 
-  .page-h1{
+  /* .page-h1{
     padding: 0px 0px 0px 0px;
     font-size: 13vw;
+    font-size: min(13vw, 80px);
     letter-spacing: -8px;
     font-weight: 100;
     color: ${props => props.theme.palette.primary.contrastText};
@@ -29,7 +30,7 @@ const StyledLayout = styled(Layout)`
         display: none;
       }
     }
-  }
+  } */
 
   a {
     text-decoration: none;

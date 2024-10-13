@@ -16,6 +16,11 @@ const StyledHeader = styled(Header)`
         }
       }
 
+      .header-container{
+        max-width: 1300px;
+        margin: auto;
+      }
+
       svg{
         font-size: 20px;
       }

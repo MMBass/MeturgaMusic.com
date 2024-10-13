@@ -24,6 +24,7 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
     max-width: 90vw;
     .MuiTypography-root{
       font-size: 5vw;
+      font-size: min(5vw, 80px);
       display: inline;
       text-align: start;
       font-weight: 800;
@@ -49,7 +50,7 @@ const StyledSpotifyExtensionPage = styled(SpotifyExtensionPage)`
     .copy-key-p{
       h6{
         font-size: 1.6vw;
-        
+        font-size: min(1.6vw, 25px);
         @media (max-width: 600px) {
           font-size: 4vw;
         }

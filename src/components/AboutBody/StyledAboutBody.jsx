@@ -116,8 +116,9 @@ const StyledAboutBody = styled(AboutBody)`
 
     .about-header{
       margin-bottom: 5px;
-      font-size: 3.6vw;
+      /* font-size: 3.6vw; */
       font-size: 1.7vw;
+      font-size: min(1.7vw, 28px);
       font-weight: 600;
       color: ${props => props.theme.palette.primary.dark};
       @media (max-width: 600px) {
@@ -203,6 +204,7 @@ const StyledAboutBody = styled(AboutBody)`
     p{
       font-weight: 600;
       font-size: 1.7vw;
+      font-size: min(1.7vw, 29px);
 
       @media (max-width: 600px) {
         font-size: 4.3vw;
