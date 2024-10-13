@@ -6,6 +6,7 @@ const StyledAboutBody = styled(AboutBody)`
 /* margin-top: -70px; */
   width: 100%;
   font-size: 1.7vw;
+  font-size: min(1.7vw, 28px);
   font-weight: 600;
   padding: 50px 0px;
   font-family: 'Assistant','Roboto', 'sans-serif';
