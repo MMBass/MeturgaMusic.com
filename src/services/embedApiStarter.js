@@ -13,40 +13,48 @@
  * It also manages the 'showPlayer' flag in localStorage.
  */
 export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError) {
-    if(vID){
+    if (vID) {
         if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
 
+        loadYouTubeScript();
         if (youtubePlayer.current) {
-            // API already loaded, skip the window.onYouTubeIframeAPIReady (while it's run only once at a session anyway - no use to wait for it)
+            // destroy and create new instance
+            youtubePlayer.current.destroy();
+            newYTinstance();
+        }
+
+        window.onYouTubeIframeAPIReady = () => {
+            console.log('onYouTubeIframeAPIReady');
+            newYTinstance();
+        };
+
+        function newYTinstance() {
             youtubePlayer.current = new window.YT.Player('youtube-player', {
                 videoId: vID,
+                width: 30,
+                height: 30,
+                playerVars: {
+                    allowFullScreen: 'false'
+                },
                 events: {
                     onReady: onPlayerReady,
                     onStateChange: onPlayerStateChange,
                     onError: onPlayerError
                 }
             });
-        } else {
-            // First time - need to load the API
-            if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]') === null) {
-                const tag = document.createElement('script');
-                tag.src = 'https://www.youtube.com/iframe_api';
-                const firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-            }
-    
-            window.onYouTubeIframeAPIReady = () => {
-                console.log('onYouTubeIframeAPIReady');
-                
-                youtubePlayer.current = new window.YT.Player('youtube-player', {
-                    videoId: vID,
-                    events: {
-                        onReady: onPlayerReady,
-                        onStateChange: onPlayerStateChange,
-                        onError: onPlayerError
-                    }
-                });
-            };
         }
     }
+}
+
+function loadYouTubeScript() {
+    // Remove the script tag if it already exists
+    let existingMainScript = document.querySelector('script[src^="https://www.youtube.com/iframe_api"]');
+    if (existingMainScript) existingMainScript.parentNode.removeChild(existingMainScript);
+    let existingWidgetScript = document.querySelector('script[src="https://www.youtube.com/s/player/2f238d39/www-widgetapi.vflset/www-widgetapi.js"]');
+    if (existingWidgetScript) existingWidgetScript.parentNode.removeChild(existingWidgetScript);
+
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api?v=" + new Date().getTime();
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }

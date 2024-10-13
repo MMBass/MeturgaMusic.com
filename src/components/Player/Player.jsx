@@ -92,6 +92,8 @@ function Player({ className }) {
   };  
 
   const onPlayerReady = (event) => {
+    console.log('Player ready');
+    
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
     if (firstUserClickLoader) setFirstUserClickLoader(false);
     setDuration(event.target.getDuration());
@@ -158,7 +160,7 @@ function Player({ className }) {
   };
 
   return (
-    <>
+    <span className={'iframe-top-span'}>
       {(disLegacyPlayer && !hide && currLyricsContext.videoId) &&
         <LegacyPlayer> </LegacyPlayer>
       }
@@ -191,16 +193,16 @@ function Player({ className }) {
 
               <IconButton disableRipple={true} sx={{ visibility: !isFirstPlaying ? 'hidden' : 'visible', position: !isFirstPlaying ? 'fixed' : 'relative' }}>
                 <span className='iframe-parent-btn'>
-                  <iframe
+                  <div
                     style={{ borderRadius: '25px' }}
                     id='youtube-player'
-                    src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
+                    // src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
                     title={'video'}
                     allowFullScreen={false}
                     // allow='autoplay' // Probably blocked by the browser, and if not - cause issue when loadVideoById() that the play btn stay off 
                     width={isFirstPlaying ? "30" : "0"}
                     height={isFirstPlaying ? "30" : "0"}
-                  ></iframe>
+                  ></div>
 
                   {/* Play icon overlay */}
                   <div className="play-icon-overlay">
@@ -263,7 +265,7 @@ function Player({ className }) {
           </Card>
         </Draggable>
       }
-    </>
+    </span>
   );
 }
 
