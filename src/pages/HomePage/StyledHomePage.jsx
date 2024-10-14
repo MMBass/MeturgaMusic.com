@@ -9,8 +9,7 @@ const StyledHomePage = styled(HomePage)`
        padding: 0 35px;
        
         @media (max-width: 600px) {
-            padding: 0 25px;
-            /* align-content: center; */
+            padding-inline-start: 30px;
         }
         
         .home-t-parent-grid{
@@ -20,7 +19,6 @@ const StyledHomePage = styled(HomePage)`
         }
 
         .home-top-p2{
-            /* margin-top: 50px; */
             @media (min-width: 600px) {
                 margin: auto;
                 padding-inline-start: 20px;
