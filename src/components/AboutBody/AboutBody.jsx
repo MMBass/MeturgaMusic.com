@@ -16,7 +16,7 @@ import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
 
-import shot1 from '@/assets/screenshots/shotone.png';
+// import shot1 from '@/assets/screenshots/shotone.png';
 import shot1Dark from '@/assets/screenshots/shotoneDark.png';
 import shot2 from '@/assets/screenshots/shot2.png';
 import shot2Dark from '@/assets/screenshots/shot2Dark.png';

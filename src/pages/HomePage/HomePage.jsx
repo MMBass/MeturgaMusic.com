@@ -59,8 +59,6 @@ function HomePage({ className }) {
     };
 
     passedSong = passedSong.replaceAll('_', " - "); // After splittedSongTitle - we need the _ to be - back
-    console.log('currLyricsContext.title: '+currLyricsContext.title.replaceAll(' ', '').replaceAll('&', 'and').toLowerCase() )
-    console.log('passedSong: '+passedSong.replaceAll(' ', '').replaceAll('&', 'and').toLowerCase());
     
     if (utils.compareTitles(currLyricsContext.title, passedSong)) {
       return; // Break if the song is the same song
