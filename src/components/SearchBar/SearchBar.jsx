@@ -160,7 +160,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       utils.clearGsc();
       setCurrVal(' ');
       return;
-    } else if (currLyricsContext.title.replaceAll(' ', '') == songTitle.replaceAll(' ', '')) {
+    } else if (utils.compareTitles(currLyricsContext.title,songTitle)) {
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
     } else {

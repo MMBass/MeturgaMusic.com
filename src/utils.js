@@ -122,6 +122,18 @@ const titleToParams = (str) => {
     else return;
 };
 
+const compareTitles = (a, b) => {
+    if (typeof a !== 'string' || typeof b !== 'string') {
+        console.error('compareTitles: One of the params is not a string');
+        return false;
+    }
+    if (titleToParams(a).toLowerCase().replaceAll(' ', '') === titleToParams(b).toLowerCase().replaceAll(' ', '')){
+        return true;
+    } else{
+        return false;
+    } 
+}
+
 /** Hack the gh-pages hash router - For direct access */
 const directParamsToHash = () => {
     const searchParams = new URLSearchParams(location.search);
@@ -134,4 +146,4 @@ const directParamsToHash = () => {
     }
 };
 
-export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams }
+export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles }

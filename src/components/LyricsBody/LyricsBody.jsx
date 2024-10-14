@@ -37,7 +37,7 @@ function LyricsBody({ className }) {
       return;  // Avoid infinite HomePage useEffect that depends on rrdLocation (page params) 
     } else if (!paramsSong) {
       setSearchParams(utils.titleToParams(currLyricsContext.title));
-    } else if (!utils.titleToParams(currLyricsContext.title) == paramsSong) {
+    } else if (paramsSong && utils.compareTitles(paramsSong, currLyricsContext.title)) {
       // TODO fix the logic - the !utils.titleToParams(currLyricsContext.title) == paramsSong is always true?
       setSearchParams(utils.titleToParams(currLyricsContext.title));
     } else {

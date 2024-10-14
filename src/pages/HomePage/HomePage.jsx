@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
+
 import T from "./HomePageI18n";
 import TUtils from '@/i18n-utils';
+import utils from '@/utils.js';
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -57,8 +58,11 @@ function HomePage({ className }) {
       songName: encodeURI(` ${passedSong.split('_')[1]} `)
     };
 
-    passedSong = passedSong.replaceAll('_', " - ");
-    if (currLyricsContext.title.replaceAll(' ', '').replaceAll('&', 'and') == passedSong.replaceAll(' ', '').replaceAll('&', 'and')) {
+    passedSong = passedSong.replaceAll('_', " - "); // After splittedSongTitle - we need the _ to be - back
+    console.log('currLyricsContext.title: '+currLyricsContext.title.replaceAll(' ', '').replaceAll('&', 'and').toLowerCase() )
+    console.log('passedSong: '+passedSong.replaceAll(' ', '').replaceAll('&', 'and').toLowerCase());
+    
+    if (utils.compareTitles(currLyricsContext.title, passedSong)) {
       return; // Break if the song is the same song
     } else {
       // If the song is from /songs path - change the page title 

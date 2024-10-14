@@ -39,6 +39,9 @@ export default function CurrLyricsContextProvider({ children }) {
     }, [videoId]);
 
     const getSongLyrics = async (splittedSongTitle, songTitle, webSongUrl) => {
+
+        if(utils.compareTitles(songTitle, title)) return; // If the song is the same, do nothing
+
         setAbort(true);
 
         songTitle = songTitle.replace(constants.allBracketsPattern, '').trim();
