@@ -5,7 +5,7 @@ import utils from '@/utils';
 const StyledHomePage = styled(HomePage)`
 
     .home-top{
-       height: 100vh;
+       height: 90vh;
        padding: 0 35px;
        
         @media (max-width: 600px) {
@@ -21,8 +21,8 @@ const StyledHomePage = styled(HomePage)`
             }
 
             @media (min-width: 600px) {
-                height: 100vh;
-                max-height: 100vh;
+                height: 100%;
+                max-height: 90vh;
             }
         }
 
