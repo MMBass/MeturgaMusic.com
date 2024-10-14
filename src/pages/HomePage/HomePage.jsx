@@ -73,7 +73,7 @@ function HomePage({ className }) {
     <div className={`${className} page`}>
       {(!currLyricsContext.lines?.[0] || !currLyricsContext.title) &&
         <Container className="home-top" maxWidth={false}>
-          <Grid container className="home-t-container">
+          <Grid container className="home-t-parent-grid">
 
             <Grid className="home-top-p2" item xs={12} sm={6}>
               <Typography variant="h1" className="h3-start h3-start-top">
