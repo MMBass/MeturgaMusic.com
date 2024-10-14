@@ -20,8 +20,6 @@ function LegacyPlayer({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
 
   useEffect(() => {
-    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
-
     if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
   }, []);
 

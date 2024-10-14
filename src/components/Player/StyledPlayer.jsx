@@ -52,6 +52,7 @@ const StyledPlayer = styled(Player)`
          display: flex;
          justify-content: center;
          align-items: center;
+         border-radius: 25px;
       }
 
       .playerError-icon{
