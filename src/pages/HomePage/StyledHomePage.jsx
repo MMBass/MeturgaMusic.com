@@ -5,13 +5,13 @@ import utils from '@/utils';
 const StyledHomePage = styled(HomePage)`
 
     .home-top{
-       min-height: 85vh;
+       height: 100vh;
        padding: 0 35px;
        
         @media (max-width: 600px) {
             padding: 0 25px;
             align-content: center;
-            min-height: 80vh;
+            height: 100vh;
         }
         
         .home-t-parent-grid{
@@ -21,8 +21,8 @@ const StyledHomePage = styled(HomePage)`
             }
 
             @media (min-width: 600px) {
-                height: 80vh;
-                max-height: 80vh;
+                height: 100vh;
+                max-height: 100vh;
             }
         }
 
