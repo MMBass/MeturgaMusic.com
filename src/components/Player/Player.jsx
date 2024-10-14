@@ -26,7 +26,7 @@ import embedApiStarterService from '@services/embedApiStarter';
 import LegacyPlayer from '@components/LegacyPlayer/StyledLegacyPlayer';
 
 function Player({ className }) {
-  const [hide, setHide] = useState(!JSON.parse(localStorage.getItem('showPlayer')));
+  const [hide, setHide] = useState(false);
   const [fullSize, setFullSize] = useState(false);
   const [isFirstPlaying, setIsFirstPlaying] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -42,14 +42,20 @@ function Player({ className }) {
   const youtubePlayer = useRef(null);
 
   useEffect(() => {
+    if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
+    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
+  }, []);
+
+  useEffect(() => {
     // Reset player state when videoId changes:
-    if (isPlaying && youtubePlayer?.current?.pauseVideo ) youtubePlayer.current.pauseVideo();
+    if (isPlaying && youtubePlayer?.current?.pauseVideo) youtubePlayer.current.pauseVideo();
     setCurrentTime(0);
     setDuration(0);
     setIsPlaying(false);
     setIsFirstPlaying(true);
     setPlayerError(false);
     if (firstUserClickLoader) setFirstUserClickLoader(false);
+    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
 
     if (currLyricsContext.videoId && currLyricsContext.title) {
       embedApiStarterService(currLyricsContext.videoId, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError);
@@ -57,17 +63,17 @@ function Player({ className }) {
   }, [currLyricsContext.videoId]);
 
   useEffect(() => {
-    if(youtubePlayer?.current){
+    if (youtubePlayer?.current) {
       const cleanupFunction = embedAPITracker();
       return cleanupFunction;
     } else {
       return;
     }
   }, [isPlaying]);
-  
+
   const embedAPITracker = () => {
     let trackInterval;
-  
+
     if (isPlaying && !youtubePlayer?.current?.getCurrentTime) {
       youtubePlayer.current = null;
       setDisLegacyPlayer(true);
@@ -83,13 +89,13 @@ function Player({ className }) {
         }
       }, 200);
     }
-  
+
     return () => {
       if (trackInterval) {
         clearInterval(trackInterval);
       }
     };
-  };  
+  };
 
   const onPlayerReady = (event) => {
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
@@ -159,13 +165,13 @@ function Player({ className }) {
 
   return (
     <>
-      {(!disLegacyPlayer && !hide && currLyricsContext.videoId) &&
+      {(disLegacyPlayer && !hide && currLyricsContext.videoId) &&
         <LegacyPlayer> </LegacyPlayer> // Display Video player if API controlled player errors
       }
 
-      {(hide && currLyricsContext.videoId && !disLegacyPlayer) &&
+      {(!hide && currLyricsContext.videoId && !disLegacyPlayer) &&
         <Draggable handle=".drag-handle" bounds="body" className={'draggable-container'}>
-          <Card sx={{ display: 'flex', flexDirection: 'column', width: fullSize ? '300px' : '250px' }} className={className +' player-card'}>
+          <Card sx={{ display: 'flex', flexDirection: 'column', width: fullSize ? '300px' : '250px' }} className={className + ' player-card'}>
             {/* <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 8px' }}>
 
               <Box sx={{ width: '60%', display: 'flex', alignItems: 'center', marginTop: '0 auto' }}>
@@ -181,8 +187,8 @@ function Player({ className }) {
               </Box>
             </Box> */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3px 8px' }}>
-              <IconButton onClick={() => setHide(true)}>
-                <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} />
+              <IconButton className='drag-handle'>
+                <DragIndicatorIcon className='drag-icon' />
               </IconButton>
 
               <IconButton onClick={() => skipSeconds(-10)}>
@@ -222,8 +228,9 @@ function Player({ className }) {
               <IconButton onClick={() => skipSeconds(10)}>
                 <FastRewindRounded />
               </IconButton>
-              <IconButton className='drag-handle'>
-                <DragIndicatorIcon className='drag-icon' />
+
+              <IconButton onClick={() => setHide(true)}>
+                <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} />
               </IconButton>
             </Box>
 
@@ -253,7 +260,7 @@ function Player({ className }) {
 
       {/* Diaplay error/empty player when no video found */}
       {(!hide && !currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
-        <Draggable handle=".drag-handle" bounds="parent" className={className +' draggable-container'}>
+        <Draggable handle=".drag-handle" bounds="parent" className={className + ' draggable-container'}>
           <Card sx={{ display: 'flex', flexDirection: 'column', width: '250px' }} className={className}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3px 8px' }}>
               <ErrorOutlineOutlinedIcon></ErrorOutlineOutlinedIcon>

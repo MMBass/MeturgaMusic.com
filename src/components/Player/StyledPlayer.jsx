@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Player from './Player';
 
 const StyledPlayer = styled(Player)`
-   background-color: #e4e4e4d9;
+   background-color: #e4e4e4f1;
    position: fixed;
    bottom: 32px;
    right: 30vw;
@@ -43,7 +43,7 @@ const StyledPlayer = styled(Player)`
 
       .play-icon-overlay {
          position: absolute;
-         background-color: #e4e4e4d9;
+         background-color: #e4e4e4fe;
          pointer-events: none; /* Allow clicks to pass through */
          top: 0;
          left: 0;
