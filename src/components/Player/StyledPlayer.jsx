@@ -2,23 +2,33 @@ import { styled } from '@mui/material/styles';
 import Player from './Player';
 
 const StyledPlayer = styled(Player)`
- position: fixed;
+   background-color: #e4e4e4d9;
+   position: fixed;
    bottom: 32px;
-   right: 80px;
+   right: 30vw;
    z-index: 1200;
+   
+   @media (max-width: 600px) {
+      right: 20px;
+      bottom: 15px;
+   }
 
    .player-card{
-      background-color: #d9d9d9ed;
+      position: fixed;
+      z-index: 1200;
+      width: 250px;
+
+      @media (min-width: 1500px) {
+         width: 450px;
+      }
    }
-   
-   p{
+
+   p {
       font-family: 'Poppins','Roboto', 'sans-serif';
       font-size: 11px;
       color: #555555;
    }
 
-  
-   
    .iframe-parent-btn{
       width: 35px;
       height: 35px;
@@ -33,7 +43,7 @@ const StyledPlayer = styled(Player)`
 
       .play-icon-overlay {
          position: absolute;
-         background-color: #d9d9d9;
+         background-color: #e4e4e4d9;
          pointer-events: none; /* Allow clicks to pass through */
          top: 0;
          left: 0;

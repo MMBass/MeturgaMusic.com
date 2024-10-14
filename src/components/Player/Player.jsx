@@ -43,7 +43,7 @@ function Player({ className }) {
 
   useEffect(() => {
     // Reset player state when videoId changes:
-    if (isPlaying && youtubePlayer?.current?.pauseVideo) youtubePlayer.current.pauseVideo();
+    if (isPlaying && youtubePlayer?.current?.pauseVideo ) youtubePlayer.current.pauseVideo();
     setCurrentTime(0);
     setDuration(0);
     setIsPlaying(false);
@@ -57,17 +57,17 @@ function Player({ className }) {
   }, [currLyricsContext.videoId]);
 
   useEffect(() => {
-    if (youtubePlayer?.current) {
+    if(youtubePlayer?.current){
       const cleanupFunction = embedAPITracker();
       return cleanupFunction;
     } else {
       return;
     }
   }, [isPlaying]);
-
+  
   const embedAPITracker = () => {
     let trackInterval;
-
+  
     if (isPlaying && !youtubePlayer?.current?.getCurrentTime) {
       youtubePlayer.current = null;
       setDisLegacyPlayer(true);
@@ -83,13 +83,13 @@ function Player({ className }) {
         }
       }, 200);
     }
-
+  
     return () => {
       if (trackInterval) {
         clearInterval(trackInterval);
       }
     };
-  };
+  };  
 
   const onPlayerReady = (event) => {
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
@@ -158,14 +158,14 @@ function Player({ className }) {
   };
 
   return (
-    <span className={className + ' iframe-top-span'}>
-      {(disLegacyPlayer && !hide && currLyricsContext.videoId) &&
-        <LegacyPlayer> </LegacyPlayer>
+    <>
+      {(!disLegacyPlayer && !hide && currLyricsContext.videoId) &&
+        <LegacyPlayer> </LegacyPlayer> // Display Video player if API controlled player errors
       }
 
-      {(!hide && currLyricsContext.videoId && !disLegacyPlayer) &&
-        <Draggable handle=".drag-handle" bounds="body" className='draggable-container'>
-          <Card sx={{ display: 'flex', flexDirection: 'column', width: fullSize ? '300px' : '250px' }} className='player-card'>
+      {(hide && currLyricsContext.videoId && !disLegacyPlayer) &&
+        <Draggable handle=".drag-handle" bounds="body" className={'draggable-container'}>
+          <Card sx={{ display: 'flex', flexDirection: 'column', width: fullSize ? '300px' : '250px' }} className={className +' player-card'}>
             {/* <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 8px' }}>
 
               <Box sx={{ width: '60%', display: 'flex', alignItems: 'center', marginTop: '0 auto' }}>
@@ -250,8 +250,10 @@ function Player({ className }) {
           </Card>
         </Draggable>
       }
+
+      {/* Diaplay error/empty player when no video found */}
       {(!hide && !currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
-        <Draggable handle=".drag-handle" bounds="body">
+        <Draggable handle=".drag-handle" bounds="parent" className={className +' draggable-container'}>
           <Card sx={{ display: 'flex', flexDirection: 'column', width: '250px' }} className={className}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3px 8px' }}>
               <ErrorOutlineOutlinedIcon></ErrorOutlineOutlinedIcon>
@@ -263,7 +265,7 @@ function Player({ className }) {
           </Card>
         </Draggable>
       }
-    </span>
+    </>
   );
 }
 
