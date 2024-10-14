@@ -10,26 +10,18 @@ const StyledHomePage = styled(HomePage)`
        
         @media (max-width: 600px) {
             padding: 0 25px;
-            align-content: center;
-            height: 100vh;
+            /* align-content: center; */
         }
         
         .home-t-parent-grid{
-            @media (max-width: 600px) {
-               padding-top: 0px;
-               padding-bottom: 30px;
-            }
-
-            @media (min-width: 600px) {
-                height: 100%;
-                max-height: 90vh;
-            }
+            height: 100%;
+            max-height: 80vh;
+            align-content: center;
         }
 
         .home-top-p2{
-            margin-top: 50px;
+            /* margin-top: 50px; */
             @media (min-width: 600px) {
-                /* margin-top: 80px; */
                 margin: auto;
                 padding-inline-start: 20px;
             }
