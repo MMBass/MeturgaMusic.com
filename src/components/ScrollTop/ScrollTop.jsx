@@ -25,7 +25,7 @@ function ScrollTop({ className }) {
         sx={{
           position: "fixed",
           bottom: 32,
-          right: 32,
+          left: 32,
           zIndex: 1200,
         }}
       >
