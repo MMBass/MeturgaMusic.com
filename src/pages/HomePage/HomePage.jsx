@@ -19,7 +19,7 @@ import { DrawerContext } from '@context/DrawerContext';
 
 import { useTheme } from '@mui/material/styles';
 
-import mainPic from '@/assets/screenshots/3Parts-main-shot-v2.png';
+import mainPic from '@/assets/screenshots/3Parts-main-shot-v3.png';
 import mainPicDark from '@/assets/screenshots/no-pink-shot-bordered-pink-dark-mode.png';
 import shot1Dark from '@/assets/screenshots/shotoneDark.png';
 
