@@ -3,7 +3,7 @@ import utils from "@/utils";
 const MeturgaMusicUrl = " Https://MeturgaMusic.com ";
 
 // Data links
-const prodServerUri = 'Https://api.MeturgaMusic.com';
+const prodServerUri = 'Https://musicline-backend.vercel.app'; // option to use api.MeturgaMusic - after fixing dns issue
 const devServerUri = utils.isLocalhost() ? 'http://localhost:5000' : 'Https://api.MeturgaMusic.com'; // if running on a cloud server - use the prod url anyway (for case of wrong deploying)
 const gUrl = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=he&dt=t&q=';
 
