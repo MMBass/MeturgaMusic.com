@@ -148,7 +148,7 @@ function LyricsBody({ className }) {
                 </>
               </Box>
 
-              {(line.src.includes('|')) && <br></br>}
+              {(line.src.includes('|') || line.src.includes('\n\n')) && <br></br>}
             </Grid>
           );
         })}
