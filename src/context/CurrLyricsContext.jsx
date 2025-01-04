@@ -170,9 +170,9 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const getFullTrans = async () => {
         setTranslatedBy('');
-
+        
         try {
-            const data = await fetchFullTrans(lines, song_id, title);
+            const data = await fetchFullTrans(lines.map(line => ({...line, src: line.src.replaceAll('PHARSE_BREAK', '')})), song_id, title);
 
             let newLines = [];
 
@@ -209,6 +209,7 @@ export default function CurrLyricsContextProvider({ children }) {
     };
 
     const gGetSingleLineTrans = async (src, index) => {
+        src.replaceAll('PHARSE_BREAK', '');
         try {
             let newLines = [...lines];
             const response = await fetch(constants.gUrl + encodeURI(src));
