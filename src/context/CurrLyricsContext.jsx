@@ -100,6 +100,8 @@ export default function CurrLyricsContextProvider({ children }) {
         let newLines = [];
 
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
+            console.log("line: ", line);
+            
             if (line.length >= 2) {
                 if (utils.isMostlyEnglish(line)) {
                     if (line.length > 90) {
