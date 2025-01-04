@@ -209,7 +209,7 @@ export default function CurrLyricsContextProvider({ children }) {
     };
 
     const gGetSingleLineTrans = async (src, index) => {
-        src.replaceAll('PHARSE_BREAK', '');
+        src = src.replaceAll('PHARSE_BREAK', '');
         try {
             let newLines = [...lines];
             const response = await fetch(constants.gUrl + encodeURI(src));
