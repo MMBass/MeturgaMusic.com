@@ -99,7 +99,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setTitle(songTitle);
         let newLines = [];
 
-        data.lyrics = data.lyrics.replaceAll('\n\n', ' LINE_BREAK ');
+        data.lyrics = data.lyrics.replaceAll('\n\n', ' PHARSE_BREAK\n ');
         console.log(data.lyrics);
         
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
