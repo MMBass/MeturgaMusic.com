@@ -99,8 +99,8 @@ export default function CurrLyricsContextProvider({ children }) {
         setTitle(songTitle);
         let newLines = [];
 
+        data.lyrics = replaceAll('\n\n', ' LINE_BREAK ');
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
-            console.log("line: ", line);
             
             if (line.length >= 2) {
                 if (utils.isMostlyEnglish(line)) {

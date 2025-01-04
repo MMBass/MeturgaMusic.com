@@ -125,6 +125,7 @@ function LyricsBody({ className }) {
                 }}
               >
                 {line.src.split(' ').map((word, i) => {
+                  if(word === ' LINE_BREAK ') {return}; // For AZ cases
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
                   return (
                     <LyricToolTip key={i} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
@@ -148,7 +149,7 @@ function LyricsBody({ className }) {
                 </>
               </Box>
 
-              {(line.src.includes('|') || line.src.includes('\n')) && <br></br>}
+              {(line.src.includes('|') || line.src.includes('LINE_BREAK')) && <br></br>}
             </Grid>
           );
         })}
