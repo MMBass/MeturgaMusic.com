@@ -100,6 +100,8 @@ export default function CurrLyricsContextProvider({ children }) {
         let newLines = [];
 
         data.lyrics.replaceAll('\n\n', ' LINE_BREAK ');
+        console.log(data.lyrics);
+        
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
             
             if (line.length >= 2) {
