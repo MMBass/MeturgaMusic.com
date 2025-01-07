@@ -59,6 +59,7 @@ const StyledLyricsBody = styled(LyricsBody)`
 
   .en-line{
     font-family: 'Poppins','Roboto', 'sans-serif';
+    white-space: 'pre-wrap'; // Make linebreaks visible
     direction: rtl;
     text-align: left;
   }

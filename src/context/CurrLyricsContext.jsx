@@ -99,13 +99,14 @@ export default function CurrLyricsContextProvider({ children }) {
         setTitle(songTitle);
         let newLines = [];
 
-        data.lyrics = data.lyrics.replaceAll('\n\n', ' PHARSE_BREAK\n ');
-        console.log(data.lyrics);
-        
+        // data.lyrics = data.lyrics.replaceAll('\n\n', ' PHARSE_BREAK\n '); // Save the pharses pattern before splitting lines   
+
+        data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n');
+
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
-            
+       
             if (line.length >= 2) {
-                if (utils.isMostlyEnglish(line)) {
+                if (utils.isMostlyEnglish(line) || line.includes('|####|')) {
                     if (line.length > 90) {
                         let byCommas = line.split(',');  // Split by commas if the line is too long
                         if (byCommas[0].length > 10) {
@@ -172,7 +173,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setTranslatedBy('');
         
         try {
-            const data = await fetchFullTrans(lines.map(line => ({...line, src: line.src.replaceAll('PHARSE_BREAK', '')})), song_id, title);
+            const data = await fetchFullTrans(lines.map(line => ({...line, src: line.src.replaceAll('PHARSE_BREAK', '')})), song_id, title); // PHARSE_BREAK Legacy - exsist in some saved songs, TODO Remove it using mongo 
 
             let newLines = [];
 
@@ -209,7 +210,6 @@ export default function CurrLyricsContextProvider({ children }) {
     };
 
     const gGetSingleLineTrans = async (src, index) => {
-        src = src.replaceAll('PHARSE_BREAK', '');
         try {
             let newLines = [...lines];
             const response = await fetch(constants.gUrl + encodeURI(src));

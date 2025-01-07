@@ -21,7 +21,7 @@ const insideSearchResultsPattern = /\(([^)]+)\)/;
 const en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9- ]+$/;
 const specialCharsPattern = /[^a-zA-Z0-9']/g;
 const allBracketsPattern = /[\])}[{(]/g;
-const lineBreakPattern = /(?:\r\n|\r|\n)/g;
+const lineBreakPattern = /(?:\r\n|\r|\n)(?![\r\n])/g; // With a negative lookahead that ensures there isn't another line break character following
 
 export default {
     MeturgaMusicUrl,

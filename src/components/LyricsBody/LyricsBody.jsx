@@ -83,6 +83,7 @@ function LyricsBody({ className }) {
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
                   if(word.includes('PHARSE_BREAK')) { return }; // For AZ cases
+                  if(word.includes('|####|')) { return }; // For AZ cases
                   return (
                     <LyricToolTip key={i} lyric={word} lyricID={'title' + i}></LyricToolTip>
                   )
@@ -127,6 +128,7 @@ function LyricsBody({ className }) {
               >
                 {line.src.split(' ').map((word, i) => {
                   if(word.includes('PHARSE_BREAK')) { return }; // For AZ cases
+                  if(word.includes('|####|')) { return }; // Also For AZ cases
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
                   return (
                     <LyricToolTip key={i} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
@@ -150,7 +152,8 @@ function LyricsBody({ className }) {
                 </>
               </Box>
 
-              {(line.src.includes('|') || line.src.includes('PHARSE_BREAK')) && <br></br>}
+              {(line.src.includes('|'))
+               && <br></br>}
             </Grid>
           );
         })}
