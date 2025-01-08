@@ -98,9 +98,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const setSongLyrics = (data, songTitle) => {
         setTitle(songTitle);
         let newLines = [];
-
-        // data.lyrics = data.lyrics.replaceAll('\n\n', ' PHARSE_BREAK\n '); // Save the pharses pattern before splitting lines   
-
+        
         data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n');
 
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
