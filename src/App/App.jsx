@@ -69,8 +69,8 @@ function App({ className }) {
 
   // Send every visit to the server
   const serverInit = () => {
-    if (!localStorage.getItem('init')) localStorage.setItem('init', 'INITID:' + uuidv4());
-    let initId = localStorage.getItem('init');
+    const initId = localStorage.getItem('init') || 'INITID:' + uuidv4();
+    localStorage.setItem('init', initId);
     fetch(`${constants.prodServerUri}/?initId=` + initId);
   };
 
