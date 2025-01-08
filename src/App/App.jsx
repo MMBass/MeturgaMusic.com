@@ -64,13 +64,14 @@ function App({ className }) {
   }, []);
 
   const init = () => {
-    if (!utils.isLocalhost()) serverInit();
+    serverInit();
   };
 
   // Send every visit to the server
   const serverInit = () => {
     const initId = localStorage.getItem('init') || 'INITID:' + uuidv4();
     localStorage.setItem('init', initId);
+    if (utils.isLocalhost()) return;
     fetch(`${constants.prodServerUri}/?initId=` + initId);
   };
 
