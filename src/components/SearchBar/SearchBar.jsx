@@ -97,6 +97,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
       if (sResults) {
         sResults.forEach((line) => {
+          console.log(line.innerText);
           if (line.innerText.includes("Lyrics")) {
 
             if (line.innerText.includes("(")) {

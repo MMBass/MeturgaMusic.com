@@ -5,7 +5,7 @@ const isLocalhost = () => (location.hostname === "localhost" || location.hostnam
 const loadGscScript = () => {
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "https://cse.google.com/cse.js?cx=a85c2374ffc8b8898";
+    script.src = "https://cse.google.com/cse.js?cx=0d8465f607b0b1227" // Called just 'MusixMatch', In Bass...Dev Account;
     script.defer = true;
     document.body.appendChild(script);
     // 0d8465f607b0b1227 // MusixMatch2 id
