@@ -99,7 +99,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setTitle(songTitle);
         let newLines = [];
         
-        data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n');
+        data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n'); // |####| is our custom line break for AZ cases
 
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
        

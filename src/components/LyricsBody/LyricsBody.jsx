@@ -82,6 +82,7 @@ function LyricsBody({ className }) {
             >
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
+                  // TODO find a better way for PHARSE BREAK
                   if(word.includes('PHARSE_BREAK')) { return }; // For AZ cases
                   if(word.includes('|####|')) { return }; // For AZ cases
                   return (
