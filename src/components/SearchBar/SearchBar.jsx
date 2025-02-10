@@ -14,7 +14,7 @@ import constants from "@/constants";
 
 function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
-  const [start, setStart] = useState(false);
+  const [startSearchConnection, setStartSearchConnection] = useState(false);
   const [currVal, setCurrVal] = useState('');
 
   const routerNavigate = useNavigate();
@@ -30,7 +30,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   useEffect(() => {
     utils.loadGscScript();
-    searchStarter(linesChange, setStart);
+    searchStarter(linesChange, setStartSearchConnection);
   }, []);
 
   // Setting the mui TextField value, and calling the g search handler
@@ -177,20 +177,20 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         <TextField size={size}
           id="outlined-search"
           className={locat == "main" ? "main-input" : "top-input"}
-          label={!start ?
+          label={!startSearchConnection ?
             <CircularProgress size={18} ></CircularProgress>
             :
             <><TravelExploreIcon></TravelExploreIcon>{T.Label}</>
           }
           type="search"
-          onChange={start ? setVal : null}
+          onChange={startSearchConnection ? setVal : null}
           autoFocus={false} autoComplete='off'
           placeholder={"GOOGLE " + T.PoweredBy}
           value={currVal} />
       }
 
       {(addRecordMode) &&
-        <TextField label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={start ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" />
+        <TextField label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={startSearchConnection ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" />
       }
 
       <div id="gcse-my-wrapper" className={(addRecordMode && "gcse-my-wrapper-add-record-mode")}>
