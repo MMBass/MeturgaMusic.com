@@ -104,7 +104,7 @@ export default function CurrLyricsContextProvider({ children }) {
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
        
             if (line.length >= 2) {
-                if (utils.isMostlyEnglish(line) || line.includes('|####|')) {
+                if (utils.isMostlyEnglish(line) || line.includes('|####|') || line.includes('****')) {
                     if (line.length > 90) {
                         let byCommas = line.split(',');  // Split by commas if the line is too long
                         if (byCommas[0].length > 10) {
