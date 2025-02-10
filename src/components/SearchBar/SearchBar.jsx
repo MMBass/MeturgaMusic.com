@@ -15,6 +15,7 @@ import constants from "@/constants";
 function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   const [startSearchConnection, setStartSearchConnection] = useState(false);
+  const [searchProccessing, setSearchProccessing] = useState(false);
   const [currVal, setCurrVal] = useState('');
 
   const routerNavigate = useNavigate();
@@ -35,6 +36,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   // Setting the mui TextField value, and calling the g search handler
   function setVal(e) {
+    setSearchProccessing(true);
     setCurrVal(e.target.value);
     if (e.nativeEvent.data !== ' ') {
       handleSearch(e.target.value);
@@ -147,6 +149,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         });
 
       }
+      setSearchProccessing(false);
     }, 50);
   }
 
@@ -177,7 +180,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         <TextField size={size}
           id="outlined-search"
           className={locat == "main" ? "main-input" : "top-input"}
-          label={!startSearchConnection ?
+          label={(!startSearchConnection || searchProccessing) ?
             <CircularProgress size={18} ></CircularProgress>
             :
             <><TravelExploreIcon></TravelExploreIcon>{T.Label}</>
