@@ -8,6 +8,12 @@ const StyledSearchBar = styled(SearchBar)`
     background-color: '#ffffff0';
   }
 
+  .MuiCircularProgress-root{
+    animation: unset;
+    padding: unset;
+    margin-inline-start: 3px;
+  }
+
   .add-record-input{
     background-color: #e2e2e2;
     color: dark;

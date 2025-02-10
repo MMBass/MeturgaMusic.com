@@ -38,7 +38,7 @@ export default function CurrLyricsContextProvider({ children }) {
         } // Update the ls videoId after all the state sets
     }, [videoId]);
 
-    const getSongLyrics = async (splittedSongTitle, songTitle, webSongUrl) => {
+    const getSongLyrics = async (splittedSongTitle, songTitle, webSongUrl, setSearchProccessing) => {
 
         if(utils.compareTitles(songTitle, title)) return; // If the song is the same, do nothing
 
@@ -73,6 +73,7 @@ export default function CurrLyricsContextProvider({ children }) {
             bannersContext.createBanner('error', 'error', TUtils.LyricsNotFound, '');
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
         }
+        setSearchProccessing(false);
     }
 
     const setCombined = (songTitle, data) => {

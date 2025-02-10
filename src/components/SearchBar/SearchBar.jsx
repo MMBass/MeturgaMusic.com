@@ -108,13 +108,13 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
                 return;
               };
             }
-       
+
             let songTitle = line.innerText.replaceAll('–', "-"); // g Results comes with some special ' – ' sign
             if (songTitle.split('-')[0].includes('Lyrics')) { // Check for the edge case
               // Revers in edge cases when the title comes before the artist:
               songTitle = songTitle.replaceAll('Lyrics', ""); // They comes with extra 'Lyrics'
-              songTitle = songTitle.split(' - ')[1] +" - "+ songTitle.split(' - ')[0]; // Reorder
-            }else{
+              songTitle = songTitle.split(' - ')[1] + " - " + songTitle.split(' - ')[0]; // Reorder
+            } else {
               songTitle = songTitle.split("Lyrics")[0];
             }
             songTitle = songTitle.replaceAll(' | Genius', "");
@@ -126,7 +126,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
             line.classList.add('fixed-gs-title');
             line.innerHTML = `<strong>${songTitle.split(' - ')[0]} - <span>${songTitle.split(' - ')[1]}</span> </strong>`;
-            
+
             const splittedSongTitle = {
               artistName: encodeURI(songTitle.split('-')[0]),
               songName: encodeURI(songTitle.split('-')[1])
@@ -155,6 +155,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   // Click event for very text in results dropdown
   const handleLineClickEvent = (line, songTitle, splittedSongTitle, webSongUrl) => {
+    setSearchProccessing(true);
     line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 
     if (addRecordMode === true) {
@@ -163,11 +164,11 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       utils.clearGsc();
       setCurrVal(' ');
       return;
-    } else if (utils.compareTitles(currLyricsContext.title,songTitle)) {
+    } else if (utils.compareTitles(currLyricsContext.title, songTitle)) {
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
     } else {
-      currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, webSongUrl);
+      currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, webSongUrl, setSearchProccessing);
     }
     setCurrVal(songTitle);
     if (location.hash != "#/") routerNavigate("/");
@@ -180,10 +181,11 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         <TextField size={size}
           id="outlined-search"
           className={locat == "main" ? "main-input" : "top-input"}
-          label={(!startSearchConnection || searchProccessing) ?
-            <CircularProgress size={18} ></CircularProgress>
-            :
-            <><TravelExploreIcon></TravelExploreIcon>{T.Label}</>
+          label={
+            (!startSearchConnection || searchProccessing) ?
+              <> <CircularProgress size={21} ></CircularProgress> {T.Label} </>
+              :
+              <> <TravelExploreIcon></TravelExploreIcon> {T.Label}</>
           }
           type="search"
           onChange={startSearchConnection ? setVal : null}
