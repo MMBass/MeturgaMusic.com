@@ -183,9 +183,9 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
           className={locat == "main" ? "main-input" : "top-input"}
           label={
             (!startSearchConnection || searchProccessing) ?
-              <> <CircularProgress size={21} ></CircularProgress> {T.Label} </>
+              <> <CircularProgress size={16}></CircularProgress> {T.Label} </>
               :
-              <> <TravelExploreIcon></TravelExploreIcon> {T.Label}</>
+              <> <TravelExploreIcon></TravelExploreIcon> {T.Label} </>
           }
           type="search"
           onChange={startSearchConnection ? setVal : null}

@@ -32,6 +32,7 @@ const StyledSearchBar = styled(SearchBar)`
       margin: auto;
 
       input, fieldset, label{
+        align-items: center;
         font-weight: 600;
         border-width: medium;
       }
@@ -56,8 +57,9 @@ const StyledSearchBar = styled(SearchBar)`
       label{
         display: flex;
         justify-items: center;
-        svg{
-          padding-inline-end: 9px;
+
+        span, .MuiSvgIcon-root{
+          padding-inline-end: 5px;
         }
       }
     }
