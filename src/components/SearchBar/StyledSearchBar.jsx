@@ -59,7 +59,8 @@ const StyledSearchBar = styled(SearchBar)`
         justify-items: center;
 
         span, .MuiSvgIcon-root{
-          padding-inline-end: 5px;
+          color: ${props => props.theme.palette.primary.dark + "!important"};
+          padding-inline-end: 10px;
         }
       }
     }
@@ -72,7 +73,7 @@ const StyledSearchBar = styled(SearchBar)`
         border-color: ${props => props.theme.palette.primary.light + "!important"};
       }
 
-      svg{
+      svg, .MuiCircularProgress-root{
         display: none;
       }
   }
@@ -182,7 +183,7 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   .gs-title *{
-    color: rgba(255, 255, 255, 0) !important; // Clear color until filtering
+    color: rgba(255, 255, 255, 0) !important; // Clear all colors until filtering, make the lines transparent
   }
 
   .fixed-gs-title * {
