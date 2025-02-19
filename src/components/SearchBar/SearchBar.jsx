@@ -15,7 +15,7 @@ import constants from "@/constants";
 function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   const [startSearchConnection, setStartSearchConnection] = useState(false);
-  const [searchProccessing, setSearchProccessing] = useState(true);
+  const [searchProccessing, setSearchProccessing] = useState(false);
   const [currVal, setCurrVal] = useState('');
 
   const routerNavigate = useNavigate();
