@@ -155,7 +155,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
   // Click event for very text in results dropdown
   const handleLineClickEvent = (line, songTitle, splittedSongTitle, webSongUrl) => {
-    setSearchProccessing(true);
     line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 
     if (addRecordMode === true) {

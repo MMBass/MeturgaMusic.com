@@ -73,7 +73,6 @@ export default function CurrLyricsContextProvider({ children }) {
             bannersContext.createBanner('error', 'error', TUtils.LyricsNotFound, '');
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
         }
-        setSearchProccessing(false);
     }
 
     const setCombined = (songTitle, data) => {
@@ -105,7 +104,7 @@ export default function CurrLyricsContextProvider({ children }) {
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
        
             if (line.length >= 2) {
-                if (utils.isMostlyEnglish(line) || line.includes('|####|') || line.includes('****')) {
+                if (utils.isMostlyEnglish(line) || line.includes('|####|' /*Some Pharse-break sign*/) ) {
                     if (line.length > 90) {
                         let byCommas = line.split(',');  // Split by commas if the line is too long
                         if (byCommas[0].length > 10) {
@@ -118,6 +117,8 @@ export default function CurrLyricsContextProvider({ children }) {
                     } else {
                         newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
                     }
+                } else if ((line.includes('****PARTIAL LYRICS****'))){
+                    newLines.push({ src: "****PARTIAL LYRICS****", trans: '', transError: false });
                 } else {
                     console.log("Not supported lang: " + line);
                     newLines.push({ src: "*NOT SUPPORTED TEXT*", trans: '', transError: false });
@@ -172,7 +173,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setTranslatedBy('');
         
         try {
-            const data = await fetchFullTrans(lines.map(line => ({...line, src: line.src.replaceAll('PHARSE_BREAK', '')})), song_id, title); // PHARSE_BREAK Legacy - exsist in some saved songs, TODO Remove it using mongo 
+            const data = await fetchFullTrans(lines.map(line => ({...line, src: line.src.replaceAll('PHARSE_BREAK', '')})), song_id, title); // PHARSE_BREAK Legacy - exsist in some saved songs, TODO Remove them from database
 
             let newLines = [];
 
