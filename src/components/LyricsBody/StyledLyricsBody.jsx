@@ -9,7 +9,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   font-weight: 400;
   border-radius: 10px;
   margin: 15px 0px 25px 10px;
-  padding: 15px 50px 40px 50px;
+  padding: 15px 50px 80px 50px;
   width: auto;
 
   @media (max-width: 600px) {

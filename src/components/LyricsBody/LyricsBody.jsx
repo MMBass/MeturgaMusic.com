@@ -83,8 +83,8 @@ function LyricsBody({ className }) {
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
                   // TODO find a better way for PHARSE BREAKing
-                  if(word.includes('PHARSE_BREAK')) { return }; // For some AZ cases - TODO remove after DB cleaning
-                  if(word.includes('|####|')) { return }; // For AZ cases
+                  if (word.includes('PHARSE_BREAK')) { return }; // For some AZ cases - TODO remove after DB cleaning
+                  if (word.includes('|####|')) { return }; // For AZ cases
                   return (
                     <LyricToolTip key={i} lyric={word} lyricID={'title' + i}></LyricToolTip>
                   )
@@ -112,7 +112,9 @@ function LyricsBody({ className }) {
         </Grid>
 
         {currLyricsContext.lines.map((line, y) => {
-          if (line.src.includes('****PARTIAL LYRICS****')) { return }
+          if (line.src.includes('****PARTIAL LYRICS****')) {
+            return <b dir="ltr" className="single-trans">{T.PartialLyrics}</b>
+          }
           if (line.src.includes('[') || line.src.includes('|')) {
             line.trans = '   ';
             line.src = line.src.replaceAll('[', '|')
@@ -129,9 +131,9 @@ function LyricsBody({ className }) {
                 }}
               >
                 {line.src.split(' ').map((word, i) => {
-                  if (line.src.includes('****PARTIAL LYRICS****')) { return }
-                  if(word.includes('PHARSE_BREAK')) { return }; // For AZ cases - TODO remove after DB cleaning
-                  if(word.includes('|####|')) { return }; // Also For AZ cases
+                  if (line.src.includes('****PARTIAL LYRICS****')) { return };
+                  if (word.includes('PHARSE_BREAK')) { return }; // For AZ cases - TODO remove after DB cleaning
+                  if (word.includes('|####|')) { return }; // Also For AZ cases
                   if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
                   return (
                     <LyricToolTip key={i} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
@@ -146,12 +148,13 @@ function LyricsBody({ className }) {
                 }}
               >
                 <>
-                  {
-                    line.trans?.length ?
+                  {(() => {
+                    ;
+                    return line.trans?.length ?
                       <>{line.trans === '   ' ? '' : <p className="single-trans">{line.trans}</p>}</>
                       :
                       <small className="single-trans">{TUtils.LoadingTrans}</small>
-                  }
+                  })()}
                 </>
               </Box>
 
