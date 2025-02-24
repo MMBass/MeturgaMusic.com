@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -113,7 +115,10 @@ function LyricsBody({ className }) {
 
         {currLyricsContext.lines.map((line, y) => {
           if (line.src.includes('****PARTIAL LYRICS****')) {
-            return <b dir="ltr" className="single-trans">{T.PartialLyrics}</b>
+            return <Alert sx={{direction: 'rtl'}} severity="error">
+            <AlertTitle>ארעה שגיאה</AlertTitle>
+            {T.PartialLyrics}
+          </Alert>
           }
           if (line.src.includes('[') || line.src.includes('|')) {
             line.trans = '   ';
