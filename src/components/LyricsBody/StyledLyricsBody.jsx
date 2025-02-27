@@ -67,6 +67,10 @@ const StyledLyricsBody = styled(LyricsBody)`
   .he-line{
     font-weight: 600;
   }
+
+  .partialLyrics-mui-alert{
+    direction: rtl;
+  }
 `;
 
 export default StyledLyricsBody;

@@ -115,7 +115,7 @@ function LyricsBody({ className }) {
 
         {currLyricsContext.lines.map((line, y) => {
           if (line.src.includes('****PARTIAL LYRICS****')) {
-            return <Alert sx={{direction: 'rtl'}} severity="error">
+            return <Alert className="partialLyrics-mui-alert" severity="error">
             <AlertTitle>{T.PartialLyricsErrTitle}</AlertTitle>
             {T.PartialLyricsErr}
           </Alert>
