@@ -125,10 +125,12 @@ export default function CurrLyricsContextProvider({ children }) {
                 }
             };
         });
-        setAbort(false);
-        setLines(newLines);
+
+        // TO TRACK if moving the setVideoId before setLines is not breaking the setVideoId process
         if (data.videoId) setVideoId(data.videoId);
         else setVideoId('');
+        setAbort(false);
+        setLines(newLines);
         utils.clearGsc();
     }
 
