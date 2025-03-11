@@ -69,7 +69,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .partialLyrics-mui-alert{
-    direction: rtl;
+    direction: ltr;
   }
 `;
 

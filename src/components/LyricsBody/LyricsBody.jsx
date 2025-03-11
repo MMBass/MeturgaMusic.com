@@ -111,15 +111,16 @@ function LyricsBody({ className }) {
               {TUtils.Translated}
             </Typography>
           }
+
+          {currLyricsContext.lines[currLyricsContext.lines.length - 1].src.includes('****PARTIAL LYRICS****') &&
+            <Alert className="partialLyrics-mui-alert" severity="error">
+              <AlertTitle>{T.PartialLyricsErrTitle}</AlertTitle>
+              {T.PartialLyricsErr}
+            </Alert>
+          }
         </Grid>
 
         {currLyricsContext.lines.map((line, y) => {
-          if (line.src.includes('****PARTIAL LYRICS****')) {
-            return <Alert className="partialLyrics-mui-alert" severity="error">
-            <AlertTitle>{T.PartialLyricsErrTitle}</AlertTitle>
-            {T.PartialLyricsErr}
-          </Alert>
-          }
           if (line.src.includes('[') || line.src.includes('|')) {
             line.trans = '   ';
             line.src = line.src.replaceAll('[', '|')
@@ -154,7 +155,6 @@ function LyricsBody({ className }) {
               >
                 <>
                   {(() => {
-                    ;
                     return line.trans?.length ?
                       <>{line.trans === '   ' ? '' : <p className="single-trans">{line.trans}</p>}</>
                       :
