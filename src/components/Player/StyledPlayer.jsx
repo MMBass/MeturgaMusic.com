@@ -44,7 +44,7 @@ const StyledPlayer = styled(Player)`
       .play-icon-overlay {
          position: absolute;
          background-color: #e4e4e4fe;
-         pointer-events: none; /* Allow clicks to pass through */
+         pointer-events: all; /* Since using onClick={() => skipSeconds(-10)} Don't Allow clicks to pass through */
          top: 0;
          left: 0;
          width: 105%;

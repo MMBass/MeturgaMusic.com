@@ -213,7 +213,7 @@ function Player({ className }) {
                     {playerError ? <ErrorOutlineOutlinedIcon className='playerError-icon'></ErrorOutlineOutlinedIcon> :
                       <>{firstUserClickLoader ?
                         <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
-                        : <PlayArrowRounded fontSize="large" />}</>}
+                        : <PlayArrowRounded onClick={() => skipSeconds(-10)} fontSize="large" />}</> }
                   </div>
                 </span>
               </IconButton>
