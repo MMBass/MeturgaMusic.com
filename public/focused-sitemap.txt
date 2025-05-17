@@ -4,18 +4,18 @@ https://meturgamusic.com/spotify-extension
 https://meturgamusic.com/about
 
 https://meturgamusic.com/song/Alex-Warren_Ordinary
-https://meturgamusic.com/?song=WizTheMc-and-bees-and-honey_Show-Me-Love
-https://meturgamusic.com/?song=Ed-Sheeran_Azizam
-https://meturgamusic.com/?song=Doechii_Anxiety
-https://meturgamusic.com/?song=Sombr_back-to-friends
-https://meturgamusic.com/?song=Lola-Young_Messy
-https://meturgamusic.com/?song=Lady-Gaga-and-Bruno-Mars_Die-With-A-Smile
-https://meturgamusic.com/?song=Sabrina-Carpenter_Bed-Chem
-https://meturgamusic.com/?song=Tate-McRae_Sports-car
-https://meturgamusic.com/?song=Kendrick-Lamar_Not-Like-Us
-https://meturgamusic.com/?song=Morgan-Wallen-and-Tate-McRae_What-I-Want
-https://meturgamusic.com/?song=Laufey_Tough-Luck
-https://meturgamusic.com/?song=KATSEYE_Gnarly
+https://meturgamusic.com/song/WizTheMc-and-bees-and-honey_Show-Me-Love
+https://meturgamusic.com/song/Ed-Sheeran_Azizam
+https://meturgamusic.com/song/Doechii_Anxiety
+https://meturgamusic.com/song/Sombr_back-to-friends
+https://meturgamusic.com/song/Lola-Young_Messy
+https://meturgamusic.com/song/Lady-Gaga-and-Bruno-Mars_Die-With-A-Smile
+https://meturgamusic.com/song/Sabrina-Carpenter_Bed-Chem
+https://meturgamusic.com/song/Tate-McRae_Sports-car
+https://meturgamusic.com/song/Kendrick-Lamar_Not-Like-Us
+https://meturgamusic.com/song/Morgan-Wallen-and-Tate-McRae_What-I-Want
+https://meturgamusic.com/song/Laufey_Tough-Luck
+https://meturgamusic.com/song/KATSEYE_Gnarly
 
 https://meturgamusic.com/song/*NSYNC_Bye-Bye-Bye
 https://meturgamusic.com/song/Billie-Eilish_WILDFLOWER
