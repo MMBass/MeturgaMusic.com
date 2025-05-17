@@ -29,7 +29,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
     useEffect(() => {
         if (lines[0]) checkNextTrans();
-        if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 6) setAzureServerError(true); // Temporarily, gives every user 7 fast translations, and one on every visit (session)
+        if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 1) setAzureServerError(true); // Temporarily, gives every user 7 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
     useEffect(() => {
@@ -238,7 +238,7 @@ export default function CurrLyricsContextProvider({ children }) {
                         service: ServiceTypes.GOOGLE
                     }));
 
-                    putFullTrans(title, newLines, ServiceTypes.GOOGLE);
+                    putFullTrans(song_id, title, newLines, ServiceTypes.GOOGLE);
                     setAzureServerError(false);
                 };
             } else {
