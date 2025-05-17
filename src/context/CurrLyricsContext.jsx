@@ -238,7 +238,7 @@ export default function CurrLyricsContextProvider({ children }) {
                         service: ServiceTypes.GOOGLE
                     }));
 
-                    putFullTrans(song_id, title, newLines, ServiceTypes.GOOGLE);
+                    // putFullTrans(song_id, title, newLines, ServiceTypes.GOOGLE); // TODO - off until aborting of prev song works perfectly
                     setAzureServerError(false);
                 };
             } else {
