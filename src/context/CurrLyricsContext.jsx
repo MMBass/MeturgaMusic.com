@@ -29,7 +29,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
     useEffect(() => {
         if (lines[0]) checkNextTrans();
-        if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 2) setAzureServerError(true); // Temporarily, gives every user 3 fast translations, and one on every visit (session)
+        if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 6) setAzureServerError(true); // Temporarily, gives every user 7 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
     useEffect(() => {
@@ -172,6 +172,7 @@ export default function CurrLyricsContextProvider({ children }) {
     };
 
     const getFullTrans = async () => {
+        setAbort(true); // TODO track if not cousing problems
         setTranslatedBy('');
         
         try {
@@ -204,10 +205,12 @@ export default function CurrLyricsContextProvider({ children }) {
             } else {
                 console.error("status is ok but azure translation missing");
                 setAzureServerError(true); // Works.  // checkNextTrans(); // doesn't work
+                setAbort(false);
             }
         } catch (e) {
             console.log(e);
             setAzureServerError(true); // Works.  // checkNextTrans(); // doesn't work
+            setAbort(false);
         }
     };
 
