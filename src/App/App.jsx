@@ -106,7 +106,9 @@ function App({ className }) {
                   <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} pageTitle={T.MainH1 + " - " + T.SpotifyExtension} rank={1} />} />
                   <Route path="/About" element={<AboutPage className={'page'} pageTitle={T.MainH1 + " - " + T.About} rank={1} />} />
                   <Route path="/songs/:urlSong" element={<HomePage className={'page'} rank={1} />} />
-                  <Route path="/song/:urlSong" element={<HomePage className={'page'} rank={1} />} />
+
+                  {/* TODO remove after map update? */}
+                  <Route path="/song/:urlSong" element={<HomePage className={'page'} rank={1} />} /> 
 
                   <Route path="*" element={<NoMatchPage className={'page'} />} />
                 </Routes>
