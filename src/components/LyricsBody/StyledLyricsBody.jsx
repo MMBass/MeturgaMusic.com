@@ -22,7 +22,7 @@ const StyledLyricsBody = styled(LyricsBody)`
     color: ${props => props.theme.palette.secondary.dark};
   }
 
-  .l-body-top-actions{
+  .l-body-top-actions, .l-body-top-actions-left{
     justify-content: space-between;
     padding-inline-start: 10px;
 
@@ -30,10 +30,6 @@ const StyledLyricsBody = styled(LyricsBody)`
       justify-content: center;
       padding-inline-start: 5px;
     }
-  }
-
-  .full-screen-toggle svg{
-    font-size: 21px;
   }
 
   .trans-by-chip{

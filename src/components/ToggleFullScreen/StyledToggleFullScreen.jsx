@@ -11,6 +11,14 @@ const StyledToggleFullScreen = styled(ToggleFullScreen)`
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
   }
 
+  @media (min-width: 600px) {
+    & .MuiChip-icon{
+        margin-inline-start: 5px;
+        margin-top: 1px;
+        font-size: 15px;  
+    }
+  }
+  
   @media (max-width: 600px) {
     flex-direction: column;
     

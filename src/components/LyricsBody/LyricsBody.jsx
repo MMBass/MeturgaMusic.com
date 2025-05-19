@@ -70,7 +70,7 @@ function LyricsBody({ className }) {
                 color="default" variant="filled" size='small' />
             }
 
-            <div className="l-body-top-actions">
+            <div className="l-body-top-actions-left">
               <ToggleSaveSong songTitle={currLyricsContext.title}></ToggleSaveSong>
               <ToggleFullScreen></ToggleFullScreen>
             </div>

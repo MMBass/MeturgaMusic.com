@@ -37,13 +37,13 @@ function ToggleFullScreen({ className }) {
 
   return (
     <Chip className={className}
-    onClick={handleToggleFullScreen}
+      onClick={handleToggleFullScreen}
       icon={isFullScreen ?
         <CloseFullscreenIcon></CloseFullscreenIcon>
         :
         <OpenInFullIcon></OpenInFullIcon>}
-      label={!isFullScreen ? T.Title: T.Exit}
-      size='small' 
+      label={!isFullScreen ? T.Title : T.Exit}
+      size='small'
       variant="outlined"
     />
   );
