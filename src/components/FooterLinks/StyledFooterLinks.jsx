@@ -4,8 +4,10 @@ import FooterLinks from './FooterLinks';
 const StyledFooterLinks = styled(FooterLinks)`
    max-width: 1300px;
    margin: auto;
-   svg{
-     padding-inline-end: 5px;
+
+   svg, .MuiSvgIcon-root, .Email-Icon{
+      font-size: 20px;
+      padding-inline-end: 10.5px;
    }
 
    li{
