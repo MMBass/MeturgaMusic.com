@@ -249,6 +249,14 @@ const StyledSearchBar = styled(SearchBar)`
     display: none !important;
   }
 
+  .gs-no-results-result .gs-snippet{
+    display: block !important;
+    visibility: visible !important;
+    color: #060603 !important;
+    background-color: unset;
+    border: unset;
+  }
+
   .gs-visibleUrlop {
     display: none;
   }
