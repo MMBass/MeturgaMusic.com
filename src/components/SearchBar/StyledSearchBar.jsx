@@ -265,12 +265,14 @@ const StyledSearchBar = styled(SearchBar)`
     display: none;
   }
 
-  .gsc-table-cell-thumbnail .gsc-thumbnail,
-  .gsc-cursor-box {
+  .gsc-table-cell-thumbnail .gsc-thumbnail {
     display: inline;
   }
 
   /*results pages numbers navigator (- mobile) */
+  .gsc-cursor-box {
+    border: unset;
+  }
   .gsc-cursor * {
     background-color: rgba(0, 0, 0, 0) !important;
   }
