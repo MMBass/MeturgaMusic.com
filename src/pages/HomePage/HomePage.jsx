@@ -66,7 +66,6 @@ function HomePage({ className }) {
       // If the song is from /songs path - change the page title 
       if (urlSong) { document.title = (TUtils.SiteName + " " + passedSong + " " + T.Translated) };
       // Call the song
-      currLyricsContext.resetSong();
       currLyricsContext.getSongLyrics(splittedSongTitle, passedSong);
     }
   }

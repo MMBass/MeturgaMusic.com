@@ -22,6 +22,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const [song_id, setSong_id] = useState('');
     const [title, setTitle] = useState(currSsSong?.title || '');
     const [lines, setLines] = useState(currSsSong?.lines || []);
+    const [linesVersion, setLinesVersion] = useState(0);
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
     const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
@@ -30,9 +31,9 @@ export default function CurrLyricsContextProvider({ children }) {
     useEffect(() => {
         if (lines[0]) checkNextTrans();
 
-        //  Temporarily allow only fullTrans
         // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
-       
+
+        if (linesVersion > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
     useEffect(() => {
