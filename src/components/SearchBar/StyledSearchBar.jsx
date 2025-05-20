@@ -278,9 +278,9 @@ const StyledSearchBar = styled(SearchBar)`
     background-color: rgba(0, 0, 0, 0) !important;
   }
   .gsc-cursor-page {
-    border: 1px solid #8f8f8f52;
+    border: 1px solid #8f8f8f26;
     text-decoration: none;
-    padding: 3px;
+    padding: 3px 5px;
     border-radius: 3px;
   }
   .gsc-cursor-current-page{
