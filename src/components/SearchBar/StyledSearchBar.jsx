@@ -153,14 +153,14 @@ const StyledSearchBar = styled(SearchBar)`
   #___gcse_0 .gs-captcha-outer-wrapper {
     padding: 30px !important;
 
-     @media (max-width: 600px) {
+    /* @media (max-width: 600px) {
         position: fixed;
         margin: auto;
         right: 30px;
         background-color: #e2e2e2a2;
         z-index: 99999999;
         padding: 20px !important;
-    }
+    } */
   }
 
   #___gcse_0 input {
