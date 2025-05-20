@@ -272,9 +272,20 @@ const StyledSearchBar = styled(SearchBar)`
   /*results pages numbers navigator (- mobile) */
   .gsc-cursor-box {
     border: unset;
+    text-align: center;
   }
   .gsc-cursor * {
     background-color: rgba(0, 0, 0, 0) !important;
+  }
+  .gsc-cursor-page {
+    border: 1px solid #8f8f8f52;
+    text-decoration: none;
+    padding: 3px;
+    border-radius: 3px;
+  }
+  .gsc-cursor-current-page{
+    color: ${props => props.theme.palette.primary.dark + "!important"};
+    border-color: ${props => props.theme.palette.primary.dark + "!important"};;
   }
 
   .gcsc-more-maybe-branding-root {
