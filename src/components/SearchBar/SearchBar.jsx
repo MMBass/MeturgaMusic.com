@@ -93,11 +93,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
       let noResults = document.querySelectorAll(".gsc-no-results-result")[0];
 
-      // color the no results text
-      if (noResults) {
-        noResults.style.color = "#000";
-      }
-
       // Move the ads to bottom - if displayed
       // const gscAdBlocks = document.querySelectorAll('.gsc-adBlock');
       // gscAdBlocks.forEach((ad)=>{

@@ -225,6 +225,14 @@ const StyledSearchBar = styled(SearchBar)`
     }
   }
 
+  .gs-no-results-result .gs-snippet{
+    display: block !important;
+    visibility: visible !important;
+    color: #060603 !important;
+    background-color: unset;
+    border: unset;
+  }
+
   .gsc-result * {
     font-family: 'Assistant', 'Roboto', 'sans-serif' !important;
     font-weight: 500;
