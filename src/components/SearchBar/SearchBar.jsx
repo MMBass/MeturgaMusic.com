@@ -91,8 +91,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
     setTimeout(() => {
       let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
-      let noResults = document.querySelectorAll(".gsc-no-results-result")[0];
-
+      
       // Move the ads to bottom - if displayed
       // const gscAdBlocks = document.querySelectorAll('.gsc-adBlock');
       // gscAdBlocks.forEach((ad)=>{

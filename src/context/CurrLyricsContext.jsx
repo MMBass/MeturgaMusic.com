@@ -29,7 +29,10 @@ export default function CurrLyricsContextProvider({ children }) {
 
     useEffect(() => {
         if (lines[0]) checkNextTrans();
-        if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 9) setAzureServerError(true); // Temporarily, gives every user 10 fast translations, and one on every visit (session)
+
+        //  Temporarily allow only fullTrans
+        // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
+       
     }, [lines, azureServerError]);
 
     useEffect(() => {
