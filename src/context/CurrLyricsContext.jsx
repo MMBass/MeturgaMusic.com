@@ -251,7 +251,7 @@ export default function CurrLyricsContextProvider({ children }) {
                         service: ServiceTypes.GOOGLE
                     }));
 
-                    putFullTrans(title, newLines, ServiceTypes.GOOGLE);
+                    // putFullTrans(title, newLines, ServiceTypes.GOOGLE); // Off until we sure the correct title is being sent
                     setAzureServerError(false);
                 };
             } else {
