@@ -34,6 +34,14 @@ function LyricsBody({ className }) {
     urlOnTitleChange();
   }, [currLyricsContext.title]);
 
+  useEffect(() => {
+    // Usually, the checkNextTrans abort will work, but this is a safety net:
+    if (currLyricsContext.linesVersion !== currLyricsContext.lines[0]?.src) {
+      currLyricsContext.resetSong();
+      location.reload();
+    }
+  }, [currLyricsContext.linesVersion]);
+
   const urlOnTitleChange = () => {
     if (urlSong) {
       return;  // Avoid infinite HomePage useEffect that depends on rrdLocation (page params) 
@@ -111,62 +119,70 @@ function LyricsBody({ className }) {
               {TUtils.Translated}
             </Typography>
           }
-
+          {/* Set the PARTIAL LYRICS alert */}
           {currLyricsContext.lines[currLyricsContext.lines.length - 1].src.includes('****PARTIAL LYRICS****') &&
             <Alert className="partialLyrics-mui-alert" severity="error">
-              <AlertTitle>{T.PartialLyricsErrTitle}</AlertTitle>
+              <AlertTitle>{T.LyricsErrTitle}</AlertTitle>
               {T.PartialLyricsErr}
             </Alert>
           }
         </Grid>
 
-        {currLyricsContext.lines.map((line, y) => {
-          if (line.src.includes('[') || line.src.includes('|')) {
-            line.trans = '   ';
-            line.src = line.src.replaceAll('[', '|')
-            line.src = line.src.replaceAll(']', '|')
-          }
-          return (
-            <Grid item xs={12} key={y}>
+        {(currLyricsContext.linesVersion === currLyricsContext.lines[0]?.src) &&
+          currLyricsContext.lines.map((line, y) => {
+            if (line.src.includes('[') || line.src.includes('|')) {
+              line.trans = '   ';
+              line.src = line.src.replaceAll('[', '|')
+              line.src = line.src.replaceAll(']', '|')
+            }
+            return (
+              <Grid item xs={12} key={y}>
 
-              <Box className="lyrics-line en-line"
-                style={{
-                  fontSize: settingsContext.fontSize.md,
-                  paddingTop: ((y > 0 && line.src.includes('|')) ? '20px' : '0px'), // | means a line break
-                  lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : (settingsContext.fontSize.md > 35 ? settingsContext.fontSize.md + 30 + 'px' : settingsContext.fontSize.md + 10 + 'px')),
-                }}
-              >
-                {line.src.split(' ').map((word, i) => {
-                  if (line.src.includes('****PARTIAL LYRICS****')) { return };
-                  if (word.includes('PHARSE_BREAK')) { return }; // For AZ cases - TODO remove after DB cleaning
-                  if (word.includes('|####|')) { return }; // Also For AZ cases
-                  if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
-                  return (
-                    <LyricToolTip key={i} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
-                  )
-                })}
-              </Box>
+                <Box className="lyrics-line en-line"
+                  style={{
+                    fontSize: settingsContext.fontSize.md,
+                    paddingTop: ((y > 0 && line.src.includes('|')) ? '20px' : '0px'), // | means a line break
+                    lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : (settingsContext.fontSize.md > 35 ? settingsContext.fontSize.md + 30 + 'px' : settingsContext.fontSize.md + 10 + 'px')),
+                  }}
+                >
+                  {line.src.split(' ').map((word, i) => {
+                    if (line.src.includes('****PARTIAL LYRICS****')) { return };
+                    if (word.includes('PHARSE_BREAK')) { return }; // For AZ cases - TODO remove after DB cleaning
+                    if (word.includes('|####|')) { return }; // Also For AZ cases
+                    if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
+                    return (
+                      <LyricToolTip key={i} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>
+                    )
+                  })}
+                </Box>
 
-              <Box className="lyrics-line he-line"
-                style={{
-                  fontSize: settingsContext.fontSize.md,
-                  lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : (settingsContext.fontSize.md > 35 ? settingsContext.fontSize.md + 30 + 'px' : settingsContext.fontSize.md + 10 + 'px')),
-                }}
-              >
-                <>
-                  {(() => {
-                    return line.trans?.length ?
-                      <>{line.trans === '   ' ? '' : <p className="single-trans">{line.trans}</p>}</>
-                      :
-                      <small className="single-trans">{TUtils.LoadingTrans}</small>
-                  })()}
-                </>
-              </Box>
+                <Box className="lyrics-line he-line"
+                  style={{
+                    fontSize: settingsContext.fontSize.md,
+                    lineHeight: (settingsContext.fontSize.md < 18 ? settingsContext.fontSize.md + 3 + 'px' : (settingsContext.fontSize.md > 35 ? settingsContext.fontSize.md + 30 + 'px' : settingsContext.fontSize.md + 10 + 'px')),
+                  }}
+                >
+                  <>
+                    {(() => {
+                      return line.trans?.length ?
+                        <>{line.trans === '   ' ? '' : <p className="single-trans">{line.trans}</p>}</>
+                        :
+                        <small className="single-trans">{TUtils.LoadingTrans}</small>
+                    })()}
+                  </>
+                </Box>
 
-              {(line.src.includes('|')) && <br></br>} {/* | means a line break */}
-            </Grid>
-          );
-        })}
+                {(line.src.includes('|')) && <br></br>} {/* | means a line break */}
+              </Grid>
+            );
+          })}
+
+        {(currLyricsContext.linesVersion !== currLyricsContext.lines[0]?.src) &&
+          <Alert className="partialLyrics-mui-alert" severity="error">
+            <AlertTitle>{T.LyricsErrTitle}</AlertTitle>
+            {T.ContextErrorText}
+          </Alert>
+        }
       </Grid>
     </Paper>
   );
