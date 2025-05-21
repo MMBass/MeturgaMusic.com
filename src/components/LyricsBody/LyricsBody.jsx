@@ -120,7 +120,7 @@ function LyricsBody({ className }) {
           }
         </Grid>
 
-        {(currLyricsContext.linesVersion === currLyricsContext.lines[0]?.src) &&
+        {(currLyricsContext.linesVersion === (currLyricsContext.lines[1]?.src + currLyricsContext.lines[2]?.src)) &&
           currLyricsContext.lines.map((line, y) => {
             if (line.src.includes('[') || line.src.includes('|')) {
               line.trans = '   ';
@@ -169,7 +169,7 @@ function LyricsBody({ className }) {
             );
           })}
 
-        {(currLyricsContext.linesVersion !== currLyricsContext.lines[0]?.src) &&
+        {(currLyricsContext.linesVersion !== currLyricsContext.lines[1]?.src + currLyricsContext.lines[2]?.src) &&
           <Alert className="inLyrics-mui-alert" severity="error">
             <AlertTitle>{T.LyricsErrTitle}</AlertTitle>
             {T.ContextErrorText}

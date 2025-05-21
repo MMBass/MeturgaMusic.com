@@ -28,12 +28,12 @@ export default function CurrLyricsContextProvider({ children }) {
     const [linesVersion, setLinesVersion] = useState( (currSsSong?.lines?.[1]?.src + currSsSong?.lines?.[2]?.src) || '' ) // For now - is the first line of the song;
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
-    const [azureServerError, setAzureServerError] = useState(true); // Set if azure trans didn't work
+    const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
 
     useEffect(() => {
-        if (lines[0] && linesVersion === lines[0]?.src) checkNextTrans();
-
+        if (lines[0] && linesVersion === lines[1]?.src + lines[2]?.src) checkNextTrans();
+       
         // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
@@ -148,7 +148,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (lsSong?.title && lsSong.lines.length > 0 && lsSong.lines[0].src) {
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
             setTitle(songTitle);
-            setLinesVersion(lsSong.combined[1].src + lsSong.combined[2].src);
+            setLinesVersion(lsSong.lines[1].src + lsSong.lines[2].src);
             setLines(lsSong.lines);
             setVideoId(lsSong.videoId);
             setTranslatedBy(lsSong.service);
