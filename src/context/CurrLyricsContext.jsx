@@ -148,7 +148,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (lsSong?.title && lsSong.lines.length > 0 && lsSong.lines[0].src) {
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
             setTitle(songTitle);
-            setLinesVersion(data.combined[1].src + data.combined[2].src);
+            setLinesVersion(lsSong.combined[1].src + lsSong.combined[2].src);
             setLines(lsSong.lines);
             setVideoId(lsSong.videoId);
             setTranslatedBy(lsSong.service);
