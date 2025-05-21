@@ -18,11 +18,14 @@ export default function CurrLyricsContextProvider({ children }) {
     const loadersContext = useContext(LoadersContext);
     const bannersContext = useContext(BannersContext);
 
-    const currSsSong = JSON.parse(sessionStorage.getItem('currSong'));
-    const [song_id, setSong_id] = useState('');
+    const currSsSong = (() => {
+        const sS = JSON.parse(sessionStorage.getItem('currSong'));
+        return (sS && sS.title && Array.isArray(sS.lines) && sS.lines.length > 1) ? sS : null;
+    })();
+
     const [title, setTitle] = useState(currSsSong?.title || '');
     const [lines, setLines] = useState(currSsSong?.lines || []);
-    const [linesVersion, setLinesVersion] = useState(0);
+    const [linesVersion, setLinesVersion] = useState(currSsSong?.lines?.[0]?.src || '') // For now - is the first line of the song;
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
     const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
@@ -32,19 +35,17 @@ export default function CurrLyricsContextProvider({ children }) {
         if (lines[0]) checkNextTrans();
 
         // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
-
-        if (linesVersion > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
     useEffect(() => {
-        if ( title.length > 2 && videoId.length > 2) {
+        if (title.length > 2 && videoId.length > 2 && lines[0]?.src.length > 0) {
             utils.lsSaveSong({ title, lines, videoId, translatedBy });
         } // Update the ls videoId after all the state sets
     }, [videoId]);
 
     const getSongLyrics = async (splittedSongTitle, songTitle, webSongUrl, setSearchProccessing) => {
 
-        if(utils.compareTitles(songTitle, title)) return; // If the song is the same, do nothing
+        if (utils.compareTitles(songTitle, title)) return; // If the song is the same, do nothing
 
         setAbort(true);
 
@@ -81,34 +82,36 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const setCombined = (songTitle, data) => {
         setAbort(false);
+        setLinesVersion(data.combined[0].src);
         setTitle(songTitle);
-        setSong_id(data.id);
         setLines(data.combined);
         if (data.combined[2].trans.length > 1 && data.service) setTranslatedBy(data.service);
         if (data.videoId) setVideoId(data.videoId);
         else setVideoId('');
 
-        utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
         utils.clearGsc();
 
-        sessionStorage.setItem('currSong', JSON.stringify({
-            lines: data.combined,
-            title: songTitle,
-            videoId: data.videoId,
-            service: data.service || ServiceTypes.LEGACY
-        }));
+        if (data.combined[0]?.src) {
+            utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
+
+            sessionStorage.setItem('currSong', JSON.stringify({
+                lines: data.combined,
+                title: songTitle,
+                videoId: data.videoId,
+                service: data.service || ServiceTypes.LEGACY
+            }));
+        }
     }
 
     const setSongLyrics = (data, songTitle) => {
         setTitle(songTitle);
         let newLines = [];
-        
+
         data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n'); // |####| is our custom line break for AZ cases
 
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
-       
             if (line.length >= 2) {
-                if (utils.isMostlyEnglish(line) || line.includes('|####|' /*Some Pharse-break sign*/) ) {
+                if (utils.isMostlyEnglish(line) || line.includes('|####|' /*Some Pharse-break sign*/)) {
                     if (line.length > 90) {
                         let byCommas = line.split(',');  // Split by commas if the line is too long
                         if (byCommas[0].length > 10) {
@@ -121,7 +124,7 @@ export default function CurrLyricsContextProvider({ children }) {
                     } else {
                         newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
                     }
-                } else if ((line.includes('****PARTIAL LYRICS****'))){
+                } else if ((line.includes('****PARTIAL LYRICS****'))) {
                     newLines.push({ src: "****PARTIAL LYRICS****", trans: '', transError: false });
                 } else {
                     console.log("Not supported lang: " + line);
@@ -129,6 +132,8 @@ export default function CurrLyricsContextProvider({ children }) {
                 }
             };
         });
+
+        setLinesVersion(newLines[0].src);
 
         // TO TRACK if moving the setVideoId before setLines is not breaking the setVideoId process
         if (data.videoId) setVideoId(data.videoId);
@@ -140,9 +145,10 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const localStorageGetSong = (songTitle, searchResultsParent) => {
         let lsSong = utils.lsFindSong(songTitle);
-        if (lsSong && Array.isArray(lsSong.lines)) {
+        if (lsSong?.title && lsSong.lines.length > 0 && lsSong.lines[0].src) {
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
             setTitle(songTitle);
+            setLinesVersion(lsSong.lines[0].src);
             setLines(lsSong.lines);
             setVideoId(lsSong.videoId);
             setTranslatedBy(lsSong.service);
@@ -178,9 +184,9 @@ export default function CurrLyricsContextProvider({ children }) {
     const getFullTrans = async () => {
         setAbort(true); // TODO track if not cousing problems
         setTranslatedBy('');
-        
+
         try {
-            const data = await fetchFullTrans(lines.map(line => ({...line, src: line.src.replaceAll('PHARSE_BREAK', '')})), song_id, title); // PHARSE_BREAK Legacy - exsist in some saved songs, TODO Remove them from database
+            const data = await fetchFullTrans(lines.map(line => ({ ...line, src: line.src.replaceAll('PHARSE_BREAK', '') })), title); // PHARSE_BREAK Legacy - exsist in some saved songs, TODO Remove them from database
 
             let newLines = [];
 
@@ -191,19 +197,22 @@ export default function CurrLyricsContextProvider({ children }) {
 
                 setLines(newLines);
 
-                utils.lsSaveSong({
-                    title: title,
-                    lines: newLines,
-                    videoId: videoId, // The id remains the first state, an empty string 
-                    service: data.service, // The service and title updating correctly
-                });
+                if (newLines[0]?.src) {
+                    utils.lsSaveSong({
+                        title: title,
+                        lines: newLines,
+                        videoId: videoId, // The id remains the first state, an empty string 
+                        service: data.service, // The service and title updating correctly
+                    });
 
-                sessionStorage.setItem('currSong', JSON.stringify({
-                    lines: newLines,
-                    title: title,
-                    videoId: videoId, // The id remains the first state, an empty string 
-                    service: data.service // The service and title updating correctly
-                }));
+                    sessionStorage.setItem('currSong', JSON.stringify({
+                        lines: newLines,
+                        title: title,
+                        videoId: videoId, // The id remains the first state, an empty string 
+                        service: data.service // The service and title updating correctly
+                    }));
+                }
+
 
                 setTranslatedBy(data.service);
             } else {
@@ -242,7 +251,7 @@ export default function CurrLyricsContextProvider({ children }) {
                         service: ServiceTypes.GOOGLE
                     }));
 
-                    // putFullTrans(song_id, title, newLines, ServiceTypes.GOOGLE); // TODO - off until aborting of prev song works perfectly
+                    putFullTrans(title, newLines, ServiceTypes.GOOGLE);
                     setAzureServerError(false);
                 };
             } else {
@@ -300,12 +309,12 @@ export default function CurrLyricsContextProvider({ children }) {
         setAbort(true);
         setTitle('');
         setVideoId('');
-        if(changeUrl) changeUrl('');
+        if (changeUrl) changeUrl('');
     };
 
     const actions = { getSongLyrics, resetSong };
     return (
-        <CurrLyricsContext.Provider value={{ title, lines, azureServerError, translatedBy, videoId, ...actions }}>
+        <CurrLyricsContext.Provider value={{ title, lines, linesVersion, azureServerError, translatedBy, videoId, ...actions }}>
             {children}
         </CurrLyricsContext.Provider>
     );
