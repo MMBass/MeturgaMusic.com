@@ -64,7 +64,7 @@ const StyledLyricsBody = styled(LyricsBody)`
     font-weight: 600;
   }
 
-  .partialLyrics-mui-alert{
+  .inLyrics-mui-alert{
     direction: ltr;
   }
 `;

@@ -34,14 +34,6 @@ function LyricsBody({ className }) {
     urlOnTitleChange();
   }, [currLyricsContext.title]);
 
-  useEffect(() => {
-    // Usually, the checkNextTrans abort will work, but this is a safety net:
-    if (currLyricsContext.linesVersion !== currLyricsContext.lines[0]?.src) {
-      currLyricsContext.resetSong();
-      location.reload();
-    }
-  }, [currLyricsContext.linesVersion]);
-
   const urlOnTitleChange = () => {
     if (urlSong) {
       return;  // Avoid infinite HomePage useEffect that depends on rrdLocation (page params) 
@@ -178,7 +170,7 @@ function LyricsBody({ className }) {
           })}
 
         {(currLyricsContext.linesVersion !== currLyricsContext.lines[0]?.src) &&
-          <Alert className="partialLyrics-mui-alert" severity="error">
+          <Alert className="inLyrics-mui-alert" severity="error">
             <AlertTitle>{T.LyricsErrTitle}</AlertTitle>
             {T.ContextErrorText}
           </Alert>

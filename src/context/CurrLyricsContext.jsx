@@ -25,14 +25,14 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const [title, setTitle] = useState(currSsSong?.title || '');
     const [lines, setLines] = useState(currSsSong?.lines || []);
-    const [linesVersion, setLinesVersion] = useState(currSsSong?.lines?.[0]?.src || '') // For now - is the first line of the song;
+    const [linesVersion, setLinesVersion] = useState( (currSsSong?.lines?.[1]?.src + currSsSong?.lines?.[2]?.src) || '' ) // For now - is the first line of the song;
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
-    const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
+    const [azureServerError, setAzureServerError] = useState(true); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
 
     useEffect(() => {
-        if (lines[0]) checkNextTrans();
+        if (lines[0] && linesVersion === lines[0]?.src) checkNextTrans();
 
         // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
@@ -82,7 +82,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const setCombined = (songTitle, data) => {
         setAbort(false);
-        setLinesVersion(data.combined[0].src);
+        setLinesVersion(data.combined[1].src + data.combined[2].src);
         setTitle(songTitle);
         setLines(data.combined);
         if (data.combined[2].trans.length > 1 && data.service) setTranslatedBy(data.service);
@@ -133,7 +133,7 @@ export default function CurrLyricsContextProvider({ children }) {
             };
         });
 
-        setLinesVersion(newLines[0].src);
+        setLinesVersion(data.combined[1].src + data.combined[2].src);
 
         // TO TRACK if moving the setVideoId before setLines is not breaking the setVideoId process
         if (data.videoId) setVideoId(data.videoId);
@@ -148,7 +148,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (lsSong?.title && lsSong.lines.length > 0 && lsSong.lines[0].src) {
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
             setTitle(songTitle);
-            setLinesVersion(lsSong.lines[0].src);
+            setLinesVersion(data.combined[1].src + data.combined[2].src);
             setLines(lsSong.lines);
             setVideoId(lsSong.videoId);
             setTranslatedBy(lsSong.service);
@@ -212,7 +212,6 @@ export default function CurrLyricsContextProvider({ children }) {
                         service: data.service // The service and title updating correctly
                     }));
                 }
-
 
                 setTranslatedBy(data.service);
             } else {
