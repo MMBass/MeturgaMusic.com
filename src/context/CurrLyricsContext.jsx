@@ -133,7 +133,7 @@ export default function CurrLyricsContextProvider({ children }) {
             };
         });
 
-        setLinesVersion(data.combined[1].src + data.combined[2].src);
+        setLinesVersion(newLines[1].src + newLines[2].src);
 
         // TO TRACK if moving the setVideoId before setLines is not breaking the setVideoId process
         if (data.videoId) setVideoId(data.videoId);
