@@ -65,8 +65,15 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .inLyrics-mui-alert{
+    margin: 20px 0px;
+    width: 100%;
     direction: ltr;
   }
+  
+  .partialLyrics-mui-alert{
+    width: auto;
+  }
+
 `;
 
 export default StyledLyricsBody;

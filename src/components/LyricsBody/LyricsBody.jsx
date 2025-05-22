@@ -113,7 +113,7 @@ function LyricsBody({ className }) {
           }
           {/* Set the PARTIAL LYRICS alert */}
           {currLyricsContext.lines[currLyricsContext.lines.length - 1].src.includes('****PARTIAL LYRICS****') &&
-            <Alert className="partialLyrics-mui-alert" severity="error">
+            <Alert className="partialLyrics-mui-alert inLyrics-mui-alert" severity="error">
               <AlertTitle>{T.LyricsErrTitle}</AlertTitle>
               {T.PartialLyricsErr}
             </Alert>
@@ -175,6 +175,7 @@ function LyricsBody({ className }) {
             {T.ContextErrorText}
           </Alert>
         }
+
       </Grid>
     </Paper>
   );
