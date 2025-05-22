@@ -25,7 +25,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const [title, setTitle] = useState(currSsSong?.title || '');
     const [lines, setLines] = useState(currSsSong?.lines || []);
-    const [linesVersion, setLinesVersion] = useState( (currSsSong?.lines?.[1]?.src + currSsSong?.lines?.[2]?.src) || '' ) // For now - is the first line of the song;
+    const [linesVersion, setLinesVersion] = useState((currSsSong?.lines?.[1]?.src + currSsSong?.lines?.[2]?.src) || '') // For now - is the first line of the song;
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
     const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
@@ -33,7 +33,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
     useEffect(() => {
         if (lines[0] && linesVersion === lines[1]?.src + lines[2]?.src) checkNextTrans();
-       
+
         // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
@@ -227,11 +227,17 @@ export default function CurrLyricsContextProvider({ children }) {
     };
 
     const gGetSingleLineTrans = async (src, index) => {
+        if (abort) return;
+        if (lines[0] && linesVersion !== lines[1]?.src + lines[2]?.src) return;
+
         try {
             let newLines = [...lines];
             const response = await fetch(constants.gUrl + encodeURI(src));
 
             const data = await response.json();
+
+            if (abort) return;
+            if (lines[0] && linesVersion !== lines[1]?.src + lines[2]?.src) return;
 
             var translatedTexts = [];
             if (data && data[0]) {
