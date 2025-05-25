@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
 
@@ -28,8 +28,16 @@ export default function CurrLyricsContextProvider({ children }) {
     const [linesVersion, setLinesVersion] = useState((currSsSong?.lines?.[1]?.src + currSsSong?.lines?.[2]?.src) || '') // For now - is the first line of the song;
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
-    const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
+    const [azureServerError, setAzureServerError] = useState(true); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
+
+    const mounted = useRef(true);
+
+    useEffect(() => {
+        return () => {
+            mounted.current = false;  // Set to false when component unmounts
+        };
+    }, []);
 
     useEffect(() => {
         if (lines[0] && linesVersion === lines[1]?.src + lines[2]?.src) checkNextTrans();
@@ -229,12 +237,16 @@ export default function CurrLyricsContextProvider({ children }) {
     const gGetSingleLineTrans = async (src, index) => {
         if (abort) return;
         if (lines[0] && linesVersion !== lines[1]?.src + lines[2]?.src) return;
+        if (!mounted.current) return;  // Check mounted status before fetch
 
         try {
             let newLines = [...lines];
             const response = await fetch(constants.gUrl + encodeURI(src));
-
             const data = await response.json();
+
+            if (abort) return;
+            if (lines[0] && linesVersion !== lines[1]?.src + lines[2]?.src) return;
+            if (!mounted.current) return;  // Check mounted status before fetch
 
             if (abort) return;
             if (lines[0] && linesVersion !== lines[1]?.src + lines[2]?.src) return;
@@ -270,10 +282,18 @@ export default function CurrLyricsContextProvider({ children }) {
     }
 
     const rGetSingleLineTrans = async (src, index) => {
+        if (abort) return;
+        if (lines[0] && linesVersion !== lines[1]?.src + lines[2]?.src) return;
+        if (!mounted.current) return;  // Check mounted status before fetch
+
         let newLines = [...lines];
 
         try {
             const data = await fetchRsingletrans(src);
+
+            if (abort) return;
+            if (lines[0] && linesVersion !== lines[1]?.src + lines[2]?.src) return;
+            if (!mounted.current) return;  // Check mounted status before fetch
 
             if (data?.trans) {
                 newLines[index] = { src: src, trans: data?.trans };
