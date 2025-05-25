@@ -28,7 +28,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const [linesVersion, setLinesVersion] = useState((currSsSong?.lines?.[1]?.src + currSsSong?.lines?.[2]?.src) || '') // For now - is the first line of the song;
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
-    const [azureServerError, setAzureServerError] = useState(true); // Set if azure trans didn't work
+    const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
 
     const mounted = useRef(true);
