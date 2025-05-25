@@ -112,7 +112,7 @@ function Player({ className }) {
 
   const onPlayerError = (event) => {
     console.log('Player Error: ' + event.data);
-    if (event.data === 150) setPlayerError("Video Unavailable");
+    if (event.data === 150) setPlayerError("Track Unavailable");
     else setPlayerError("Something went wrong");
   };
 
