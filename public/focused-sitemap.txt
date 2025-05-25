@@ -16,12 +16,12 @@ https://meturgamusic.com/songs/Kendrick-Lamar_Not-Like-Us
 https://meturgamusic.com/songs/Morgan-Wallen-and-Tate-McRae_What-I-Want
 https://meturgamusic.com/songs/Laufey_Tough-Luck
 https://meturgamusic.com/songs/KATSEYE_Gnarly
-https://meturgamusic.com/?song=Morgan-Wallen_I-Got-Better
-https://meturgamusic.com/?song=yung-kai_blue
-https://meturgamusic.com/?song=Sleep-Token_Damocles
-https://meturgamusic.com/?song=Lorde_What-Was-That
-https://meturgamusic.com/?song=Eminem_Lose-Yourself
-https://meturgamusic.com/?song=Sleep-Token_Gethsemane
+https://meturgamusic.com/songs/Morgan-Wallen_I-Got-Better
+https://meturgamusic.com/songs/yung-kai_blue
+https://meturgamusic.com/songs/Sleep-Token_Damocles
+https://meturgamusic.com/songs/Lorde_What-Was-That
+https://meturgamusic.com/songs/Eminem_Lose-Yourself
+https://meturgamusic.com/songs/Sleep-Token_Gethsemane
 
 https://meturgamusic.com/songs/*NSYNC_Bye-Bye-Bye
 https://meturgamusic.com/songs/Billie-Eilish_WILDFLOWER
