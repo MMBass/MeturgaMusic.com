@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import LyricsBody from './LyricsBody';
 
 const StyledLyricsBody = styled(LyricsBody)`
@@ -29,6 +29,10 @@ const StyledLyricsBody = styled(LyricsBody)`
     @media (max-width: 600px) {
       justify-content: center;
       padding-inline-start: 5px;
+    }
+
+    .song-checked{
+      background-color: rgba(0, 0, 0, 0.08)
     }
   }
 

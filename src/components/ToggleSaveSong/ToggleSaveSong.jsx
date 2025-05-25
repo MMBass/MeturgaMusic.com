@@ -22,10 +22,16 @@ function ToggleSaveSong({ className, songTitle }) {
   };
 
   return (
-    <Chip className={className} onClick={() => handleAddSong()}
-      icon={!isSongSaved ? <BookmarkAddIcon className='add-wish-icon' /> : <BookmarkRemoveIcon className='add-wish-icon' ></BookmarkRemoveIcon>}
+    <Chip
+      className={className + (isSongSaved ? " song-checked" : "")}
+      onClick={handleAddSong}
+      icon={
+      !isSongSaved
+        ? <BookmarkAddIcon className='add-wish-icon' />
+        : <BookmarkRemoveIcon className='add-wish-icon-saved' />
+      }
       label={isSongSaved ? T.removeSong : T.saveSong}
-      size='small' 
+      size='small'
       variant="outlined"
     />
   );

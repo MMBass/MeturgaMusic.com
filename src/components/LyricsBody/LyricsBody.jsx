@@ -59,7 +59,6 @@ function LyricsBody({ className }) {
 
           <Grid container className="l-body-top-actions" justifyContent={window.innerWidth > 600 ? "space-between" : "flex-start"} alignItems="center">
 
-
             <IconButton onClick={() => currLyricsContext.resetSong(urlSong ? handleBackToHome : setSearchParams /* If the song is from /songs path, change also the path on reset */)}>
               <CloseOutlinedIcon className='remove-icon' />
             </IconButton>
