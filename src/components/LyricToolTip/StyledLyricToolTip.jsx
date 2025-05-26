@@ -10,6 +10,7 @@ const StyledLyricToolTip = styled(LyricToolTip)`
       :hover{
          background-color: rgb(244, 244, 244);
          box-shadow: 0 0 0 0.5px rgb(162, 162, 162);
+         color: black;
          border-radius: 5px;
       } 
    }
