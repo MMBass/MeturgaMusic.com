@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { useLocation, NavLink, useParams } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 import T from "./HeaderI18n";
 
@@ -37,7 +37,6 @@ import { SettingsContext } from '@context/SettingsContext';
 
 const Header = ({ className, changeColors }) => {
   const rrdLocation = useLocation();
-  const { urlSong } = useParams(); // Song of path="/songs/:directSong"
   const [topSearchBar, setTopSearchBar] = useState(false);
   const [isWelcomePage, setIsWelcomePage] = useState(true);
   const theme = useTheme();
@@ -68,11 +67,6 @@ const Header = ({ className, changeColors }) => {
     setTopSearchBar(false);
     if (bannersContext.error) bannersContext.closeBanner('error');
   }, [drawerContext.open]);
-
-  const handleHeaderTitleClick = () => {
-    if (!urlSong) return;
-    if (urlSong) CurrLyricsContext.resetSong();
-  }
 
   const handleToggleSideBar = () => {
     if (bannersContext.error) bannersContext.closeBanner('error');
@@ -149,7 +143,7 @@ const Header = ({ className, changeColors }) => {
 
 
           {!topSearchBar &&
-            <NavLink to={'/'} className='nav-link top-nav-link' onClick={handleHeaderTitleClick} >
+            <NavLink to={'/'} className='nav-link top-nav-link'>
               <Typography
                 variant="h6"
                 noWrap
