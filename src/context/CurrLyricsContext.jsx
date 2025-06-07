@@ -27,6 +27,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const [lines, setLines] = useState(currSsSong?.lines || []);
     const [linesVersion, setLinesVersion] = useState((currSsSong?.lines?.[1]?.src + currSsSong?.lines?.[2]?.src) || '') // For now - is the first line of the song;
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
+    const [currLSRC, setCurrLSRC] = useState(null);
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
     const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
@@ -46,7 +47,7 @@ export default function CurrLyricsContextProvider({ children }) {
     }, [lines, azureServerError]);
 
     useEffect(() => {
-        if (title.length > 2 && videoId.length > 2 && lines[0]?.src.length > 0) {
+        if (title.length > 2 && videoId.length > 2 && lines[0]?.src.length > 0 && currLSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) {
             utils.lsSaveSongHistory({ title, lines, videoId, translatedBy });
         } // Update the ls videoId after all the state sets
     }, [videoId]);
@@ -100,7 +101,7 @@ export default function CurrLyricsContextProvider({ children }) {
         utils.clearGsc();
 
         if (data.combined[0]?.src) {
-            utils.lsSaveSongHistory({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
+            if (currLSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) utils.lsSaveSongHistory({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
 
             sessionStorage.setItem('currSong', JSON.stringify({
                 lines: data.combined,
@@ -204,14 +205,18 @@ export default function CurrLyricsContextProvider({ children }) {
                 });
 
                 setLines(newLines);
+                setCurrLSRC(data.LSRC || null);
 
                 if (newLines[0]?.src && data.LSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) {
-                    utils.lsSaveSongHistory({
-                        title: title,
-                        lines: newLines,
-                        videoId: videoId, // The id remains the first state, an empty string 
-                        service: data.service, // The service and title updating correctly
-                    });
+                    
+                    if (currLSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/){
+                        utils.lsSaveSongHistory({
+                            title: title,
+                            lines: newLines,
+                            videoId: videoId, // The id remains the first state, an empty string 
+                            service: data.service, // The service and title updating correctly
+                        });
+                    }  
 
                     sessionStorage.setItem('currSong', JSON.stringify({
                         lines: newLines,
@@ -260,7 +265,9 @@ export default function CurrLyricsContextProvider({ children }) {
                 if (translatedBy !== (ServiceTypes.GOOGLE)) setTranslatedBy(ServiceTypes.GOOGLE);
 
                 if (index + 1 == lines.length) {
-                    utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
+
+                    if (currLSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
+
                     sessionStorage.setItem('currSong', JSON.stringify({
                         lines: newLines,
                         title: title,
