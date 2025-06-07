@@ -27,7 +27,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const [lines, setLines] = useState(currSsSong?.lines || []);
     const [linesVersion, setLinesVersion] = useState((currSsSong?.lines?.[1]?.src + currSsSong?.lines?.[2]?.src) || '') // For now - is the first line of the song;
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
-    const [currLSRC, setCurrLSRC] = useState(null);
+    const [lyricsError, setLyricsError] = useState(false);
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
     const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
@@ -47,8 +47,9 @@ export default function CurrLyricsContextProvider({ children }) {
     }, [lines, azureServerError]);
 
     useEffect(() => {
-        if (title.length > 2 && videoId.length > 2 && lines[0]?.src.length > 0 && currLSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) {
-            utils.lsSaveSongHistory({ title, lines, videoId, translatedBy });
+        if (title.length > 2 && videoId.length > 2 && lines[0]?.src.length > 0 ) {
+            if (lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: [], service: '' });
+            else utils.lsSaveSongHistory({ title, lines, videoId, translatedBy });
         } // Update the ls videoId after all the state sets
     }, [videoId]);
 
@@ -101,7 +102,7 @@ export default function CurrLyricsContextProvider({ children }) {
         utils.clearGsc();
 
         if (data.combined[0]?.src) {
-            if (currLSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) utils.lsSaveSongHistory({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
+            utils.lsSaveSongHistory({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
 
             sessionStorage.setItem('currSong', JSON.stringify({
                 lines: data.combined,
@@ -117,8 +118,8 @@ export default function CurrLyricsContextProvider({ children }) {
         let newLines = [];
 
         // |####| is our custom line break for no G cases - for the trsanslation to not translate this line
-        data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n'); 
-       
+        data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n');
+
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
             if (line.length >= 2) {
                 if (utils.isMostlyEnglish(line) || line.includes('|####|' /*Some Pharse-break sign*/)) {
@@ -208,16 +209,17 @@ export default function CurrLyricsContextProvider({ children }) {
 
                 setLines(newLines);
 
-                if (newLines[0]?.src && data.LSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) {
-                    
-                    if (currLSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/){
+                if (newLines[0]?.src) {
+
+                    if (!lyricsError) {
                         utils.lsSaveSongHistory({
                             title: title,
                             lines: newLines,
                             videoId: videoId, // The id remains the first state, an empty string 
                             service: data.service, // The service and title updating correctly
                         });
-                    }  
+                    }
+                    if (lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: [], service: '' });
 
                     sessionStorage.setItem('currSong', JSON.stringify({
                         lines: newLines,
@@ -267,7 +269,8 @@ export default function CurrLyricsContextProvider({ children }) {
 
                 if (index + 1 == lines.length) {
 
-                    if (currLSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
+                    if (!lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
+                    if (lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: [], service: '' });
 
                     sessionStorage.setItem('currSong', JSON.stringify({
                         lines: newLines,
