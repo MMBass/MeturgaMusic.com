@@ -146,6 +146,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
         // TO TRACK if moving the setVideoId before setLines is not breaking the setVideoId process
         if (data.videoId) setVideoId(data.videoId);
+        if (data.LSRC) setCurrLSRC(data.LSRC);
         else setVideoId('');
         setAbort(false);
         setLines(newLines);
@@ -205,7 +206,6 @@ export default function CurrLyricsContextProvider({ children }) {
                 });
 
                 setLines(newLines);
-                setCurrLSRC(data.LSRC || null);
 
                 if (newLines[0]?.src && data.LSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) {
                     
