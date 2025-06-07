@@ -85,7 +85,7 @@ function LyricsBody({ className }) {
                 currLyricsContext.title.split(' ').map((word, i) => {
                   // TODO find a better way for PHARSE BREAKing
                   if (word.includes('PHARSE_BREAK')) { return }; // For some AZ cases - TODO remove after DB cleaning
-                  if (word.includes('|####|')) { return }; // For AZ cases
+                  if (word.includes('|####|')) { return }; // For AZ cases -  TODO also if stopped use it - remove after DB cleaning
                   return (
                     <LyricToolTip key={i} lyric={word} lyricID={'title' + i}></LyricToolTip>
                   )
