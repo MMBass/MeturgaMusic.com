@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation, NavLink, useParams } from "react-router-dom";
 
 import T from "./HeaderI18n";
 
@@ -37,6 +37,7 @@ import { SettingsContext } from '@context/SettingsContext';
 
 const Header = ({ className, changeColors }) => {
   const rrdLocation = useLocation();
+  const { urlSong } = useParams(); // Song of path="/songs/:directSong"
   const [topSearchBar, setTopSearchBar] = useState(false);
   const [isWelcomePage, setIsWelcomePage] = useState(true);
   const theme = useTheme();
@@ -48,7 +49,7 @@ const Header = ({ className, changeColors }) => {
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-    
+
     if (document.fullscreenElement) {
       document.exitFullscreen();
       document.body.style.overflowY = 'auto';
@@ -67,6 +68,11 @@ const Header = ({ className, changeColors }) => {
     setTopSearchBar(false);
     if (bannersContext.error) bannersContext.closeBanner('error');
   }, [drawerContext.open]);
+
+  const handleHeaderTitleClick = () => {
+    if (!urlSong) return;
+    if (urlSong) CurrLyricsContext.resetSong();
+  }
 
   const handleToggleSideBar = () => {
     if (bannersContext.error) bannersContext.closeBanner('error');
@@ -103,14 +109,14 @@ const Header = ({ className, changeColors }) => {
 
   return (
     <AppBar position="sticky" className={className}
-     sx={{
-      visibility: settingsContext.fullScreen ? 'hidden' : 'visible',
-      height: settingsContext.fullScreen ? '0px' : '52px',
-      backgroundColor: scrolled || !isWelcomePage ? theme.palette.primary.main : theme.palette.secondary.main,
-      boxShadow: scrolled || !isWelcomePage ? 3 : 0,
-      color: theme.palette.secondary.dark,
-      transition: 'background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
-    }}>
+      sx={{
+        visibility: settingsContext.fullScreen ? 'hidden' : 'visible',
+        height: settingsContext.fullScreen ? '0px' : '52px',
+        backgroundColor: scrolled || !isWelcomePage ? theme.palette.primary.main : theme.palette.secondary.main,
+        boxShadow: scrolled || !isWelcomePage ? 3 : 0,
+        color: theme.palette.secondary.dark,
+        transition: 'background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+      }}>
 
       {(loadersContext.main.open) &&
         <DeterminateLinearProgress className={'main-linear'} color={loadersContext.main.color}></DeterminateLinearProgress>
@@ -127,7 +133,7 @@ const Header = ({ className, changeColors }) => {
             aria-controls="menu-appbar"
             aria-haspopup="true"
             onClick={handleToggleSideBar}
-            sx={{ color: scrolled || !isWelcomePage ?  theme.palette.primary.contrastText : theme.palette.primary.dark }}
+            sx={{ color: scrolled || !isWelcomePage ? theme.palette.primary.contrastText : theme.palette.primary.dark }}
           >
             {!drawerContext.open ?
               <Badge variant='dot' invisible={!settingsContext.badge}>
@@ -143,7 +149,7 @@ const Header = ({ className, changeColors }) => {
 
 
           {!topSearchBar &&
-            <NavLink to={'/'} onClick={() => { return; }}>
+            <NavLink to={'/'} onClick={() => { handleHeaderTitleClick() }} className='nav-link top-nav-link'>
               <Typography
                 variant="h6"
                 noWrap
@@ -157,8 +163,8 @@ const Header = ({ className, changeColors }) => {
                   {T.H2Part1}
                 </span>
                 <span id="h2-part2" style={{
-                    color: scrolled || !isWelcomePage ? 'white' :  theme.palette.primary.dark,
-                    transition: 'unset'
+                  color: scrolled || !isWelcomePage ? 'white' : theme.palette.primary.dark,
+                  transition: 'unset'
                 }}>
                   {T.H2Part2}
                 </span>
@@ -169,14 +175,14 @@ const Header = ({ className, changeColors }) => {
 
           {iconPages.map((page, index) => (
             <NavLink to={page.url} key={index} className={'nav-link top-nav-link'}
-            sx={{}}
+              sx={{}}
             >
               <IconButton
                 // disabled={rrdLocation.pathname === page.url}
                 className='top-nav-button'
                 size="large"
                 title={page.name}
-                sx={{ color: scrolled || !isWelcomePage ? theme.palette.primary.contrastText : theme.palette.primary.dark, backgroundColor: rrdLocation.pathname === page.url ? alpha(theme.palette.primary.contrastText, 0.2)  : 'transparent' }} 
+                sx={{ color: scrolled || !isWelcomePage ? theme.palette.primary.contrastText : theme.palette.primary.dark, backgroundColor: rrdLocation.pathname === page.url ? alpha(theme.palette.primary.contrastText, 0.2) : 'transparent' }}
               >
                 {page.icon}
               </IconButton>
