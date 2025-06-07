@@ -23,7 +23,7 @@ const lsSaveWord = (toSave /* { word: string, results: [string] } */) => {
     localStorage.setItem("meturgamm_words", JSON.stringify(words));
 };
 
-const lsSaveSong = (song /*Provide a trimmed title*/) => {
+const lsSaveSongHistory = (song /*Provide a trimmed title*/) => {
     if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
 
     const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
@@ -38,7 +38,7 @@ const lsSaveSong = (song /*Provide a trimmed title*/) => {
         }});
     }
 
-    // create new
+    // Create new
     if(!lsFindSong(song.title)){
         song.id = songs.length.toString();
         songs.unshift(song);
@@ -146,4 +146,4 @@ const directParamsToHash = () => {
     }
 };
 
-export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSong, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles }
+export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSongHistory, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles }

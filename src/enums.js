@@ -15,3 +15,10 @@ export const LocalStorageKeys = {
 export const SessionStorageKeys = {
     CURR_SONG: 'currSong',
 }
+
+export const LyricTypes = {
+    SH_MMTCH: 'SH_MMTCH',
+    G: 'G',
+    AZ: 'AZ',
+    LLIB: 'LLIB',
+}

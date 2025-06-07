@@ -10,7 +10,7 @@ import putFullTrans from '@services/putFullTrans';
 import utils from '@/utils.js';
 import TUtils from '@/i18n-utils';
 import constants from '@/constants';
-import { ServiceTypes } from '@/enums';
+import { ServiceTypes, LyricTypes } from '@/enums';
 
 export const CurrLyricsContext = React.createContext(undefined);
 
@@ -47,7 +47,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
     useEffect(() => {
         if (title.length > 2 && videoId.length > 2 && lines[0]?.src.length > 0) {
-            utils.lsSaveSong({ title, lines, videoId, translatedBy });
+            utils.lsSaveSongHistory({ title, lines, videoId, translatedBy });
         } // Update the ls videoId after all the state sets
     }, [videoId]);
 
@@ -100,7 +100,7 @@ export default function CurrLyricsContextProvider({ children }) {
         utils.clearGsc();
 
         if (data.combined[0]?.src) {
-            utils.lsSaveSong({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
+            utils.lsSaveSongHistory({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
 
             sessionStorage.setItem('currSong', JSON.stringify({
                 lines: data.combined,
@@ -205,8 +205,8 @@ export default function CurrLyricsContextProvider({ children }) {
 
                 setLines(newLines);
 
-                if (newLines[0]?.src) {
-                    utils.lsSaveSong({
+                if (newLines[0]?.src && data.LSRC !== LyricTypes.SH_MMTCH /*Don't save if partial lyrics*/) {
+                    utils.lsSaveSongHistory({
                         title: title,
                         lines: newLines,
                         videoId: videoId, // The id remains the first state, an empty string 
@@ -260,7 +260,7 @@ export default function CurrLyricsContextProvider({ children }) {
                 if (translatedBy !== (ServiceTypes.GOOGLE)) setTranslatedBy(ServiceTypes.GOOGLE);
 
                 if (index + 1 == lines.length) {
-                    utils.lsSaveSong({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
+                    utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
                     sessionStorage.setItem('currSong', JSON.stringify({
                         lines: newLines,
                         title: title,
