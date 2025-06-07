@@ -116,9 +116,9 @@ export default function CurrLyricsContextProvider({ children }) {
         setTitle(songTitle);
         let newLines = [];
 
-        // Try without that - 
-        // data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n'); // |####| is our custom line break for AZ cases
-
+        // |####| is our custom line break for no G cases - for the trsanslation to not translate this line
+        data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n'); 
+       
         data.lyrics.split(constants.lineBreakPattern).map((line) => {
             if (line.length >= 2) {
                 if (utils.isMostlyEnglish(line) || line.includes('|####|' /*Some Pharse-break sign*/)) {
