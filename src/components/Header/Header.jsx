@@ -149,7 +149,7 @@ const Header = ({ className, changeColors }) => {
 
 
           {!topSearchBar &&
-            <NavLink to={'/'} onClick={() => { handleHeaderTitleClick() }} className='nav-link top-nav-link'>
+            <NavLink to={'/'} className='nav-link top-nav-link' onClick={handleHeaderTitleClick} >
               <Typography
                 variant="h6"
                 noWrap
