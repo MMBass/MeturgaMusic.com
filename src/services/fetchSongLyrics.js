@@ -4,7 +4,7 @@ import utils from '@/utils.js';
 export default async (splittedSongTitle, webSongUrl) => {
     const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
     
-    const response = await fetch(`${constants.devServerUri}/lyrics?initId=` + initId, {
+    const response = await fetch(`${constants.prodServerUri}/lyrics?initId=` + initId, {
         method: 'post',
         headers: {
             'Accept': 'application/json',
