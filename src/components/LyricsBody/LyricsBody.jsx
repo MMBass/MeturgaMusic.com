@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
 
 import T from "./LyricsBodyI18n";
@@ -20,7 +20,6 @@ import ToggleSaveSong from '@components/ToggleSaveSong/StyledToggleSaveSong';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
-import utils from '@/utils';
 import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className }) {
@@ -29,23 +28,6 @@ function LyricsBody({ className }) {
   const paramsSong = searchParams.get("song"); // Song of /?song= (with hash and without)
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
-
-  useEffect(() => {
-    urlOnTitleChange();
-  }, [currLyricsContext.title]);
-
-  const urlOnTitleChange = () => {
-    if (urlSong) {
-      return;  // Avoid infinite HomePage useEffect that depends on rrdLocation (page params) 
-    } else if (!paramsSong) {
-      setSearchParams(utils.titleToParams(currLyricsContext.title));
-    } else if (paramsSong && utils.compareTitles(paramsSong, currLyricsContext.title)) {
-      // TODO fix the logic - the !utils.titleToParams(currLyricsContext.title) == paramsSong is always true?
-      setSearchParams(utils.titleToParams(currLyricsContext.title));
-    } else {
-      return; // The song is the same, do nothing
-    }
-  }
 
   const handleBackToHome = () => {
     window.location.href = "/";

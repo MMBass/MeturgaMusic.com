@@ -127,7 +127,7 @@ const compareTitles = (a, b) => {
         console.error('compareTitles: One of the params is not a string');
         return false;
     }
-    if (titleToParams(a).toLowerCase().replaceAll(' ', '') === titleToParams(b).toLowerCase().replaceAll(' ', '')){
+    if (titleToParams(a.trim()).toLowerCase().replaceAll(' ', '') === titleToParams(b.trim()).toLowerCase().replaceAll(' ', '')){
         return true;
     } else{
         return false;

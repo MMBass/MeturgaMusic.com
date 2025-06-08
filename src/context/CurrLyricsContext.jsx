@@ -148,8 +148,10 @@ export default function CurrLyricsContextProvider({ children }) {
 
         // TO TRACK if moving the setVideoId before setLines is not breaking the setVideoId process
         if (data.videoId) setVideoId(data.videoId);
-        if (data.LSRC === LyricTypes.SH_MMTCH) setLyricsError(true);
         else setVideoId('');
+
+        if (data.LSRC === LyricTypes.SH_MMTCH) setLyricsError(true);
+
         setAbort(false);
         setLines(newLines);
         utils.clearGsc();

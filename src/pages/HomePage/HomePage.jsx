@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
 
 import T from "./HomePageI18n";
@@ -33,6 +33,7 @@ function HomePage({ className }) {
   const paramsSong = searchParams.get("song"); // Song of /?song= (with hash and without)
   const rrdLocation = useLocation();
   const { urlSong } = useParams(); // Song of path="/songs/:directSong" 
+  const ignoreNextLocation = useRef(false);
 
   const theme = useTheme();
 
@@ -40,16 +41,41 @@ function HomePage({ className }) {
     // Note! the params in HashRouter works only this pattern: http://.../#/?song=artist_title
     drawerContext.closeDrawer();
     if (bannersContext.error) bannersContext.closeBanner('error');
+
+    if (ignoreNextLocation.current) {
+      ignoreNextLocation.current = false;
+      return;
+    }
+
     if (urlSong && urlSong.includes("_")) {
       callSongIfQuery(urlSong);
       const canonicalTag = document.head.querySelector('link[rel="canonical"]');
-      if (canonicalTag) { canonicalTag.remove() }; // Remove for google indexing
+      if (canonicalTag) { canonicalTag.remove() }; // Remove for google indexing (pages that are not welcome page)
     } else if (paramsSong && paramsSong.includes("_")) {
       callSongIfQuery(paramsSong);
     };
   }, [rrdLocation]); // Use if there is a direct song in the url
 
+  useEffect(() => {
+    urlOnTitleChange();
+  }, [currLyricsContext.title]);
+
+  const urlOnTitleChange = () => {
+    if (
+      !currLyricsContext.title ||
+      urlSong // If Song of path="/songs/:directSong - Do nothing, Avoid infinite HomePage useEffect that depends on rrdLocation (page params)
+      || (paramsSong && utils.compareTitles(paramsSong, currLyricsContext.title)) // If titles are the same, do nothing
+    ) {
+      return;
+    } else {
+      ignoreNextLocation.current = true;
+      setSearchParams(utils.titleToParams(currLyricsContext.title));
+    }
+  }
+
   function callSongIfQuery(passedSong) {
+    if (utils.compareTitles(currLyricsContext.title, passedSong)) return; // Break If the song is the same
+
     passedSong = passedSong.replaceAll('-', " ");
     passedSong = passedSong.replace(passedSong.charAt(0), passedSong.charAt(0).toUpperCase());
 
@@ -59,15 +85,9 @@ function HomePage({ className }) {
     };
 
     passedSong = passedSong.replaceAll('_', " - "); // After splittedSongTitle - we need the _ to be - back
-    
-    if (utils.compareTitles(currLyricsContext.title, passedSong)) {
-      return; // Break if the song is the same song
-    } else {
-      // If the song is from /songs path - change the page title 
-      if (urlSong) { document.title = (TUtils.SiteName + " " + passedSong + " " + T.Translated) };
-      // Call the song
-      currLyricsContext.getSongLyrics(splittedSongTitle, passedSong);
-    }
+
+    if (urlSong) { document.title = (TUtils.SiteName + " " + passedSong + " " + T.Translated) }; // If the song is from /songs path - change the page title
+    currLyricsContext.getSongLyrics(splittedSongTitle, passedSong); // Call the song
   }
 
   return (

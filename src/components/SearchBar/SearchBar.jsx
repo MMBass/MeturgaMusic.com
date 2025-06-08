@@ -164,15 +164,15 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
       setCurrVal(' ');
-      return;
     } else if (utils.compareTitles(currLyricsContext.title, songTitle)) {
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
+      setCurrVal(songTitle);
     } else {
       currLyricsContext.getSongLyrics(splittedSongTitle, songTitle, webSongUrl, setSearchProccessing);
+      setCurrVal(songTitle);
+      if (location.hash != "#/") routerNavigate("/");
     }
-    setCurrVal(songTitle);
-    if (location.hash != "#/") routerNavigate("/");
   };
 
   return (
