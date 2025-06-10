@@ -115,35 +115,8 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const setSongLyrics = (data, songTitle) => {
         setTitle(songTitle);
-        let newLines = [];
-
-        // |####| is our custom line break for no G cases - for the trsanslation to not translate this line
-        data.lyrics = data.lyrics.replaceAll('\n\n', '\n|####|\n');
-
-        data.lyrics.split(constants.lineBreakPattern).map((line) => {
-            if (line.length >= 2) {
-                if (utils.isMostlyEnglish(line) || line.includes('|####|' /*Some Pharse-break sign*/)) {
-                    if (line.length > 90) {
-                        let byCommas = line.split(',');  // Split by commas if the line is too long
-                        if (byCommas[0].length > 10) {
-                            byCommas.map((byCommaLine) => {
-                                newLines.push({ src: byCommaLine, trans: '', transError: false });
-                            });
-                        } else {
-                            newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
-                        }
-                    } else {
-                        newLines.push({ src: line.replace('.', ''), trans: '', transError: false });
-                    }
-                } else if ((line.includes('****PARTIAL LYRICS****'))) {
-                    newLines.push({ src: "****PARTIAL LYRICS****", trans: '', transError: false });
-                } else {
-                    console.log("Not supported lang: " + line);
-                    newLines.push({ src: "*NOT SUPPORTED TEXT*", trans: '', transError: false });
-                }
-            };
-        });
-
+        let newLines =  data.lyrics;
+        
         setLinesVersion(newLines[1].src + newLines[2].src);
 
         // TO TRACK if moving the setVideoId before setLines is not breaking the setVideoId process
