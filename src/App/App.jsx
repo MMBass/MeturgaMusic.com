@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
 
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
@@ -69,9 +68,8 @@ function App({ className }) {
 
   // Send every visit to the server
   const serverInit = () => {
-    const initId = localStorage.getItem('init') || 'INITID:' + uuidv4();
-    localStorage.setItem('init', initId);
     if (utils.isLocalhost()) return;
+    const initId = localStorage.getItem('init');
     fetch(`${constants.prodServerUri}/?initId=` + initId);
   };
 
@@ -108,7 +106,7 @@ function App({ className }) {
                   <Route path="/songs/:urlSong" element={<HomePage className={'page'} rank={1} />} />
 
                   {/* TODO remove after map update? */}
-                  <Route path="/song/:urlSong" element={<HomePage className={'page'} rank={1} />} /> 
+                  <Route path="/song/:urlSong" element={<HomePage className={'page'} rank={1} />} />
 
                   <Route path="*" element={<NoMatchPage className={'page'} />} />
                 </Routes>

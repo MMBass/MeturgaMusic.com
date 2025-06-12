@@ -1,8 +1,9 @@
 import constants from '@/constants';
 import utils from '@/utils.js';
-const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
 
 export default async (lines, title) => {
+    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
+    
     const response = await fetch(`${constants.prodServerUri}/trans/lines?initId=` + initId, {
         method: 'post',
         headers: {
