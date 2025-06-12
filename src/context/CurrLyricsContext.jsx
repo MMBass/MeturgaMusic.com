@@ -74,7 +74,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
             if (data?.combined && Array.isArray(data?.combined)) {
                 setCombined(songTitle, data);
-            } else if (data?.lyrics) {
+            } else if (data?.processedLyrics) {
                 resetSong();
                 setSongLyrics(data, songTitle);
             } else {
@@ -115,7 +115,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const setSongLyrics = (data, songTitle) => {
         setTitle(songTitle);
-        let newLines =  data.lyrics;
+        let newLines =  data.processedLyrics;
         
         setLinesVersion(newLines[1].src + newLines[2].src);
 
