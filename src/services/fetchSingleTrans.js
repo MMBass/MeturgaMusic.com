@@ -1,9 +1,9 @@
 import TUtils from '@/i18n-utils';
 import constants from '@/constants';
 import utils from '@/utils.js';
-const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
 
 const getSingleTrans = async (lyric) => {
+    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
 
     lyric.trim().toLowerCase();
     lyric = lyric.replaceAll(constants.specialCharsPattern, ""); // Removes special chars exept '
