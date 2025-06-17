@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export const BannersContext = React.createContext(undefined);
 
 import TUtils from '@/i18n-utils';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 
 /* !!! Important: When listening to updates from this context,
 you may have to put useEffect in the target component
@@ -19,7 +20,7 @@ example:
 export default function BannersContextProvider({children}) {
     const [banners, setBanners] = useState({
         main: { open: false, severity: "error", title: TUtils.UnderBuilding, message: "", action: {} },
-        infoSnackbar: { open: !JSON.parse(localStorage.getItem('meturgamm_songs'))?.[1], severity: "error", title: "", message: TUtils.NoExactTransMessage },
+        infoSnackbar: { open: !JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS))?.[1], severity: "error", title: "", message: TUtils.NoExactTransMessage },
     });
 
     const createBanner = (name, severity, title, message, action) => {

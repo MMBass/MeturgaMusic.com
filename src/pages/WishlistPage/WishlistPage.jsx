@@ -19,19 +19,20 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 import utils from '@/utils';
 import T from "./WishlistPageI18n";
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 import savedSongsService from  '@services/savedSongs';
 
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 
 function WishlistPage({ className }) {
 
-  const [songs, setSongs] = useState(JSON.parse(localStorage.getItem('meturgamm_wish')) || []);
+  const [songs, setSongs] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.WISHLIST)) || []);
 
-  const [closeDescBanner, setCloseDescBanner] = useState(localStorage.getItem('wish_closeDescBanner'));
+  const [closeDescBanner, setCloseDescBanner] = useState(localStorage.getItem(LOCAL_STORAGE_KEYS.WISH_CLOSE_DESC_BANNER) === 'true');
 
   const handleCloseDescBanner = () => {
     setCloseDescBanner(true);
-    localStorage.setItem('wish_closeDescBanner', 'true');
+    localStorage.setItem(LOCAL_STORAGE_KEYS.WISH_CLOSE_DESC_BANNER, 'true');
   };
 
   function handleAddSong(title) {

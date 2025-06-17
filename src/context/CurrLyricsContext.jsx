@@ -10,7 +10,7 @@ import putFullTrans from '@services/putFullTrans';
 import utils from '@/utils.js';
 import TUtils from '@/i18n-utils';
 import constants from '@/constants';
-import { SERVICE_TYPES, LYRIC_TYPES } from '@/enums';
+import { SERVICE_TYPES, LYRIC_TYPES, SESSION_STORAGE_KEYS, LOCAL_STORAGE_KEYS } from '@/enums';
 
 export const CurrLyricsContext = React.createContext(undefined);
 
@@ -19,7 +19,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const bannersContext = useContext(BannersContext);
 
     const currSsSong = (() => {
-        const sS = JSON.parse(sessionStorage.getItem('currSong'));
+        const sS = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEYS.CURR_SONG));
         return (sS && sS.title && Array.isArray(sS.lines) && sS.lines.length > 1) ? sS : null;
     })();
 
@@ -43,7 +43,7 @@ export default function CurrLyricsContextProvider({ children }) {
     useEffect(() => {
         if (lines[0] && linesVersion === lines[1]?.src + lines[2]?.src) checkNextTrans();
 
-        // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem('meturgamm_songs'))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
+        // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
     }, [lines, azureServerError]);
 
     useEffect(() => {
@@ -69,7 +69,7 @@ export default function CurrLyricsContextProvider({ children }) {
             const data = await fetchSongLyrics(splittedSongTitle, webSongUrl);
 
             loadersContext.closeLoader('backdrop');
-            sessionStorage.removeItem('currSong');
+            sessionStorage.removeItem(SESSION_STORAGE_KEYS.CURR_SONG);
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
 
             if (data?.combined && Array.isArray(data?.combined)) {
@@ -104,7 +104,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (data.combined[0]?.src) {
             utils.lsSaveSongHistory({ title: songTitle, videoId: data.videoId, lines: data.combined, service: data.service || 'legacy' });
 
-            sessionStorage.setItem('currSong', JSON.stringify({
+            sessionStorage.setItem(SESSION_STORAGE_KEYS.CURR_SONG, JSON.stringify({
                 lines: data.combined,
                 title: songTitle,
                 videoId: data.videoId,
@@ -143,7 +143,7 @@ export default function CurrLyricsContextProvider({ children }) {
             utils.clearGsc();
             loadersContext.closeLoader('backdrop');
 
-            sessionStorage.setItem('currSong', JSON.stringify({
+            sessionStorage.setItem(SESSION_STORAGE_KEYS.CURR_SONG, JSON.stringify({
                 lines: lsSong.lines,
                 title: songTitle,
                 videoId: lsSong.videoId,
@@ -173,7 +173,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setTranslatedBy('');
 
         try {
-            const data = await fetchFullTrans(lines.map(line => ({ ...line, src: line.src.replaceAll('PHARSE_BREAK', '') })), title); // PHARSE_BREAK Legacy - exsist in some saved songs, TODO Remove them from database
+            const data = await fetchFullTrans(lines.map(line => ({ ...line, src: line.src.replaceAll('PHRASE_BREAK', '') })), title); // PHRASE_BREAK Legacy - exsist in some saved songs, TODO Remove them from database
 
             let newLines = [];
 
@@ -196,7 +196,7 @@ export default function CurrLyricsContextProvider({ children }) {
                     }
                     if (lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: [], service: '' });
 
-                    sessionStorage.setItem('currSong', JSON.stringify({
+                    sessionStorage.setItem(SESSION_STORAGE_KEYS.CURR_SONG, JSON.stringify({
                         lines: newLines,
                         title: title,
                         videoId: videoId, // The id remains the first state, an empty string 
@@ -247,7 +247,7 @@ export default function CurrLyricsContextProvider({ children }) {
                     if (!lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: SERVICE_TYPES.GOOGLE });
                     if (lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: [], service: '' });
 
-                    sessionStorage.setItem('currSong', JSON.stringify({
+                    sessionStorage.setItem(SESSION_STORAGE_KEYS.CURR_SONG, JSON.stringify({
                         lines: newLines,
                         title: title,
                         videoId: videoId,
@@ -303,7 +303,7 @@ export default function CurrLyricsContextProvider({ children }) {
         let lastTrans = lines[lines.length - 1]?.trans;
 
         if (lastTrans.length >= 1) {
-            sessionStorage.setItem('currSong', JSON.stringify({
+            sessionStorage.setItem(SESSION_STORAGE_KEYS.CURR_SONG, JSON.stringify({
                 lines: newLines,
                 title: title,
                 videoId: videoId,
@@ -315,7 +315,7 @@ export default function CurrLyricsContextProvider({ children }) {
     };
 
     const resetSong = (changeUrl) => {
-        sessionStorage.removeItem('currSong');
+        sessionStorage.removeItem(SESSION_STORAGE_KEYS.CURR_SONG);
         setLines([]);
         setAbort(true);
         setTitle('');

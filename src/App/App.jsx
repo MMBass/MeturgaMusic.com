@@ -21,6 +21,7 @@ import { BannersContext } from '@context/BannersContext';
 
 import utils from '@/utils';
 import constants from '@/constants';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 import T from './AppI18n';
 
 import Header from '@components/Header/StyledHeader';
@@ -50,7 +51,7 @@ function App({ className }) {
   const isMobile = useMediaQuery('(max-width: 600px)');
 
   const [currTitle, setCurrTitle] = useState(T.MainTitle);
-  const [currTheme, setCurrTheme] = useState(localStorage.getItem('preferedDark') === 'true' ? darkTheme : mainPinkTheme);
+  const [currTheme, setCurrTheme] = useState(localStorage.getItem(LOCAL_STORAGE_KEYS.PREFER_DARK) === 'true' ? darkTheme : mainPinkTheme);
 
   // Create rtl cache
   const cacheRtl = createCache({
@@ -69,14 +70,14 @@ function App({ className }) {
   // Send every visit to the server
   const serverInit = () => {
     if (utils.isLocalhost()) return;
-    const initId = localStorage.getItem('init');
+    const initId = localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
     fetch(`${constants.prodServerUri}/?initId=` + initId);
   };
 
   const changeTheme = () => {
     let newCurrTheme = currTheme === darkTheme ? mainPinkTheme : darkTheme;
     setCurrTheme(newCurrTheme);
-    localStorage.setItem('preferedDark', newCurrTheme === darkTheme ? 'true' : 'false');
+    localStorage.setItem(LOCAL_STORAGE_KEYS.PREFER_DARK, newCurrTheme === darkTheme ? 'true' : 'false');
   }
 
   return (

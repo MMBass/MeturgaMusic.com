@@ -1,8 +1,9 @@
 import constants from '@/constants';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 import utils from '@/utils.js';
 
 export default async (splittedSongTitle, webSongUrl) => {
-    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
+    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
     
     const response = await fetch(`${constants.prodServerUri}/lyrics?initId=` + initId, {
         method: 'post',

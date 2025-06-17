@@ -11,6 +11,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
 import T from "./SidePagesListI18n";
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 
 import ChangeColors from '@components/ChangeColors/StyledChangeColors';
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
@@ -30,11 +31,11 @@ import Switch from '@mui/material/Switch';
 
 function SidePagesList({ className, changeColors }) {
   const settingsContext = useContext(SettingsContext);
-  const [showPlayer, setShowPlayer] = useState(JSON.parse(localStorage.getItem('showPlayer')));
+  const [showPlayer, setShowPlayer] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER)));
 
   function handleShowPlayer() {
     setShowPlayer(!showPlayer);
-    localStorage.setItem('showPlayer', !showPlayer)
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER, !showPlayer)
   }
 
   const pages = [

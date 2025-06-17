@@ -18,6 +18,8 @@ const instaPageUri = "https://www.instagram.com/meturgamusic";
 const faceBookPageUri = "https://www.facebook.com/people/MeturgaMusic/100088145167989";
 const whatsappDraftMessageUri = "https://api.whatsapp.com/send?text="
 
+
+// TODO - more regex in files
 // Regex
 const insideSearchResultsPattern = /\(([^)]+)\)/;
 const en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9- ]+$/;

@@ -1,11 +1,12 @@
 import constants from '@/constants';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 import utils from '@/utils.js';
 
 export default (song_id, title, newLines, source) => {
     const trans = [];
     newLines.forEach(e => trans.push(e.trans));
 
-    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
+    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
     
     fetch(`${constants.prodServerUri}/trans/lines?initId=` + initId, {
         method: 'put',

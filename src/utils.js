@@ -1,3 +1,4 @@
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 
 /** Get if app currently running on local @returns {boolean} */
 const isLocalhost = () => (location.hostname === "localhost" || location.hostname === "127.0.0.1")
@@ -12,21 +13,21 @@ const loadGscScript = () => {
 };
 
 const lsSaveWord = (toSave /* { word: string, results: [string] } */) => {
-    if (!localStorage.getItem('meturgamm_words')) localStorage.setItem('meturgamm_words', JSON.stringify([]));
+    if (!localStorage.getItem(LOCAL_STORAGE_KEYS.WORDS)) localStorage.setItem(LOCAL_STORAGE_KEYS.WORDS, JSON.stringify([]));
 
-    const words = JSON.parse(localStorage.getItem('meturgamm_words'));
+    const words = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.WORDS));
     toSave.word = toSave.word.replace(/[,\.]$/, " ");
     toSave.id = words.length.toString();
     words.unshift(toSave);  // {id: num, word: string, results: [string] }
     if (words.length >= 1000) words.shift();
 
-    localStorage.setItem("meturgamm_words", JSON.stringify(words));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.WORDS, JSON.stringify(words));
 };
 
 const lsSaveSongHistory = (song /*Provide a trimmed title*/) => {
-    if (!localStorage.getItem('meturgamm_songs')) localStorage.setItem('meturgamm_songs', JSON.stringify([]));
+    if (!localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS)) localStorage.setItem(LOCAL_STORAGE_KEYS.SONGS, JSON.stringify([]));
 
-    const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
+    const songs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS));
 
     // Update if exsist
     if(lsFindSong(song.title)){
@@ -45,13 +46,13 @@ const lsSaveSongHistory = (song /*Provide a trimmed title*/) => {
         if (songs.length >= 500) songs.shift();
     }
 
-    localStorage.setItem("meturgamm_songs", JSON.stringify(songs));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SONGS, JSON.stringify(songs));
 };
 
 const lsFindSong = (title /*provide trimmed title*/) => {
-    if (!localStorage.getItem('meturgamm_songs')) return false;
+    if (!localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS)) return false;
 
-    const songs = JSON.parse(localStorage.getItem('meturgamm_songs'));
+    const songs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS));
     return songs.find(s => s.title.toLowerCase() === title.toLowerCase());  // {title: "", lines: {src:"", trans:""}}
 };
 
@@ -76,7 +77,8 @@ const isApple = () => {
     return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()));
 };
 
-/** @param {string} str @returns {string} */
+
+/** Note! Not finished yet @param {string} str @returns {string} */
 const keyboardHEENSwitcher = (str) => {
     if (/[\u0590-\u05FF]/.test(str)) {
         var hebrewToEnglish = { "ק": "e", "ר": "r", "א": "t", "ט": "y", "ו": "u", "ן": "i", "ם": "o", "פ": "p", "ש": "a", "ד": "s", "ג": "d", "כ": "f", "ע": "g", "י": "h", "ח": "j", "ל": "k", "ך": "l", "ז": "z", "ס": "x", "ב": "c", "נ": "v", "נ": "b", "מ": "n", "צ": "m" };

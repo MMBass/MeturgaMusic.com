@@ -1,27 +1,28 @@
 import { useState } from "react";
 import fetchSingleTrans from '@services/fetchSingleTrans';
+import { SESSION_STORAGE_KEYS } from '@/enums';
 
 // Keep the ttip open while parent rerender - using sessionStorage; (useMemo is saving only if parent not rerender)
 export default function useLyricToolTip(lyric, lyricID) {
-    const currTTip = JSON.parse(sessionStorage.getItem("TTip" + lyricID));
+    const currTTip = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEYS.TTIP + lyricID));
     const [results, setResults] = useState(currTTip || []);
     const [open, setOpen] = useState(currTTip || false);
 
     const handleTooltipOpen = async () => {
         setOpen(true);
         if (!results[0]) {
-            Object.keys(sessionStorage).forEach(key => { if (key.includes("TTip")) sessionStorage.removeItem(key) });
-            sessionStorage.setItem("TTip" + lyricID, JSON.stringify([]));
+            Object.keys(sessionStorage).forEach(key => { if (key.includes(SESSION_STORAGE_KEYS.TTIP)) sessionStorage.removeItem(key) });
+            sessionStorage.setItem(SESSION_STORAGE_KEYS.TTIP + lyricID, JSON.stringify([]));
             const res = await fetchSingleTrans(lyric);
             setResults(res);
-            sessionStorage.setItem("TTip" + lyricID, JSON.stringify(res));
+            sessionStorage.setItem(SESSION_STORAGE_KEYS.TTIP + lyricID, JSON.stringify(res));
         } else {
-            sessionStorage.setItem("TTip" + lyricID, JSON.stringify(results));
+            sessionStorage.setItem(SESSION_STORAGE_KEYS.TTIP + lyricID, JSON.stringify(results));
         }
     };
 
     const handleTooltipClose = () => {
-        Object.keys(sessionStorage).forEach(key => { if (key.includes("TTip")) sessionStorage.removeItem(key) });
+        Object.keys(sessionStorage).forEach(key => { if (key.includes(SESSION_STORAGE_KEYS.TTIP)) sessionStorage.removeItem(key) });
         setOpen(false);
     };
 

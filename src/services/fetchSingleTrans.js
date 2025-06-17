@@ -1,9 +1,10 @@
 import TUtils from '@/i18n-utils';
 import constants from '@/constants';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 import utils from '@/utils.js';
 
 const getSingleTrans = async (lyric) => {
-    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
+    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
 
     lyric.trim().toLowerCase();
     lyric = lyric.replaceAll(constants.specialCharsPattern, ""); // Removes special chars exept '

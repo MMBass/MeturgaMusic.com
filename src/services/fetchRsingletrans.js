@@ -1,8 +1,9 @@
 import constants from '@/constants';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 import utils from '@/utils.js';
 
 export default async (src) => {
-    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem('init');
+    const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
 
     try {
         

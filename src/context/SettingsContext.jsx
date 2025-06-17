@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 export const SettingsContext = React.createContext(undefined);
 
+import { LOCAL_STORAGE_KEYS } from '@/enums';
+
 /* !!! Important: When listening to updates from this context,
 you may have to put useEffect in the target component
 (and depends on [nameContext]) to force rerender before updating other states */
@@ -15,7 +17,7 @@ example:
 } */
 
 export default function SettingsContextProvider({children}) {
-    const fontsize_ls = JSON.parse(localStorage.getItem('fontsize'));
+    const fontsize_ls = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.L_BODY_FONT_SIZE));
 
     const [settings, setSettings] = useState({
         fontSize: { sm: Number(fontsize_ls?.sm) || 14, md: Number(fontsize_ls?.md) || 16, lg:  Number(fontsize_ls?.lg) || 18 },
@@ -43,7 +45,7 @@ export default function SettingsContextProvider({children}) {
     }
 
     function updatefontSizeLs() {
-        localStorage.setItem("fontsize" , JSON.stringify({
+        localStorage.setItem(LOCAL_STORAGE_KEYS.L_BODY_FONT_SIZE, JSON.stringify({
             sm: settings.fontSize.sm,
             md: settings.fontSize.md,
             lg: settings.fontSize.lg

@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { SettingsContext } from '@context/SettingsContext';
 import T from "./ExercisePageI18n";
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 
 import ExerciseItem from '@components/ExerciseItem/StyledExerciseItem';
 
@@ -11,7 +12,7 @@ import List from '@mui/material/List';
 function ExercisePage({ className, pageTitle }) {
   const settingsContext = useContext(SettingsContext);
 
-  const [words, setWords] = useState(JSON.parse(localStorage.getItem('meturgamm_words')) || []);
+  const [words, setWords] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.WORDS)) || []);
 
   useEffect(() => {
     settingsContext.updateBadge(false);
@@ -21,7 +22,7 @@ function ExercisePage({ className, pageTitle }) {
   const deleteOneWord = (id) => {
     let newWords = words.filter((w) => w.id !== id);
     setWords(newWords);
-    localStorage.setItem("meturgamm_words", JSON.stringify(newWords));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.WORDS, JSON.stringify(newWords));
   };
 
   return (

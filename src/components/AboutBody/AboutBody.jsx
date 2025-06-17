@@ -1,5 +1,6 @@
 import { useEffect, useState, Fragment } from "react";
 import T from "./AboutBodyI18n";
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 
 import { useTheme } from '@mui/material/styles';
 
@@ -81,7 +82,7 @@ function AboutBody({ className }) {
 
   // Load the visible from the local storage
   useEffect(() => {
-    const storedItems = localStorage.getItem("visibleItems");
+    const storedItems = localStorage.getItem(LOCAL_STORAGE_KEYS.VISIBLE_ITMS);
     if (storedItems) {
       setVisibleItems(JSON.parse(storedItems));
     }
@@ -91,7 +92,7 @@ function AboutBody({ className }) {
     // Filter out the item from the visible items
     const newItems = visibleItems.filter((i) => i !== vItem);
     setVisibleItems(newItems);
-    localStorage.setItem("visibleItems", JSON.stringify(newItems));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.VISIBLE_ITMS, JSON.stringify(newItems));
   };
 
   return (

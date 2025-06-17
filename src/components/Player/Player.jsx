@@ -21,6 +21,7 @@ import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 import embedApiStarterService from '@services/embedApiStarter';
 
 import LegacyPlayer from '@components/LegacyPlayer/StyledLegacyPlayer';
@@ -42,8 +43,8 @@ function Player({ className }) {
   const youtubePlayer = useRef(null);
 
   useEffect(() => {
-    if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
-    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
+    if (!localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER)) localStorage.setItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER, 'true');
+    setHide(!JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER)));
   }, []);
 
   useEffect(() => {
@@ -55,7 +56,7 @@ function Player({ className }) {
     setIsFirstPlaying(true);
     setPlayerError(false);
     if (firstUserClickLoader) setFirstUserClickLoader(false);
-    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
+    setHide(!JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER)));
 
     if (currLyricsContext.videoId && currLyricsContext.title) {
       embedApiStarterService(currLyricsContext.videoId, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError);
@@ -213,7 +214,7 @@ function Player({ className }) {
                     {playerError ? <ErrorOutlineOutlinedIcon className='playerError-icon'></ErrorOutlineOutlinedIcon> :
                       <>{firstUserClickLoader ?
                         <CircularProgress color='primary' size={'1.5rem'}></CircularProgress>
-                        : <PlayArrowRounded onClick={togglePlay} fontSize="large" />}</> }
+                        : <PlayArrowRounded onClick={togglePlay} fontSize="large" />}</>}
                   </div>
                 </span>
               </IconButton>

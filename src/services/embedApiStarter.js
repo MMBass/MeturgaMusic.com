@@ -1,3 +1,5 @@
+import { LOCAL_STORAGE_KEYS } from '@/enums';
+
 /**
  * Initializes and configures a YouTube player.
  * 
@@ -14,7 +16,7 @@
  */
 export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange, onPlayerError) {
     if (vID) {
-        if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
+        if (!localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER)) localStorage.setItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER, 'true');
 
         loadYouTubeScript();
         if (youtubePlayer.current) {

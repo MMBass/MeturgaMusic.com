@@ -13,6 +13,7 @@ import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import constants from '@/constants';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 
 function LegacyPlayer({ className }) {
   const [hide, setHide] = useState(true);
@@ -20,11 +21,11 @@ function LegacyPlayer({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
 
   useEffect(() => {
-    if (!localStorage.getItem('showPlayer')) localStorage.setItem('showPlayer', 'true');
+    if (!localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER)) localStorage.setItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER, 'true');
   }, []);
 
   useEffect(() => {
-    setHide(!JSON.parse(localStorage.getItem('showPlayer')));
+    setHide(!JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER)));
   }, [currLyricsContext.title]);
 
   function toggleFull() {

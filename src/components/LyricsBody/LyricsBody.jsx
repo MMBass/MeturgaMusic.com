@@ -21,7 +21,7 @@ import ToggleSaveSong from '@components/ToggleSaveSong/StyledToggleSaveSong';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
 
-import { LyricsBody } from '@/enums';
+import { LYRICS_BODY } from '@/enums';
 import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className }) {
@@ -68,8 +68,8 @@ function LyricsBody({ className }) {
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
                   // TODO find a better way for PHARSE BREAKing
-                  if (word.includes('PHARSE_BREAK')) { return }; // For some AZ cases - TODO remove after DB cleaning
-                  if (word.includes('|####|')) { return }; // For AZ cases -  TODO also if stopped use it - remove after DB cleaning
+                  if (word.includes(LYRICS_BODY.LEGACY_PHARSE_BREAK)) { return }; // For some AZ cases - TODO remove after DB cleaning
+                  if (word.includes(LYRICS_BODY.PHARSE_BREAK)) { return }; // For AZ cases -  TODO also if stopped use it - remove after DB cleaning
                   return (
                     <LyricToolTip key={i} lyric={word} lyricID={'title' + i}></LyricToolTip>
                   )
@@ -95,7 +95,7 @@ function LyricsBody({ className }) {
             </Typography>
           }
           {/* Set the PARTIAL LYRICS alert */}
-          {currLyricsContext.lines[currLyricsContext.lines.length - 1].src.includes('****PARTIAL LYRICS****') &&
+          {currLyricsContext.lines[currLyricsContext.lines.length - 1].src.includes(LYRICS_BODY.PARTIAL_LYRICS) &&
             <Alert className="partialLyrics-mui-alert inLyrics-mui-alert" severity="error">
               <AlertTitle>{T.LyricsErrTitle}</AlertTitle>
               {T.PartialLyricsErr}
@@ -121,9 +121,9 @@ function LyricsBody({ className }) {
                   }}
                 >
                   {line.src.split(' ').map((word, i) => {
-                    if (line.src.includes('****PARTIAL LYRICS****')) { return };
-                    if (word.includes('PHARSE_BREAK')) { return }; // For AZ cases - TODO remove after DB cleaning
-                    if (word.includes('|####|')) { return }; // Also For AZ cases
+                    if (line.src.includes(LYRICS_BODY.PARTIAL_LYRICS)) { return };
+                    if (word.includes(LYRICS_BODY.LEGACY_PHARSE_BREAK)) { return }; // For AZ cases - TODO remove after DB cleaning
+                    if (word.includes(LYRICS_BODY.PHARSE_BREAK)) { return }; // Also For AZ cases
                     if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
                     return (
                       <LyricToolTip key={i} lyric={word} lyricID={y.toString() + i.toString()} ></LyricToolTip>

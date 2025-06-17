@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import T from "./HistoryPageI18n";
-import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
+import { LOCAL_STORAGE_KEYS } from '@/enums';
 
 import HistoryItem from '@components/HistoryItem/StyledHistoryItem';
 
@@ -9,9 +9,10 @@ import List from '@mui/material/List';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import DeleteSweepOutlinedIcon from '@mui/icons-material/DeleteSweepOutlined';
 
 function HistoryPage({ className, pageTitle }) {
-  const [songs, setSongs] = useState(JSON.parse(localStorage.getItem('meturgamm_songs')) || []);
+  const [songs, setSongs] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS)) || []);
 
   useEffect(() => {
     document.title = pageTitle;
@@ -20,12 +21,12 @@ function HistoryPage({ className, pageTitle }) {
   const handleDeleteClick = (id) => {
     let newSongs = songs.filter((row) => row.id !== id);
     setSongs(newSongs);
-    localStorage.setItem("meturgamm_songs", JSON.stringify(newSongs));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SONGS, JSON.stringify(newSongs));
   };
 
   const handleDeleteAll = () => {
     setSongs([]);
-    localStorage.setItem("meturgamm_songs", JSON.stringify([]));
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SONGS, JSON.stringify([]));
   };
 
   return (
