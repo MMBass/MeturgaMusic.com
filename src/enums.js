@@ -5,7 +5,10 @@ export const SERVICE_TYPES = {
     LEGACY: 'legacy',
 };
 
-// TODO finish the use of LocalStorageKeys enums
+// TODO: We have a copilot chat with more reccomandations 
+
+
+// Todo move next 3 to constants.js
 export const LOCAL_STORAGE_KEYS = {
     WORDS: 'meturgamm_words',
     SONGS: 'meturgamm_songs',
@@ -22,6 +25,11 @@ export const SESSION_STORAGE_KEYS = {
     CURR_SONG: 'currSong',
     TTIP: 'TTip',
 }
+export const LYRICS_BODY = {
+    PARTIAL_LYRICS: '****PARTIAL LYRICS****',
+    LEGACY_PHRASE_BREAK: 'PHRASE_BREAK',
+    PHRASE_BREAK: '|####|',
+};
 
 export const LYRIC_TYPES = {
     SH_MMTCH: 'SH_MMTCH',
@@ -29,11 +37,3 @@ export const LYRIC_TYPES = {
     AZ: 'AZ',
     LLIB: 'LLIB',
 }
-
-// TODO: We have a copilot chat with more reccomandations 
-
-export const LYRICS_BODY = {
-    PARTIAL_LYRICS: '****PARTIAL LYRICS****',
-    LEGACY_PHRASE_BREAK: 'PHRASE_BREAK',
-    PHRASE_BREAK: '|####|',
-};

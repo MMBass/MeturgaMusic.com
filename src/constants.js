@@ -1,8 +1,20 @@
 import utils from "@/utils";
 
-// We have a chat copilot with reccomandations 
+// Todo: We have a chat copilot with reccomandations 
 
-const MeturgaMusicUrl = " Https://MeturgaMusic.com ";
+export const ROUTES = {
+  HOME: '/',
+  EXERCISE: '/Exercise',
+  HISTORY: '/History',
+  WISHLIST: '/Wish-list',
+  SPOTIFY_EXTENSION: '/Spotify-extension',
+  ABOUT: '/About',
+  SONG: '/song/:urlSong',
+  SONGS: '/songs/:urlSong',
+  NOT_FOUND: '*',
+};
+
+const MeturgaMusicUrl = "Https://MeturgaMusic.com";
 
 // Data links
 const prodServerUri = 'Https://api.MeturgaMusic.com';
@@ -10,6 +22,7 @@ const devServerUri = utils.isLocalhost() ? 'http://localhost:5000' : 'Https://ap
 const gUrl = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=he&dt=t&q=';
 
 // Redirect out links
+// TODO use as EXTERNAL_LINKS  
 const googleSearchRefUri = 'https://www.google.com/search?q=';
 const youtubeEmbedUri = 'https://www.youtube.com/embed/';
 const youtubeEmbedProps = '?rel=0&fs=0&loop=1&color=white&enablejsapi=1&vq=small'; // TODO loop, rel, vq - are not wotking
@@ -19,7 +32,7 @@ const faceBookPageUri = "https://www.facebook.com/people/MeturgaMusic/1000881451
 const whatsappDraftMessageUri = "https://api.whatsapp.com/send?text="
 
 
-// TODO - more regex in files
+// TODO - more regex in files, and use as obj
 // Regex
 const insideSearchResultsPattern = /\(([^)]+)\)/;
 const en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9- ]+$/;

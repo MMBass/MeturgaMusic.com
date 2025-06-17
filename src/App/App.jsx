@@ -21,6 +21,7 @@ import { BannersContext } from '@context/BannersContext';
 
 import utils from '@/utils';
 import constants from '@/constants';
+import { ROUTES } from '@/constants';
 import { LOCAL_STORAGE_KEYS } from '@/enums';
 import T from './AppI18n';
 
@@ -98,18 +99,15 @@ function App({ className }) {
 
               <main>
                 <Routes>
-                  <Route path={"/"} element={<HomePage className={'page'} rank={1} />} />
-                  <Route path="/Exercise" element={<ExercisePage className={'page'} pageTitle={T.MainH1 + " - " + T.Exercise} rank={1} />} />
-                  <Route path="/History" element={<HistoryPage className={'page'} pageTitle={T.MainH1 + " - " + T.History} rank={1} />} />
-                  <Route path="/Wish-list" element={<WishlistPage className={'page'} pageTitle={T.MainH1 + " - " + T.Wishlist} rank={1} />} />
-                  <Route path="/Spotify-extension" element={<SpotifyExtensionPage className={'page'} pageTitle={T.MainH1 + " - " + T.SpotifyExtension} rank={1} />} />
-                  <Route path="/About" element={<AboutPage className={'page'} pageTitle={T.MainH1 + " - " + T.About} rank={1} />} />
-                  <Route path="/songs/:urlSong" element={<HomePage className={'page'} rank={1} />} />
-
-                  {/* TODO remove after map update? */}
-                  <Route path="/song/:urlSong" element={<HomePage className={'page'} rank={1} />} />
-
-                  <Route path="*" element={<NoMatchPage className={'page'} />} />
+                  <Route path={ROUTES.HOME} element={<HomePage className="page" rank={1} />} />
+                  <Route path={ROUTES.EXERCISE} element={<ExercisePage className="page" pageTitle={T.MainH1 + ' - ' + T.Exercise} rank={1} />} />
+                  <Route path={ROUTES.HISTORY} element={<HistoryPage className="page" pageTitle={T.MainH1 + ' - ' + T.History} rank={1} />} />
+                  <Route path={ROUTES.WISHLIST} element={<WishlistPage className="page" pageTitle={T.MainH1 + ' - ' + T.Wishlist} rank={1} />} />
+                  <Route path={ROUTES.SPOTIFY_EXTENSION} element={<SpotifyExtensionPage className="page" pageTitle={T.MainH1 + ' - ' + T.SpotifyExtension} rank={1} />} />
+                  <Route path={ROUTES.ABOUT} element={<AboutPage className="page" pageTitle={T.MainH1 + ' - ' + T.About} rank={1} />} />
+                  <Route path={ROUTES.SONGS} element={<HomePage className="page" rank={1} />} />
+                  <Route path={ROUTES.SONG} element={<HomePage className="page" rank={1} />} />
+                  <Route path={ROUTES.NOT_FOUND} element={<NoMatchPage className="page" />} />
                 </Routes>
               </main>
 
