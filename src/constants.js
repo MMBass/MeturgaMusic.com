@@ -1,5 +1,7 @@
 import utils from "@/utils";
 
+// We have a chat copilot with reccomandations 
+
 const MeturgaMusicUrl = " Https://MeturgaMusic.com ";
 
 // Data links

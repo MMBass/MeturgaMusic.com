@@ -10,7 +10,7 @@ import putFullTrans from '@services/putFullTrans';
 import utils from '@/utils.js';
 import TUtils from '@/i18n-utils';
 import constants from '@/constants';
-import { ServiceTypes, LyricTypes } from '@/enums';
+import { SERVICE_TYPES, LYRIC_TYPES } from '@/enums';
 
 export const CurrLyricsContext = React.createContext(undefined);
 
@@ -108,7 +108,7 @@ export default function CurrLyricsContextProvider({ children }) {
                 lines: data.combined,
                 title: songTitle,
                 videoId: data.videoId,
-                service: data.service || ServiceTypes.LEGACY
+                service: data.service || SERVICE_TYPES.LEGACY
             }));
         }
     }
@@ -123,7 +123,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (data.videoId) setVideoId(data.videoId);
         else setVideoId('');
 
-        if (data.LSRC === LyricTypes.SH_MMTCH) setLyricsError(true);
+        if (data.LSRC === LYRIC_TYPES.SH_MMTCH) setLyricsError(true);
 
         setAbort(false);
         setLines(newLines);
@@ -240,21 +240,21 @@ export default function CurrLyricsContextProvider({ children }) {
 
                 newLines[index] = { src: src, trans: translatedTexts.join(" ") };
                 setLines(newLines);
-                if (translatedBy !== (ServiceTypes.GOOGLE)) setTranslatedBy(ServiceTypes.GOOGLE);
+                if (translatedBy !== (SERVICE_TYPES.GOOGLE)) setTranslatedBy(SERVICE_TYPES.GOOGLE);
 
                 if (index + 1 == lines.length) {
 
-                    if (!lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: ServiceTypes.GOOGLE });
+                    if (!lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: SERVICE_TYPES.GOOGLE });
                     if (lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: [], service: '' });
 
                     sessionStorage.setItem('currSong', JSON.stringify({
                         lines: newLines,
                         title: title,
                         videoId: videoId,
-                        service: ServiceTypes.GOOGLE
+                        service: SERVICE_TYPES.GOOGLE
                     }));
 
-                    // putFullTrans(title, newLines, ServiceTypes.GOOGLE); // Off until we sure the correct title is being sent
+                    // putFullTrans(title, newLines, SERVICE_TYPES.GOOGLE); // Off until we sure the correct title is being sent
                     setAzureServerError(false);
                 };
             } else {
@@ -307,9 +307,9 @@ export default function CurrLyricsContextProvider({ children }) {
                 lines: newLines,
                 title: title,
                 videoId: videoId,
-                service: ServiceTypes.REVERSO
+                service: SERVICE_TYPES.REVERSO
             }));
-            setTranslatedBy(ServiceTypes.REVERSO);
+            setTranslatedBy(SERVICE_TYPES.REVERSO);
             setAzureServerError(false);
         }
     };

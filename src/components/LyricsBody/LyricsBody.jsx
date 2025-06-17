@@ -20,6 +20,8 @@ import ToggleSaveSong from '@components/ToggleSaveSong/StyledToggleSaveSong';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
+
+import { LyricsBody } from '@/enums';
 import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className }) {
