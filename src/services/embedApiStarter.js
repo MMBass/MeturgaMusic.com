@@ -49,7 +49,7 @@ export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange,
 
 function loadYouTubeScript() {
     // Remove the script tag if it already exists
-    let existingMainScript = document.querySelector('script[src^='+URLS.YT_IFRAME_API+']');
+    let existingMainScript = document.querySelector('script[src^="'+URLS.YT_IFRAME_API+'"]');
     if (existingMainScript) existingMainScript.parentNode.removeChild(existingMainScript);
     let existingWidgetScript = document.querySelector('script[src="https://www.youtube.com/s/player/2f238d39/www-widgetapi.vflset/www-widgetapi.js"]');
     if (existingWidgetScript) existingWidgetScript.parentNode.removeChild(existingWidgetScript);

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { SettingsContext } from '@context/SettingsContext';
-import T from "./ExercisePageI18n";
 import { LOCAL_STORAGE_KEYS } from '@/constants';
+import T from "./ExercisePageI18n";
 
 import ExerciseItem from '@components/ExerciseItem/StyledExerciseItem';
 
