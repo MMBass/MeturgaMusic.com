@@ -1,16 +1,15 @@
 import TUtils from '@/i18n-utils';
-import constants from '@/constants';
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS, REGEX, URLS } from '@/constants';
 import utils from '@/utils.js';
 
 const getSingleTrans = async (lyric) => {
     const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
 
     lyric.trim().toLowerCase();
-    lyric = lyric.replaceAll(constants.specialCharsPattern, ""); // Removes special chars exept '
+    lyric = lyric.replaceAll(REGEX.SPECIAL_CHARS_PATTERN, ""); // Removes special chars exept '
     if (lyric.slice(-1) === "'") lyric = lyric.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
 
-    return fetch(`${constants.prodServerUri}/trans/single?initId=` + initId, {
+    return fetch(`${URLS.PROD_SERVER_URL}/trans/single?initId=` + initId, {
         method: 'post',
         headers: {
             'Accept': 'application/json',
@@ -36,7 +35,7 @@ const getSingleTrans = async (lyric) => {
 async function getSingleFromG(lyric) {
     try {
 
-        const gUrl = `${constants.gUrl}${encodeURIComponent(lyric)}`;
+        const gUrl = `${URLS.GOOGLE_TRANSLATE_URL}${encodeURIComponent(lyric)}`;
 
         const response = await fetch(gUrl);
         const data = await response.json();

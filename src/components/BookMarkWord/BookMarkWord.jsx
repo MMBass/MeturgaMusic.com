@@ -6,7 +6,7 @@ import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
 import T from "./BookMarkWordI18n";
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 
 function BookMarkWord({ className, toSave, variant }) {
   const [saved, setSaved] = useState(false);

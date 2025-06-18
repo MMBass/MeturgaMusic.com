@@ -10,7 +10,7 @@ import { BannersContext } from '@context/BannersContext';
 import searchStarter from '@services/searchStarter';
 import utils from '@/utils';
 import T from "./SearchBarI18n";
-import constants from "@/constants";
+import { REGEX } from "@/constants";
 
 function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
@@ -53,7 +53,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     if (gsc_input) {
       if (eValue.length <= 1) {
         utils.clearGsc(); // Clear gsc input
-      } else if (constants.en_pattern.test(eValue)) {
+      } else if (REGEX.EN_PATTERN.test(eValue)) {
         gsc_input.value = eValue;
         let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
 
@@ -91,7 +91,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
     setTimeout(() => {
       let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
-      
+
       // Move the ads to bottom - if displayed
       // const gscAdBlocks = document.querySelectorAll('.gsc-adBlock');
       // gscAdBlocks.forEach((ad)=>{
@@ -100,11 +100,11 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
       if (sResults) {
         sResults.forEach((line) => {
-          
+
           if (line.innerText.includes("Lyrics")) {
 
             if (line.innerText.includes("(")) {
-              let inside = line.innerText.match(constants.insideSearchResultsPattern)[1].toLowerCase();
+              let inside = line.innerText.match(REGEX.INSIDE_SEARCH_RESULTS_PATTERN)[1].toLowerCase();
               if (inside?.toLowerCase().includes("live") || inside?.toLowerCase().includes("mix") || inside?.toLowerCase().includes("remix")) {
                 line.parentElement.parentElement.parentElement.remove();
                 return;

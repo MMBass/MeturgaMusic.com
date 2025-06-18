@@ -9,8 +9,8 @@ import putFullTrans from '@services/putFullTrans';
 
 import utils from '@/utils.js';
 import TUtils from '@/i18n-utils';
-import constants from '@/constants';
-import { SERVICE_TYPES, LYRIC_TYPES, SESSION_STORAGE_KEYS, LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS, SESSION_STORAGE_KEYS, REGEX, EXTERNAL_LINKS, URLS } from '@/constants';
+import { SERVICE_TYPES, LYRIC_TYPES  } from '@/enums';
 
 export const CurrLyricsContext = React.createContext(undefined);
 
@@ -59,7 +59,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
         setAbort(true);
 
-        songTitle = songTitle.replace(constants.allBracketsPattern, '').trim();
+        songTitle = songTitle.replace(REGEX.ALL_BRACKETS_PATTERN, '').trim();
         let searchResultsParent = document.querySelectorAll(".gsc-expansionArea")[0];
         loadersContext.openLoader('backdrop');
 
@@ -79,7 +79,7 @@ export default function CurrLyricsContextProvider({ children }) {
                 setSongLyrics(data, songTitle);
             } else {
                 setAbort(false);
-                bannersContext.createBanner('error', 'error', '', TUtils.LyricsNotFound, { actionText: TUtils.LyricsInGoogle, actionHref: constants.googleSearchRefUri + songTitle.replaceAll(' ', '+') + ' lyrics' });
+                bannersContext.createBanner('error', 'error', '', TUtils.LyricsNotFound, { actionText: TUtils.LyricsInGoogle, actionHref: EXTERNAL_LINKS.GOOGLE_SEARCH_REF_URL + songTitle.replaceAll(' ', '+') + ' lyrics' });
             };
         } catch (e) {
             setAbort(false);
@@ -224,7 +224,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
         try {
             let newLines = [...lines];
-            const response = await fetch(constants.gUrl + encodeURI(src));
+            const response = await fetch(URLS.GOOGLE_TRANSLATE_URL + encodeURI(src));
             const data = await response.json();
 
             if (abort) return;

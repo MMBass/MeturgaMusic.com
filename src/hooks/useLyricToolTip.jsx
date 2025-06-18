@@ -1,6 +1,6 @@
 import { useState } from "react";
 import fetchSingleTrans from '@services/fetchSingleTrans';
-import { SESSION_STORAGE_KEYS } from '@/enums';
+import { SESSION_STORAGE_KEYS } from '@/constants';
 
 // Keep the ttip open while parent rerender - using sessionStorage; (useMemo is saving only if parent not rerender)
 export default function useLyricToolTip(lyric, lyricID) {

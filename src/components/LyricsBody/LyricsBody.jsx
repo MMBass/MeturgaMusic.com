@@ -21,7 +21,7 @@ import ToggleSaveSong from '@components/ToggleSaveSong/StyledToggleSaveSong';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
 
-import { LYRICS_BODY } from '@/enums';
+import { LYRICS_BODY } from '@/constants';
 import TUtils from '@/i18n-utils';
 
 function LyricsBody({ className }) {

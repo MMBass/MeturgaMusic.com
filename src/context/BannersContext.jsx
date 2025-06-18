@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const BannersContext = React.createContext(undefined);
 
 import TUtils from '@/i18n-utils';
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 
 /* !!! Important: When listening to updates from this context,
 you may have to put useEffect in the target component

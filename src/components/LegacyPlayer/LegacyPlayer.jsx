@@ -12,8 +12,7 @@ import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
-import constants from '@/constants';
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS, EXTERNAL_LINKS } from '@/constants';
 
 function LegacyPlayer({ className }) {
   const [hide, setHide] = useState(true);
@@ -66,7 +65,7 @@ function LegacyPlayer({ className }) {
             </Box>
             <CardMedia
               children={<iframe
-                src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
+                src={EXTERNAL_LINKS.YOUTUBE_EMBED_URL + currLyricsContext.videoId + EXTERNAL_LINKS.YOUTUBE_EMBED_PROPS}
                 title={'video'}
                 allowFullScreen={false}
                 className={fullSize ? "full-frame" : ""}

@@ -20,8 +20,7 @@ import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
-import constants from '@/constants';
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 import embedApiStarterService from '@services/embedApiStarter';
 
 import LegacyPlayer from '@components/LegacyPlayer/StyledLegacyPlayer';
@@ -201,7 +200,7 @@ function Player({ className }) {
                   <div
                     style={{ borderRadius: '25px' }}
                     id='youtube-player'
-                    // src={constants.youtubeEmbedUri + currLyricsContext.videoId + constants.youtubeEmbedProps}
+                    // src={ EXTERNAL_LINKS.YOUTUBE_EMBED_URL + currLyricsContext.videoId + EXTERNAL_LINKS.YOUTUBE_EMBED_PROPS }
                     title={'video'}
                     allowFullScreen={false}
                     // allow='autoplay' // Probably blocked by the browser, and if not - cause issue when loadVideoById() that the play btn stay off 

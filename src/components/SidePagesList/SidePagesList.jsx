@@ -11,7 +11,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { SettingsContext } from '@context/SettingsContext';
 import utils from '@/utils';
 import T from "./SidePagesListI18n";
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 
 import ChangeColors from '@components/ChangeColors/StyledChangeColors';
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';

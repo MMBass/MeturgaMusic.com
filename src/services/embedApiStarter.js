@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS, URLS } from '@/constants';
 
 /**
  * Initializes and configures a YouTube player.
@@ -49,13 +49,13 @@ export default function (vID, youtubePlayer, onPlayerReady, onPlayerStateChange,
 
 function loadYouTubeScript() {
     // Remove the script tag if it already exists
-    let existingMainScript = document.querySelector('script[src^="https://www.youtube.com/iframe_api"]');
+    let existingMainScript = document.querySelector('script[src^='+URLS.YT_IFRAME_API+']');
     if (existingMainScript) existingMainScript.parentNode.removeChild(existingMainScript);
     let existingWidgetScript = document.querySelector('script[src="https://www.youtube.com/s/player/2f238d39/www-widgetapi.vflset/www-widgetapi.js"]');
     if (existingWidgetScript) existingWidgetScript.parentNode.removeChild(existingWidgetScript);
 
     var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api?v=" + new Date().getTime(); // A random version to prevent caching
+    tag.src = URLS.YT_IFRAME_API+"?v=" + new Date().getTime(); // A random version to prevent caching
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 }

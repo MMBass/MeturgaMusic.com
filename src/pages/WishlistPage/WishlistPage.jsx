@@ -19,7 +19,7 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 import utils from '@/utils';
 import T from "./WishlistPageI18n";
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 import savedSongsService from  '@services/savedSongs';
 
 import SearchBar from '@components/SearchBar/StyledSearchBar';

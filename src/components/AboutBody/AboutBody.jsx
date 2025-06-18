@@ -1,6 +1,6 @@
 import { useEffect, useState, Fragment } from "react";
 import T from "./AboutBodyI18n";
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 
 import { useTheme } from '@mui/material/styles';
 

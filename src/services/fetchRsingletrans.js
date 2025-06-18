@@ -1,5 +1,4 @@
-import constants from '@/constants';
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS, URLS } from '@/constants';
 import utils from '@/utils.js';
 
 export default async (src) => {
@@ -7,7 +6,7 @@ export default async (src) => {
 
     try {
         
-        const response = await fetch(`${constants.prodServerUri}/trans/single-line?initId=` + initId, {
+        const response = await fetch(`${URLS.PROD_SERVER_URL}/trans/single-line?initId=` + initId, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

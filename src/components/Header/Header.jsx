@@ -141,7 +141,6 @@ const Header = ({ className, changeColors }) => {
 
           </IconButton>
 
-
           {!topSearchBar &&
             <NavLink to={'/'} className='nav-link top-nav-link'>
               <Typography
@@ -182,7 +181,6 @@ const Header = ({ className, changeColors }) => {
               </IconButton>
             </NavLink>
           ))}
-
           {/* </Box> */}
 
           {(currLyricsContext.lines?.[0] || rrdLocation.pathname !== "/") &&

@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 
 /** Look for a song in the LS wishList.
  * @param {string} title - The title of the song to be looked.

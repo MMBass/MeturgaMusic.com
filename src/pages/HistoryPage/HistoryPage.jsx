@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import T from "./HistoryPageI18n";
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 
 import HistoryItem from '@components/HistoryItem/StyledHistoryItem';
 

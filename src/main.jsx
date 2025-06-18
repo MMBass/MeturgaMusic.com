@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App/StyledApp';
 import ContextComposer from '@context/ContextComposer';
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS } from '@/constants';
 
 import { v4 as uuidv4 } from 'uuid';
 

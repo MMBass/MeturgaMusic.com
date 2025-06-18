@@ -20,9 +20,8 @@ import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
 
 import utils from '@/utils';
-import constants from '@/constants';
 import { ROUTES } from '@/constants';
-import { LOCAL_STORAGE_KEYS } from '@/enums';
+import { LOCAL_STORAGE_KEYS, URLS } from '@/constants';
 import T from './AppI18n';
 
 import Header from '@components/Header/StyledHeader';
@@ -72,7 +71,7 @@ function App({ className }) {
   const serverInit = () => {
     if (utils.isLocalhost()) return;
     const initId = localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
-    fetch(`${constants.prodServerUri}/?initId=` + initId);
+    fetch(`${URLS.PROD_SERVER_URL}/?initId=` + initId);
   };
 
   const changeTheme = () => {

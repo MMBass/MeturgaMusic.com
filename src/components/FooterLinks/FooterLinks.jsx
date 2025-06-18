@@ -17,7 +17,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import T from "./FooterLinksI18n";
-import constants from "@/constants";
+import { URLS, EXTERNAL_LINKS } from "@/constants";
 import useCopyToClipboard from '@hooks/useCopyToClipboard';
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
 
@@ -42,14 +42,14 @@ function FooterLinks({ className, canInstall }) {
             {T.Share}
           </ListSubheader>
           <ListItem>
-            <ListItemButton component="a" aria-label="whatsapp-link" href={constants.whatsappDraftMessageUri + T.WhatsappMessage + constants.MeturgaMusicUrl} target="_blank">
+            <ListItemButton component="a" aria-label="whatsapp-link" href={EXTERNAL_LINKS.WHATSAPP_DRAFT_MESSAGE_URL + T.WhatsappMessage + URLS.METURGAMUSIC_URL} target="_blank">
               <WhatsAppIcon />
               <ListItemText primary={T.WPShare} />
             </ListItemButton>
           </ListItem>
 
           <ListItem>
-            <CopyToClipboard text={constants.MeturgaMusicUrl} onCopy={() => handleCopy()} aria-label="share">
+            <CopyToClipboard text={URLS.METURGAMUSIC_URL} onCopy={() => handleCopy()} aria-label="share">
               <ListItemButton>
                 <Tooltip
                   title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
@@ -77,7 +77,7 @@ function FooterLinks({ className, canInstall }) {
             {T.HelpUs}
           </ListSubheader>
           <ListItem>
-            <ListItemButton component="a" href={constants.instaPageUri} target="_blank" aria-label="link">
+            <ListItemButton component="a" href={EXTERNAL_LINKS.INSTA_PAGE_URL} target="_blank" aria-label="link">
               <InstagramIcon />
 
               <ListItemText primary={T.Insta} />
@@ -85,7 +85,7 @@ function FooterLinks({ className, canInstall }) {
           </ListItem>
 
           <ListItem>
-            <ListItemButton component="a" href={constants.faceBookPageUri} target="_blank" aria-label="link">
+            <ListItemButton component="a" href={EXTERNAL_LINKS.FACEBOOK_PAGE_URL} target="_blank" aria-label="link">
               <FacebookIcon />
 
               <ListItemText primary={T.FB} />
@@ -104,14 +104,14 @@ function FooterLinks({ className, canInstall }) {
             {T.ReportUs}
           </ListSubheader>
           <ListItem>
-            <ListItemButton component="a" href={"mailto:" + constants.MeturgamusicMail} target="_blank" aria-label="link">
+            <ListItemButton component="a" href={"mailto:" + EXTERNAL_LINKS.METURGAMUSIC_MAIL} target="_blank" aria-label="link">
               <EmailIcon />
-              <ListItemText primary={constants.MeturgamusicMail} />
+              <ListItemText primary={EXTERNAL_LINKS.METURGAMUSIC_MAIL} />
             </ListItemButton>
           </ListItem>
 
           <ListItem>
-            <ListItemButton component="a" href={constants.faceBookPageUri} target="_blank" aria-label="link">
+            <ListItemButton component="a" href={EXTERNAL_LINKS.FACEBOOK_PAGE_URL} target="_blank" aria-label="link">
               <MessageIcon />
               <ListItemText primary={T.SendFBMessage} />
             </ListItemButton>
