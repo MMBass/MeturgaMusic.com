@@ -170,7 +170,7 @@ function Player({ className }) {
       }
 
       {(!hide && currLyricsContext.videoId && !disLegacyPlayer) &&
-        <Draggable handle=".drag-handle" bounds="body" className={'draggable-container'}>
+        <Draggable handle=".player-drag-handle" bounds="body" className={'draggable-container'}>
           <Card sx={{ display: 'flex', flexDirection: 'column', width: fullSize ? '300px' : '250px' }} className={className + ' player-card'}>
             {/* <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0 8px' }}>
 
@@ -187,7 +187,7 @@ function Player({ className }) {
               </Box>
             </Box> */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3px 8px' }}>
-              <IconButton className='drag-handle'>
+              <IconButton className='player-drag-handle'>
                 <DragIndicatorIcon className='drag-icon' />
               </IconButton>
 
@@ -260,7 +260,7 @@ function Player({ className }) {
 
       {/* Diaplay error/empty player when no video found */}
       {(!hide && !currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
-        <Draggable handle=".drag-handle" bounds="parent" className={className + ' draggable-container'}>
+        <Draggable handle=".player-drag-handle" bounds="parent" className={className + ' draggable-container'}>
           <Card sx={{ display: 'flex', flexDirection: 'column', width: '250px' }} className={className}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '3px 8px' }}>
               <ErrorOutlineOutlinedIcon></ErrorOutlineOutlinedIcon>

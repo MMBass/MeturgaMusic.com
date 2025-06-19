@@ -91,8 +91,8 @@ function HomePage({ className }) {
   }
 
   return (
-
     <div className={`${className} page`}>
+
       {(!currLyricsContext.lines?.[0] || !currLyricsContext.title) &&
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-parent-grid">

@@ -34,7 +34,7 @@ function LegacyPlayer({ className }) {
   return (
     <>
       {(!hide && currLyricsContext.videoId && currLyricsContext.lines?.[0]) &&
-        <Draggable handle=".drag-icon" bounds="body" className={'draggable-container'}>
+        <Draggable handle=".player-drag-icon" bounds="body" className={'draggable-container'}>
           <Card sx={{ display: 'flex' }} className={className}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex', alignItems: 'center' }} className='remove-icon-box'>
