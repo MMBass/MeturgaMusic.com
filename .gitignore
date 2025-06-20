@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 draft-images
 social-images
+general-images
 drafts
 designs
 dist-ssr
