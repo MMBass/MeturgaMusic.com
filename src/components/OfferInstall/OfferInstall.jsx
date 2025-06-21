@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import T from "./OfferInstallI18n";
-import bgImage from '@assets/screenshots/app-icon-10.png';
+import bgImage from '@assets/screenshots/favicon-11.svg';
 
 import Paper from "@mui/material/Paper";
 import Grid from '@mui/material/Grid';
