@@ -23,8 +23,8 @@ import shot2 from '@/assets/screenshots/shot2.png';
 import shot2Dark from '@/assets/screenshots/shot2Dark.png';
 import shot3 from '@/assets/screenshots/shot3.png';
 import shot3Dark from '@/assets/screenshots/shot3Dark.png';
-import shot5 from '@/assets/screenshots/shot8.png';
-import shot5Dark from '@/assets/screenshots/shot8Dark.png';
+import shot5 from '@/assets/screenshots/shot8-v2.png';
+import shot5Dark from '@/assets/screenshots/shot8Dark-v2.png';
 
 function AboutBody({ className }) {
   const showRemoveTrigger = useScrollTrigger({
