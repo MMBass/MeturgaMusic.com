@@ -81,9 +81,8 @@ const Header = ({ className, changeColors }) => {
     {
       name: T.ExercisePage,
       url: '/exercise',
-      icon:
-        <BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon>,
-    },
+      icon: <BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon>,
+    }, 
     {
       name: T.WishListPage,
       url: '/wish-list',
@@ -167,6 +166,7 @@ const Header = ({ className, changeColors }) => {
           }
 
           {iconPages.map((page, index) => (
+            // Not changing list - so we can use index as key
             <NavLink to={page.url} key={index} className={'nav-link top-nav-link'}
               sx={{}}
             >

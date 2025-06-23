@@ -65,7 +65,8 @@ function WishlistPage({ className }) {
         <Grid container spacing={1}>
           {songs.map((song, i) => (
             <Grid item key={song.title + i} xs={12} md={6}>
-              <ListItem key={i}
+              <ListItem 
+                // key={i} // What's the use  of this key?
                 secondaryAction={
                   <IconButton onClick={() => { handleDeleteClick(song.id) }} edge="end" aria-label="deletcoe" color='info'>
                     <ClearRoundedIcon size="small" className='remove-wish-icon' color='info'/>

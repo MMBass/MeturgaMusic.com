@@ -20,7 +20,7 @@ function AboutPage({ className, pageTitle }) {
         {
           SONGS_LIST.map((song, index) => {
             return (
-              <Typography component={'a'}  key={index} href={song}>{song}</Typography>
+              <Typography component={'a'} key={index} href={song}>{song}</Typography>
             );
           })
         }
