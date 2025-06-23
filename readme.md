@@ -2,6 +2,7 @@
 
 <h3 align="center"><a href="https://meturgamusic.com/"><img src="./src/assets/screenshots/mm-short-text-logo.png" width="430px"></a></h3>
 
+<!-- Todo built in react + node + mui chips? or in footer?  -->
 <p align="center">
     <a href="https://meturgamusic.com/">
         <img src="https://img.shields.io/badge/Monthly%20Users-1.4K%2B-blue?logo=google-chrome" alt="Monthly Users">
@@ -18,13 +19,7 @@
 
 The website for Israeli English learners to learn English from songs.
 
-<style>
-.floating-img {
-    box-shadow: -10px -10px rgba(255, 255, 255, 0.12);
-}
-</style>
-
-<img src="./src/assets/screenshots/option-2-gh.png" alt="img" align="right" width="560px" height="auto" class="floating-img">
+<img src="./src/assets/screenshots/option-2-gh.png" alt="img" align="right" width="560px" height="auto" style="box-shadow: -10px -10px rgba(255, 255, 255, 0.12);">
 
 ### Features
 
