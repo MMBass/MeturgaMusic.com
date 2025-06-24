@@ -39,7 +39,7 @@ The website for Israeli English learners to learn English from songs.
 
 <br>
 
-<img src="./src/assets/screenshots/option-2-gh.png" 
+<img src="./src/assets/screenshots/option-4-gh.png" 
 alt="img" 
 align="right" 
 width="520px" 
