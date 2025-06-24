@@ -42,18 +42,18 @@ The website for Israeli English learners to learn English from songs.
 <img src="./src/assets/screenshots/option-2-gh.png" 
 alt="img" 
 align="right" 
-width="530px" 
+width="520px" 
 height="auto" >
 
 ### Features
 
+- Search in milions of songs
+- Built-in Music player
+- Save new words for practicing
 - Get English songs Translated to hebrew line after line,
 <br>without loosing the source language
-- Save words, song lyrics, and practice English in a fun way
-- Search in milions of songs on the web
 - Get dictionary translation for every single word
-- Save new words for practicing
-- Built-in Music player
+
 
 ### Example Songs
 
