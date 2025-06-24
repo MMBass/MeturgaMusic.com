@@ -36,13 +36,14 @@
 ---
 
 The website for Israeli English learners to learn English from songs.
+
+<br>
+
 <img src="./src/assets/screenshots/option-2-gh.png" 
 alt="img" 
 align="right" 
-width="560px" 
-height="auto" 
-style="margin-top:60px; margin-left:60px;
-    box-shadow: -10px -10px rgba(255, 255, 255, 0.12);">
+width="530px" 
+height="auto" >
 
 ### Features
 
