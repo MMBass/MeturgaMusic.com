@@ -17,7 +17,7 @@ export default {
 
     ExerciseHeader: "תרגול מילים",
     ExerciseAlt: " מילים חדשות שלמדתם מהשיר צילום מסך",
-    ExerciseBody: "שמרו מילים חדשות שלמדתם מהשיר, ותרגלו אותן בעמוד ייעודי באתר ",
+    ExerciseBody: "שמרו מילים חדשות שלמדתם מהשיר, ומִצְאוּ אותן בעמוד 'מילים לתרגול'",
     
     OtherFeaturesHeader: "",
 };
