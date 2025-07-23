@@ -101,13 +101,13 @@ function Player({ className }) {
     // event.target.playVideo(); // Not working? or works sometimes but than not fiering the API?
     if (firstUserClickLoader) setFirstUserClickLoader(false);
     setDuration(event.target.getDuration());
-    youtubePlayer.current.setVolume(100); // TODO remove if using volume slider
+    youtubePlayer.current.setVolume(100); // Remove if using volume slider
   };
 
   const onPlayerStateChange = (event) => {
     if (event.data === -1) setFirstUserClickLoader(true);
     else if (firstUserClickLoader) setFirstUserClickLoader(false);
-    setIsPlaying(event.data === 1)// TODO check if 1 is playing
+    setIsPlaying(event.data === 1);
   };
 
   const onPlayerError = (event) => {

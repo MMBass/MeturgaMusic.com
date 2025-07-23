@@ -173,7 +173,7 @@ export default function CurrLyricsContextProvider({ children }) {
         setTranslatedBy('');
 
         try {
-            const data = await fetchFullTrans(lines.map(line => ({ ...line, src: line.src.replaceAll('PHRASE_BREAK', '') })), title); // PHRASE_BREAK Legacy - exsist in some saved songs, TODO Remove them from database
+            const data = await fetchFullTrans(lines.map(line => ({ ...line, src: line.src.replaceAll('PHRASE_BREAK', '') })), title); // PHRASE_BREAK Legacy - exsist in some saved songs
 
             let newLines = [];
 

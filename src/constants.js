@@ -1,8 +1,5 @@
 import utils from "@/utils";
 
-// Todo: We have a chat copilot with reccomandations 
-
-// TODO search also for use of .href or .location in the code
 export const ROUTES = {
     HOME: '/',
     EXERCISE: '/Exercise',
@@ -31,7 +28,7 @@ export const URLS = {
 export const EXTERNAL_LINKS = {
     GOOGLE_SEARCH_REF_URL: 'https://www.google.com/search?q=',
     YOUTUBE_EMBED_URL: 'https://www.youtube.com/embed/',
-    // TODO loop, rel, vq - are not wotking
+    // Note - loop, rel, vq - are not wotking
     YOUTUBE_EMBED_PROPS: '?rel=0&fs=0&loop=1&color=white&enablejsapi=1&vq=small',
     METURGAMUSIC_MAIL: 'MeturgaMusic@gmail.com',
     INSTA_PAGE_URL: "https://www.instagram.com/meturgamusic",
