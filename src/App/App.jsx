@@ -44,6 +44,9 @@ import SpotifyExtensionPage from '@pages/SpotifyExtensionPage/StyledSpotifyExten
 import AboutPage from '@pages/AboutPage/StyledAboutPage';
 import NoMatchPage from '@pages/NoMatchPage/StyledNoMatchPage';
 
+const urlParams = new URLSearchParams(window.location.search);
+const initIdFromUrl = urlParams.get('initId');
+
 function App({ className }) {
   const drawerContext = useContext(DrawerContext);
   const loadersContext = useContext(LoadersContext);
@@ -71,7 +74,8 @@ function App({ className }) {
   const serverInit = () => {
     if (utils.isLocalhost()) return;
     const initId = localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
-    fetch(`${URLS.PROD_SERVER_URL}/?initId=` + initId);
+    if (initIdFromUrl?.length < 50) fetch(`${URLS.PROD_SERVER_URL}/?initId=` + 'INITID:' + initIdFromUrl);
+    else fetch(`${URLS.PROD_SERVER_URL}/?initId=` + initId);
   };
 
   const changeTheme = () => {
