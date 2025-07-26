@@ -10,7 +10,7 @@ import putFullTrans from '@services/putFullTrans';
 import utils from '@/utils.js';
 import TUtils from '@/i18n-utils';
 import { LOCAL_STORAGE_KEYS, SESSION_STORAGE_KEYS, REGEX, EXTERNAL_LINKS, URLS } from '@/constants';
-import { SERVICE_TYPES, LYRIC_TYPES  } from '@/enums';
+import { SERVICE_TYPES, LYRIC_TYPES } from '@/enums';
 
 export const CurrLyricsContext = React.createContext(undefined);
 
@@ -29,6 +29,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const [translatedBy, setTranslatedBy] = useState(currSsSong?.service || '');
     const [lyricsError, setLyricsError] = useState(false);
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
+    const [sessionUseCounter, setSessionUseCounter] = useState(0);
     const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
 
@@ -44,10 +45,12 @@ export default function CurrLyricsContextProvider({ children }) {
         if (lines[0] && linesVersion === lines[1]?.src + lines[2]?.src) checkNextTrans();
 
         // if (JSON.parse(!window.matchMedia('(display-mode: standalone)').matches && localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS))?.length > 9) setAzureServerError(true); // Gives every user 10 fast translations, and one on every visit (session)
+        if (sessionUseCounter > 10) setAzureServerError(true); // Gives every user 10 fast translations per session
+        
     }, [lines, azureServerError]);
 
     useEffect(() => {
-        if (title.length > 2 && videoId.length > 2 && lines[0]?.src.length > 0 ) {
+        if (title.length > 2 && videoId.length > 2 && lines[0]?.src.length > 0) {
             if (lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: [], service: '' });
             else utils.lsSaveSongHistory({ title, lines, videoId, translatedBy });
         } // Update the ls videoId after all the state sets
@@ -58,6 +61,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (utils.compareTitles(songTitle, title)) return; // If the song is the same, do nothing
 
         setAbort(true);
+        setSessionUseCounter(prev => prev + 1);
 
         songTitle = songTitle.replace(REGEX.ALL_BRACKETS_PATTERN, '').trim();
         let searchResultsParent = document.querySelectorAll(".gsc-expansionArea")[0];
@@ -115,8 +119,8 @@ export default function CurrLyricsContextProvider({ children }) {
 
     const setSongLyrics = (data, songTitle) => {
         setTitle(songTitle);
-        let newLines =  data.processedLyrics;
-        
+        let newLines = data.processedLyrics;
+
         setLinesVersion(newLines[1].src + newLines[2].src);
 
         // TO TRACK if moving the setVideoId before setLines is not breaking the setVideoId process
@@ -173,7 +177,10 @@ export default function CurrLyricsContextProvider({ children }) {
         setTranslatedBy('');
 
         try {
-            const data = await fetchFullTrans(lines.map(line => ({ ...line, src: line.src.replaceAll('PHRASE_BREAK', '') })), title); // PHRASE_BREAK Legacy - exsist in some saved songs
+
+            // PHRASE_BREAK Legacy - exsist in some saved songs
+            // TODO remove after db cleaning
+            const data = await fetchFullTrans(lines.map(line => ({ ...line, src: line.src.replaceAll('PHRASE_BREAK', '') })), title);
 
             let newLines = [];
 
