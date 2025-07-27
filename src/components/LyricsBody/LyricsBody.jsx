@@ -139,7 +139,7 @@ function LyricsBody({ className }) {
                 >
                   <>
                     {(() => {
-                      if (word.includes(LYRICS_BODY.PHRASE_BREAK)) { return }; // Don't show a phrase breaks
+                      if (line.trans?.includes(LYRICS_BODY.PHRASE_BREAK)) { return }; // Don't show a phrase breaks
                       return line.trans?.length ?
                         <>{line.trans === '   ' ? '' : <p className="single-trans">{line.trans}</p>}</>
                         :
