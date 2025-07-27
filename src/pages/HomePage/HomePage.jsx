@@ -148,13 +148,13 @@ function HomePage({ className }) {
 
       {(currLyricsContext.lines?.[0] && currLyricsContext.title) &&
         <Grid container spacing={1}>
-          <Grid item md={12} lg={9}>
+          <Grid item md={12} lg={12} /*Temp - can be 9 if need space for ads*/>
             <LyricsBody className={'lyrics-body'}></LyricsBody>
           </Grid>
 
-          <Grid item xs={12} lg={3}>
-            {/* on Lg - empty side space for ads */}
-          </Grid>
+          {/* <Grid item xs={12} lg={3}>
+            on Lg - empty side space for ads
+          </Grid> */}
         </Grid>
       }
 
