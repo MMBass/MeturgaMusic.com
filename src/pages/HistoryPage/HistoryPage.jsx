@@ -25,6 +25,8 @@ function HistoryPage({ className, pageTitle }) {
   };
 
   const handleDeleteAll = () => {
+    const confirmed = window.confirm(T.DelAllConfirm);
+    if(!confirmed) return;
     setSongs([]);
     localStorage.setItem(LOCAL_STORAGE_KEYS.SONGS, JSON.stringify([]));
   };
