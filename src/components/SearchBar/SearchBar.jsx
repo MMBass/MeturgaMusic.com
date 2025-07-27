@@ -127,18 +127,18 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
               return;
             } // After removing all the around text - check it's lang
 
-            if (!songTitle.split(' - ').slice(0, 2).every(Boolean)) {
-              line.parentElement.parentElement.parentElement.remove();
-              return;
-            }// Remove if some parts are empty strings
-
-            line.classList.add('fixed-gs-title');
-            line.innerHTML = `<strong>${songTitle.split(' - ')[0]} - <span>${songTitle.split(' - ')[1]}</span> </strong>`;
-
             const splittedSongTitle = {
               artistName: encodeURI(songTitle.split('-')[0]),
               songName: encodeURI(songTitle.split('-')[1])
             };
+
+            if (!songTitle.split(' - ').slice(0, 2).every(s => Boolean(s.trim()))) {
+              line.parentElement.parentElement.parentElement.remove();
+              return;
+            } // Remove if artist or sname are empty strings
+
+            line.classList.add('fixed-gs-title');
+            line.innerHTML = `<strong>${songTitle.split(' - ')[0]} - <span>${songTitle.split(' - ')[1]}</span> </strong>`;
 
             if (line.nodeName !== 'A') {
               const webSongUrl = line.parentElement.parentElement.parentElement.querySelector('a').href;
