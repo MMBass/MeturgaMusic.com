@@ -15,10 +15,10 @@ function isSaved(title) {
  * @param {string} title - The title of the song to be added.
  * @returns {Array} The updated list of saved songs.
  */
-function handleAddSong(title) {
+function handleAddSong(title, webSongUrl = '') {
     if (!localStorage.getItem(LOCAL_STORAGE_KEYS.WISHLIST)) localStorage.setItem(LOCAL_STORAGE_KEYS.WISHLIST, JSON.stringify([]));
     const lsSongs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.WISHLIST));
-    const song = { title: title.replaceAll('&', 'and'), id: lsSongs.length.toString() };
+    const song = { title: title.replaceAll('&', '%26'), webSongUrl, id: lsSongs.length.toString() };
     
     if (isSaved(title)) return lsSongs;
 

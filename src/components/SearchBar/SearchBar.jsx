@@ -160,7 +160,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 
     if (addRecordMode === true) {
-      if (addRecord) { addRecord(songTitle) };
+      if (addRecord) { addRecord(songTitle, webSongUrl) };
       line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "all";
       utils.clearGsc();
       setCurrVal(' ');

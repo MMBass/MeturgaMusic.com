@@ -35,8 +35,8 @@ function WishlistPage({ className }) {
     localStorage.setItem(LOCAL_STORAGE_KEYS.WISH_CLOSE_DESC_BANNER, 'true');
   };
 
-  function handleAddSong(title) {
-    let lsSongs = savedSongsService.handleAddSong(title);
+  function handleAddSong(title, webSongUrl) {
+    let lsSongs = savedSongsService.handleAddSong(title, webSongUrl);
     setSongs(lsSongs);
   };
 
@@ -77,7 +77,7 @@ function WishlistPage({ className }) {
                     <ListItemButton>
                       <LaunchIcon color='disabled' fontSize='inherit' sx={{ marginInlineEnd: '4px' }}></LaunchIcon>
                       <Typography>
-                        {song.title}
+                        {song.title.replaceAll('%26', '&')}
                       </Typography>
                     </ListItemButton>
                   </NavLink>
