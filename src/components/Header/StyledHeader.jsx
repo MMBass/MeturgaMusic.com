@@ -35,7 +35,7 @@ const StyledHeader = styled(Header)`
 
       .change-colors-container>button{
         font-size: 25px;
-        color: ${ props => props.theme.palette.primary.contrastText };
+        color: ${props => props.theme.palette.primary.contrastText};
       }
 
       /* @media (min-width: 600px) {
@@ -51,7 +51,7 @@ const StyledHeader = styled(Header)`
       .mui-search-icon-wrapper{
         margin-inline-end: 10px;
         margin-inline-start: 10px;
-        color: ${props => props.theme.palette.primary.light};;
+        color: #d7d7d7;
 
         .mui-search-icon{
           margin-top: 2px;

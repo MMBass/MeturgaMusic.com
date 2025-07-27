@@ -69,8 +69,8 @@ const StyledSearchBar = styled(SearchBar)`
       min-width: 100%;
 
       input, fieldset, label{
-        color: ${props => props.theme.palette.primary.light + "!important"};
-        border-color: ${props => props.theme.palette.primary.light + "!important"};
+        color: #d7d7d7 !important;
+        border-color: #d7d7d7 !important;
       }
 
       svg, .MuiCircularProgress-root{
@@ -79,7 +79,7 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   .top-input input {
-    color: ${props => props.theme.palette.primary.light + "!important"};
+    color: #d7d7d7 !important;
   }
 
   /* google search styling - elements from out of REACT */
