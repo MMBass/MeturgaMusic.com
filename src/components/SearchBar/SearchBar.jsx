@@ -77,7 +77,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             gsc_clear.dispatchEvent(new Event('click'));
           }
         }, 250);
-        // setCurrVal(utils.keyboardHEENSwitcher(eValue)); // To fix - still cuts the first letter every time
+        // setCurrVal(utils.keyboardHEENSwitcher(eValue)); // TODO To fix - still cuts the first letter every time
         return;
       }
     } else {
@@ -102,6 +102,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         sResults.forEach((line) => {
 
           if (line.innerText.includes("Lyrics")) {
+            console.log(line.innerText);
 
             if (line.innerText.includes("(")) {
               let inside = line.innerText.match(REGEX.INSIDE_SEARCH_RESULTS_PATTERN)[1].toLowerCase();
@@ -126,6 +127,11 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
               return;
             } // After removing all the around text - check it's lang
 
+            if (!songTitle.split(' - ').slice(0, 2).every(Boolean)) {
+              line.parentElement.parentElement.parentElement.remove();
+              return;
+            }// Remove if some parts are empty strings
+
             line.classList.add('fixed-gs-title');
             line.innerHTML = `<strong>${songTitle.split(' - ')[0]} - <span>${songTitle.split(' - ')[1]}</span> </strong>`;
 
@@ -142,14 +148,11 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             line.style.display = "block";
 
           } else if (!line.innerText.includes("Lyrics")) {
-
             if (line.parentElement.parentElement.parentElement.className.includes('gsc-webResult')) {
               line.parentElement.parentElement.parentElement.remove();
             };
           };
-
         });
-
       }
       setSearchProccessing(false);
     }, 50);
