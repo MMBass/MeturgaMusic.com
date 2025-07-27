@@ -45,7 +45,7 @@ import AboutPage from '@pages/AboutPage/StyledAboutPage';
 import NoMatchPage from '@pages/NoMatchPage/StyledNoMatchPage';
 
 const urlParams = new URLSearchParams(window.location.search);
-const initIdFromUrl = urlParams.get('initId');
+const refFromUrl = urlParams.get('ref');
 
 function App({ className }) {
   const drawerContext = useContext(DrawerContext);
@@ -70,12 +70,12 @@ function App({ className }) {
     serverInit();
   };
 
-  // Send every visit to the server
+  // Send every visit and its ref (if exsist) to the server
   const serverInit = () => {
     if (utils.isLocalhost()) return;
     const initId = localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
-    if (initIdFromUrl?.length < 50) fetch(`${URLS.PROD_SERVER_URL}/?initId=` + 'INITID:' + initIdFromUrl);
-    else fetch(`${URLS.PROD_SERVER_URL}/?initId=` + initId);
+    if (refFromUrl?.length < 50) fetch(`${URLS.PROD_SERVER_URL}/?initId=${initId}&ref=${refFromUrl}`);
+    else fetch(`${URLS.PROD_SERVER_URL}/?initId=${initId}`);
   };
 
   const changeTheme = () => {
