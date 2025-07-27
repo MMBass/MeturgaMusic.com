@@ -138,9 +138,9 @@ export default function CurrLyricsContextProvider({ children }) {
         let lsSong = utils.lsFindSong(songTitle);
 
         // Force to call lyrics if the lyrics are partial
-        if (lsSong?.lines[lsSong.lines.length - 1].src.includes('****PARTIAL LYRICS****') ) return false;
-
-        if (lsSong?.title && lsSong.lines.length > 0 && lsSong.lines[0].src) {
+        if (lsSong && lsSong?.lines[lsSong.lines.length - 1].src.includes('****PARTIAL LYRICS****') ){
+           return false; 
+        } else if (lsSong?.title && lsSong.lines.length > 0 && lsSong.lines[0].src) {
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
             setTitle(songTitle);
             setLinesVersion(lsSong.lines[1].src + lsSong.lines[2].src);
