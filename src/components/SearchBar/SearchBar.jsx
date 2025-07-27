@@ -102,7 +102,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
         sResults.forEach((line) => {
 
           if (line.innerText.includes("Lyrics")) {
-            console.log(line.innerText);
 
             if (line.innerText.includes("(")) {
               let inside = line.innerText.match(REGEX.INSIDE_SEARCH_RESULTS_PATTERN)[1].toLowerCase();
