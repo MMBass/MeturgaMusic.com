@@ -65,17 +65,9 @@ const clearGsc = () => { //
 };
 
 /** Get if apple device or not @returns {boolean} */
-const isApple = () => {
-    let iosQuirkPresent = function () {
-        var audio = new Audio();
-        audio.volume = 0.5;
-        return audio.volume === 1;   // volume cannot be changed from "1" on iOS 12 and below
-    };
-    let isIOS = REGEX.IOS_MODELS.test(navigator.userAgent);
-    let isAppleDevice = navigator.userAgent.includes('Macintosh');
-    let isTouchScreen = navigator.maxTouchPoints >= 1;   // true for iOS 13 (and hopefully beyond)
-    return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()));
-};
+const isApple = () => 
+    /iPad|iPhone|iPod|Mac|Macintosh/.test(navigator.userAgent) || 
+    navigator.maxTouchPoints > 1;
 
 /** Note! Not finished yet @param {string} str @returns {string} */
 const keyboardHEENSwitcher = (str) => {
