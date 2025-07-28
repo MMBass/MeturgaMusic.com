@@ -44,6 +44,32 @@ body {
 
 }
 
+#recaptcha-wrapper{
+    align-items: center !important;
+    text-align: center !important;
+    align-content: center !important;
+    background: #9e9e9ef0;
+    top: 0;
+    right: 0;
+    left: auto;
+    bottom: auto;
+    z-index: 1;
+    position: fixed !important;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+    margin: unset !important;
+    padding: unset !important;
+}
+
+#recaptcha-element{
+   place-self: center;
+}
+
+.gs-captcha-msg{
+  color: #fff;
+}
+
 /* Google ads styling */
 .adsbygoogle[data-anchor-status="displayed"] {
   z-index: 2147483647 !important;

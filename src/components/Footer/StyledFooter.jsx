@@ -22,6 +22,7 @@ const StyledFooter = styled(Footer)`
     font-size: 17px;
     color: white;
     margin: unset;
+    z-index: unset;
   }
 
   .install-section{

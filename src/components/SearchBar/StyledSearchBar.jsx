@@ -151,7 +151,7 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   #___gcse_0 .gs-captcha-outer-wrapper {
-    padding: 30px !important;
+    /* padding: 30px !important; */
 
     /* @media (max-width: 600px) {
         position: fixed;
