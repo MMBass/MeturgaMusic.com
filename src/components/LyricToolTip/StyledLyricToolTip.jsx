@@ -6,6 +6,7 @@ const StyledLyricToolTip = styled(LyricToolTip)`
    
    .single-lyric{
       cursor: pointer;
+      overflow-wrap: anywhere;
 
       :hover{
          background-color: rgb(244, 244, 244);

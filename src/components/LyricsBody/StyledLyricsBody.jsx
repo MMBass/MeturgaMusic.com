@@ -55,6 +55,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   .single-lyric, .single-trans{
     display: inline;
     text-transform: none;
+    overflow-wrap: anywhere;
   }
 
   .en-line{
