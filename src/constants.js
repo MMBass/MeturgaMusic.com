@@ -17,6 +17,7 @@ export const URLS = {
     // If running on a cloud server - use the prod url anyway (for case of wrong deploying)
     DEV_SERVER_URL: utils.isLocalhost() ? 'http://localhost:5000' : 'https://api.MeturgaMusic.com',
     PROD_SERVER_URL: 'https://api.MeturgaMusic.com',
+    PROD_BCKP_SERVER_URL: 'https://meturgamusic-backend.onrender.com',
     LOCALHOST: 'http://localhost:5000',
     // Az engine, Called 'MusixMatch2' Id In Bass...Dev Account;
     GSC_ENGINE: "https://cse.google.com/cse.js?cx=0d8465f607b0b1227",
