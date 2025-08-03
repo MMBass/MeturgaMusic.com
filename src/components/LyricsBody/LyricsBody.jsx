@@ -67,9 +67,7 @@ function LyricsBody({ className }) {
             >
               {currLyricsContext.title &&
                 currLyricsContext.title.split(' ').map((word, i) => {
-                  // TODO find a better way for PHRASE BREAKing
-                  if (word.includes(LYRICS_BODY.LEGACY_PHRASE_BREAK)) { return }; // For some AZ cases - TODO remove after DB cleaning
-                  if (word.includes(LYRICS_BODY.PHRASE_BREAK)) { return }; // For AZ cases -  TODO also if stopped use it - remove after DB cleaning
+                  if (word.includes(LYRICS_BODY.PHRASE_BREAK)) { return }; // For AZ cases
                   return (
                     <LyricToolTip key={i} lyric={word} lyricID={'title' + i}></LyricToolTip>
                   )
@@ -122,7 +120,6 @@ function LyricsBody({ className }) {
                 >
                   {line.src.split(' ').map((word, i) => {
                     if (line.src.includes(LYRICS_BODY.PARTIAL_LYRICS)) { return };
-                    if (word.includes(LYRICS_BODY.LEGACY_PHRASE_BREAK)) { return }; // For AZ cases - TODO remove after DB cleaning
                     if (word.includes(LYRICS_BODY.PHRASE_BREAK)) { return }; // Also For AZ cases
                     if (word.slice(-1) === "'") word = word.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
                     return (
