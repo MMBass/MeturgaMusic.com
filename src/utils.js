@@ -6,10 +6,10 @@ const isLocalhost = () => (location.hostname === "localhost" || location.hostnam
 const loadGscScript = () => {
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = URLS.GSC_ENGINE // Az engine, Called 'MusixMatch2' Id In Bass...Dev Account;
+    script.src = URLS.GSC_ENGINE
     script.defer = true;
     document.body.appendChild(script);
-    // a85c2374ffc8b8898 // Genius engine id 
+    // a85c2374ffc8b8898 // Gen engine id 
 };
 
 const lsSaveWord = (toSave /* { word: string, results: [string] } */) => {
