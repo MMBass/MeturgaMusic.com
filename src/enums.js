@@ -10,4 +10,5 @@ export const LYRIC_TYPES = {
     B: 'B',
     C: 'C',
     D: 'D',
+    // TODO if using LYRIC_TYPES - add also DB cases - the same but starting with 'DB_'
 }

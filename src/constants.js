@@ -16,7 +16,7 @@ export const URLS = {
     METURGAMUSIC_URL: "https://MeturgaMusic.com",
     // If running on a cloud server - use the prod url anyway (for case of wrong deploying)
     DEV_SERVER_URL: utils.isLocalhost() ? 'http://localhost:5000' : 'https://api.MeturgaMusic.com',
-    PROD_SERVER_URL: 'http://localhost:5000',
+    PROD_SERVER_URL: 'https://MeturgaMusic.com',
     PROD_BCKP_SERVER_URL: 'https://meturgamusic-backend.onrender.com',
     LOCALHOST: 'http://localhost:5000',
     GSC_ENGINE: "https://cse.google.com/cse.js?cx=0d8465f607b0b1227",
