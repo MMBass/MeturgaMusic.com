@@ -6,8 +6,8 @@ export const SERVICE_TYPES = {
 };
 
 export const LYRIC_TYPES = {
-    SH_MMTCH: 'SH_MMTCH',
-    G: 'G',
-    AZ: 'AZ',
-    LLIB: 'LLIB',
+    A: 'A',
+    B: 'B',
+    C: 'C',
+    D: 'D',
 }

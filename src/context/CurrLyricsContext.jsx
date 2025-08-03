@@ -127,7 +127,7 @@ export default function CurrLyricsContextProvider({ children }) {
         if (data.videoId) setVideoId(data.videoId);
         else setVideoId('');
 
-        if (data.LSRC === LYRIC_TYPES.SH_MMTCH) setLyricsError(true);
+        if (data.LSRC === LYRIC_TYPES.A) setLyricsError(true);
 
         setAbort(false);
         setLines(newLines);
