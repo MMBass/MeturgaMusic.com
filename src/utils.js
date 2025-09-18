@@ -65,9 +65,10 @@ const clearGsc = () => { //
 };
 
 /** Get if apple device or not @returns {boolean} */
-const isApple = () => 
-    /iPad|iPhone|iPod|Mac|Macintosh/.test(navigator.userAgent) || 
-    navigator.maxTouchPoints > 1;
+const isApple = () => {
+   return /iPad|iPhone|iPod|Mac|Macintosh/.test(navigator.userAgent);
+}
+  
 
 /** Note! Not finished yet @param {string} str @returns {string} */
 const keyboardHEENSwitcher = (str) => {
