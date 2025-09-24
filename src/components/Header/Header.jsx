@@ -28,6 +28,7 @@ import ChangeSize from '@components/ChangeSize/StyledChangeSize';
 import DeterminateLinearProgress from '@components/DeterminateLinearProgress/StyledDeterminateLinearProgress';
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import ChangeColors from '@components/ChangeColors/StyledChangeColors';
+import BuyMeCoffeeBtn from '@components/BuyMeCoffeeBtn/StyledBuyMeCoffeeBtn';
 
 import { DrawerContext } from '@context/DrawerContext';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
@@ -82,7 +83,7 @@ const Header = ({ className, changeColors }) => {
       name: T.ExercisePage,
       url: '/exercise',
       icon: <BookmarkAddedIcon className="side-icons"></BookmarkAddedIcon>,
-    }, 
+    },
     {
       name: T.WishListPage,
       url: '/wish-list',
@@ -205,8 +206,14 @@ const Header = ({ className, changeColors }) => {
             <ChangeColors changeColors={changeColors}></ChangeColors>
           }
 
+     
+
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <ChangeSize></ChangeSize>
+          }
+
+               {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
+            <BuyMeCoffeeBtn></BuyMeCoffeeBtn>
           }
 
         </Toolbar>
