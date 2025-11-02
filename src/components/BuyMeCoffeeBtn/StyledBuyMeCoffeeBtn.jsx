@@ -3,9 +3,9 @@ import BuyMeCoffeeBtn from './BuyMeCoffeeBtn';
 
 const StyledBuyMeCoffeeBtn = styled(BuyMeCoffeeBtn)`
 
-    @media (max-width: 600px) {
-      display: none;
-    }
+  @media (max-width: 600px) {
+    display: none;
+  }
     
   display: inline-flex;
   align-items: center;
