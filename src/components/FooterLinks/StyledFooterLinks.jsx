@@ -11,7 +11,12 @@ const StyledFooterLinks = styled(FooterLinks)`
    }
 
    li{
-    padding: unset;
+      padding: unset;
+   }
+
+  .l-body-buyMe-container{
+      margin-top: 30px;
+      text-align: center;
    }
 `;
 

@@ -79,6 +79,11 @@ const StyledLyricsBody = styled(LyricsBody)`
     width: auto;
   }
 
+  .l-body-buyMe-container{
+    margin-top: 30px;
+    text-align: center;
+  }
+
 `;
 
 export default StyledLyricsBody;

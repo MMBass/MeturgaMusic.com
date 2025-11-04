@@ -14,6 +14,8 @@ import MessageIcon from '@mui/icons-material/Message';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkIcon from '@mui/icons-material/Link';
 
+import BuyMeCoffeeBtn from '@components/BuyMeCoffeeBtn/StyledBuyMeCoffeeBtn';
+
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import T from "./FooterLinksI18n";
@@ -53,7 +55,7 @@ function FooterLinks({ className, canInstall }) {
               <ListItemButton>
                 <Tooltip
                   title={<Typography component={'p'} sx={{ textAlign: 'center', fontSize: '14px' }}>{T.Copied}</Typography>}
-                  PopperProps={{disablePortal: false}}
+                  PopperProps={{ disablePortal: false }}
                   open={copiedOpen}
                   disabled={true}
                 >
@@ -117,6 +119,10 @@ function FooterLinks({ className, canInstall }) {
             </ListItemButton>
           </ListItem>
         </List>
+      </Grid>
+
+      <Grid item xs={12} sm={12} className="l-body-buyMe-container">
+        <BuyMeCoffeeBtn></BuyMeCoffeeBtn>
       </Grid>
 
     </Grid>

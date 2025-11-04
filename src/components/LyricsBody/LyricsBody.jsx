@@ -14,9 +14,12 @@ import AlertTitle from '@mui/material/AlertTitle';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import LyricToolTip from '@components/LyricToolTip/StyledLyricToolTip';
 import ToggleFullScreen from '@components/ToggleFullScreen/StyledToggleFullScreen';
 import ToggleSaveSong from '@components/ToggleSaveSong/StyledToggleSaveSong';
+import BuyMeCoffeeBtn from '@components/BuyMeCoffeeBtn/StyledBuyMeCoffeeBtn';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
@@ -30,6 +33,7 @@ function LyricsBody({ className }) {
   const paramsSong = searchParams.get("song"); // Song of /?song= (with hash and without)
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const handleBackToHome = () => {
     window.location.href = "/";
@@ -155,6 +159,12 @@ function LyricsBody({ className }) {
             <AlertTitle>{T.LyricsErrTitle}</AlertTitle>
             {T.ContextErrorText}
           </Alert>
+        }
+
+        {isMobile &&
+          <Grid item xs={12} className="l-body-buyMe-container">
+            <BuyMeCoffeeBtn></BuyMeCoffeeBtn>
+          </Grid>
         }
 
       </Grid>

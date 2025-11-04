@@ -6,7 +6,6 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { mainPinkTheme } from '@/themes/mainPinkTheme';
 import { darkTheme } from '@/themes/darkTheme';
@@ -51,7 +50,6 @@ function App({ className }) {
   const drawerContext = useContext(DrawerContext);
   const loadersContext = useContext(LoadersContext);
   const bannersContext = useContext(BannersContext);
-  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const [currTitle, setCurrTitle] = useState(T.MainTitle);
   const [currTheme, setCurrTheme] = useState(localStorage.getItem(LOCAL_STORAGE_KEYS.PREFER_DARK) === 'true' ? darkTheme : mainPinkTheme);

@@ -6,6 +6,7 @@ import T from "./HeaderI18n";
 import { useTheme, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
@@ -40,6 +41,7 @@ const Header = ({ className, changeColors }) => {
   const rrdLocation = useLocation();
   const [topSearchBar, setTopSearchBar] = useState(false);
   const [isWelcomePage, setIsWelcomePage] = useState(true);
+  const isMobile = useMediaQuery('(max-width: 600px)');
   const theme = useTheme();
 
   const drawerContext = useContext(DrawerContext);
@@ -206,13 +208,14 @@ const Header = ({ className, changeColors }) => {
             <ChangeColors changeColors={changeColors}></ChangeColors>
           }
 
-     
+
 
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <ChangeSize></ChangeSize>
           }
 
-               {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
+          {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
+            !isMobile &&
             <BuyMeCoffeeBtn></BuyMeCoffeeBtn>
           }
 
