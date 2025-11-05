@@ -71,13 +71,13 @@ body {
 }
 
 /* Google ads styling */
-/* .adsbygoogle[data-anchor-status="displayed"] {
+.adsbygoogle[data-anchor-status="displayed"] {
   z-index: 2147483647 !important;
   top: 57px !important;
 }
 .adsbygoogle[data-anchor-status="dismissed"] {
   top: -94px !important;
-} */
+}
 .grippy-host {
   /* THE ANCHOR AD ARROW */
   /* display: none; */
