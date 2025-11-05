@@ -37,7 +37,7 @@ function LyricsBody({ className }) {
   const isMobile = useMediaQuery('(max-width: 600px)');
 
   useEffect(() => {
-    utils.loadGoogleAds();
+    // utils.loadGoogleAds();
   }, []);
 
   const handleBackToHome = () => {

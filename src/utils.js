@@ -99,7 +99,7 @@ function isMostlyEnglish(str) {
 /** GOOGLE ads tag - Global for all account sites */
 const loadGoogleAds = () => {
     // The script will work if the option is ON in google console. Otherwise the custom ads will show (Not the automatic ads)
-    const existingAdsScript = document.querySelector('script[src='+URLS.G_ADS+']');
+    const existingAdsScript = document.querySelector('script[src="'+URLS.G_ADS+'"]');
     if (!existingAdsScript) {
         const script = document.createElement('script');
         script.src = URLS.G_ADS;
