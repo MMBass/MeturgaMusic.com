@@ -8,10 +8,12 @@ import utils from '@/utils.js';
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
 import AboutBody from '@components/AboutBody/StyledAboutBody';
+import AdsenseMediaWebAdd from '@components/AdsenseMediaWebAdd/StyledAdsenseMediaWebAdd';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
@@ -153,7 +155,10 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3}>
-       
+            <Paper elevation={3} className={className} sx={{padding: '5px', margin: '10px', marginTop: '0px',  borderRadius: '10px'}}>
+              <AdsenseMediaWebAdd></AdsenseMediaWebAdd>
+              <AdsenseMediaWebAdd></AdsenseMediaWebAdd>
+            </Paper>
           </Grid>
         </Grid>
       }

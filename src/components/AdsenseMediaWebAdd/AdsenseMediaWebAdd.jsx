@@ -1,0 +1,51 @@
+import React, { useEffect } from 'react';
+
+function AdsenseMediaWebAdd({ className }) {
+  useEffect(() => {
+    // Inject the Google AdSense script
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+
+    // Try to push a new ad slot once the script is present
+    const pushAd = () => {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        // ignore if push fails
+      }
+    };
+
+    // If script already loaded, push immediately; otherwise wait for load
+    if (script.readyState === 'complete' || script.readyState === 'loaded') {
+      pushAd();
+    } else {
+      script.addEventListener('load', pushAd);
+    }
+
+    return () => {
+      script.removeEventListener('load', pushAd);
+      // Optional: remove the script element on unmount
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
+  return (
+    <div className={className}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: 'block' }}
+        data-ad-client="ca-pub-8294214228053744"
+        data-ad-slot="1741051993"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  );
+}
+
+export default AdsenseMediaWebAdd;
