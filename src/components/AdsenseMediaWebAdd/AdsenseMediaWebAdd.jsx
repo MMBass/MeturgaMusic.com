@@ -35,7 +35,7 @@ function AdsenseMediaWebAdd({ className }) {
   }, []);
 
   return (
-    <div className={className}>
+    <div className={className} sx={{margin: '3px'}}>
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
