@@ -14,7 +14,7 @@ const StyledFooterLinks = styled(FooterLinks)`
       padding: unset;
    }
 
-  .l-body-buyMe-container{
+   .l-body-buyMe-container{
       margin-top: 30px;
       text-align: center;
    }

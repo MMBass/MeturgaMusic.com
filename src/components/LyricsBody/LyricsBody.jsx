@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
 
 import T from "./LyricsBodyI18n";
@@ -26,6 +26,7 @@ import { SettingsContext } from '@context/SettingsContext';
 
 import { LYRICS_BODY } from '@/constants';
 import TUtils from '@/i18n-utils';
+import utils from "@/utils";
 
 function LyricsBody({ className }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -34,6 +35,10 @@ function LyricsBody({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const settingsContext = useContext(SettingsContext);
   const isMobile = useMediaQuery('(max-width: 600px)');
+
+  useEffect(() => {
+    utils.loadGoogleAds();
+  }, []);
 
   const handleBackToHome = () => {
     window.location.href = "/";
