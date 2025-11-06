@@ -34,7 +34,7 @@ function AdsenseMediaWebAd({ className }) {
     };
   }, []);
 
-  mediaWebAdsSlotsArr = [
+  const mediaWebAdsSlotsArr = [
     "2329249085",
     "1741051993",
     "9367755565"
