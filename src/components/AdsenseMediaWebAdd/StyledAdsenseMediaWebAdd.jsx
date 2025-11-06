@@ -2,10 +2,10 @@ import { styled } from '@mui/material/styles';
 import AdsenseMediaWebAdd from './AdsenseMediaWebAdd';
 
 const StyledAdsenseMediaWebAdd = styled(AdsenseMediaWebAdd)`
-    margin: '5px';
+    padding: '5px';
 
     @media (max-width: 600px) {
-        margin: '3px';
+        padding: '2px';
     }
 `;
 
