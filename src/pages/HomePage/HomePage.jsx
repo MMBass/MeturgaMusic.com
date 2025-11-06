@@ -158,7 +158,6 @@ function HomePage({ className }) {
             {/* May can't use styled container - not always ads and will display an empty paper*/}
             {/* <Paper elevation={3} className={className} sx={{padding: '5px', margin: '10px', marginTop: '0px',  borderRadius: '10px'}}> */}
               <AdsenseMediaWebAd className={'adsenseMediaWebAd'}></AdsenseMediaWebAd>
-              <AdsenseMediaWebAd className={'adsenseMediaWebAd'}></AdsenseMediaWebAd>
             {/* </Paper> */}
           </Grid>
         </Grid>
