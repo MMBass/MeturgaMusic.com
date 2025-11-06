@@ -13,7 +13,7 @@ import Paper from "@mui/material/Paper";
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
 import AboutBody from '@components/AboutBody/StyledAboutBody';
-import AdsenseMediaWebAdd from '@components/AdsenseMediaWebAdd/StyledAdsenseMediaWebAdd';
+import AdsenseMediaWebAd from '@components/AdsenseMediaWebAd/StyledAdsenseMediaWebAd';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
@@ -157,8 +157,8 @@ function HomePage({ className }) {
           <Grid item xs={12} lg={3}>
             {/* May can't use styled container - not always ads and will display an empty paper*/}
             {/* <Paper elevation={3} className={className} sx={{padding: '5px', margin: '10px', marginTop: '0px',  borderRadius: '10px'}}> */}
-              <AdsenseMediaWebAdd className={'adsenseMediaWebAd'}></AdsenseMediaWebAdd>
-              <AdsenseMediaWebAdd className={'adsenseMediaWebAd'}></AdsenseMediaWebAdd>
+              <AdsenseMediaWebAd className={'adsenseMediaWebAd'}></AdsenseMediaWebAd>
+              <AdsenseMediaWebAd className={'adsenseMediaWebAd'}></AdsenseMediaWebAd>
             {/* </Paper> */}
           </Grid>
         </Grid>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function AdsenseMediaWebAdd({ className }) {
+function AdsenseMediaWebAd({ className }) {
   useEffect(() => {
     // Inject the Google AdSense script
     const script = document.createElement('script');
@@ -48,4 +48,4 @@ function AdsenseMediaWebAdd({ className }) {
   );
 }
 
-export default AdsenseMediaWebAdd;
+export default AdsenseMediaWebAd;
