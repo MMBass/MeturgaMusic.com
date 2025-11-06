@@ -35,10 +35,10 @@ function AdsenseMediaWebAdd({ className }) {
   }, []);
 
   return (
-    <div className={className} sx={{margin: '3px'}}>
+    <div className={className}>
       <ins
         className="adsbygoogle"
-        style={{ display: 'block' }}
+        style={{ display: 'block', overflow: 'hidden' }}
         data-ad-client="ca-pub-8294214228053744"
         data-ad-slot="1741051993"
         data-ad-format="auto"
