@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function AdsenseMediaWebAd({ className }) {
+function AdsenseMediaWebAd({ className, adSlot }) {
   useEffect(() => {
     // Inject the Google AdSense script
     const script = document.createElement('script');
@@ -34,28 +34,17 @@ function AdsenseMediaWebAd({ className }) {
     };
   }, []);
 
-  const mediaWebAdsSlotsArr = [
-    "2329249085",
-    "1741051993",
-    "9367755565"
-  ]
-
   return (
     <div className={className}>
-      {
-        mediaWebAdsSlotsArr.map((adSlot, index) => (
-          <ins
-          key={index}
-            className="adsbygoogle"
-            style={{ display: 'block', overflow: 'hidden', margin: '15px auto' }}
-            data-ad-client="ca-pub-8294214228053744"
-            data-ad-slot={adSlot}
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          />
-        ))
-      }
-
+      <ins
+        key={index}
+        className="adsbygoogle"
+        style={{ display: 'block', overflow: 'hidden', margin: '15px auto' }}
+        data-ad-client="ca-pub-8294214228053744"
+        data-ad-slot={adSlot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
     </div>
   );
 }

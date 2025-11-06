@@ -8,7 +8,6 @@ import utils from '@/utils.js';
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
 
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
@@ -155,10 +154,9 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3}>
-            {/* May can't use styled container - not always ads and will display an empty paper*/}
-            {/* <Paper elevation={3} className={className} sx={{padding: '5px', margin: '10px', marginTop: '0px',  borderRadius: '10px'}}> */}
-              <AdsenseMediaWebAd className={'adsenseMediaWebAd'}></AdsenseMediaWebAd>
-            {/* </Paper> */}
+            <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'2329249085'}></AdsenseMediaWebAd>
+            <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'1741051993'}></AdsenseMediaWebAd>
+            <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'9367755565'}></AdsenseMediaWebAd>
           </Grid>
         </Grid>
       }
