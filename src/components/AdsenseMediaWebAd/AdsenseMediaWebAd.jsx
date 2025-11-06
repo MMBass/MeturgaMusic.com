@@ -34,16 +34,28 @@ function AdsenseMediaWebAd({ className }) {
     };
   }, []);
 
+  mediaWebAdsSlotsArr = [
+    "2329249085",
+    "1741051993",
+    "9367755565"
+  ]
+
   return (
     <div className={className}>
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'block', overflow: 'hidden', margin: '15px auto' }}
-        data-ad-client="ca-pub-8294214228053744"
-        data-ad-slot="1741051993"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
+      {
+        mediaWebAdsSlotsArr.map((adSlot, index) => (
+          <ins
+          key={index}
+            className="adsbygoogle"
+            style={{ display: 'block', overflow: 'hidden', margin: '15px auto' }}
+            data-ad-client="ca-pub-8294214228053744"
+            data-ad-slot={adSlot}
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+        ))
+      }
+
     </div>
   );
 }
