@@ -12,7 +12,9 @@ function AdsenseMediaWebAd({ className, adSlot }) {
     // Try to push a new ad slot once the script is present
     const pushAd = () => {
       try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        setTimeout(() => {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }, 1500);
       } catch (e) {
         // ignore if push fails
       }
