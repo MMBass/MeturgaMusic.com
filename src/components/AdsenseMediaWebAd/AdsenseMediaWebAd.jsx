@@ -37,7 +37,6 @@ function AdsenseMediaWebAd({ className, adSlot }) {
   return (
     <div className={className}>
       <ins
-        key={index}
         className="adsbygoogle"
         style={{ display: 'block', overflow: 'hidden', margin: '15px auto' }}
         data-ad-client="ca-pub-8294214228053744"
