@@ -12,7 +12,9 @@ function AdsenseMediaWebAd({ className, adSlot }) {
     // Try to push a new ad slot once the script is present
     const pushAd = () => {
       try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        setTimeout(() => {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }, 400);
       } catch (e) {
         // ignore if push fails
       }
@@ -27,10 +29,6 @@ function AdsenseMediaWebAd({ className, adSlot }) {
 
     return () => {
       script.removeEventListener('load', pushAd);
-      // Optional: remove the script element on unmount
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
     };
   }, []);
 
