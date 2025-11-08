@@ -14,7 +14,7 @@ function AdsenseMediaWebAd({ className, adSlot }) {
       try {
         setTimeout(() => {
           (window.adsbygoogle = window.adsbygoogle || []).push({});
-        }, 400);
+        }, 1500);
       } catch (e) {
         // ignore if push fails
       }
