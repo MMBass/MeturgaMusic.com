@@ -2,8 +2,12 @@
 import { Helmet } from "react-helmet";
 import { useTheme } from '@mui/material/styles';
 
+import { CurrLyricsContext } from '@context/CurrLyricsContext';
+
 function HeadTags({ currTitle }) {
   const theme = useTheme();
+  const currLyricsContext = useContext(CurrLyricsContext);
+
   return (
     <Helmet>
       <title>
@@ -15,7 +19,7 @@ function HeadTags({ currTitle }) {
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"></link>
 
       {/* Google adsense global tag */}
-      {currTitle &&
+      {currLyricsContext.title &&
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
           crossorigin="anonymous" data-overlays="bottom" ></script>
       }
