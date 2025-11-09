@@ -2,39 +2,18 @@ import React, { useEffect } from 'react';
 
 function AdsenseMediaWebAd({ className, adSlot }) {
   useEffect(() => {
-    // Inject the Google AdSense script
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744';
-    script.crossOrigin = 'anonymous';
-    document.head.appendChild(script);
-
-    // Try to push a new ad slot once the script is present
-    const pushAd = () => {
-      try {
-        setTimeout(() => {
-          (window.adsbygoogle = window.adsbygoogle || []).push({});
-        }, 1500);
-      } catch (e) {
-        // ignore if push fails
-      }
-    };
-
-    // If script already loaded, push immediately; otherwise wait for load
-    if (script.readyState === 'complete' || script.readyState === 'loaded') {
-      pushAd();
-    } else {
-      script.addEventListener('load', pushAd);
-    }
-
-    return () => {
-      script.removeEventListener('load', pushAd);
-      // Optional: remove the script element on unmount
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
+    pushAd();
   }, []);
+
+  const pushAd = () => {
+    try {
+      setTimeout(() => {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }, 1500);
+    } catch (e) {
+      // ignore if push fails
+    }
+  };
 
   return (
     <div className={className}>
