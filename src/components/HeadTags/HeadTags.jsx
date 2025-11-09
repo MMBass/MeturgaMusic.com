@@ -1,4 +1,5 @@
 //** Uses for conditional and dynamic head tags **/
+import { useContext } from 'react';
 import { Helmet } from "react-helmet";
 import { useTheme } from '@mui/material/styles';
 
