@@ -1,3 +1,3 @@
 export default {
-    ExampleHeader: "דוגמא",
+    SupportSite: "תמיכה באתר",
 };
