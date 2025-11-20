@@ -17,6 +17,23 @@ async function runAllFetches(currLinksList , fetchSongLyrics) {
 
 // Todo import from separate data file
 const fullAZLyricsLinks = [
+    // Fixed links 
+  { artist: "The Beatles", song: "Hey Jude", url: "https://www.azlyrics.com/lyrics/beatles/heyjude.html" }, 
+  { artist: "Mark Ronson & Bruno Mars", song: "Uptown Funk", url: "https://www.azlyrics.com/lyrics/markronson/uptownfunk.html" }, 
+  { artist: "The Weeknd", song: "Blinding Lights", url: "https://www.azlyrics.com/lyrics/weeknd/blindinglights.html" }, 
+  { artist: "The Weeknd", song: "Save Your Tears", url: "https://www.azlyrics.com/lyrics/weeknd/saveyourtears.html" },
+  { artist: "The Weeknd", song: "Starboy", url: "https://www.azlyrics.com/lyrics/weeknd/starboy.html" },
+  { artist: "The Weeknd", song: "The Hills", url: "https://www.azlyrics.com/lyrics/weeknd/thehills.html" },
+  { artist: "The Weeknd", song: "Can't Feel My Face", url: "https://www.azlyrics.com/lyrics/weeknd/cantfeelmyface.html" },
+  { artist: "Lou Bega", song: "Mambo No. 5 (A Little Bit Of...)", url: "https://www.azlyrics.com/lyrics/loubega/mambono5.html" },
+  { artist: "Whitney Houston", song: "I Wanna Dance With Somebody (Who Loves Me)", url: "https://www.azlyrics.com/lyrics/whitneyhouston/iwannadancewithsomebody.html" }, 
+  { artist: "The Verve", song: "Bitter Sweet Symphony", url: "https://www.azlyrics.com/lyrics/verve/bittersweetsymphony.html" }, 
+  { artist: "The Weeknd", song: "I Feel It Coming", url: "https://www.azlyrics.com/lyrics/weeknd/ifeelitcoming.html" }, 
+  { artist: "The Who", song: "Baba O'Riley", url: "https://www.azlyrics.com/lyrics/who/babaoriley.html" },
+  { artist: "Green Day", song: "Good Riddance (Time Of Your Life)", url: "https://www.azlyrics.com/lyrics/greenday/goodriddance.html" }, 
+  { artist: "ABBA", song: "Gimme! Gimme! Gimme! (A Man After Midnight)", url: "https://www.azlyrics.com/lyrics/abba/gimmegimmegimme.html" }, 
+  { artist: "The Weeknd", song: "Die For You", url: "https://www.azlyrics.com/lyrics/weeknd/dieforyou.html" },
+  
   // -------------- 1-40 (Batch 1 & 2) --------------
   { artist: "Queen", song: "Bohemian Rhapsody", url: "https://www.azlyrics.com/lyrics/queen/bohemianrhapsody.html" },
   { artist: "Ed Sheeran", song: "Shape Of You", url: "https://www.azlyrics.com/lyrics/edsheeran/shapeofyou.html" },
