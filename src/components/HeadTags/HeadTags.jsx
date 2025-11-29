@@ -1,5 +1,5 @@
 //** Uses for conditional and dynamic head tags **/
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import { useTheme } from '@mui/material/styles';
 
@@ -8,6 +8,15 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 function HeadTags({ currTitle }) {
   const theme = useTheme();
   const currLyricsContext = useContext(CurrLyricsContext);
+
+  useEffect(() => {
+    // Remove existing Google ads scripts to prevent duplicates
+    const existingScripts = document.querySelectorAll('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
+    if (existingScripts.length > 0) {
+      existingScripts.forEach(script => script.remove());
+      // if (window.adsbygoogle) window.adsbygoogle.length = 0;
+    }
+  }, [currLyricsContext.title]);
 
   return (
     <Helmet>
@@ -21,8 +30,11 @@ function HeadTags({ currTitle }) {
 
       {/* Google adsense global tag */}
       {currLyricsContext.title &&
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
-          crossorigin="anonymous" data-overlays="bottom" ></script>
+        <script async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
+          crossOrigin="anonymous" data-overlays="bottom"
+          key={`adsense-${Date.now()}`} // force re-mounting on song title change
+        ></script>
       }
     </Helmet>
   );

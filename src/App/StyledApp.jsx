@@ -5,6 +5,7 @@ import App from './App';
 const StyledApp = styled(App)`
   height: fit-content;
   min-height: 700px;
+  background-color: rgb(223, 128, 142);
 
   main{
     max-width: 1300px;
