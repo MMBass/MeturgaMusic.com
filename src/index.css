@@ -108,12 +108,12 @@ body {
   height: fit-content !important;
 }
 
-/* For all the childs inside the [data-ad-status="filled"] (and if not an anchor ad) */
-.adsbygoogle:not([data-ad-status="filled"]) * {
-  /* visibility: hidden !important;
+.goog-rtopics, .google-anno-sc{
+  display: none !important;
+  visibility: hidden !important;
   height: 2px !important;
   max-height: 2px !important;
   margin: 0 !important;
   padding: 0 !important;
-  pointer-events: none !important; */
+  pointer-events: none !important;
 }
