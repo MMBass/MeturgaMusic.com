@@ -75,9 +75,10 @@ body {
 }
 
 .adsbygoogle[data-anchor-status="displayed"] {
-  z-index: 2147483647 !important;  /* helping to show the ad */
-  top: 57px !important;  /* not to cover the header on scroll */
+  z-index: 2147483647 !important; /* helping to show the ad */
+  top: 57px !important; /* not to cover the header on scroll */
 }
+
 .adsbygoogle[data-anchor-status="dismissed"] {
   /* hide the anchor after user dismiss: */
   display: none !important;
@@ -86,34 +87,33 @@ body {
   height: 0 !important;
   min-height: 0 !important;
 }
+
 .grippy-host {
   /* THE ANCHOR AD ARROW */
   /* display: none; */
 }
+
 .adsbygoogle[data-ad-status="unfill-optimized"] {
-  display: none !important; 
+  display: none !important;
 }
+
+/* Didn't work */
 /* .adsbygoogle:not([data-ad-status="filled"])[data-adsbygoogle-status="done"] {
   display: none !important; 
   width: 50px !important;
   height: 50px !important;
 } */
+
 .adsbygoogle:not([data-ad-status="filled"]) {
   height: fit-content !important;
 }
-/* for all the childs also: */
-.adsbygoogle:not([data-ad-status="filled"]) * {
+
+/* For all the childs inside the [data-ad-status="filled"] (and if not an anchor ad) */
+.adsbygoogle:not([data-ad-status="filled"]):not([data-anchor-status]) * {
   visibility: hidden !important;
-  height: 2px !important; 
+  height: 2px !important;
   max-height: 2px !important;
   margin: 0 !important;
   padding: 0 !important;
   pointer-events: none !important;
 }
-/* .adsbygoogle:not([data-ad-status="filled"]) [id*="_host"] * {
-  height: 2px !important; 
-  max-height: 2px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  pointer-events: none !important;
-} */
