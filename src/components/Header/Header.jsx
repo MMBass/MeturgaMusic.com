@@ -224,16 +224,19 @@ const Header = ({ className, changeColors }) => {
 
       <Collapse in={bannersContext.error?.open}>
         <Alert severity="error" className='error-alert'
+          data-nosnippet
           action={bannersContext.error?.action &&
             <Link
               padding={'7px'}
               href={bannersContext.error?.action.actionHref}
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+              data-nosnippet
+            >
               {bannersContext.error?.action.actionText}
             </Link>}
           onClose={() => { bannersContext.closeBanner('error') }}>
-          <AlertTitle>{bannersContext.error?.title}</AlertTitle>
+          <AlertTitle data-nosnippet>{bannersContext.error?.title}</AlertTitle>
           {bannersContext.error?.message}
         </Alert>
       </Collapse>
