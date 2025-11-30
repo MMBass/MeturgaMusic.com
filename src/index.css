@@ -104,9 +104,9 @@ body {
   height: 50px !important;
 } */
 
-.adsbygoogle:not([data-ad-status="filled"]) {
+/* .adsbygoogle:not([data-ad-status="filled"]) {
   height: fit-content !important;
-}
+} */
 
 /* For all the childs inside the [data-ad-status="filled"] (and if not an anchor ad) */
 .adsbygoogle:not([data-ad-status="filled"]):not([data-anchor-status]) * {
