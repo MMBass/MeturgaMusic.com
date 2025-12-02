@@ -162,12 +162,6 @@ function LyricsBody({ className }) {
           </Alert>
         }
 
-        {isMobile &&
-          <Grid item xs={12} className="l-body-buyMe-container">
-            <BuyMeCoffeeBtn></BuyMeCoffeeBtn>
-          </Grid>
-        }
-
       </Grid>
     </Paper>
   );

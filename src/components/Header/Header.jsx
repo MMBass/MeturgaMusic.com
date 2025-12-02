@@ -214,11 +214,6 @@ const Header = ({ className, changeColors }) => {
             <ChangeSize></ChangeSize>
           }
 
-          {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
-            !isMobile &&
-            <BuyMeCoffeeBtn></BuyMeCoffeeBtn>
-          }
-
         </Toolbar>
       </Container>
 
