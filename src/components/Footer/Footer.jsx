@@ -1,5 +1,6 @@
 
 import FooterLinks from "@components/FooterLinks/StyledFooterLinks";
+import AdsenseMultiplexAd from "@components/AdsenseMultiplexAd/StyledAdsenseMultiplexAd";
 import utils from '@/utils';
 
 function Footer({ className }) {
@@ -10,6 +11,7 @@ function Footer({ className }) {
         <div id="FOOTER" className={className} >
           <FooterLinks
             canInstall={(!utils.isApple())}></FooterLinks>
+          <AdsenseMultiplexAd></AdsenseMultiplexAd>
         </div>
       }
     </>
