@@ -66,6 +66,7 @@ function App({ className }) {
 
   const init = () => {
     serverInit();
+    utils.jsObserveAndRemoveParentElmByChild('body ins .goog-rtopics, body ins .google-anno-sc'); // Put here all unwanted ad elements
   };
 
   // Send every visit and its ref (if exsist) to the server

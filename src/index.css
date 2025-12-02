@@ -11,12 +11,15 @@ body {
   width: 9px;
   height: 4px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgb(170, 170, 170);
 }
+
 ::-webkit-scrollbar-track {
   background: #f3f3f3;
 }
+
 @media (max-width: 600px) {
   ::-webkit-scrollbar {
     width: 4px;
@@ -34,6 +37,7 @@ body {
   /* min-width: min-content; 150 px is good for lyrict-ttip but not for others on the page */
 
 }
+
 @media (min-width: 600px) {
 
   .muirtl-z5ff92-MuiTooltip-tooltip,
@@ -44,40 +48,46 @@ body {
 
 }
 
-#recaptcha-wrapper{
-    align-items: center !important;
-    text-align: center !important;
-    align-content: center !important;
-    background: #9e9e9ef0;
-    top: 0;
-    right: 0;
-    left: auto;
-    bottom: auto;
-    z-index: 1;
-    position: fixed !important;
-    width: 100vw;
-    height: 100vh;
-    overflow: scroll;
-    margin: unset !important;
-    padding: unset !important;
+#recaptcha-wrapper {
+  align-items: center !important;
+  text-align: center !important;
+  align-content: center !important;
+  background: #9e9e9ef0;
+  top: 0;
+  right: 0;
+  left: auto;
+  bottom: auto;
+  z-index: 1;
+  position: fixed !important;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+  margin: unset !important;
+  padding: unset !important;
 }
 
-#recaptcha-element{
-   place-self: center;
+#recaptcha-element {
+  place-self: center;
 }
 
-.gs-captcha-msg{
+.gs-captcha-msg {
   color: #fff;
 }
 
-/* Google ads styling */
 .adsbygoogle[data-anchor-status="displayed"] {
-  z-index: 2147483647 !important;
-  top: 57px !important;
+  z-index: 2147483647 !important; /* helping to show the ad */
+  top: 57px !important; /* not to cover the header on scroll */
 }
+
 .adsbygoogle[data-anchor-status="dismissed"] {
-  top: -94px !important;
+  /* hide the anchor after user dismiss: */
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
 }
+
 .grippy-host {
   /* THE ANCHOR AD ARROW */
   /* display: none; */

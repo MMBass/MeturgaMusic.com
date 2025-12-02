@@ -30,17 +30,19 @@ const lsSaveSongHistory = (song /*Provide a trimmed title*/) => {
     const songs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS));
 
     // Update if exsist
-    if(lsFindSong(song.title)){
-        songs.forEach(s =>{if(s.title.toLowerCase() === song.title.toLowerCase()){
-            s.id = s.id || s.id
-            s.lines = song.lines || s.lines
-            s.videoId = song.videoId || s.videoId
-            s.service = song.service || "legacy"
-        }});
+    if (lsFindSong(song.title)) {
+        songs.forEach(s => {
+            if (s.title.toLowerCase() === song.title.toLowerCase()) {
+                s.id = s.id || s.id
+                s.lines = song.lines || s.lines
+                s.videoId = song.videoId || s.videoId
+                s.service = song.service || "legacy"
+            }
+        });
     }
 
     // Create new
-    if(!lsFindSong(song.title)){
+    if (!lsFindSong(song.title)) {
         song.id = songs.length.toString();
         songs.unshift(song);
         if (songs.length >= 500) songs.shift();
@@ -66,9 +68,9 @@ const clearGsc = () => { //
 
 /** Get if apple device or not @returns {boolean} */
 const isApple = () => {
-   return /iPad|iPhone|iPod|Mac|Macintosh/.test(navigator.userAgent);
+    return /iPad|iPhone|iPod|Mac|Macintosh/.test(navigator.userAgent);
 }
-  
+
 
 /** Note! Not finished yet @param {string} str @returns {string} */
 const keyboardHEENSwitcher = (str) => {
@@ -121,11 +123,11 @@ const compareTitles = (a, b) => {
         console.error('compareTitles: One of the params is not a string');
         return false;
     }
-    if (titleToParams(a.trim()).toLowerCase().replaceAll(' ', '') === titleToParams(b.trim()).toLowerCase().replaceAll(' ', '')){
+    if (titleToParams(a.trim()).toLowerCase().replaceAll(' ', '') === titleToParams(b.trim()).toLowerCase().replaceAll(' ', '')) {
         return true;
-    } else{
+    } else {
         return false;
-    } 
+    }
 }
 
 /** Hack the gh-pages hash router - For direct access */
@@ -140,4 +142,30 @@ const directParamsToHash = () => {
     }
 };
 
-export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSongHistory, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles }
+/**
+ * Observes the DOM for an elements matching the selector, log their text content, and removes their parent element.
+ * Example use:
+ * jsObserveAndRemoveParentElmByChild('body ins .goog-rtopics, body ins .google-anno-sc');
+ *  @param {string} childSelector - CSS selector for the target child 
+ * * NOTE! past the child selector not the parent selector. */
+const jsObserveAndRemoveParentElmByChild = (childSelector) => {
+    try {
+        const observer = new MutationObserver(() => {
+            const children = document.querySelectorAll(childSelector);
+            const removedParents = new Set();
+
+            children.forEach(child => {
+                const parent = child.parentElement;
+                if (child.parentElement && !removedParents.has(parent) && document.body.contains(child.parentElement)) {
+                    console.log("Removed child content: " + child.textContent);
+                    child.parentElement.remove();
+                }
+            });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    } catch (err) {
+        console.error("Error initializing jsObserveAndRemoveParentElmByChild:", err);
+    }
+}
+
+export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSongHistory, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles, jsObserveAndRemoveParentElmByChild }
