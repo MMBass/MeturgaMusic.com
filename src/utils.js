@@ -147,18 +147,24 @@ const directParamsToHash = () => {
  * Example use:
  * jsObserveAndRemoveParentElmByChild('body ins .goog-rtopics, body ins .google-anno-sc');
  *  @param {string} childSelector - CSS selector for the target child 
+ *  @param {number} depth - Depth of parent to remove (default is 1, which means remove direct parent).
  * * NOTE! past the child selector not the parent selector. */
-const jsObserveAndRemoveParentElmByChild = (childSelector) => {
+const jsObserveAndRemoveParentElmByChild = (childSelector, depth = 1) => {
     try {
         const observer = new MutationObserver(() => {
             const children = document.querySelectorAll(childSelector);
             const removedParents = new Set();
 
             children.forEach(child => {
-                const parent = child.parentElement;
-                if (child.parentElement && !removedParents.has(parent) && document.body.contains(child.parentElement)) {
+                let parent = child.parentElement;
+                for (let i = 1; i < depth; i++) {
+                    parent = parent?.parentElement;
+                }
+
+                if (parent && !removedParents.has(parent) && document.body.contains(parent)) {
                     console.log("Removed child content: " + child.textContent);
-                    child.parentElement.remove();
+                    parent.parentElement?.removeChild(parent);
+                    removedParents.add(parent);
                 }
             });
         });
