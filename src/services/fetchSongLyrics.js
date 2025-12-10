@@ -18,11 +18,24 @@ export default async (splittedSongTitle, webSongUrl) => {
         });
     }
 
+    // Allows the first fetch to be skipped if it takes over 3.5 seconds, while still saving its response as a fallback
+    const timeout = (ms) => new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('TIMEOUT')), ms)
+    );
+
+    // Stores the promise itself (not the resolved value)
+    const prodPromise = innerFetch(URLS.PROD_SERVER_URL);
     let response = null;
+
     try {
-        response = await innerFetch(URLS.PROD_SERVER_URL);
+        // Will throw if timeout occurs first
+        response = await Promise.race([prodPromise, timeout(3500)]);
     } catch {
-        response = await innerFetch(URLS.PROD_BCKP_SERVER_URL);
+        try {
+            response = await innerFetch(URLS.VERCEL_BCKP_SERVER_URL);
+        } catch {
+            response = await prodPromise; // Same promise, reused
+        }
     }
 
     return response.json();
