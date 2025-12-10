@@ -23,11 +23,10 @@ export default async (splittedSongTitle, webSongUrl) => {
         setTimeout(() => reject(new Error('TIMEOUT')), ms)
     );
 
-
+    let response = null;
     if (!webSongUrl) {
         // Stores the promise itself (not the resolved value)
         const prodPromise = innerFetch(URLS.PROD_SERVER_URL);
-        let response = null;
 
         try {
             // Will throw if timeout occurs first
@@ -42,13 +41,11 @@ export default async (splittedSongTitle, webSongUrl) => {
     } else {
         // If webSongUrl is provided, no need for timeout logic, since the App init sent req before
         try {
-            return await innerFetch(URLS.PROD_SERVER_URL);
+            response = await innerFetch(URLS.PROD_SERVER_URL);
         } catch {
-            return await innerFetch(URLS.VERCEL_BCKP_SERVER_URL);
+            response = await innerFetch(URLS.VERCEL_BCKP_SERVER_URL);
         }
     }
-
-
 
     return response.json();
 }
