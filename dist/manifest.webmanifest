@@ -1,0 +1,28 @@
+{
+  "name": "MeturgaMusic",
+  "short_name": "MeturgaMusic",
+  "id": "https://meturgamusic.com/?source=pwa",
+  "start_url": "https://meturgamusic.com/?source=pwa",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#DF808E",
+  "icons": [
+    {
+      "src": "https://meturgamusic.com/ico/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "https://meturgamusic.com/ico/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "https://meturgamusic.com/ico/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
