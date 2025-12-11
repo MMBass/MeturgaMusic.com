@@ -112,7 +112,8 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             }
 
             let songTitle = line.innerText.replaceAll('–', "-"); // g Results comes with some special ' – ' sign
-            if (songTitle.split('-')[0].includes('Lyrics')) { // Check for the edge case
+            songTitle = songTitle.replace(/-(?!\s)(?<!\s-)/g, ' '); // Drop all dashes that not sorrunded by spaces. for cases like: Sir Mix-A-Lot - Baby Got Back
+            if (songTitle.split(' - ')[0].includes('Lyrics')) { // Check for some edge case
               // Revers in edge cases when the title comes before the artist:
               songTitle = songTitle.replaceAll('Lyrics', ""); // They comes with extra 'Lyrics'
               songTitle = songTitle.split(' - ')[1] + " - " + songTitle.split(' - ')[0]; // Reorder
