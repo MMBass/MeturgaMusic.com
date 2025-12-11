@@ -126,9 +126,14 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
               return;
             } // After removing all the around text - check it's lang
 
+            const splittedSongTitleArr = [
+              songTitle.substring(0, songTitle.indexOf(' - ')),
+              songTitle.substring(songTitle.indexOf(' - ') + 3) // All after the first ' - '
+            ];
+            
             const splittedSongTitle = {
-              artistName: encodeURI(songTitle.split('-')[0]),
-              songName: encodeURI(songTitle.split('-')[1])
+              artistName: encodeURI(splittedSongTitleArr[0]),
+              songName: encodeURI(splittedSongTitleArr[1])
             };
 
             if (!songTitle.split(' - ').slice(0, 2).every(s => Boolean(s.trim()))) {
@@ -137,8 +142,8 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             } // Remove if artist or sname are empty strings
 
             line.classList.add('fixed-gs-title');
-            line.innerHTML = `<strong>${songTitle.split(' - ')[0]} - <span>${songTitle.split(' - ')[1]}</span> </strong>`;
-
+            line.innerHTML = `<strong>${splittedSongTitleArr[0]} - <span>${splittedSongTitleArr[1]}</span> </strong>`;
+            'fjdkfj'.split()
             if (line.nodeName !== 'A') {
               const webSongUrl = line.parentElement.parentElement.parentElement.querySelector('a').href;
               line.parentElement.parentElement.parentElement.addEventListener('click', () => { handleLineClickEvent(line, songTitle, splittedSongTitle, webSongUrl || null) });
@@ -196,11 +201,11 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
           placeholder={"GOOGLE " + T.PoweredBy}
           value={currVal}
           inputProps={{ maxLength: 80 }}
-          />
+        />
       }
 
       {(addRecordMode) &&
-        <TextField label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={startSearchConnection ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" inputProps={{ maxLength: 80 }}/>
+        <TextField label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={startSearchConnection ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" inputProps={{ maxLength: 80 }} />
       }
 
       <div id="gcse-my-wrapper" className={(addRecordMode && "gcse-my-wrapper-add-record-mode")}>

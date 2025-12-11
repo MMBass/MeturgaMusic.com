@@ -67,7 +67,7 @@ export default function CurrLyricsContextProvider({ children }) {
         let searchResultsParent = document.querySelectorAll(".gsc-expansionArea")[0];
         loadersContext.openLoader('backdrop');
 
-        if (localStorageGetSong(songTitle, searchResultsParent)) { return }; // First try to get from local-storage
+        if (localStorageGetSong(songTitle, searchResultsParent)) { return }; // Try to get from local-storage first
 
         try {
             const data = await fetchSongLyrics(splittedSongTitle, webSongUrl);
