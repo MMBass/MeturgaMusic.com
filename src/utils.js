@@ -36,9 +36,9 @@ const lsSaveSongHistory = (song /*Provide a trimmed title*/) => {
 
     // Update if exsist
     if (lsFindSong(song.title)) {
-        songs.forEach(s => {
+        songs.forEach((s, index) => {
             if (s.title.toLowerCase() === song.title.toLowerCase()) {
-                s.id = s.id || s.id
+                s.id = s.id || index.toString();
                 s.lines = song.lines || s.lines
                 s.videoId = song.videoId || s.videoId
                 s.service = song.service || "legacy"
@@ -95,6 +95,7 @@ const keyboardHEENSwitcher = (str) => {
 
 /** @param {string} str @returns {boolean} */
 function isMostlyEnglish(str) {
+    if (!str || typeof str !== 'string' || str.length === 0) return false;
     // Count the number of matching characters in the string
     let count = (str.match(REGEX.EN_CHARS_PATTERN) || []).length;
     // Calculate the percentage of matching characters
@@ -111,7 +112,7 @@ const loadGoogleAds = () => {
     if (!existingAdsScript) {
         const script = document.createElement('script');
         script.src = URLS.G_ADS;
-        script.def = true;
+        script.defer = true;
         script.crossorigin = "anonymous";
         script.dataset.overlays = "bottom";
         document.body.appendChild(script);

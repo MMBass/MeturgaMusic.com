@@ -19,6 +19,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const bannersContext = useContext(BannersContext);
 
     const currSsSong = (() => {
+        if (!sessionStorage.getItem(SESSION_STORAGE_KEYS.CURR_SONG)) return null;
         const sS = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEYS.CURR_SONG));
         return (sS && sS.title && Array.isArray(sS.lines) && sS.lines.length > 1) ? sS : null;
     })();
@@ -41,6 +42,7 @@ export default function CurrLyricsContextProvider({ children }) {
         };
     }, []);
 
+    // Todo? The useEffect dependency is [lines, azureServerError], but checkNextTrans is only called if linesVersion matches. If linesVersion doesn't update, the function won't be called.
     useEffect(() => {
         if (lines[0] && linesVersion === lines[1]?.src + lines[2]?.src) checkNextTrans();
 
@@ -138,7 +140,7 @@ export default function CurrLyricsContextProvider({ children }) {
         let lsSong = utils.lsFindSong(songTitle);
 
         // Force to call lyrics if the lyrics are partial
-        if (lsSong && lsSong?.lines[lsSong.lines.length - 1].src.includes('****PARTIAL LYRICS****') ){
+        if (lsSong?.lines?.at(-1)?.src?.includes('****PARTIAL LYRICS****')){
            return false; 
         } else if (lsSong?.title && lsSong.lines.length > 0 && lsSong.lines[0].src) {
             if (searchResultsParent) searchResultsParent.style.pointerEvents = "all";
@@ -165,10 +167,11 @@ export default function CurrLyricsContextProvider({ children }) {
         }
     }
 
+    // Todo Using every with return false to break a loop is non-standard. Better to use for or some.
     const checkNextTrans = () => {
         if (abort) { return };
         lines.every((line, index) => {
-            if (!line.trans.length || line.transError) {
+            if (!line.trans?.length || line.transError) {
                 azureServerError ? gGetSingleLineTrans(line.src, index) : getFullTrans(); // Get single translation if azure is blocked
                 return false; // Break the loop (will start again after getSingleLineTrans(); )
             }
@@ -253,7 +256,7 @@ export default function CurrLyricsContextProvider({ children }) {
                 setLines(newLines);
                 if (translatedBy !== (SERVICE_TYPES.GOOGLE)) setTranslatedBy(SERVICE_TYPES.GOOGLE);
 
-                if (index + 1 == lines.length) {
+                if (index + 1 === lines?.length) {
 
                     if (!lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: newLines, service: SERVICE_TYPES.GOOGLE });
                     if (lyricsError) utils.lsSaveSongHistory({ title: title, videoId: videoId, lines: [], service: '' });
@@ -311,9 +314,9 @@ export default function CurrLyricsContextProvider({ children }) {
 
         setLines(newLines);
 
-        let lastTrans = lines[lines.length - 1]?.trans;
+        let lastTrans = newLines[lines.length - 1]?.trans;
 
-        if (lastTrans.length >= 1) {
+        if (lastTrans?.length >= 1) {
             sessionStorage.setItem(SESSION_STORAGE_KEYS.CURR_SONG, JSON.stringify({
                 lines: newLines,
                 title: title,

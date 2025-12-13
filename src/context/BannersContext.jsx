@@ -20,7 +20,7 @@ example:
 export default function BannersContextProvider({children}) {
     const [banners, setBanners] = useState({
         main: { open: false, severity: "error", title: TUtils.UnderBuilding, message: "", action: {} },
-        infoSnackbar: { open: !JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS))?.[1], severity: "error", title: "", message: TUtils.NoExactTransMessage },
+        infoSnackbar: { open: !(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS)) || [])[0], severity: "error", title: "", message: TUtils.NoExactTransMessage },
     });
 
     const createBanner = (name, severity, title, message, action) => {

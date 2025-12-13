@@ -23,6 +23,7 @@ export default async (splittedSongTitle, webSongUrl) => {
         setTimeout(() => reject(new Error('TIMEOUT')), ms)
     );
 
+    // TODO If prodPromise was already rejected (timeout), trying to await it again will throw an error. Need to handle this
     let response = null;
     if (!webSongUrl) {
         // Stores the promise itself (not the resolved value)

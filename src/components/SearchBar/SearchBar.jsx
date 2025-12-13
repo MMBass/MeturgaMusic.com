@@ -101,11 +101,12 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       if (sResults) {
         sResults.forEach((line) => {
 
-          if (line.innerText.includes("Lyrics")) {
+          // If includes "Lyrics" && '–' && "-"
+          if (line.innerText.includes('Lyrics') && (line.innerText.includes('–') || line.innerText.includes('-'))) {
 
             if (line.innerText.includes("(")) {
-              let inside = line.innerText.match(REGEX.INSIDE_SEARCH_RESULTS_PATTERN)[1].toLowerCase();
-              if (inside?.toLowerCase().includes("live") || inside?.toLowerCase().includes("mix") || inside?.toLowerCase().includes("remix")) {
+              let inside = line.innerText.match(REGEX.INSIDE_SEARCH_RESULTS_PATTERN)?.[1]?.toLowerCase();
+              if (inside?.includes("live") || inside?.includes("mix") || inside?.includes("remix")) {
                 line.parentElement.parentElement.parentElement.remove();
                 return;
               };
@@ -144,7 +145,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
             line.classList.add('fixed-gs-title');
             line.innerHTML = `<strong>${splittedSongTitleArr[0]} - <span>${splittedSongTitleArr[1]}</span> </strong>`;
-            'fjdkfj'.split()
             if (line.nodeName !== 'A') {
               const webSongUrl = line.parentElement.parentElement.parentElement.querySelector('a').href;
               line.parentElement.parentElement.parentElement.addEventListener('click', () => { handleLineClickEvent(line, songTitle, splittedSongTitle, webSongUrl || null) });
