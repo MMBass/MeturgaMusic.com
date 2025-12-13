@@ -16,5 +16,9 @@ export default async (lines, title) => {
         })
     });
 
+    if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+    }
+
     return response.json();
 };
