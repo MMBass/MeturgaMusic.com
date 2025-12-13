@@ -4,7 +4,9 @@ import { SESSION_STORAGE_KEYS } from '@/constants';
 
 // Keep the ttip open while parent rerender - using sessionStorage; (useMemo is saving only if parent not rerender)
 export default function useLyricToolTip(lyric, lyricID) {
-    const currTTip = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_KEYS.TTIP + lyricID));
+    const sessionData = sessionStorage.getItem(SESSION_STORAGE_KEYS.TTIP + lyricID);
+    const currTTip = sessionData ? JSON.parse(sessionData) : null; // ✅ בדיקה לפני parse
+    
     const [results, setResults] = useState(currTTip || []);
     const [open, setOpen] = useState(currTTip || false);
 
