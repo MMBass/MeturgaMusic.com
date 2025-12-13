@@ -46,7 +46,14 @@ async function getSingleFromG(lyric) {
                 translatedTexts.push(element[0]);
             });
 
-            return [translatedTexts.join(" ")];
+            // Make the result a single string
+            const finalResult = translatedTexts.join(" ");
+            // Check if the result is empty or only whitespace
+            if (!finalResult || finalResult.trim().length === 0) {
+                return [TUtils.NoMore];
+            }
+
+            return [finalResult];
 
         } else {
             console.error("Google lyric Translation empty for: " + lyric);
