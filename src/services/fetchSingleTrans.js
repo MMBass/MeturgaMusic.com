@@ -5,7 +5,7 @@ import utils from '@/utils.js';
 const getSingleTrans = async (lyric) => {
     const initId = utils.isLocalhost() ? "localhost" : localStorage.getItem(LOCAL_STORAGE_KEYS.INIT);
 
-    lyric.trim().toLowerCase();
+    lyric = lyric.trim().toLowerCase();
     lyric = lyric.replaceAll(REGEX.SPECIAL_CHARS_PATTERN, ""); // Removes special chars exept '
     if (lyric.slice(-1) === "'") lyric = lyric.replaceAll("'", "g"); // Change short Pronunciation spelling like goin' to - going
 
