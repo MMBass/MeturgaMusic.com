@@ -4,12 +4,17 @@ import { LOCAL_STORAGE_KEYS, REGEX, URLS } from '@/constants';
 const isLocalhost = () => (location.hostname === "localhost" || location.hostname === "127.0.0.1")
 
 const loadGscScript = () => {
+    // Remove existing script
+    const existingScript = document.querySelector(`script[src="${URLS.GSC_ENGINE}"]`);
+    if (existingScript) existingScript.remove();
+
+    // Create new script element
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = URLS.GSC_ENGINE
+    script.src = URLS.GSC_ENGINE;
     script.defer = true;
     document.body.appendChild(script);
-    // a85c2374ffc8b8898 // Gen engine id 
+    // a85c2374ffc8b8898 // Gen engine id
 };
 
 const lsSaveWord = (toSave /* { word: string, results: [string] } */) => {
