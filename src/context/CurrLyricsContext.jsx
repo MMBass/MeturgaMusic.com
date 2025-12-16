@@ -31,7 +31,7 @@ export default function CurrLyricsContextProvider({ children }) {
     const [lyricsError, setLyricsError] = useState(false);
     const [videoId, setVideoId] = useState(currSsSong?.videoId || '');
     const [sessionUseCounter, setSessionUseCounter] = useState(0);
-    const [azureServerError, setAzureServerError] = useState(true); // Set if azure trans didn't work
+    const [azureServerError, setAzureServerError] = useState(false); // Set if azure trans didn't work
     const [abort, setAbort] = useState(false); // Force to cancel prev song checkNextTrans()
 
     const mounted = useRef(true);
@@ -269,7 +269,7 @@ export default function CurrLyricsContextProvider({ children }) {
                     }));
 
                     // putFullTrans(title, newLines, SERVICE_TYPES.GOOGLE); // Off until we sure the correct title is being sent
-                    // setAzureServerError(false);
+                    setAzureServerError(false);
                 };
             } else {
                 throw new Error("Google Translation failed.");
@@ -324,7 +324,7 @@ export default function CurrLyricsContextProvider({ children }) {
                 service: SERVICE_TYPES.REVERSO
             }));
             setTranslatedBy(SERVICE_TYPES.REVERSO);
-            // setAzureServerError(false);
+            setAzureServerError(false);
         }
     };
 
