@@ -13,6 +13,7 @@ import { darkTheme } from '@/themes/darkTheme';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Link from '@mui/material/Link';
 
 import { DrawerContext } from '@context/DrawerContext';
 import { LoadersContext } from '@context/LoadersContext';
@@ -120,7 +121,7 @@ function App({ className }) {
               </main>
 
 
-              {/*Dynamic global elements*/}
+              {/*Dynamic overlay elements*/}
               {(loadersContext.backdrop.open) &&
                 <MainBackdrop></MainBackdrop>
               }
@@ -137,19 +138,36 @@ function App({ className }) {
                 </Snackbar>
               }
 
-              {(bannersContext.privacySnackbar?.open) &&
-                <Snackbar open={bannersContext.privacySnackbar.open} autoHideDuration={6000} onClose={() => privacySnackbarClose()}>
-                  <Alert onClose={() => { bannersContext.closeBanner('privacySnackbar') }} severity={bannersContext.privacySnackbar.severity} sx={{ width: '100%' }}>
+              {/* {(bannersContext.privacySnackbar?.open) &&
+                <Snackbar open={bannersContext.privacySnackbar.open} autoHideDuration={6000} onClose={() => privacySnackbarClose}>
+                  <Alert
+                    onClose={() => { bannersContext.closeBanner('privacySnackbar'); localStorage.setItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN, 'true')}}
+                    severity={bannersContext.privacySnackbar.severity}
+                    sx={{ width: '100%' }}
+                  >
+                    <AlertTitle data-nosnippet>{bannersContext.privacySnackbar?.title}</AlertTitle>
                     {bannersContext.privacySnackbar.message}
+                    {bannersContext.privacySnackbar?.action &&
+                      <Link
+                        paddingInlineStart={'15px'}
+                        width={'100%'}
+                        href={bannersContext.privacySnackbar?.action.actionHref}
+                        rel="noopener noreferrer"
+                        data-nosnippet
+                      >
+                        {bannersContext.privacySnackbar?.action.actionText}
+                      </Link>}
                   </Alert>
-                </Snackbar>}
+                </Snackbar>} */}
 
-              {/*End of Dynamic global elements*/}
-
-              <Footer></Footer>
               <ScrollTop></ScrollTop>
 
               <Player></Player>
+
+              {/*End of Dynamic overlay elements*/}
+
+              <Footer></Footer>
+
             </Layout>
           </Router>
 

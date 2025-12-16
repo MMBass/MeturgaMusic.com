@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const BannersContext = React.createContext(undefined);
 
 import TUtils from '@/i18n-utils';
-import { LOCAL_STORAGE_KEYS } from '@/constants';
+import { LOCAL_STORAGE_KEYS, ROUTES } from '@/constants';
 
 /* !!! Important: When listening to updates from this context,
 you may have to put useEffect in the target component
@@ -21,7 +21,7 @@ export default function BannersContextProvider({children}) {
     const [banners, setBanners] = useState({
         main: { open: false, severity: "error", title: TUtils.UnderBuilding, message: "", action: {} },
         infoSnackbar: { open: !(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SONGS)) || [])[0], severity: "error", title: "", message: TUtils.NoExactTransMessage },
-        privacySnackbar: { open: !localStorage.getItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN), severity: "warning", title: TUtils.PrivacyDialogTitle, message: TUtils.PrivacyDialogMessage, action: () => {} },
+        privacySnackbar: { open: !localStorage.getItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN), severity: "warning", title: TUtils.PrivacyDialogTitle, message: TUtils.PrivacyDialogMessage, action: {actionText: TUtils.PrivacyHref, actionHref: ROUTES.PRIVACY} },
         // btnLink: ROUTES.PRIVACY,
         // btnLinkText: TUtils.PrivacyDialogLink
     });

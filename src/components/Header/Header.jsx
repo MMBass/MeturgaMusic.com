@@ -220,7 +220,7 @@ const Header = ({ className, changeColors }) => {
           action={bannersContext.error?.action &&
             <Link
               padding={'7px'}
-              href={bannersContext.error?.action.actionHref}
+              href={bannersContext.error?.action?.actionHref}
               target="_blank"
               rel="noopener noreferrer"
               data-nosnippet
