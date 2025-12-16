@@ -41,6 +41,7 @@ import WishlistPage from '@pages/WishlistPage/StyledWishlistPage';
 import ExercisePage from '@pages/ExercisePage/StyledExercisePage';
 import SpotifyExtensionPage from '@pages/SpotifyExtensionPage/StyledSpotifyExtensionPage';
 import AboutPage from '@pages/AboutPage/StyledAboutPage';
+import AccessibilityPage from '@pages/AccessibilityPage/StyledAccessibilityPage';
 import NoMatchPage from '@pages/NoMatchPage/StyledNoMatchPage';
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -107,6 +108,7 @@ function App({ className }) {
                   <Route path={ROUTES.WISHLIST} element={<WishlistPage className="page" pageTitle={T.MainH1 + ' - ' + T.Wishlist} rank={1} />} />
                   <Route path={ROUTES.SPOTIFY_EXTENSION} element={<SpotifyExtensionPage className="page" pageTitle={T.MainH1 + ' - ' + T.SpotifyExtension} rank={1} />} />
                   <Route path={ROUTES.ABOUT} element={<AboutPage className="page" pageTitle={T.MainH1 + ' - ' + T.About} rank={1} />} />
+                  <Route path={ROUTES.ACCESSIBILITY} element={<AccessibilityPage className="page" pageTitle={T.MainH1 + ' - ' + T.Accessibility} rank={1} />} />
                   <Route path={ROUTES.SONGS} element={<HomePage className="page" rank={1} />} />
                   <Route path={ROUTES.SONG} element={<HomePage className="page" rank={1} />} />
                   <Route path={ROUTES.NOT_FOUND} element={<NoMatchPage className="page" />} />

@@ -7,6 +7,7 @@ export const ROUTES = {
     WISHLIST: '/Wish-list',
     SPOTIFY_EXTENSION: '/Spotify-extension',
     ABOUT: '/About',
+    ACCESSIBILITY: '/Accessibility',
     SONG: '/song/:urlSong',
     SONGS: '/songs/:urlSong',
     NOT_FOUND: '*',
