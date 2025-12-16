@@ -6,6 +6,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from "@mui/material/Typography";
 import Tooltip from '@mui/material/Tooltip';
+import AccessibleIcon from '@mui/icons-material/Accessible';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -19,7 +20,7 @@ import BuyMeCoffeeBtn from '@components/BuyMeCoffeeBtn/StyledBuyMeCoffeeBtn';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import T from "./FooterLinksI18n";
-import { URLS, EXTERNAL_LINKS } from "@/constants";
+import { URLS, EXTERNAL_LINKS, ROUTES } from "@/constants";
 import useCopyToClipboard from '@hooks/useCopyToClipboard';
 import OfferInstall from '@components/OfferInstall/StyledOfferInstall';
 
@@ -30,7 +31,13 @@ function FooterLinks({ className, canInstall }) {
     <Grid className={className} container rowSpacing={1} columnSpacing={0}>
 
       {canInstall &&
-        <Grid className='install-section' item xs={12} sm={3}>
+        <Grid
+          className='install-section'
+          item
+          xs={12}
+          sm={3}
+          sx={{ order: { xs: 0, sm: 4 } }}
+        >
           <OfferInstall></OfferInstall>
         </Grid>
       }
@@ -118,10 +125,34 @@ function FooterLinks({ className, canInstall }) {
               <ListItemText primary={T.SendFBMessage} />
             </ListItemButton>
           </ListItem>
+
         </List>
       </Grid>
 
-      <Grid item xs={12} sm={12} className="l-body-buyMe-container">
+      <Grid item xs={12} sm={3}>
+        <List>
+          <ListSubheader
+            variant="h5"
+            component="h5"
+          >
+            {T.Info}
+          </ListSubheader>
+          <ListItem>
+            <ListItemButton component="a" href={ROUTES.ACCESSIBILITY} aria-label="accessibility">
+              <AccessibleIcon />
+              <ListItemText primary={T.Accessibility} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Grid>
+
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        className="l-body-buyMe-container"
+        sx={{ order: { xs: 0, sm: 5 } }}
+      >
         <BuyMeCoffeeBtn></BuyMeCoffeeBtn>
       </Grid>
 

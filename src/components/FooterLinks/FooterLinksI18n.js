@@ -9,4 +9,6 @@ export default {
     FB: "פייסבוק",
     ReportUs: "לדיווח על תקלות",
     SendFBMessage: "או שלחו הודעה בעמוד הפייסבוק שלנו",
+    Info: "מידע נוסף",
+    Accessibility: "הצהרת נגישות",
 };
