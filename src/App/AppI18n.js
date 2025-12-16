@@ -5,7 +5,8 @@ export default {
     Exercise: " תירגול מילים ",
     History: " היסטוריה ",
     Wishlist: " שירים שמורים ",
-    Wishlist:  " הצהרת נגישות ",
+    Accessibility: " הצהרת נגישות ",
+    Privacy: " מדיניות פרטיות ",
     SpotifyExtension: " תוסף לספוטיפיי ",
 
 };

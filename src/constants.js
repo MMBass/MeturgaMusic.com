@@ -8,6 +8,7 @@ export const ROUTES = {
     SPOTIFY_EXTENSION: '/Spotify-extension',
     ABOUT: '/About',
     ACCESSIBILITY: '/Accessibility',
+    PRIVACY: '/Privacy',
     SONG: '/song/:urlSong',
     SONGS: '/songs/:urlSong',
     NOT_FOUND: '*',
@@ -62,6 +63,7 @@ export const LOCAL_STORAGE_KEYS = {
     VISIBLE_ITMS: 'visibleItems',
     SHOW_PLAYER: 'showPlayer',
     L_BODY_FONT_SIZE: 'fontSize',
+    PRIVACY_DIALOG_SHOWN: 'privacyDialogShown',
 }
 
 export const SESSION_STORAGE_KEYS = {

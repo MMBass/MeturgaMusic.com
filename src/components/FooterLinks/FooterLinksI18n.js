@@ -11,4 +11,5 @@ export default {
     SendFBMessage: "או שלחו הודעה בעמוד הפייסבוק שלנו",
     Info: "מידע נוסף",
     Accessibility: "הצהרת נגישות",
+    Privacy: "מדיניות פרטיות",
 };

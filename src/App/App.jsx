@@ -19,8 +19,7 @@ import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
 
 import utils from '@/utils';
-import { ROUTES } from '@/constants';
-import { LOCAL_STORAGE_KEYS, URLS } from '@/constants';
+import { LOCAL_STORAGE_KEYS, URLS, ROUTES} from '@/constants';
 import T from './AppI18n';
 
 import Header from '@components/Header/StyledHeader';
@@ -29,7 +28,6 @@ import Footer from '@components/Footer/StyledFooter';
 import Drawer from '@components/Drawer/StyledDrawer';
 import MiniDrawer from '@components/MiniDrawer/MiniDrawer';
 import MainBackdrop from '@components/MainBackdrop/StyledMainBackdrop';
-import Dialog from '@components/Dialog/StyledDialog';
 import Modal from '@components/Modal/StyledModal';
 import ScrollTop from '@components/ScrollTop/StyledScrollTop';
 import Player from '@components/Player/StyledPlayer';
@@ -42,6 +40,7 @@ import ExercisePage from '@pages/ExercisePage/StyledExercisePage';
 import SpotifyExtensionPage from '@pages/SpotifyExtensionPage/StyledSpotifyExtensionPage';
 import AboutPage from '@pages/AboutPage/StyledAboutPage';
 import AccessibilityPage from '@pages/AccessibilityPage/StyledAccessibilityPage';
+import PrivacyPage from '@pages/PrivacyPage/StyledPrivacyPage';
 import NoMatchPage from '@pages/NoMatchPage/StyledNoMatchPage';
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -109,6 +108,7 @@ function App({ className }) {
                   <Route path={ROUTES.SPOTIFY_EXTENSION} element={<SpotifyExtensionPage className="page" pageTitle={T.MainH1 + ' - ' + T.SpotifyExtension} rank={1} />} />
                   <Route path={ROUTES.ABOUT} element={<AboutPage className="page" pageTitle={T.MainH1 + ' - ' + T.About} rank={1} />} />
                   <Route path={ROUTES.ACCESSIBILITY} element={<AccessibilityPage className="page" pageTitle={T.MainH1 + ' - ' + T.Accessibility} rank={1} />} />
+                  <Route path={ROUTES.PRIVACY} element={<PrivacyPage className="page" pageTitle={T.MainH1 + ' - ' + T.Privacy} rank={1} />} />
                   <Route path={ROUTES.SONGS} element={<HomePage className="page" rank={1} />} />
                   <Route path={ROUTES.SONG} element={<HomePage className="page" rank={1} />} />
                   <Route path={ROUTES.NOT_FOUND} element={<NoMatchPage className="page" />} />

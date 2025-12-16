@@ -12,4 +12,8 @@ export default {
   Translated: "מתורגם",
   LoadingTrans: "טוען תרגום...",
   ExampleSongs: "שירים לדוגמא:",
+  PrivacyDialogTitle: "מדיניות פרטיות",
+  PrivacyDialogMessage: "אנו משתמשים בעוגיות וכלי ניתוח כדי לשפר את חוויית המשתמש. המשך השימוש באתר מהווה הסכמה למדיניות הפרטיות שלנו.",
+  PrivacyDialogLink: "קרא עוד במדיניות הפרטיות",
+  Close: "סגור",
 };
