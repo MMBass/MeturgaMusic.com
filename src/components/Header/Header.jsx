@@ -2,8 +2,6 @@ import { useContext, useState, useEffect } from 'react';
 import { useLocation, NavLink } from "react-router-dom";
 
 import T from "./HeaderI18n";
-import TUtils from '@/i18n-utils';
-import { ROUTES, LOCAL_STORAGE_KEYS } from '@/constants';
 
 import { useTheme, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
@@ -31,7 +29,6 @@ import ChangeSize from '@components/ChangeSize/StyledChangeSize';
 import DeterminateLinearProgress from '@components/DeterminateLinearProgress/StyledDeterminateLinearProgress';
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import ChangeColors from '@components/ChangeColors/StyledChangeColors';
-import Dialog from '@components/Dialog/StyledDialog';
 import BuyMeCoffeeBtn from '@components/BuyMeCoffeeBtn/StyledBuyMeCoffeeBtn';
 
 import { DrawerContext } from '@context/DrawerContext';
@@ -44,7 +41,6 @@ const Header = ({ className, changeColors }) => {
   const rrdLocation = useLocation();
   const [topSearchBar, setTopSearchBar] = useState(false);
   const [isWelcomePage, setIsWelcomePage] = useState(true);
-  const [privacyDialogShow, setPrivacyDialogShow] = useState(true);
   const isMobile = useMediaQuery('(max-width: 600px)');
   const theme = useTheme();
 
@@ -55,7 +51,6 @@ const Header = ({ className, changeColors }) => {
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-
     if (document.fullscreenElement) {
       document.exitFullscreen();
       document.body.style.overflowY = 'auto';
@@ -83,17 +78,6 @@ const Header = ({ className, changeColors }) => {
       drawerContext.closeDrawer();
     };
   };
-
-  useEffect(() => {
-    console.log(rrdLocation.pathname === ROUTES.PRIVACY);
-    if (rrdLocation.pathname !== ROUTES.PRIVACY) {
-      setPrivacyDialogShow(true);
-    }
-    if (rrdLocation.pathname === ROUTES.PRIVACY) {
-      setPrivacyDialogShow(false);
-    }
-  }, [rrdLocation.pathname]);
-
 
   const iconPages = [
     {
@@ -223,8 +207,6 @@ const Header = ({ className, changeColors }) => {
             <ChangeColors changeColors={changeColors}></ChangeColors>
           }
 
-
-
           {(rrdLocation.pathname === "/" && !topSearchBar && currLyricsContext.lines?.[0]) &&
             <ChangeSize></ChangeSize>
           }
@@ -250,18 +232,6 @@ const Header = ({ className, changeColors }) => {
           {bannersContext.error?.message}
         </Alert>
       </Collapse>
-
-      <Dialog
-        dialogContent={{
-          title: TUtils.PrivacyDialogTitle,
-          body: TUtils.PrivacyDialogMessage,
-          btnText: TUtils.Close,
-          btnLink: ROUTES.PRIVACY,
-          btnLinkText: TUtils.PrivacyDialogLink
-        }}
-        localStorageKey={LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN}
-        show={privacyDialogShow}
-      ></Dialog>
 
     </AppBar >
   );

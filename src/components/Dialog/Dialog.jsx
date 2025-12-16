@@ -10,7 +10,21 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import TUtils from '@/i18n-utils';
 
-function MyDialog({ className, dialogContent, localStorageKey, show }) {
+// use example:
+{/* <Dialog
+      dialogContent={{
+        title: TUtils.PrivacyDialogTitle,
+        body: TUtils.PrivacyDialogMessage,
+        btnText: TUtils.Close,
+        btnLink: ROUTES.PRIVACY,
+        btnLinkText: TUtils.PrivacyDialogLink
+      }}
+      localStorageKey={LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN}
+      show={privacyDialogShow}
+      backdrop={false}
+></Dialog> */}
+
+function MyDialog({ className, dialogContent, localStorageKey, show, backdrop }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -18,7 +32,7 @@ function MyDialog({ className, dialogContent, localStorageKey, show }) {
       setOpen(false);
       return;
     }
-    
+
     setOpen(show);
 
   }, [show, localStorageKey]);
@@ -43,6 +57,7 @@ function MyDialog({ className, dialogContent, localStorageKey, show }) {
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
+      backdrop={backdrop}
       sx={{ zIndex: 1500 }}
     >
       <DialogTitle id="alert-dialog-title">

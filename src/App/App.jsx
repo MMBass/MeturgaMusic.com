@@ -19,7 +19,7 @@ import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
 
 import utils from '@/utils';
-import { LOCAL_STORAGE_KEYS, URLS, ROUTES} from '@/constants';
+import { LOCAL_STORAGE_KEYS, URLS, ROUTES } from '@/constants';
 import T from './AppI18n';
 
 import Header from '@components/Header/StyledHeader';
@@ -132,6 +132,29 @@ function App({ className }) {
                   </Alert>
                 </Snackbar>
               }
+
+              {/* use here privacy snackbar? */}
+              {
+              (bannersContext.privacySnackbar?.open) &&
+                <Snackbar open={bannersContext.privacySnackbar.open} autoHideDuration={6000} onClose={() => { }}>
+                  <Alert onClose={() => { bannersContext.closeBanner('privacySnackbar') }} severity={bannersContext.privacySnackbar.severity} sx={{ width: '100%' }}>
+                    {bannersContext.privacySnackbar.message}
+                  </Alert>
+                </Snackbar>
+              }
+              {/* <Dialog
+                dialogContent={{
+                  title: TUtils.PrivacyDialogTitle,
+                  body: TUtils.PrivacyDialogMessage,
+                  btnText: TUtils.Close,
+                  btnLink: ROUTES.PRIVACY,
+                  btnLinkText: TUtils.PrivacyDialogLink
+                }}
+                localStorageKey={LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN}
+                show={privacyDialogShow}
+                backdrop={false}
+              ></Dialog> */}
+
               {/*End of Dynamic global elements*/}
 
               <Footer></Footer>
