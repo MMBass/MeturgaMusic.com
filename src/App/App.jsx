@@ -83,6 +83,10 @@ function App({ className }) {
     localStorage.setItem(LOCAL_STORAGE_KEYS.PREFER_DARK, newCurrTheme === darkTheme ? 'true' : 'false');
   }
 
+  const privacySnackbarClose = () => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN, true);
+  }
+
   return (
     <div className={className}>
       <MuiThemeProvider theme={currTheme}>
@@ -133,27 +137,12 @@ function App({ className }) {
                 </Snackbar>
               }
 
-              {/* use here privacy snackbar? */}
-              {
-              (bannersContext.privacySnackbar?.open) &&
-                <Snackbar open={bannersContext.privacySnackbar.open} autoHideDuration={6000} onClose={() => { }}>
+              {(bannersContext.privacySnackbar?.open) &&
+                <Snackbar open={bannersContext.privacySnackbar.open} autoHideDuration={6000} onClose={() => privacySnackbarClose()}>
                   <Alert onClose={() => { bannersContext.closeBanner('privacySnackbar') }} severity={bannersContext.privacySnackbar.severity} sx={{ width: '100%' }}>
                     {bannersContext.privacySnackbar.message}
                   </Alert>
-                </Snackbar>
-              }
-              {/* <Dialog
-                dialogContent={{
-                  title: TUtils.PrivacyDialogTitle,
-                  body: TUtils.PrivacyDialogMessage,
-                  btnText: TUtils.Close,
-                  btnLink: ROUTES.PRIVACY,
-                  btnLinkText: TUtils.PrivacyDialogLink
-                }}
-                localStorageKey={LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN}
-                show={privacyDialogShow}
-                backdrop={false}
-              ></Dialog> */}
+                </Snackbar>}
 
               {/*End of Dynamic global elements*/}
 
