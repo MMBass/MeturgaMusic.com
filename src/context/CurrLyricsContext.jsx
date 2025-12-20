@@ -238,7 +238,7 @@ export default function CurrLyricsContextProvider({ children }) {
 
         try {
             let newLines = [...lines];
-            const response = await fetch(URLS.GOOGLE_TRANSLATE_URL + encodeURI(src));
+            const response = await fetch(URLS.GOOGLE_TRANSLATE_URL + encodeURIComponent(src));
             const data = await response.json();
 
             if (abort) return;

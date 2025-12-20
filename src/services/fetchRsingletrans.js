@@ -13,7 +13,7 @@ export default async (src) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "line": encodeURI(src)
+                "line": encodeURIComponent(src)
             })
         });
         const data = await response.json();

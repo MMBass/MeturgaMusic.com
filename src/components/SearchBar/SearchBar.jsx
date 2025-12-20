@@ -134,8 +134,8 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
             ];
             
             const splittedSongTitle = {
-              artistName: encodeURI(splittedSongTitleArr[0]),
-              songName: encodeURI(splittedSongTitleArr[1])
+              artistName: encodeURIComponent(splittedSongTitleArr[0]),
+              songName: encodeURIComponent(splittedSongTitleArr[1])
             };
 
             if (!songTitle.split(' - ').slice(0, 2).every(s => Boolean(s.trim()))) {

@@ -16,7 +16,7 @@ const getSingleTrans = async (lyric) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            "single": encodeURI(lyric)
+            "single": encodeURIComponent(lyric)
         })
     }).then(response => response.json())
         .then(async data => {
