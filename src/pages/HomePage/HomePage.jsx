@@ -81,8 +81,8 @@ function HomePage({ className }) {
     passedSong = passedSong.replace(passedSong.charAt(0), passedSong.charAt(0).toUpperCase());
 
     const splittedSongTitle = {
-      artistName: encodeURI(` ${passedSong.split('_')[0]} `),
-      songName: encodeURI(` ${passedSong.split('_')[1]} `)
+      artistName: encodeURIComponent(` ${passedSong.split('_')[0]} `),
+      songName: encodeURIComponent(` ${passedSong.split('_')[1]} `)
     };
 
     passedSong = passedSong.replaceAll('_', " - "); // After splittedSongTitle - we need the _ to be - back
