@@ -13,7 +13,6 @@ function OfferInstall({ className }) {
   useEffect(() => {
     // Docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeinstallprompt_event
     window.addEventListener("beforeinstallprompt", (event) => {
-      event.preventDefault();
       setInstallPrompt(event);
     });
   }, []);
