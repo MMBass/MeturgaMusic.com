@@ -130,27 +130,18 @@ function App({ className }) {
               }
               {/* <MiniDrawer className="desktop-mini-drawer" changeColors={changeTheme}></MiniDrawer> */}
 
-              {(bannersContext.infoSnackbar?.open) &&
-                <Snackbar open={bannersContext.infoSnackbar.open} autoHideDuration={6000} onClose={() => { }}>
-                  <Alert onClose={() => { bannersContext.closeBanner('infoSnackbar') }} severity={bannersContext.infoSnackbar.severity} sx={{ width: '100%' }}>
-                    {bannersContext.infoSnackbar.message}
-                  </Alert>
-                </Snackbar>
-              }
-
-              {/* {(bannersContext.privacySnackbar?.open) &&
+              {(bannersContext.privacySnackbar?.open) &&
                 <Snackbar open={bannersContext.privacySnackbar.open} autoHideDuration={6000} onClose={() => privacySnackbarClose}>
                   <Alert
                     onClose={() => { bannersContext.closeBanner('privacySnackbar'); localStorage.setItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN, 'true')}}
                     severity={bannersContext.privacySnackbar.severity}
-                    sx={{ width: '100%' }}
+                    // on large screens show half width alert
+                    sx={{ width: { xs: '100%', sm: '50%' } }}
                   >
-                    <AlertTitle data-nosnippet>{bannersContext.privacySnackbar?.title}</AlertTitle>
                     {bannersContext.privacySnackbar.message}
                     {bannersContext.privacySnackbar?.action &&
                       <Link
-                        paddingInlineStart={'15px'}
-                        width={'100%'}
+                        paddingInlineStart={'5px'}
                         href={bannersContext.privacySnackbar?.action.actionHref}
                         rel="noopener noreferrer"
                         data-nosnippet
@@ -158,7 +149,7 @@ function App({ className }) {
                         {bannersContext.privacySnackbar?.action.actionText}
                       </Link>}
                   </Alert>
-                </Snackbar>} */}
+                </Snackbar>}
 
               <ScrollTop></ScrollTop>
 

@@ -8,6 +8,8 @@ import utils from '@/utils.js';
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
@@ -159,6 +161,14 @@ function HomePage({ className }) {
             <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'9367755565'}></AdsenseMediaWebAd>
           </Grid>
         </Grid>
+      }
+
+      {(bannersContext.infoSnackbar?.open && currLyricsContext.title) &&
+        <Snackbar open={bannersContext.infoSnackbar.open} autoHideDuration={6000} onClose={() => { }}>
+          <Alert onClose={() => { bannersContext.closeBanner('infoSnackbar') }} severity={bannersContext.infoSnackbar.severity} sx={{ width: '100%' }}>
+            {bannersContext.infoSnackbar.message}
+          </Alert>
+        </Snackbar>
       }
 
     </div >
