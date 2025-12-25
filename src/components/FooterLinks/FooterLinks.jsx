@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Tooltip from '@mui/material/Tooltip';
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -148,6 +149,12 @@ function FooterLinks({ className, canInstall }) {
             <ListItemButton component="a" href={ROUTES.PRIVACY} aria-label="privacy">
               <PrivacyTipIcon />
               <ListItemText primary={T.Privacy} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton component="a" href={ROUTES.TERMS} aria-label="terms">
+              <DescriptionIcon />
+              <ListItemText primary={T.Terms} />
             </ListItemButton>
           </ListItem>
         </List>

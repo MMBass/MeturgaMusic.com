@@ -43,6 +43,7 @@ import AboutPage from '@pages/AboutPage/StyledAboutPage';
 import AccessibilityPage from '@pages/AccessibilityPage/StyledAccessibilityPage';
 import PrivacyPage from '@pages/PrivacyPage/StyledPrivacyPage';
 import NoMatchPage from '@pages/NoMatchPage/StyledNoMatchPage';
+import TermsPage from '@pages/TermsPage/StyledTermsPage';
 
 const urlParams = new URLSearchParams(window.location.search);
 const refFromUrl = urlParams.get('ref');
@@ -114,6 +115,7 @@ function App({ className }) {
                   <Route path={ROUTES.ABOUT} element={<AboutPage className="page" pageTitle={T.MainH1 + ' - ' + T.About} rank={1} />} />
                   <Route path={ROUTES.ACCESSIBILITY} element={<AccessibilityPage className="page" pageTitle={T.MainH1 + ' - ' + T.Accessibility} rank={1} />} />
                   <Route path={ROUTES.PRIVACY} element={<PrivacyPage className="page" pageTitle={T.MainH1 + ' - ' + T.Privacy} rank={1} />} />
+                  <Route path={ROUTES.TERMS} element={<TermsPage className="page" pageTitle={T.MainH1 + ' - ' + 'תנאי שימוש'} rank={1} />} />
                   <Route path={ROUTES.SONGS} element={<HomePage className="page" rank={1} />} />
                   <Route path={ROUTES.SONG} element={<HomePage className="page" rank={1} />} />
                   <Route path={ROUTES.NOT_FOUND} element={<NoMatchPage className="page" />} />

@@ -12,4 +12,5 @@ export default {
     Info: "מידע נוסף",
     Accessibility: "הצהרת נגישות",
     Privacy: "מדיניות פרטיות",
+    Terms: "תנאי שימוש",
 };

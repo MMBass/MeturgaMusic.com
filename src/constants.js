@@ -9,6 +9,7 @@ export const ROUTES = {
     ABOUT: '/About',
     ACCESSIBILITY: '/Accessibility',
     PRIVACY: '/Privacy',
+    TERMS: '/Terms',
     SONG: '/song/:urlSong',
     SONGS: '/songs/:urlSong',
     NOT_FOUND: '*',
