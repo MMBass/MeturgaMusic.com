@@ -10,7 +10,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
 import AboutBody from '@components/AboutBody/StyledAboutBody';

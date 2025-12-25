@@ -137,8 +137,7 @@ function App({ className }) {
                   <Alert
                     onClose={() => { bannersContext.closeBanner('privacySnackbar'); localStorage.setItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN, 'true')}}
                     severity={bannersContext.privacySnackbar.severity}
-                    // on large screens show half width alert
-                    sx={{ width: { xs: '100%', sm: '50%' } }}
+                    sx={{ whiteSpace: 'pre-line' }}
                   >
                     {bannersContext.privacySnackbar.message}
                     {bannersContext.privacySnackbar?.action &&
