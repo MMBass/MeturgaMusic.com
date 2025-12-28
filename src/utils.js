@@ -76,7 +76,6 @@ const isApple = () => {
     return /iPad|iPhone|iPod|Mac|Macintosh/.test(navigator.userAgent);
 }
 
-
 /** Note! Not finished yet @param {string} str @returns {string} */
 const keyboardHEENSwitcher = (str) => {
     if (REGEX.HEBREW_CHARS_PATTERN.test(str)) {

@@ -133,16 +133,24 @@ function App({ className }) {
               {/* <MiniDrawer className="desktop-mini-drawer" changeColors={changeTheme}></MiniDrawer> */}
 
               {(bannersContext.privacySnackbar?.open) &&
-                <Snackbar open={bannersContext.privacySnackbar.open} autoHideDuration={6000} onClose={() => privacySnackbarClose}>
+                <Snackbar
+                  open={bannersContext.privacySnackbar.open}
+                  autoHideDuration={6000}
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                  onClose={() => privacySnackbarClose}>
                   <Alert
-                    onClose={() => { bannersContext.closeBanner('privacySnackbar'); localStorage.setItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN, 'true')}}
+                    onClose={() => { bannersContext.closeBanner('privacySnackbar'); localStorage.setItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN, 'true') }}
                     severity={bannersContext.privacySnackbar.severity}
+                    icon={false}
                     sx={{ whiteSpace: 'pre-line' }}
                   >
                     {bannersContext.privacySnackbar.message}
                     {bannersContext.privacySnackbar?.action &&
                       <Link
                         paddingInlineStart={'5px'}
+                        display={'block'}
+                        textAlign={'center'}
+                        marginTop={'8px'}
                         href={bannersContext.privacySnackbar?.action.actionHref}
                         rel="noopener noreferrer"
                         data-nosnippet

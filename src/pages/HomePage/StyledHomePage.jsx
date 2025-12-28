@@ -52,7 +52,7 @@ const StyledHomePage = styled(HomePage)`
             .wide-pic-dark{
                 margin-top: 25px;
                 width: 73%;
-                ${!utils.isApple() && `transform: perspective(1000px) rotateY(9deg);`}
+                ${!utils.isApple() ? `transform: perspective(1000px) rotateY(9deg);` : ''}
                 box-shadow: 9px 9px 4px #4949494a;
             }
 

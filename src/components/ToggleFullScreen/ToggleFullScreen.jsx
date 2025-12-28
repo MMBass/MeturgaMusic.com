@@ -8,6 +8,7 @@ import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { SettingsContext } from '@context/SettingsContext';
 
 import T from './ToggleFullScreenI18n';
+
 function ToggleFullScreen({ className }) {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const settingsContext = useContext(SettingsContext);
