@@ -9,6 +9,14 @@ const StyledExercisePage = styled(ExercisePage)`
          padding-top: 0 !important;
       }
    }
+
+   .gifts-component {
+      margin: 80px 15px 0px 15px;
+      
+      @media (max-width: 600px) {
+         margin: 60px 10px 0px 10px;
+      }
+   }
 `;
 
 export default StyledExercisePage;

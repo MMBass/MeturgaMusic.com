@@ -20,6 +20,7 @@ import LyricToolTip from '@components/LyricToolTip/StyledLyricToolTip';
 import ToggleFullScreen from '@components/ToggleFullScreen/StyledToggleFullScreen';
 import ToggleSaveSong from '@components/ToggleSaveSong/StyledToggleSaveSong';
 import BuyMeCoffeeBtn from '@components/BuyMeCoffeeBtn/StyledBuyMeCoffeeBtn';
+import Gifts from '@components/Gifts/StyledGifts';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { SettingsContext } from '@context/SettingsContext';
@@ -161,6 +162,10 @@ function LyricsBody({ className }) {
             {T.ContextErrorText}
           </Alert>
         }
+
+        <Grid item xs={12}>
+          <Gifts className={'gifts-component'}></Gifts>
+        </Grid>
 
       </Grid>
     </Paper>

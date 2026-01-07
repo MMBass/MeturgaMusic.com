@@ -65,6 +65,7 @@ export const LOCAL_STORAGE_KEYS = {
     SHOW_PLAYER: 'showPlayer',
     L_BODY_FONT_SIZE: 'fontSize',
     PRIVACY_DIALOG_SHOWN: 'privacyDialogShown',
+    GIFTS_OPENED: 'gifts_opened',
 }
 
 export const SESSION_STORAGE_KEYS = {

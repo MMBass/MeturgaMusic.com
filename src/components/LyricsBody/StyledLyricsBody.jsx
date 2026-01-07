@@ -84,6 +84,10 @@ const StyledLyricsBody = styled(LyricsBody)`
     text-align: center;
   }
 
+  .gifts-component {
+    margin-top: 80px;
+  }
+
 `;
 
 export default StyledLyricsBody;

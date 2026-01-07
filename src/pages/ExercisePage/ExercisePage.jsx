@@ -4,6 +4,7 @@ import { LOCAL_STORAGE_KEYS } from '@/constants';
 import T from "./ExercisePageI18n";
 
 import ExerciseItem from '@components/ExerciseItem/StyledExerciseItem';
+import Gifts from '@components/Gifts/StyledGifts';
 
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -44,6 +45,8 @@ function ExercisePage({ className, pageTitle }) {
         </List>
       }
       {!words[0] && <Typography sx={{ margin: 'auto', marginTop: '20%', textAlign: 'center' }}>{T.Empty}</Typography>}
+      
+      <Gifts className={'gifts-component'}></Gifts>
 
     </div>
   );
