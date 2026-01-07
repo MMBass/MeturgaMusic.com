@@ -59,6 +59,9 @@ function Gifts({ className }) {
     useEffect(() => {
         // Select first gift as default
         setCurrentGift(giftsContent[0]);
+ 
+        // for now - move to af-ew if ws blocked
+        if (!utils.isUrlBlocked('https://track.wesell.co.il')) setCurrentGift(giftsContent[2]);
     }, []);
 
     const handleClick = async (url, id) => {

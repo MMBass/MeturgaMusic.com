@@ -182,4 +182,35 @@ const jsObserveAndRemoveParentElmByChild = (childSelector, depth = 1) => {
     }
 }
 
-export default { isLocalhost, directParamsToHash, loadGscScript, lsSaveSongHistory, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles, jsObserveAndRemoveParentElmByChild }
+/**
+ * Checks if a specific URL is reachable.
+ * * @param {string} url
+ * @param {number} timeoutMs - Max time to wait before failing (default 3s)
+ * @returns {Promise<boolean>} - Returns true if BLOCKED/FAILED, false if REACHABLE
+ */
+const isUrlBlocked = async (url, timeoutMs = 3000) => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    // We use 'no-cors' to bypass CORS issues. 
+    // We only care if the network request succeeds or fails.
+    await fetch(url, {
+      mode: 'no-cors', 
+      cache: 'no-store',
+      signal: controller.signal
+    });
+
+    clearTimeout(timeoutId);
+    return false; // Reachable
+
+  } catch (error) {
+    // This will catch: 
+    // 1. DNS blocks (ERR_NAME_NOT_RESOLVED)
+    // 2. Network timeouts (AbortError)
+    // 3. Connection refused (AdGuard/Firewall)
+    return true; // Blocked or dead link.
+  }
+};
+
+export default {isUrlBlocked, isLocalhost, directParamsToHash, loadGscScript, lsSaveSongHistory, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles, jsObserveAndRemoveParentElmByChild }
