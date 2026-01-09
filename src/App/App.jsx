@@ -142,7 +142,13 @@ function App({ className }) {
                     onClose={() => { bannersContext.closeBanner('privacySnackbar'); localStorage.setItem(LOCAL_STORAGE_KEYS.PRIVACY_DIALOG_SHOWN, 'true') }}
                     severity={bannersContext.privacySnackbar.severity}
                     icon={false}
-                    sx={{ whiteSpace: 'pre-line' }}
+                    sx={{
+                      whiteSpace: 'pre-line',
+                      backgroundColor: 'white',
+                      boxShadow: '0 4px 7px #535353c2',
+                      borderRadius: '15px',
+                      paddingBottom: '10px'
+                    }}
                   >
                     {bannersContext.privacySnackbar.message}
                     {bannersContext.privacySnackbar?.action &&
@@ -173,7 +179,7 @@ function App({ className }) {
 
         </CacheProvider>
       </MuiThemeProvider>
-    </div>
+    </div >
   );
 }
 
