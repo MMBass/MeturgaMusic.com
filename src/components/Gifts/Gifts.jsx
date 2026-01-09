@@ -62,7 +62,7 @@ function Gifts({ className }) {
     }, []);
 
     const updateUrlByBlocked = async () => {
-        const blocked = await utils.isUrlBlocked('https://track.wesell.co.il');
+        const blocked = await utils.isMainstreamAdsBlocked();
         if (blocked) setCurrentGift(giftsContent[2]);
         else setCurrentGift(giftsContent[0]);   // Select first gift as default
     }

@@ -183,34 +183,72 @@ const jsObserveAndRemoveParentElmByChild = (childSelector, depth = 1) => {
 }
 
 /**
- * Checks if a specific URL is reachable.
+ * Ad Detection Utility - "The Canary Strategy"
+ * Returns true if mainstream ads are blocked, false otherwise.
+ */
+const isMainstreamAdsBlocked = () => {
+    return new Promise((resolve) => {
+        const img = new Image();
+        const timeout = 2500;
+        let finished = false;
+
+        const timer = setTimeout(() => {
+            if (!finished) {
+                finished = true;
+                resolve(true);  // Return true anyway on timeout
+            }
+        }, timeout);
+
+        img.onload = () => {
+            if (!finished) {
+                finished = true;
+                clearTimeout(timer);
+                resolve(false); // Mainstream ads are likely working
+            }
+        };
+
+        img.onerror = () => {
+            if (!finished) {
+                finished = true;
+                clearTimeout(timer);
+                resolve(true); // Mainstream ads are blocked!
+            }
+        };
+
+        // A tiny, 1x1 tracking pixel that is always blocked by AdGuard/DNS filters
+        img.src = "https://www.google-analytics.com/collect?v=1&t=pageview&_s=1&z=" + Date.now();
+    });
+};
+
+/**
+ * Checks if a specific URL is reachable. NOT working for a lot of cases.
  * * @param {string} url
  * @param {number} timeoutMs - Max time to wait before failing (default 3s)
  * @returns {Promise<boolean>} - Returns true if BLOCKED/FAILED, false if REACHABLE
  */
 const isUrlBlocked = async (url, timeoutMs = 3000) => {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-  try {
-    // We use 'no-cors' to bypass CORS issues. 
-    // We only care if the network request succeeds or fails.
-    await fetch(url, {
-      mode: 'no-cors', 
-      cache: 'no-store',
-      signal: controller.signal
-    });
+    try {
+        // We use 'no-cors' to bypass CORS issues. 
+        // We only care if the network request succeeds or fails.
+        await fetch(url, {
+            mode: 'no-cors',
+            cache: 'no-store',
+            signal: controller.signal
+        });
 
-    clearTimeout(timeoutId);
-    return false; // Reachable
+        clearTimeout(timeoutId);
+        return false; // Reachable
 
-  } catch (error) {
-    // This will catch: 
-    // 1. DNS blocks (ERR_NAME_NOT_RESOLVED)
-    // 2. Network timeouts (AbortError)
-    // 3. Connection refused (AdGuard/Firewall)
-    return true; // Blocked or dead link.
-  }
+    } catch (error) {
+        // This will catch: 
+        // 1. DNS blocks (ERR_NAME_NOT_RESOLVED)
+        // 2. Network timeouts (AbortError)
+        // 3. Connection refused (AdGuard/Firewall)
+        return true; // Blocked or dead link.
+    }
 };
 
-export default {isUrlBlocked, isLocalhost, directParamsToHash, loadGscScript, lsSaveSongHistory, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles, jsObserveAndRemoveParentElmByChild }
+export default { isMainstreamAdsBlocked, isUrlBlocked, isLocalhost, directParamsToHash, loadGscScript, lsSaveSongHistory, lsFindSong, lsSaveWord, clearGsc, isApple, keyboardHEENSwitcher, isMostlyEnglish, loadGoogleAds, titleToParams, compareTitles, jsObserveAndRemoveParentElmByChild }
