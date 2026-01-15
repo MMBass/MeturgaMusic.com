@@ -18,7 +18,7 @@ export default async (splittedSongTitle, webSongUrl) => {
         });
     }
 
-     // TODO If prodPromise was already rejected (timeout), trying to await it again will throw an error?. Need to handle this?
+    // TODO If prodPromise was already rejected (timeout), trying to await it again will throw an error?. Need to handle this?
     // Allows the first fetch to be skipped if it takes over 3.5 seconds, while still saving its response as a fallback
     const timeout = (ms) => new Promise((_, reject) =>
         setTimeout(() => reject(new Error('TIMEOUT')), ms)
@@ -26,14 +26,14 @@ export default async (splittedSongTitle, webSongUrl) => {
 
     let response = null;
     // Stores the promise itself (not the resolved value)
-    const prodPromise = innerFetch(URLS.PROD_SERVER_URL);
+    const prodPromise = innerFetch(URLS.VERCEL_BCKP_SERVER_URL);
 
     try {
         // Will throw if timeout occurs first
         response = await Promise.race([prodPromise, timeout(5000)]);
     } catch {
         try {
-            response = await innerFetch(URLS.VERCEL_BCKP_SERVER_URL);
+            response = await innerFetch(URLS.PROD_SERVER_URL);
         } catch {
             response = await prodPromise; // Same promise, reused
         }
