@@ -26,14 +26,14 @@ export default async (splittedSongTitle, webSongUrl) => {
 
     let response = null;
     // Stores the promise itself (not the resolved value)
-    const prodPromise = innerFetch(URLS.PROD_SERVER_URL);
+    const prodPromise = innerFetch(URLS.VERCEL_BCKP_SERVER_URL);
 
     try {
         // Will throw if timeout occurs first
         response = await Promise.race([prodPromise, timeout(5000)]);
     } catch {
         try {
-            response = await innerFetch(URLS.VERCEL_BCKP_SERVER_URL);
+            response = await innerFetch(URLS.PROD_SERVER_URL);
         } catch {
             response = await prodPromise; // Same promise, reused
         }
