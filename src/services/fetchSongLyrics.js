@@ -33,7 +33,7 @@ export default async (splittedSongTitle, webSongUrl) => {
         response = await Promise.race([prodPromise, timeout(5000)]);
     } catch {
         try {
-            response = await innerFetch(URLS.VERCEL_BCKP_SERVER_URL);
+            response = await innerFetch(URLS.BCKP_SERVER_URL);
         } catch {
             response = await prodPromise; // Same promise, reused
         }
