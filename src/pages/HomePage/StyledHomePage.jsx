@@ -5,16 +5,16 @@ import utils from '@/utils';
 const StyledHomePage = styled(HomePage)`
 
     .home-top{
-       height: 90vh;
-       padding: 0 35px;
+       /* height: 90vh; */
+       padding: 35px 35px;
        
         @media (max-width: 600px) {
             padding-inline-start: 30px;
         }
         
         .home-t-parent-grid{
-            height: 100%;
-            max-height: 80vh;
+            /* height: 100%;
+            max-height: 80vh; */
             align-content: center;
         }
 
@@ -73,7 +73,7 @@ const StyledHomePage = styled(HomePage)`
         line-height: 0.96;
         font-size: min(5.7vw, 80px);
         font-weight: 700;
-        /* max-width: 535px; */
+        max-width: 535px;
         
         span{
             color: ${props => props.theme.palette.primary.main};

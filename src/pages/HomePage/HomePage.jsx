@@ -14,6 +14,7 @@ import SearchBar from '@components/SearchBar/StyledSearchBar';
 import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
 import AboutBody from '@components/AboutBody/StyledAboutBody';
 import AdsenseMediaWebAd from '@components/AdsenseMediaWebAd/StyledAdsenseMediaWebAd';
+import RecSongs from '@components/RecSongs/StyledRecSongs';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
@@ -127,6 +128,7 @@ function HomePage({ className }) {
               </Typography>
 
               <SearchBar focused={searchFocused} locat={"main"} size={"large"}></SearchBar>
+              <RecSongs />
             </Grid>
 
             <Grid item className="mainPics-container" xs={12} sm={6}>

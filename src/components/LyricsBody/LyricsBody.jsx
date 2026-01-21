@@ -56,7 +56,7 @@ function LyricsBody({ className }) {
             {currLyricsContext.translatedBy &&
               <Chip className='trans-by-chip'
                 label={TUtils.TransBy + currLyricsContext.translatedBy + '-translator'}
-                color="default" variant="filled" size='small' />
+                color="default" size='small' />
             }
 
             <div className="l-body-top-actions-left">
