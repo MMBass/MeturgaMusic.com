@@ -3,7 +3,6 @@ import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
-
 const recSongsData = [
     { artist: 'Alex Warren', title: 'Ordinary', url: 'https://meturgamusic.com/?song=Alex-Warren_Ordinary' },
     { artist: 'Teddy Swims', title: 'Lose Control', url: 'https://meturgamusic.com/?song=Teddy-Swims_Lose-Control' },
@@ -18,18 +17,17 @@ const RecSongs = ({ className }) => {
         <Box className={className}>
             <Grid container spacing={1}>
                 {recSongsData.map((song, index) => (
-                       <Grid item>
-                    <a href={song.url} key={index}>
-                        <Chip
-                            label={`${song.artist} - ${song.title}`}
-                            clickable
-                            size='medium' 
-                        />
-                    </a>
+                    <Grid item>
+                        <a href={song.url} key={index}>
+                            <Chip
+                                label={`${song.artist} - ${song.title}`}
+                                clickable
+                                size='medium'
+                            />
+                        </a>
                     </Grid>
                 ))}
             </Grid>
-
         </Box>
     );
 };
