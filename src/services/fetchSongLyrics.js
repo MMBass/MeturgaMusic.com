@@ -10,7 +10,7 @@ export default async (splittedSongTitle, webSongUrl) => {
             // throw;
             
             // client side call webSongUrl
-            const htmlSong = await fetch(webSongUrl).then(response => response.text());
+            const htmlSong = await fetch('https://genius.com/Sabrina-carpenter-espresso-lyrics').then(response => response.text());
             console.log(htmlSong);
            
             // post to server to process
