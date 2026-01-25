@@ -4,6 +4,7 @@ import RecSongs from './RecSongs.jsx';
 const StyledRecSongs = styled(RecSongs)(({ theme }) => ({
     padding: '15px 0 15px 0',
     wordWrap: 'break-word',
+    width: '80%',
 
     '.MuiChip-root': {
         backgroundColor: theme.mode !== 'dark' ? '#e8e8e8' : '#6f6f6f',
