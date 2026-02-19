@@ -219,9 +219,9 @@ const StyledSearchBar = styled(SearchBar)`
   }
 
   .gsc-result{
-    padding: 7px 0px;
+    padding: 0px 8px 0px 8px!important;
     @media (min-width: 600px) {
-      padding: 8px;
+      padding: 5px 8px 5px 8px!important;
     }
   }
 
@@ -236,6 +236,10 @@ const StyledSearchBar = styled(SearchBar)`
   .gsc-result * {
     font-family: 'Assistant', 'Roboto', 'sans-serif' !important;
     font-weight: 500;
+
+    :hover{
+       text-decoration: none !important;
+    }
   }
 
   .gsc-result:hover,
@@ -251,7 +255,7 @@ const StyledSearchBar = styled(SearchBar)`
     pointer-events: unset;
   }
 
-  .gs-visibleUrl-breadcrumb .gsc-table-result * {
+  .gsc-table-result, .gs-visibleUrl-breadcrumb * {
     display: none !important;
   }
 
