@@ -255,7 +255,7 @@ const StyledSearchBar = styled(SearchBar)`
     pointer-events: unset;
   }
 
-  .gsc-table-result, .gs-visibleUrl-breadcrumb * {
+  .gsc-table-result, .gsc-webResult-divider, .gs-visibleUrl-breadcrumb * {
     display: none !important;
   }
 
