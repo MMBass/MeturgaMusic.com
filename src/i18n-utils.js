@@ -10,6 +10,7 @@ export default {
   UnderBuilding: "האתר בבניה",
   NoExactTransMessage: "אנו משתמשים בתרגום אוטומטי, לכן התרגום לעיתים אינו מדויק",
   Translated: "מתורגם",
+  LyricsFor: " מילים לשיר",
   LoadingTrans: "טוען תרגום...",
   ExampleSongs: "שירים לדוגמא:",
   PrivacyDialogTitle: "מדיניות פרטיות",

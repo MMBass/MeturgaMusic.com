@@ -91,11 +91,18 @@ function LyricsBody({ className }) {
               component="h1"
               style={{ fontSize: settingsContext.fontSize.lg + 8, direction: "ltr", textAlign: 'center', marginTop: '20px' }}
             >
+              <span style={{ display: 'block' }}>
+                {TUtils.LyricsFor}
+              </span>
+
               {currLyricsContext.title &&
                 currLyricsContext.title
               }
-              <br></br>
-              {TUtils.Translated}
+
+              <span style={{ display: 'block' }}>
+                {TUtils.Translated}
+              </span>
+
             </Typography>
           }
           {/* Set the PARTIAL LYRICS alert */}

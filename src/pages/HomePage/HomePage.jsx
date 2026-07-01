@@ -89,7 +89,9 @@ function HomePage({ className }) {
 
     passedSong = passedSong.replaceAll('_', " - "); // After splittedSongTitle - we need the _ to be - back
 
-    if (urlSong) { document.title = (TUtils.SiteName + " " + passedSong + " " + T.Translated) }; // If the song is from /songs path - change the page title
+    if (urlSong) {
+      document.title = `${TUtils.SiteName} - ${TUtils.LyricsFor} ${passedSong} ${TUtils.Translated}`;
+    } // If the song is from /songs path - change the page title
     currLyricsContext.getSongLyrics(splittedSongTitle, passedSong); // Call the song
   }
 
