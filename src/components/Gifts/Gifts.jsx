@@ -64,7 +64,7 @@ function Gifts({ className }) {
     const updateUrlByBlocked = async () => {
         const blocked = await utils.isMainstreamAdsBlocked();
         if (blocked) setCurrentGift(giftsContent[2]);
-        else setCurrentGift(giftsContent[0]);   // Select first gift as default
+        else setCurrentGift(giftsContent[2]);   // Since 1-7-26 Select AF gift as default for test
     }
 
     const handleClick = async (url, id) => {

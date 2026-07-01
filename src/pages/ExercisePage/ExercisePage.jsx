@@ -46,7 +46,7 @@ function ExercisePage({ className, pageTitle }) {
       }
       {!words[0] && <Typography sx={{ margin: 'auto', marginTop: '20%', textAlign: 'center' }}>{T.Empty}</Typography>}
       
-      {/* <Gifts className={'gifts-component'}></Gifts> */}
+      <Gifts className={'gifts-component'}></Gifts>
 
     </div>
   );
