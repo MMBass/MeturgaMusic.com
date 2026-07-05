@@ -158,7 +158,7 @@ function HomePage({ className }) {
             <LyricsBody className={'lyrics-body'}></LyricsBody>
           </Grid>
 
-          <Grid item xs={12} lg={3}>
+          <Grid item xs={12} lg={3} className={'google-anno-skip'}>
             <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'2329249085'}></AdsenseMediaWebAd>
             <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'1741051993'}></AdsenseMediaWebAd>
             <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'9367755565'}></AdsenseMediaWebAd>
