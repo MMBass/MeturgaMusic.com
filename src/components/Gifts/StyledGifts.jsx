@@ -69,7 +69,7 @@ const StyledGifts = styled(Gifts)`
     padding-bottom: 25px;
 
     .muirtl-d315i0-MuiTypography-root{
-          font-weight: 800;
+       font-weight: 800;
        line-height: unset;
        color: #264e8a;
     }
