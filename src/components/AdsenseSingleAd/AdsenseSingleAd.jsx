@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import Typography from "@mui/material/Typography";
+
 function AdsenseSingleAd({ className, adSlot }) {
   useEffect(() => {
     pushAd();
@@ -17,7 +19,7 @@ function AdsenseSingleAd({ className, adSlot }) {
 
   return (
     <div className={className}>
-      <small>מודעה</small>
+      <Typography textAlign="center" fontSize="small">מודעה</Typography>
       <ins
         className="adsbygoogle"
         style={{ display: 'block', overflow: 'hidden', margin: 'auto',
