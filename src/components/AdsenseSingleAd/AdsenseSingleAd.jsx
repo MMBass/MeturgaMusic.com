@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function AdsenseMediaWebAd({ className, adSlot }) {
+function AdsenseSingleAd({ className, adSlot }) {
   useEffect(() => {
     pushAd();
   }, []);
@@ -29,4 +29,4 @@ function AdsenseMediaWebAd({ className, adSlot }) {
   );
 }
 
-export default AdsenseMediaWebAd;
+export default AdsenseSingleAd;

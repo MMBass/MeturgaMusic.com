@@ -48,7 +48,7 @@ const giftsContent = [
 תוך 90 יום בלבד!`,
         content: [
             `למדו אנגלית בשיטה חדשה עם מורים פרטיים אונליין שמותאמים בדיוק לכם`,
-            'קבעו עכשיו שיעור נסיון חינם',
+            'קבעו עכשיו שיעור נסיון חינם ',
         ]
     }
 ];
@@ -117,7 +117,10 @@ function Gifts({ className }) {
         <Box className={className}>
             <Card className="gift-card">
                 <CardActionArea onClick={() => handleClick(currentGift.url, currentGift.id)}>
-                    {/* <CardHeader title={currentGift.title}/> */}
+                    {/* <CardHeader title={
+                        `פרסומת: ` 
+                        // NOT DESIGNED FOR DESKTOP
+                        }/> */}
                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
                         {currentGift.img && (
                             <CardMedia

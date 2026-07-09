@@ -17,7 +17,8 @@ The website for Israeli English learners to learn English from songs.
 
 <br>
 
-<img src="https://github.com/MMBass/MeturgaMusic.com/raw/main/src/assets/screenshots/option-4-gh.png" 
+<img 
+src="https://github.com/MMBass/MeturgaMusic.com/raw/main/src/assets/screenshots/option-4-gh.png" 
 alt="img" 
 align="right" 
 width="520px" 

@@ -13,7 +13,7 @@ import Alert from '@mui/material/Alert';
 import SearchBar from '@components/SearchBar/StyledSearchBar';
 import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
 import AboutBody from '@components/AboutBody/StyledAboutBody';
-import AdsenseMediaWebAd from '@components/AdsenseMediaWebAd/StyledAdsenseMediaWebAd';
+import AdsenseSingleAd from '@components/AdsenseSingleAd/StyledAdsenseSingleAd';
 import RecSongs from '@components/RecSongs/StyledRecSongs';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
@@ -159,9 +159,9 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3} className={'google-anno-skip'}>
-            <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'2329249085'}></AdsenseMediaWebAd>
-            <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'1741051993'}></AdsenseMediaWebAd>
-            <AdsenseMediaWebAd className={'adsenseMediaWebAd'} adSlot={'9367755565'}></AdsenseMediaWebAd>
+            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'2329249085'}></AdsenseSingleAd>
+            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'1741051993'}></AdsenseSingleAd>
+            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'9367755565'}></AdsenseSingleAd>
           </Grid>
         </Grid>
       }
