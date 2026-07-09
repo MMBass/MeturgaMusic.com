@@ -19,14 +19,25 @@ function AdsenseSingleAd({ className, adSlot }) {
     <div className={className}>
       <ins
         className="adsbygoogle"
-        style={{ display: 'block', overflow: 'hidden', margin: ' auto' }}
+        style={{ display: 'block', overflow: 'hidden', margin: 'auto',
+          // In-article prop:
+          textAlign: 'center' }}
         data-ad-client="ca-pub-8294214228053744"
         data-ad-slot={adSlot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
+
+        // In-article props:
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+
+        // Media-Web props:
+        // data-ad-format="auto"
+        // data-full-width-responsive="true"
       />
     </div>
   );
 }
+
+     style="display:block; text-align:center;"
+  
 
 export default AdsenseSingleAd;
