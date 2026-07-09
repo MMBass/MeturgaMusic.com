@@ -9,14 +9,17 @@ const StyledAdsenseSingleAd = styled(AdsenseSingleAd)`
       display: none;
     }
 
-    /* Looks strictly for: Direct Child -> Direct Grandchild -> Direct Great-grandchild */
+    /* Looks strictly for: Direct Child -> Direct Grandchild -> Direct Great-grandchild
+    and use the style only if the ad wasn't blocked 
+    */
     &:has(> * > * > *) {
         padding: 12px 0;
-        margin-top: 25px;
+        margin: 12px 0;
         background: #f1f1f1d9;
 
         p{
             display: block;
+            margin-bottom: 5px;
         }
     }
      
