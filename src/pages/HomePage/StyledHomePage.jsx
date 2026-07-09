@@ -118,10 +118,10 @@ const StyledHomePage = styled(HomePage)`
 
     }
 
-
     .single-ads-grid{
         border-radius: 10px;
-        margin: 15px 15px 25px 10px;
+        margin: 0px 10px 50px 15px;
+        background: #f1f1f1d9;
     }
     
 `;

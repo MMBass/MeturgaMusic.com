@@ -19,7 +19,7 @@ function AdsenseSingleAd({ className, adSlot }) {
     <div className={className}>
       <ins
         className="adsbygoogle"
-        style={{ display: 'block', overflow: 'hidden', margin: '15px auto' }}
+        style={{ display: 'block', overflow: 'hidden', margin: ' auto' }}
         data-ad-client="ca-pub-8294214228053744"
         data-ad-slot={adSlot}
         data-ad-format="auto"

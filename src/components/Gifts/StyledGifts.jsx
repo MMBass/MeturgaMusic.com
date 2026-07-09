@@ -65,10 +65,9 @@ const StyledGifts = styled(Gifts)`
   }
 
   .gift-card-content{
-     font-family: system-ui;
     padding-bottom: 25px;
 
-    .muirtl-d315i0-MuiTypography-root{
+    .muirtl-d315i0-MuiTypography-root, .gift-card-title{
        font-weight: 800;
        line-height: unset;
        color: #264e8a;
