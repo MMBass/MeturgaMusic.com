@@ -17,6 +17,7 @@ function AdsenseSingleAd({ className, adSlot }) {
 
   return (
     <div className={className}>
+      <small>מודעה</small>
       <ins
         className="adsbygoogle"
         style={{ display: 'block', overflow: 'hidden', margin: 'auto',
