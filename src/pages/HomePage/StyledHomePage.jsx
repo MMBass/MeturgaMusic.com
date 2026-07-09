@@ -117,6 +117,16 @@ const StyledHomePage = styled(HomePage)`
         }
 
     }
+
+
+    .single-ads-grid{
+        border-radius: 10px;
+        margin: 15px 15px 25px 10px;
+
+        small{
+            text-align: center;
+        }
+    }
     
 `;
 
