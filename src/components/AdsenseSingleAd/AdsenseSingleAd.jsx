@@ -36,8 +36,6 @@ function AdsenseSingleAd({ className, adSlot }) {
     </div>
   );
 }
-
-     style="display:block; text-align:center;"
   
 
 export default AdsenseSingleAd;
