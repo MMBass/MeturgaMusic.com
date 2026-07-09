@@ -159,9 +159,9 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3} className={'google-anno-skip'}>
-            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'2329249085'}></AdsenseSingleAd>
-            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'1741051993'}></AdsenseSingleAd>
-            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'9367755565'}></AdsenseSingleAd>
+            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'5036740220'}></AdsenseSingleAd>
+            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'7808454785'}></AdsenseSingleAd>
+            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'5288837770'}></AdsenseSingleAd>
           </Grid>
         </Grid>
       }
