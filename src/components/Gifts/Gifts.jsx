@@ -8,6 +8,7 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 
@@ -44,17 +45,28 @@ const giftsContent = [
         id: `af-ew-01`,
         url: 'https://track.affiracle.com/l/LS6pPeN7gKEZ3FhuRYLWaV',
         img: EW01,
-        title: `הדרך הקצרה לדיבור באנגלית שוטפת
-תוך 90 יום בלבד!`,
+        title: `הדרך הקצרה לדיבור אנגלית שוטפת
+תוך שלושה חודשים!`,
         content: [
             `למדו אנגלית בשיטה חדשה עם מורים פרטיים אונליין שמותאמים בדיוק לכם`,
             'קבעו עכשיו שיעור נסיון חינם ',
-        ]
+        ],
+        footer: `EnglishWays`
     }
 ];
 
 function Gifts({ className }) {
     const [currentGift, setCurrentGift] = useState(null);
+    const [showComponent, setShowComponent] = useState(false);
+
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowComponent(true);
+        }, 5000); // 5 seconds
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         // For now - move to af-ew if ws blocked
@@ -111,17 +123,33 @@ function Gifts({ className }) {
         localStorage.setItem(LOCAL_STORAGE_KEYS.GIFTS_OPENED, JSON.stringify(giftsOpened));
     };
 
-    if (!currentGift) return null;
+    if (!currentGift || !showComponent) return null;
 
     return (
         <Box className={className}>
-            <Card className="gift-card">
+            <Card className="gift-card" data-nosnippet>
                 <CardActionArea onClick={() => handleClick(currentGift.url, currentGift.id)}>
-                    {/* <CardHeader title={
-                        `פרסומת: ` 
-                        // NOT DESIGNED FOR DESKTOP
-                        }/> */}
                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+                        <Chip
+                            label="AD"
+                            size="small"
+                            sx={{
+                                position: 'absolute',
+                                top: 8,
+                                right: 8,
+                                zIndex: 1,
+                                height: '16px',       
+                                fontSize: '0.6rem',     
+                                fontWeight: '700',         
+                                backgroundColor: '#eeeeee',  
+                                color: '#757575',          
+                                borderRadius: '4px',         
+                                '& .MuiChip-label': {
+                                    paddingLeft: '4px',      
+                                    paddingRight: '4px',
+                                }
+                            }}
+                        />
                         {currentGift.img && (
                             <CardMedia
                                 sx={{

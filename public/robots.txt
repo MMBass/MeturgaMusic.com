@@ -4,9 +4,11 @@ Disallow: /NoMatchPage
 Disallow: /History
 Disallow: /Wish-list
 Disallow: /Exercise
+Disallow: /assets/aw-01-526-x-670-px-1300-x-1300-px-2.fcb327a6.png
 
 Allow: /
 Allow: /*
 
 Sitemap: https://MeturgaMusic.com/sitemap.txt
 Sitemap: https://MeturgaMusic.com/focused-sitemap.txt
+Sitemap: https://MeturgaMusic.com/fixes-sitemap.txt
