@@ -23,7 +23,6 @@ function MainBackdrop({ className }) {
       }, item.delay)
     );
 
-    // Cleanup function to clear timeouts if component unmounts
     return () => {
       timeouts.forEach(clearTimeout);
     };
@@ -34,6 +33,7 @@ function MainBackdrop({ className }) {
       className={className}
       open={true}
       style={{
+        backgroundColor: 'rgba(54, 54, 54, 0.8)',
         backgroundSize: '200px',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -42,7 +42,6 @@ function MainBackdrop({ className }) {
       <Box sx={{ position: 'relative', display: 'inline-flex' }}>
         <CircularProgress color="inherit" size={190} />
         
-        {/* Render text centered inside the spinner only if message exists */}
         {loadingMessage && (
           <Box
             sx={{
