@@ -79,6 +79,9 @@ function Player({ className }) {
       setDisLegacyPlayer(true);
     } else {
       trackInterval = setInterval(() => {
+        if (!JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_PLAYER))) {
+          handleClosePlayer();
+        }
         if (youtubePlayer.current && isPlaying) {
           const time = youtubePlayer.current.getCurrentTime();
           if (!time) {
@@ -168,6 +171,15 @@ function Player({ className }) {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const handleClosePlayer = () => {
+    if (youtubePlayer?.current?.pauseVideo) {
+      youtubePlayer.current.pauseVideo();
+    }
+
+    setIsPlaying(false);
+    setHide(true);
+  };
+
   return (
     <>
       {(disLegacyPlayer && !hide && currLyricsContext.videoId) &&
@@ -234,8 +246,8 @@ function Player({ className }) {
                 <FastRewindRounded />
               </IconButton>
 
-              <IconButton onClick={() => setHide(true)}>
-                <CloseOutlinedIcon className='remove-icon' onTouchStart={() => setHide(true)} />
+              <IconButton onClick={handleClosePlayer}>
+                <CloseOutlinedIcon className='remove-icon' onTouchStart={handleClosePlayer} />
               </IconButton>
             </Box>
 

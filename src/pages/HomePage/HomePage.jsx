@@ -159,7 +159,12 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3} className={'single-ads-grid google-anno-skip'}>
-            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'5036740220'}></AdsenseSingleAd>
+            {theme.mode !== 'dark' ?
+              <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'5036740220'}></AdsenseSingleAd>
+              :
+              // todo replace to dark id ad
+              <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'5036740220'}></AdsenseSingleAd>
+            }
           </Grid>
         </Grid>
       }
