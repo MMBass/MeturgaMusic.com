@@ -12,7 +12,6 @@ function Footer({ className }) {
           <FooterLinks
             className="google-anno-skip"
             canInstall={!utils.isApple()}></FooterLinks>
-          <AdsenseMultiplexAd></AdsenseMultiplexAd>
         </div>
       }
     </>

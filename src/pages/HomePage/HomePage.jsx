@@ -160,8 +160,6 @@ function HomePage({ className }) {
 
           <Grid item xs={12} lg={3} className={'single-ads-grid google-anno-skip'}>
             <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'5036740220'}></AdsenseSingleAd>
-            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'7808454785'}></AdsenseSingleAd>
-            <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'5288837770'}></AdsenseSingleAd>
           </Grid>
         </Grid>
       }
