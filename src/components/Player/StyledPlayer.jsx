@@ -65,6 +65,10 @@ const StyledPlayer = styled(Player)`
    .drag-icon{
       cursor: all-scroll;
    }
+
+   .duration-display{
+      min-width: 23px;
+   }
 `;
 
 export default StyledPlayer;

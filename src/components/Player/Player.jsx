@@ -81,10 +81,15 @@ function Player({ className }) {
       trackInterval = setInterval(() => {
         if (youtubePlayer.current && isPlaying) {
           const time = youtubePlayer.current.getCurrentTime();
-          if (!time) setCurrentTime(0);
-          if (time > 0) {
+          if (!time) {
+            setCurrentTime(0);
+            return;
+          }
+
+          const nextTime = Math.floor(time);
+          if (nextTime > 0) {
             setIsFirstPlaying(false);
-            setCurrentTime(time);
+            setCurrentTime((prevTime) => (prevTime === nextTime ? prevTime : nextTime));
           }
         }
       }, 200);
@@ -239,7 +244,7 @@ function Player({ className }) {
                 <Typography variant='body2' component='p' margin={'auto'}>{playerError}</Typography>
                 :
                 <>
-                  <Typography variant='button' component='p'>{formatTime(currentTime)}</Typography>
+                  <Typography className='duration-display' variant='button' component='p'>{formatTime(currentTime)}</Typography>
                   {duration ?
                     <Slider
                       value={currentTime}
@@ -250,7 +255,7 @@ function Player({ className }) {
                     :
                     <LinearProgress size={18} sx={{ margin: '0 13px', width: '100%' }} ></LinearProgress>
                   }
-                  <Typography variant='button' component='p'>{formatTime(duration)}</Typography>
+                  <Typography className='duration-display' variant='button' component='p'>{formatTime(duration)}</Typography>
                 </>
               }
             </Box>
