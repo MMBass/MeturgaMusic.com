@@ -124,9 +124,9 @@ function App({ className }) {
 
 
               {/*Dynamic overlay elements*/}
-              {/* {(loadersContext.backdrop.open) && */}
+              {(loadersContext.backdrop.open) &&
                 <MainBackdrop></MainBackdrop>
-              {/* } */}
+              }
               {(drawerContext.open) &&
                 <Drawer className="drawer" changeColors={changeTheme}></Drawer>
               }
