@@ -9,10 +9,9 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
 
   const pushAd = () => {
     try {
-      window.adsbygoogle = window.adsbygoogle || [];
       setTimeout(() => {
-        window.adsbygoogle.push({});
-      }, 1500*window.adsbygoogle.length);
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }, 2500*(window.adsbygoogle?.length || 1)); // Delay the push based on the number of ads already pushed
     } catch (e) {
       return; // Ignore if push fails
     }
