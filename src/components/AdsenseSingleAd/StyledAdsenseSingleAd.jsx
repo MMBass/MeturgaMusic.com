@@ -3,6 +3,7 @@ import AdsenseSingleAd from './AdsenseSingleAd';
 
 const StyledAdsenseSingleAd = styled(AdsenseSingleAd)`
     overflow: hidden;
+    padding: 12px 0;
 
     p{
       display: none;
@@ -14,7 +15,6 @@ const StyledAdsenseSingleAd = styled(AdsenseSingleAd)`
     /* Use if using prnet style and mui text: */
     /* border-radius: 25px; */
     /* &:has(> * > * > *) {
-        padding: 12px 0;
         margin: 12px 0;
         background: #f1f1f1d9;
 
