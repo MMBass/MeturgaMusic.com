@@ -9,17 +9,17 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
 
   const pushAd = () => {
     try {
+      window.adsbygoogle = window.adsbygoogle || [];
       setTimeout(() => {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      }, 2500);
+        window.adsbygoogle.push({});
+      }, 1500*window.adsbygoogle.length);
     } catch (e) {
-      // ignore if push fails
+      return; // Ignore if push fails
     }
   };
 
   return (
     <div className={className}>
-      {/* todo  - use the style and data attrs by adType in condition */}
       <ins
         className="adsbygoogle"
         style={{ display: 'block', overflow: 'hidden', margin: 'auto',

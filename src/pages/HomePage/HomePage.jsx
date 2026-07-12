@@ -167,8 +167,8 @@ function HomePage({ className }) {
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd>
               </>
               :
-              // feed-dark-1
               <>
+                {/* // feed-dark-1 */}
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>

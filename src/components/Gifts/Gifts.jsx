@@ -63,9 +63,10 @@ function Gifts({ className }) {
     const theme = useTheme();
 
     useEffect(() => {
+
         const timer = setTimeout(() => {
             setShowComponent(true);
-        }, 1000); // 5 seconds
+        }, 3000); // Wait 3 seconds for Robots to not index this component
 
         return () => clearTimeout(timer);
     }, []);
@@ -78,7 +79,7 @@ function Gifts({ className }) {
     const updateUrlByBlocked = async () => {
         const blocked = await utils.isMainstreamAdsBlocked();
         if (blocked) setCurrentGift(giftsContent[2]);
-        else setCurrentGift(giftsContent[2]);   // Since 1-7-26 Select AF gift as default for test
+        else setCurrentGift(giftsContent[2]);   // From 1-7-26 Select AF gift as default for test
     }
 
     const handleClick = async (url, id) => {
