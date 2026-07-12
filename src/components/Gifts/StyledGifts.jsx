@@ -6,7 +6,8 @@ const StyledGifts = styled(Gifts)`
     animation: float 3s ease-in-out infinite, gradientMove 6s ease-in-out infinite;
 
   .gift-card {
-      background: #f1f1f1d9;
+    border-radius: 15px;
+    background: #f1f1f1d9;
         
     /* color: white; */
     

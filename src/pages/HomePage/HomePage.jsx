@@ -160,11 +160,14 @@ function HomePage({ className }) {
 
           <Grid item xs={12} lg={3} className={'single-ads-grid google-anno-skip'}>
             {theme.mode !== 'dark' ?
-              <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'5288837770'}></AdsenseSingleAd>
-              // todo test here feed-dark-1
-              // <AdsenseInFeedAd className={''} adSlot={'1182993809'}></AdsenseInFeedAd>
+              <>
+                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'web'} adSlot={'5288837770'}></AdsenseSingleAd>
+                {/* // feed-gray-1 */}
+                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd>
+              </>
               :
-              <AdsenseSingleAd className={'adsenseSingleAd'} adSlot={'1143878045'}></AdsenseSingleAd>
+              // feed-dark-1
+              <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
             }
           </Grid>
         </Grid>

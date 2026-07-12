@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { LOCAL_STORAGE_KEYS, URLS } from '@/constants';
 import utils from '@/utils';
 
+import { useTheme } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -58,7 +60,7 @@ const giftsContent = [
 function Gifts({ className }) {
     const [currentGift, setCurrentGift] = useState(null);
     const [showComponent, setShowComponent] = useState(false);
-
+    const theme = useTheme();
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -138,19 +140,19 @@ function Gifts({ className }) {
                                 top: 8,
                                 right: 8,
                                 zIndex: 1,
-                                height: '16px',       
-                                fontSize: '0.6rem',     
-                                fontWeight: '700',         
-                                backgroundColor: '#eeeeee',  
-                                color: '#757575',          
-                                borderRadius: '4px',         
+                                height: '16px',
+                                fontSize: '0.6rem',
+                                fontWeight: '700',
+                                backgroundColor: '#eeeeee',
+                                color: '#757575',
+                                borderRadius: '4px',
                                 '& .MuiChip-label': {
-                                    paddingLeft: '4px',      
+                                    paddingLeft: '4px',
                                     paddingRight: '4px',
                                 }
                             }}
                         />
-                        {currentGift.img && (
+                        {(currentGift.img && theme.mode !== 'dark') && (
                             <CardMedia
                                 sx={{
                                     width: { md: '35%' },
