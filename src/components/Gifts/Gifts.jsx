@@ -65,7 +65,7 @@ function Gifts({ className }) {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowComponent(true);
-        }, 5000); // 5 seconds
+        }, 1000); // 5 seconds
 
         return () => clearTimeout(timer);
     }, []);
@@ -152,12 +152,15 @@ function Gifts({ className }) {
                                 }
                             }}
                         />
-                        {(currentGift.img && theme.mode !== 'dark') && (
+                        {(currentGift.img) && (
                             <CardMedia
                                 sx={{
-                                    width: { md: '35%' },
-                                    maxHeight: { md: '300px' },
-                                    objectFit: { md: 'cover' }
+                                    maxHeight: {
+                                        xs: theme.mode !== 'dark' ? 'auto' : '200px',
+                                        md: theme.mode !== 'dark' ? '300px' : '200px',
+                                    },
+                                    margin: 'auto',
+                                    objectFit: theme.mode !== 'dark' ? 'cover' : 'contain',
                                 }}
                                 component="img"
                                 image={currentGift.img}

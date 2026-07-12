@@ -19,7 +19,6 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
 
   return (
     <div className={className}>
-      <Typography textAlign="center" fontSize="small">מודעה</Typography>
       {/* todo  - use the style and data attrs by adType in condition */}
       <ins
         className="adsbygoogle"

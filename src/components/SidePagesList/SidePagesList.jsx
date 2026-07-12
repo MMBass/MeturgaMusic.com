@@ -48,7 +48,6 @@ function SidePagesList({ className, changeColors }) {
       name: T.WishListPage,
       url: '/wish-list',
       icon: <PlaylistAddIcon className="side-icons"></PlaylistAddIcon>,
-      chip: <Chip className='pages-list-chip' color="error" variant="outlined" size='small' />,
     },
     {
       name: T.HistoryPage,
