@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import AdsenseSingleAd from './AdsenseSingleAd';
 
 const StyledAdsenseSingleAd = styled(AdsenseSingleAd)`
+    min-height: 200px;
     overflow: hidden;
     p{
       display: none;

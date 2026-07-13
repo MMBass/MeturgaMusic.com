@@ -163,17 +163,17 @@ function HomePage({ className }) {
               <>
                 {/* // now feed-white-1 */}
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd>
-                {/* just 1 until adding lazy loading */}
-                {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd>
-                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd> */}
+                {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
+                {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd>
+                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd> */}
               </>
               :
               <>
                 {/* // feed-dark-1 */}
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
-                {/* just 1 until adding lazy loading */}
-                {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
-                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd> */}
+                {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
+                {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd>
+                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd> */}
               </>
             }
           </Grid>
