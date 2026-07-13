@@ -8,8 +8,10 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
   });
 
   useEffect(() => {
-    pushAd();
-  }, []);
+    if (inView) {
+      pushAd();
+    }
+  }, [inView]);
 
   const pushAd = () => {
     try {
@@ -24,10 +26,9 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
   };
 
   return (
-    <div className={className}>
+    <div className={className} ref={ref}>
       {inView &&
         <ins
-          ref={ref}
           className="adsbygoogle"
           style={{
             display: 'block', overflow: 'hidden', margin: 'auto',
