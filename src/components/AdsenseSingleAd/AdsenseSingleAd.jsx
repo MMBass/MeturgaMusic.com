@@ -37,7 +37,7 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
           //  feed-gray-1
           // 'data-ad-layout-key': '-fb+5w+4e-db+86'
           // feed-dark-1
-          'data-ad-layout-key': '-eq+62+2m-dg+f7'
+          'data-ad-layout-key': '-ex+5n+69-do+2i'
         })}   
         {...(adType === 'article' && {
           'data-ad-layout': 'in-article',
