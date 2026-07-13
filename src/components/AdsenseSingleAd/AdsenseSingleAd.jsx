@@ -24,9 +24,10 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
   };
 
   return (
-    <div ref={ref} className={className}>
+    <div className={className}>
       {inView &&
         <ins
+          ref={ref}
           className="adsbygoogle"
           style={{
             display: 'block', overflow: 'hidden', margin: 'auto',
