@@ -21,7 +21,7 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
       // Was 2500 - now 500 after useInView were added
       setTimeout(() => {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
-      }, 500 * (window.adsbygoogle?.length || 1));
+      }, 50 * (window.adsbygoogle?.length || 1));
     } catch (e) {
       return; // Ignore if push fails
     }

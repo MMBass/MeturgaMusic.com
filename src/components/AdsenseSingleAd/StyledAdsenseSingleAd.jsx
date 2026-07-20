@@ -26,9 +26,8 @@ const StyledAdsenseSingleAd = styled(AdsenseSingleAd)`
         z-index: 0;
     }
 
-    
-    /* &:has(iframe) .loader,  */
-    &:has(html) .loader {
+    &:has(iframe) .loader 
+    {
         display: none;
     }
 `;
