@@ -157,11 +157,11 @@ function HomePage({ className }) {
         <Grid container spacing={0}>
           <Grid item xs={12} sm={12} sx={{ display: { md: 'none' } }} /* top ads for mobile */>
             {theme.mode !== 'dark' ?
-              //  {/* // feed-dark-1 */}
-              <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
-              :
               // {/* // now feed-white-1 */}
               <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd>
+              :
+              //  {/* // feed-dark-1 */}
+              <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
             }
           </Grid>
 
