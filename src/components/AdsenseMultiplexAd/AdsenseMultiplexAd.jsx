@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function AdsenseMultiplexAd({ className }) {
+function AdsenseMultiplexAd({ className, adSlot }) {
   useEffect(() => {
     pushAd();
   }, []);
@@ -20,7 +20,7 @@ function AdsenseMultiplexAd({ className }) {
         className="adsbygoogle"
         style={{ display: 'block', overflow: 'hidden', margin: '15px auto' }}
         data-ad-client="ca-pub-8294214228053744"
-        data-ad-slot={2008052409}
+        data-ad-slot={adSlot}
         data-ad-format="autorelaxed"
         data-full-width-responsive="true"
       />

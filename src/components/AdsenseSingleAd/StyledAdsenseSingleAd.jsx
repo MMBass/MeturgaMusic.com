@@ -2,28 +2,34 @@ import { styled } from '@mui/material/styles';
 import AdsenseSingleAd from './AdsenseSingleAd';
 
 const StyledAdsenseSingleAd = styled(AdsenseSingleAd)`
+    display: block;
+    width: 100%;
+    min-width: 100%;
     min-height: 200px;
+    margin: 15px 0 5px 0;
     overflow: hidden;
-    p{
-      display: none;
+    position: relative;
+
+    .loader {
+        position: absolute;
+        inset: 0;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.08);
+        z-index: 10;
     }
 
-    /* Looks strictly for: Direct Child -> Direct Grandchild -> Direct Great-grandchild
-    and use the style only if the ad wasn't blocked 
-    */
-    /* Use if using prnet style and mui text: */
-    /* border-radius: 25px; */
-    &:has(> * > * > *) {
-        padding: 12px 5px;
-        /* margin: 12px 0; */
-        /* background: #f1f1f1d9; */
-
-        p{
-            display: block;
-            /* margin-bottom: 5px; */
-        }
+    > .adsbygoogle {
+        position: relative;
+        z-index: 0;
     }
-     
+
+    &:has(html) .loader,
+    &:has(iframe) .loader {
+        display: none;
+    }
 `;
 
 export default StyledAdsenseSingleAd;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import { LOCAL_STORAGE_KEYS, URLS } from '@/constants';
 import utils from '@/utils';
@@ -13,6 +14,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import JP05 from '@/assets/leads/jp_1200_628-05.jpg';
 import JP07 from '@/assets/leads/jp_1200_628-07.jpg';
@@ -60,16 +62,21 @@ const giftsContent = [
 function Gifts({ className }) {
     const [currentGift, setCurrentGift] = useState(null);
     const [showComponent, setShowComponent] = useState(false);
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        rootMargin: '50px 0px',
+    });
     const theme = useTheme();
 
     useEffect(() => {
-
-        const timer = setTimeout(() => {
-            setShowComponent(true);
-        }, 3000); // Wait 3 seconds for Robots to not index this component
-
+        let timer;
+        if (inView) {
+            timer = setTimeout(() => {
+                setShowComponent(true);
+            }, 2000); // Keep loader visible for 2 seconds after entering view
+        }
         return () => clearTimeout(timer);
-    }, []);
+    }, [inView]);
 
     useEffect(() => {
         // For now - move to af-ew if ws blocked
@@ -126,10 +133,16 @@ function Gifts({ className }) {
         localStorage.setItem(LOCAL_STORAGE_KEYS.GIFTS_OPENED, JSON.stringify(giftsOpened));
     };
 
-    if (!currentGift || !showComponent) return null;
+    if (!currentGift || !showComponent || !inView) {
+        return (
+            <Box ref={ref} className={className} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '300px' }}>
+                <CircularProgress sx={{ color: theme.palette.mode === 'dark' ? 'darkgray' : 'gray' }} />
+            </Box>
+        );
+    }
 
     return (
-        <Box className={className}>
+        <Box ref={ref} className={className}>
             <Card className="gift-card" data-nosnippet>
                 <CardActionArea onClick={() => handleClick(currentGift.url, currentGift.id)}>
                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
@@ -185,6 +198,7 @@ function Gifts({ className }) {
                         </CardContent>
                     </Box>
                 </CardActionArea>
+
             </Card>
         </Box>
     );

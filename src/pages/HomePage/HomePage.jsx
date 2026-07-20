@@ -14,6 +14,7 @@ import SearchBar from '@components/SearchBar/StyledSearchBar';
 import LyricsBody from '@components/LyricsBody/StyledLyricsBody';
 import AboutBody from '@components/AboutBody/StyledAboutBody';
 import AdsenseSingleAd from '@components/AdsenseSingleAd/StyledAdsenseSingleAd';
+import AdsenseMultiplexAd from "@components/AdsenseMultiplexAd/StyledAdsenseMultiplexAd";
 import RecSongs from '@components/RecSongs/StyledRecSongs';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
@@ -154,6 +155,16 @@ function HomePage({ className }) {
 
       {(currLyricsContext.lines?.[0] && currLyricsContext.title) &&
         <Grid container spacing={0}>
+          <Grid item xs={12} sm={12} sx={{ display: { md: 'none' } }} /* top ads for mobile */>
+            {theme.mode !== 'dark' ?
+              //  {/* // feed-dark-1 */}
+              <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
+              :
+              // {/* // now feed-white-1 */}
+              <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd>
+            }
+          </Grid>
+
           <Grid item md={12} lg={9} /* lg 9 if need space for ads*/>
             <LyricsBody className={'lyrics-body'}></LyricsBody>
           </Grid>
@@ -161,16 +172,14 @@ function HomePage({ className }) {
           <Grid item xs={12} lg={3} className={'single-ads-grid google-anno-skip'}>
             {theme.mode !== 'dark' ?
               <>
-                {/* // now feed-white-1 */}
-                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd>
+                <AdsenseMultiplexAd className={'adsenseMultiplexAd'} adSlot={'2008052409'}></AdsenseMultiplexAd>
                 {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
                 {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd>
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd> */}
               </>
               :
               <>
-                {/* // feed-dark-1 */}
-                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
+                <AdsenseMultiplexAd className={'adsenseMultiplexAd'} adSlot={'4189991590'}></AdsenseMultiplexAd>
                 {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
                 {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd>
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd> */}

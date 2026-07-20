@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import CircularProgress from '@mui/material/CircularProgress';
+import Chip from '@mui/material/Chip';
 
 function AdsenseSingleAd({ className, adSlot, adType }) {
   const { ref, inView } = useInView({
@@ -27,6 +29,30 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
 
   return (
     <div className={className} ref={ref}>
+      <div className="loader">
+        <Chip
+          label="AD"
+          size="small"
+          sx={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            zIndex: 1,
+            height: '16px',
+            fontSize: '0.6rem',
+            fontWeight: '700',
+            backgroundColor: '#eeeeee',
+            color: '#757575',
+            borderRadius: '4px',
+            '& .MuiChip-label': {
+              paddingLeft: '4px',
+              paddingRight: '4px',
+            }
+          }}
+        />
+        <CircularProgress sx={{ color: 'darkgray' }} />
+      </div>
+
       {inView &&
         <ins
           className="adsbygoogle"

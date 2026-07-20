@@ -1,6 +1,5 @@
 
 import FooterLinks from "@components/FooterLinks/StyledFooterLinks";
-import AdsenseMultiplexAd from "@components/AdsenseMultiplexAd/StyledAdsenseMultiplexAd";
 import utils from '@/utils';
 
 function Footer({ className }) {
