@@ -32,7 +32,7 @@ function HeadTags({ currTitle }) {
       {currLyricsContext.title &&
         <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
-          crossOrigin="anonymous" data-overlays="bottom"
+          crossOrigin="anonymous"
           key={`adsense-${Date.now()}`} // force re-mounting on song title change
         ></script>
       }

@@ -113,7 +113,6 @@ const loadGoogleAds = () => {
         script.src = URLS.G_ADS;
         script.defer = true;
         script.crossorigin = "anonymous";
-        script.dataset.overlays = "bottom";
         document.body.appendChild(script);
     }
 }

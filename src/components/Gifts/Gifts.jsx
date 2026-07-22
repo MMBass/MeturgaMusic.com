@@ -73,7 +73,7 @@ function Gifts({ className }) {
         if (inView) {
             timer = setTimeout(() => {
                 setShowComponent(true);
-            }, 2000); // Keep loader visible for 2 seconds after entering view
+            }, 1000); // Keep loader visible for 2 seconds after entering view
         }
         return () => clearTimeout(timer);
     }, [inView]);
