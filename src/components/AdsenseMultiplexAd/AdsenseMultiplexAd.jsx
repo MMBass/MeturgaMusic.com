@@ -1,19 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 function AdsenseMultiplexAd({ className, adSlot }) {
+  const hasPushedRef = useRef(false);
+
   useEffect(() => {
     pushAd();
   }, []);
 
   const pushAd = () => {
     try {
+      if (hasPushedRef.current) return;
+      hasPushedRef.current = true;
       setTimeout(() => {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
       }, 2500);
     } catch (e) {
-      // ignore if push fails
+      return; // ignore if push fails
     }
   };
+
   return (
     <div className={className}>
       <ins

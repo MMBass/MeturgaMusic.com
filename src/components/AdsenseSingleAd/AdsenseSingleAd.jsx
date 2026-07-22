@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import CircularProgress from '@mui/material/CircularProgress';
 import Chip from '@mui/material/Chip';
 
 function AdsenseSingleAd({ className, adSlot, adType }) {
+  const hasPushedRef = useRef(false);
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: '400px 0px',
@@ -17,6 +18,8 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
 
   const pushAd = () => {
     try {
+      if (hasPushedRef.current) return;
+      hasPushedRef.current = true;
       // Delay the push based on the number of ads already pushed
       // Was 2500 - now 500 after useInView were added
       setTimeout(() => {

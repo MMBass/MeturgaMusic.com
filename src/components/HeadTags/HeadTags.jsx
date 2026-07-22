@@ -10,14 +10,16 @@ function HeadTags({ currTitle }) {
   const currLyricsContext = useContext(CurrLyricsContext);
 
   useEffect(() => {
-    // Remove existing Google ads scripts and stale ad nodes to prevent duplicates
-    const existingScripts = document.querySelectorAll('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
-    if (existingScripts.length > 0) {
-      existingScripts.forEach(script => script.remove());
-    }
+    // ** Use if using utils.loadGoogleAds in other comps
 
-    // Reset the global AdSense queue so the next song change can push a fresh ad.
-    if (window.adsbygoogle) window.adsbygoogle = [];
+    // Remove existing Google ads scripts and stale ad nodes to prevent duplicates
+    // const existingScripts = document.querySelectorAll('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
+    // if (existingScripts.length > 0) {
+    //   existingScripts.forEach(script => script.remove());
+    // }
+
+    // // Reset the global AdSense queue so the next song change can push a fresh ad.
+    // if (window.adsbygoogle) window.adsbygoogle = [];
   }, [currLyricsContext.title]);
 
   return (
@@ -35,7 +37,7 @@ function HeadTags({ currTitle }) {
         <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
           crossOrigin="anonymous"
-          key={`adsense-${currLyricsContext.title}-${Date.now()}`}
+          key={`adsense-${Date.now()}`}
         ></script>
       }
     </Helmet>
