@@ -158,10 +158,18 @@ function HomePage({ className }) {
           <Grid item xs={12} sm={12} sx={{ display: { md: 'none' } }} /* top ads for mobile */>
             {theme.mode !== 'dark' ?
               // {/* // now feed-white-1 */}
-              <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'6410736929'}></AdsenseSingleAd>
+              <AdsenseSingleAd className={'adsenseSingleAd'}
+                key={currLyricsContext.title || 'home'}
+                adType={'feed'}
+                adSlot={'6410736929'}
+              ></AdsenseSingleAd>
               :
               //  {/* // feed-dark-1 */}
-              <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={'1182993809'}></AdsenseSingleAd>
+              <AdsenseSingleAd className={'adsenseSingleAd'}
+                key={currLyricsContext.title || 'home'}
+                adType={'feed'}
+                adSlot={'1182993809'}
+              ></AdsenseSingleAd>
             }
           </Grid>
 
