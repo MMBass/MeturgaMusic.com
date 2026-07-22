@@ -1,4 +1,4 @@
-import { useContext, useEffect, useLayoutEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
 
 import T from "./HomePageI18n";
@@ -33,7 +33,6 @@ function HomePage({ className }) {
   const drawerContext = useContext(DrawerContext);
 
   const [searchFocused, setSearchFocused] = useState(false);
-  const [adsCounter, setAdsCounter] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const paramsSong = searchParams.get("song"); // Song of /?song= (with hash and without)
   const rrdLocation = useLocation();
@@ -61,11 +60,7 @@ function HomePage({ className }) {
     };
   }, [rrdLocation]); // Use if there is a direct song in the url
 
-  useLayoutEffect(() => {
-    if (!currLyricsContext.title) return;
-
-    window.adsbygoogle = [];
-    setAdsCounter((prev) => prev + 1);
+  useEffect(() => {
     urlOnTitleChange();
   }, [currLyricsContext.title]);
 
@@ -164,14 +159,14 @@ function HomePage({ className }) {
             {theme.mode !== 'dark' ?
               // {/* // now feed-white-1 */}
               <AdsenseSingleAd className={'adsenseSingleAd'}
-                key={`${currLyricsContext.title || 'home'}-${adsCounter}`}
+                key={currLyricsContext.title || 'home'}
                 adType={'feed'}
                 adSlot={'6410736929'}
               ></AdsenseSingleAd>
               :
               //  {/* // feed-dark-1 */}
               <AdsenseSingleAd className={'adsenseSingleAd'}
-                key={`${(currLyricsContext.title + 'dark') || 'home'}-${adsCounter}`}
+                key={(currLyricsContext.title + 'dark') || 'home'}
                 adType={'feed'}
                 adSlot={'1182993809'}
               ></AdsenseSingleAd>
@@ -186,7 +181,7 @@ function HomePage({ className }) {
             {theme.mode !== 'dark' ?
               <>
                 <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
-                  key={`${(currLyricsContext.title + 'MTPX') || 'home'}-${adsCounter}`}
+                  key={(currLyricsContext.title + 'MTPX') || 'dsenseMultiplex'}
                   adSlot={'2008052409'}
                 ></AdsenseMultiplexAd>
                 {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
@@ -196,7 +191,7 @@ function HomePage({ className }) {
               :
               <>
                 <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
-                  key={`${(currLyricsContext.title + 'MTPX' + 'dark') || 'home'}-${adsCounter}`}
+                  key={(currLyricsContext.title + 'MTPX' + 'dark') || 'dsenseMultiplex'}
                   adSlot={'4189991590'}
                 ></AdsenseMultiplexAd>
                 {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}

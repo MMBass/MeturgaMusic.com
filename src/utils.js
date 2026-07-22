@@ -103,11 +103,14 @@ function isMostlyEnglish(str) {
     return percentage > 0.9;
 }
 
-/** GOOGLE ads tag - Global for all account sites */
+/** GOOGLE ads tag - Global for all account sites 
+ * Don't use it to reload script in SPA it will conflict with already running ads scripts from the prev instance
+*/
 const loadGoogleAds = () => {
     // The script will work if the option is ON in google console. Otherwise the custom ads will show (Not the automatic ads)
+    // TODO why   // '+URLS.G_ADS+' isn't working?
     const existingAdsScript = document.querySelector('script[src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"]');
-    // '+URLS.G_ADS+'
+  
     if (!existingAdsScript) {
         const script = document.createElement('script');
         script.src = URLS.G_ADS;
