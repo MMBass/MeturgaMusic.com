@@ -61,6 +61,7 @@ function HomePage({ className }) {
   }, [rrdLocation]); // Use if there is a direct song in the url
 
   useEffect(() => {
+    window.adsbygoogle = [];
     urlOnTitleChange();
   }, [currLyricsContext.title]);
 
@@ -166,7 +167,7 @@ function HomePage({ className }) {
               :
               //  {/* // feed-dark-1 */}
               <AdsenseSingleAd className={'adsenseSingleAd'}
-                key={currLyricsContext.title || 'home'}
+                key={(currLyricsContext.title + 'dark') || 'home'}
                 adType={'feed'}
                 adSlot={'1182993809'}
               ></AdsenseSingleAd>
@@ -180,14 +181,20 @@ function HomePage({ className }) {
           <Grid item xs={12} lg={3} className={'single-ads-grid google-anno-skip'}>
             {theme.mode !== 'dark' ?
               <>
-                <AdsenseMultiplexAd className={'adsenseMultiplexAd'} adSlot={'2008052409'}></AdsenseMultiplexAd>
+                <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
+                  key={(currLyricsContext.title + 'MTPX') || 'home'}
+                  adSlot={'2008052409'}
+                ></AdsenseMultiplexAd>
                 {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
                 {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd>
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd> */}
               </>
               :
               <>
-                <AdsenseMultiplexAd className={'adsenseMultiplexAd'} adSlot={'4189991590'}></AdsenseMultiplexAd>
+                <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
+                  key={(currLyricsContext.title + 'MTPX' + 'dark') || 'home'}
+                  adSlot={'4189991590'}
+                ></AdsenseMultiplexAd>
                 {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
                 {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd>
                 <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd> */}
