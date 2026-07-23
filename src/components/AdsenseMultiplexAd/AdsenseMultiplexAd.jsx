@@ -1,9 +1,17 @@
 import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 function AdsenseMultiplexAd({ className, adSlot }) {
-  useEffect(() => {
-    pushAd();
-  }, []);
+    const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: '200px 0px',
+  });
+
+ useEffect(() => {
+    if (inView) {
+      pushAd();
+    }
+  }, [inView]);
 
   const pushAd = () => {
     try {
@@ -15,7 +23,7 @@ function AdsenseMultiplexAd({ className, adSlot }) {
   };
 
   return (
-    <div className={className}>
+    <div className={className} ref={ref}>
       <ins
         className="adsbygoogle"
         style={{ display: 'block', overflow: 'hidden', margin: '15px auto' }}

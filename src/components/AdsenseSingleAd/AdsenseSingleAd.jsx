@@ -6,7 +6,7 @@ import Chip from '@mui/material/Chip';
 function AdsenseSingleAd({ className, adSlot, adType }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    rootMargin: '400px 0px',
+    rootMargin: '200px 0px',
   });
 
   useEffect(() => {
