@@ -70,7 +70,7 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
           data-ad-slot={adSlot}
           {...(adType === 'web' && {
             // 'data-ad-format': 'horizontal',
-            'data-full-width-responsive': 'false'
+            // 'data-full-width-responsive': 'false'
           })}
           {...(adType === 'article' && {
             'data-ad-layout': 'in-article',

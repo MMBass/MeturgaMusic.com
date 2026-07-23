@@ -168,6 +168,10 @@ function HomePage({ className }) {
                   adType={'feed'}
                   adSlot={'1182993809' /* feed-dark-1 */}
                 ></AdsenseSingleAd>
+                <AdsenseSingleAd className={'adsenseSingleAd'}
+                  adType={'web'}
+                  adSlot={'9913618227' /* horizontal-media */}
+                ></AdsenseSingleAd>
               </>
             }
           </Grid>
