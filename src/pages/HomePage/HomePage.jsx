@@ -159,14 +159,14 @@ function HomePage({ className }) {
             {theme.mode !== 'dark' ?
               // {/* // now feed-white-1 */}
               <AdsenseSingleAd className={'adsenseSingleAd'}
-                key={currLyricsContext.title || 'home'}
+                // key={currLyricsContext.title || 'home'}
                 adType={'feed'}
                 adSlot={'6410736929'}
               ></AdsenseSingleAd>
               :
               //  {/* // feed-dark-1 */}
               <AdsenseSingleAd className={'adsenseSingleAd'}
-                key={(currLyricsContext.title + 'dark') || 'home'}
+                // key={(currLyricsContext.title + 'dark') || 'home'}
                 adType={'feed'}
                 adSlot={'1182993809'}
               ></AdsenseSingleAd>
@@ -181,7 +181,7 @@ function HomePage({ className }) {
             {theme.mode !== 'dark' ?
               <>
                 <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
-                  key={(currLyricsContext.title + 'MTPX') || 'dsenseMultiplex'}
+                  // key={(currLyricsContext.title + 'MTPX') || 'dsenseMultiplex'}
                   adSlot={'2008052409'}
                 ></AdsenseMultiplexAd>
                 {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
@@ -191,7 +191,7 @@ function HomePage({ className }) {
               :
               <>
                 <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
-                  key={(currLyricsContext.title + 'MTPX' + 'dark') || 'dsenseMultiplex'}
+                  // key={(currLyricsContext.title + 'MTPX' + 'dark') || 'dsenseMultiplex'}
                   adSlot={'4189991590'}
                 ></AdsenseMultiplexAd>
                 {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
