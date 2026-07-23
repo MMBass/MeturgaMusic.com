@@ -92,3 +92,8 @@ body {
   /* THE ANCHOR AD ARROW */
   /* display: none; */
 }
+
+/* To hide unfilled ads. Reccomanded to use by adsense */
+ins.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
+}
