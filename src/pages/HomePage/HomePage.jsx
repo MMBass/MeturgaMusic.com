@@ -102,7 +102,6 @@ function HomePage({ className }) {
       {(!currLyricsContext.lines?.[0] || !currLyricsContext.title) &&
         <Container className="home-top" maxWidth={false}>
           <Grid container className="home-t-parent-grid">
-
             <Grid className="home-top-p2" item xs={12} sm={6}>
               <Typography variant="h1" className="h3-start h3-start-top">
                 {T.H3StartTop} <span>{"."}</span>
@@ -133,19 +132,14 @@ function HomePage({ className }) {
               <SearchBar focused={searchFocused} locat={"main"} size={"large"}></SearchBar>
               <RecSongs />
             </Grid>
-
             <Grid item className="mainPics-container" xs={12} sm={6}>
-
               {theme.mode !== 'dark' ?
                 <img className="wide-pic" alt="site-in-action" src={mainPic} loading="lazy" ></img>
                 :
                 <img className="wide-pic wide-pic-dark" alt="site-in-action" src={shot1Dark} loading="lazy"></img>
               }
-
             </Grid>
-
           </Grid>
-
         </Container>
       }
 
@@ -156,20 +150,25 @@ function HomePage({ className }) {
       {(currLyricsContext.lines?.[0] && currLyricsContext.title) &&
         <Grid container spacing={0}>
           <Grid item xs={12} sm={12} sx={{ display: { md: 'none' } }} /* top ads for mobile */>
+            {/* Note! has to be diff adSlot if you want different ads */}
             {theme.mode !== 'dark' ?
-              // {/* // now feed-white-1 */}
-              <AdsenseSingleAd className={'adsenseSingleAd'}
-                // key={currLyricsContext.title || 'home'}
-                adType={'feed'}
-                adSlot={'6410736929'}
-              ></AdsenseSingleAd>
+              <>
+                <AdsenseSingleAd className={'adsenseSingleAd'}
+                  adType={'feed'}
+                  adSlot={'6410736929' /* feed-white-1 */}
+                ></AdsenseSingleAd>
+                <AdsenseSingleAd className={'adsenseSingleAd'}
+                  adType={'web'}
+                  adSlot={'9913618227' /* horizontal-media */}
+                ></AdsenseSingleAd>
+              </>
               :
-              //  {/* // feed-dark-1 */}
-              <AdsenseSingleAd className={'adsenseSingleAd'}
-                // key={(currLyricsContext.title + 'dark') || 'home'}
-                adType={'feed'}
-                adSlot={'1182993809'}
-              ></AdsenseSingleAd>
+              <>
+                <AdsenseSingleAd className={'adsenseSingleAd'}
+                  adType={'feed'}
+                  adSlot={'1182993809' /* feed-dark-1 */}
+                ></AdsenseSingleAd>
+              </>
             }
           </Grid>
 
@@ -178,27 +177,10 @@ function HomePage({ className }) {
           </Grid>
 
           <Grid item xs={12} lg={3} className={'single-ads-grid google-anno-skip'}>
-            {theme.mode !== 'dark' ?
-              <>
-                <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
-                  // key={(currLyricsContext.title + 'MTPX') || 'dsenseMultiplex'}
-                  adSlot={'2008052409'}
-                ></AdsenseMultiplexAd>
-                {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
-                {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd>
-                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd> */}
-              </>
-              :
-              <>
-                <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
-                  // key={(currLyricsContext.title + 'MTPX' + 'dark') || 'dsenseMultiplex'}
-                  adSlot={'4189991590'}
-                ></AdsenseMultiplexAd>
-                {/* just 1 until adding lazy loading. Note! has to be diff adSlot if you want different ads */}
-                {/* <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd>
-                <AdsenseSingleAd className={'adsenseSingleAd'} adType={'feed'} adSlot={}></AdsenseSingleAd> */}
-              </>
-            }
+            {/* Note! has to be diff adSlot if you want different ads */}
+            <AdsenseMultiplexAd className={'adsenseMultiplexAd'}
+              adSlot={(theme.mode !== 'dark') ? '2008052409' : '4189991590'}
+            ></AdsenseMultiplexAd>
           </Grid>
         </Grid>
       }
