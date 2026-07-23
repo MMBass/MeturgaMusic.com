@@ -55,7 +55,7 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
           className="adsbygoogle"
           style={{
             display: 'block',
-            height: '120px',
+            height: '140px',
             //  overflow: 'hidden',
             //  margin: 'auto', // not used in feed-ads
             // article type: - use if need

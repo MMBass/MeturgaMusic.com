@@ -5,8 +5,6 @@ const StyledAdsenseSingleAd = styled(AdsenseSingleAd)`
     display: block;
     width: 100%;
     min-width: 100%;
-    /* min-height: 120px;
-    max-height: 120px !important; */
     margin: 15px 0 5px 0;
     overflow: hidden;
     position: relative;
