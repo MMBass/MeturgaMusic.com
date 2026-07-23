@@ -69,6 +69,7 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
           data-ad-client="ca-pub-8294214228053744"
           data-ad-slot={adSlot}
           {...(adType === 'web' && {
+            // Not using since height is 120px manually
             // 'data-ad-format': 'horizontal',
             // 'data-full-width-responsive': 'false'
           })}
