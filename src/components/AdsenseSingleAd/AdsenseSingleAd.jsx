@@ -55,6 +55,7 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
           className="adsbygoogle"
           style={{
             display: 'block',
+            height: '120px',
             //  overflow: 'hidden',
             //  margin: 'auto', // not used in feed-ads
             // article type: - use if need
@@ -68,8 +69,8 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
           data-ad-client="ca-pub-8294214228053744"
           data-ad-slot={adSlot}
           {...(adType === 'web' && {
-            'data-ad-format': 'horizontal',
-            // 'data-full-width-responsive': 'true'
+            // 'data-ad-format': 'horizontal',
+            'data-full-width-responsive': 'false'
           })}
           {...(adType === 'article' && {
             'data-ad-layout': 'in-article',
