@@ -14,7 +14,7 @@ const recSongsData = [
 
 const RecSongs = ({ className }) => {
     return (
-        <Box className={className}>
+        <Box className={className} component="nav" aria-label="Recommended Songs">
             <Grid container spacing={1}>
                 {recSongsData.map((song, index) => (
                     <Grid item>

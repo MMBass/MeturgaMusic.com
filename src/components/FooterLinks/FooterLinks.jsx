@@ -17,6 +17,7 @@ import MessageIcon from '@mui/icons-material/Message';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkIcon from '@mui/icons-material/Link';
 
+import RecSongs from '@components/RecSongs/StyledRecSongs';
 import BuyMeCoffeeBtn from '@components/BuyMeCoffeeBtn/StyledBuyMeCoffeeBtn';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -38,7 +39,7 @@ function FooterLinks({ className, canInstall }) {
           item
           xs={12}
           sm={3}
-          sx={{ order: { xs: 0, sm: 4 } }}
+          sx={{ order: { xs: 0, sm: 5 } }}
         >
           <OfferInstall></OfferInstall>
         </Grid>
@@ -140,19 +141,19 @@ function FooterLinks({ className, canInstall }) {
             {T.Info}
           </ListSubheader>
           <ListItem>
-            <ListItemButton component="a" href={ROUTES.ACCESSIBILITY} aria-label="accessibility">
+            <ListItemButton component="a" href={ROUTES.ACCESSIBILITY} rel="nofollow" aria-label="accessibility">
               <AccessibleIcon />
               <ListItemText primary={T.Accessibility} />
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton component="a" href={ROUTES.PRIVACY} aria-label="privacy">
+            <ListItemButton component="a" href={ROUTES.PRIVACY} rel="nofollow" aria-label="privacy">
               <PrivacyTipIcon />
               <ListItemText primary={T.Privacy} />
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton component="a" href={ROUTES.TERMS} aria-label="terms">
+            <ListItemButton component="a" href={ROUTES.TERMS} rel="nofollow" aria-label="terms">
               <DescriptionIcon />
               <ListItemText primary={T.Terms} />
             </ListItemButton>
@@ -162,13 +163,25 @@ function FooterLinks({ className, canInstall }) {
 
       <Grid
         item
+        marginInlineStart={{ xs: '5px', sm: '25px' }}
+        xs={12}
+        sm={6}
+        sx={{ order: { xs: 0, sm: 6 } }}
+      >
+        <RecSongs></RecSongs>
+      </Grid>
+
+      <Grid
+        item
         xs={12}
         sm={12}
         className="l-body-buyMe-container"
-        sx={{ order: { xs: 0, sm: 5 } }}
+        sx={{ order: { xs: 0, sm: 7 } }}
       >
         <BuyMeCoffeeBtn></BuyMeCoffeeBtn>
       </Grid>
+
+
 
     </Grid>
   );

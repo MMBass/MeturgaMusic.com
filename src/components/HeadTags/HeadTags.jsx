@@ -37,7 +37,7 @@ function HeadTags({ currTitle }) {
         <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
           crossOrigin="anonymous"
-          // key={`adsense-${Date.now()}`} // What the use?
+          // key={`adsense-${Date.now()}`} // What was the use?
         ></script>
       }
     </Helmet>
