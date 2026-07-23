@@ -68,7 +68,7 @@ function AdsenseSingleAd({ className, adSlot, adType }) {
           data-ad-client="ca-pub-8294214228053744"
           data-ad-slot={adSlot}
           {...(adType === 'web' && {
-            'data-ad-format': 'auto',
+            'data-ad-format': 'horizontal',
             'data-full-width-responsive': 'true'
           })}
           {...(adType === 'article' && {
