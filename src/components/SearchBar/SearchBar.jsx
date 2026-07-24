@@ -188,7 +188,6 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
 
       {(!addRecordMode) &&
         <TextField size={size}
-          id="outlined-search"
           className={locat == "main" ? "main-input" : "top-input"}
           label={
             (!startSearchConnection || searchProccessing) ?
@@ -206,7 +205,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       }
 
       {(addRecordMode) &&
-        <TextField label={T.AddRecordLabel} d="outlined-search" type="search" className={'add-record-input'} onChange={startSearchConnection ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" inputProps={{ maxLength: 80 }} />
+        <TextField label={T.AddRecordLabel} type="search" className={'add-record-input'} onChange={startSearchConnection ? setVal : null} autoFocus={false} autoComplete='off' placeholder={T.PoweredBy + " GOOGLE "} value={currVal} fullWidth variant="filled" inputProps={{ maxLength: 80 }} />
       }
 
       <div id="gcse-my-wrapper" className={(addRecordMode && "gcse-my-wrapper-add-record-mode")}>

@@ -2,14 +2,13 @@ import { useState } from "react";
 import fetchSingleTrans from '@services/fetchSingleTrans';
 import { SESSION_STORAGE_KEYS } from '@/constants';
 
-// Keep the ttip open while parent rerender - using sessionStorage; (useMemo is saving only if parent not rerender)
 export default function useLyricToolTip(lyric, lyricID) {
     const sessionData = sessionStorage.getItem(SESSION_STORAGE_KEYS.TTIP + lyricID);
     const currTTip = sessionData ? JSON.parse(sessionData) : null;
-    
+
     const [results, setResults] = useState(currTTip || []);
     const [open, setOpen] = useState(currTTip || false);
-
+    // Keep the ttip open while parent rerender - using sessionStorage; (useMemo is saving only if parent not rerender)
     const handleTooltipOpen = async () => {
         setOpen(true);
         if (!results[0]) {

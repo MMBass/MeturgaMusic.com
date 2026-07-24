@@ -1,11 +1,18 @@
+import { useContext, useEffect } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 
 import LyricToolTipChilds from '@components/LyricToolTipChilds/StyledLyricToolTipChilds';
 import BookMarkWord from '@components/BookMarkWord/StyledBookMarkWord';
 import useLyricToolTip from '@hooks/useLyricToolTip';
+import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
 function LyricToolTip({ className, lyric, lyricID }) {
+  const { title: currSongTitle } = useContext(CurrLyricsContext);
   const { results, open, handleTooltipOpen, handleTooltipClose } = useLyricToolTip(lyric, lyricID);
+
+  useEffect(() => {
+    handleTooltipClose();
+  }, [currSongTitle]);
 
   return (
     <>

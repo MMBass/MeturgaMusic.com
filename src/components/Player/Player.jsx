@@ -153,6 +153,8 @@ function Player({ className }) {
   };
 
   const toggleMute = () => {
+    // TODO? Unmute restores a hardcoded volume instead of previous volume
+    // the code sets setVolume(10) instead of restoring the last non-zero volume. That means the player silently resets the user’s volume preference
     if (youtubePlayer.current) {
       if (isMuted) {
         youtubePlayer.current.unMute();

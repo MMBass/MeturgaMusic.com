@@ -10,7 +10,7 @@ you may have to put useEffect in the target component
 (and depends on [nameContext]) to force rerender before updating other states */
 
 /* In order to createBanner you should create a container for it
-in the componenet you want to display.
+in the component you want to display.
 example:
 {(bannersContext.{{YOUR BANNER FUTURE NAME}}?.open) &&
     {{HERE PUT THE CHILDS, E.T.C: <Alert> OR <Snackbar> OR IT CAN BE ANY html,
@@ -37,7 +37,7 @@ export default function BannersContextProvider({children}) {
         if (banners[name]) {
             setBanners({ ...banners, [name]: { ...banners[name], open: true } });
         } else {
-            console.error("Banner " + name + " does'nt exist");
+            console.error("Banner " + name + " doesn't exist");
         }
     }
 
@@ -45,7 +45,7 @@ export default function BannersContextProvider({children}) {
         if (banners[name]) {
             setBanners({ ...banners, [name]: { ...banners[name], open: false } });
         } else {
-            console.error("Banner " + name + " does'nt exist");
+            console.error("Banner " + name + " doesn't exist");
         }
     }
 

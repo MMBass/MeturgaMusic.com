@@ -55,7 +55,7 @@ function SpotifyExtensionPage({ className, pageTitle }) {
                   open={copiedOpen}
                   arrow
                 >
-                  <Chip className="copy-key-chip" size="large" variant="evelated" label="MC476db2b49M92347bYeRCe" icon={<ContentCopyIcon color="white" />} />
+                  <Chip className="copy-key-chip" size="large" label="MC476db2b49M92347bYeRCe" icon={<ContentCopyIcon color="white" />} />
                 </Tooltip>
               </CopyToClipboard>
             </Grid>
