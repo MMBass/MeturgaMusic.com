@@ -89,7 +89,14 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
   // Recreating and adding click event to every text inside the results dropdown
   const linesChange = () => {
 
+    // exact snip container:
+    // ".gsc-table-cell-snippet-close .gs-snippet"
+    // REMOVE every ... and 3 dots from snippet
+
+
     setTimeout(() => {
+
+      // TODO use here the parent X 3 - but only if contains gs-title? or not critical?
       let sResults = document.querySelectorAll(".gs-title:not(.gsc-table-cell-thumbnail)");
 
       // Move the ads to bottom - if displayed
@@ -99,7 +106,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
       // }); 
 
       if (sResults) {
-        sResults.forEach((line) => {
+        sResults.forEach((line, lIndex) => {
 
           // If includes "Lyrics" && '–' && "-"
           if (line.innerText.includes('Lyrics') && (line.innerText.includes('–') || line.innerText.includes('-'))) {
@@ -132,7 +139,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
               songTitle.substring(0, songTitle.indexOf(' - ')),
               songTitle.substring(songTitle.indexOf(' - ') + 3) // All after the first ' - '
             ];
-            
+
             const splittedSongTitle = {
               artistName: encodeURIComponent(splittedSongTitleArr[0]),
               songName: encodeURIComponent(splittedSongTitleArr[1])
@@ -163,7 +170,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
     }, 50);
   }
 
-  // Click event for very text in results dropdown
+  // Click event for every item in results dropdown
   const handleLineClickEvent = (line, songTitle, splittedSongTitle, webSongUrl) => {
     line.parentElement.parentElement.parentElement.parentElement.style.pointerEvents = "none";
 

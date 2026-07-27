@@ -15,7 +15,6 @@ function AdsenseMultiplexAd({ className, adSlot }) {
 
   const pushAd = () => {
     try {
-       console.log(window.adsbygoogle);
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
       return; // Ignore if push fails

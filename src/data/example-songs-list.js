@@ -68,7 +68,6 @@ export default
         "https://meturgamusic.com/songs/panic!-at-the-disco_high-hopes",
         "https://meturgamusic.com/songs/panic!-at-the-disco_house-of-memories",
         "https://meturgamusic.com/songs/eminem_river",
-        "https://meturgamusic.com/songs/zippy-kid_anal-sex",
         "https://meturgamusic.com/songs/the-beatles_hey-jude",
         "https://meturgamusic.com/songs/rachel-chinouriri_maybe-i'm-lonely",
         "https://meturgamusic.com/songs/polite-fiction_perspective",
