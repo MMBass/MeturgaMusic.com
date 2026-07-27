@@ -30,6 +30,7 @@ function AdsenseMultiplexAd({ className, adSlot }) {
         data-ad-slot={adSlot}
         data-ad-format="autorelaxed"
         data-full-width-responsive="true"
+        data-matched-content-ui-type="image_card_sidebyside"
       />
     </div>
   );
