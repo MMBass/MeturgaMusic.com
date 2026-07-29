@@ -1,6 +1,7 @@
 //** Uses for conditional and dynamic head tags **/
 import { useContext, useEffect } from 'react';
 import { Helmet } from "react-helmet";
+import { useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
@@ -8,6 +9,8 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 function HeadTags({ currTitle }) {
   const theme = useTheme();
   const currLyricsContext = useContext(CurrLyricsContext);
+
+  const rrdLocation = useLocation();
 
   useEffect(() => {
     // ** Use if using utils.loadGoogleAds in other comps
@@ -36,9 +39,12 @@ function HeadTags({ currTitle }) {
       {currLyricsContext.title &&
         <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
-          crossOrigin="anonymous"
-          // key={`adsense-${Date.now()}`} // What was the use?
-        ></script>
+          crossOrigin="anonymous"></script>
+      }
+
+      {/* Don't index data pages, and ?song= pages */}
+      {(!rrdLocation.pathname === "/songs" || !rrdLocation.pathname === "/") &&
+        <meta name="robots" content="noindex, follow" />
       }
     </Helmet>
   );
