@@ -23,6 +23,7 @@ function SearchBar({ className, addRecordMode, addRecord, size, locat }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
 
+  
   useEffect(() => {
     if (!addRecordMode) {
       setCurrVal(currLyricsContext.title);
