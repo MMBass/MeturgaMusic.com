@@ -36,11 +36,11 @@ function HeadTags({ currTitle }) {
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"></link>
 
       {/* Google adsense global tag */}
-      {currLyricsContext.title &&
+      {/* {currLyricsContext.title &&
         <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8294214228053744"
           crossOrigin="anonymous"></script>
-      }
+      } */}
 
       {/* Don't index data pages, and ?song= pages */}
       {(!rrdLocation.pathname === "/songs" || !rrdLocation.pathname === "/") &&
