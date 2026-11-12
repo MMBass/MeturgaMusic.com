@@ -170,10 +170,6 @@ function LyricsBody({ className }) {
           </Alert>
         }
 
-        <Grid item xs={12}>
-          <Gifts className={'gifts-component'}></Gifts>
-        </Grid>
-
       </Grid>
     </Paper>
   );
